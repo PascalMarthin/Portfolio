@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <string>
 
-// 설명 :
+// 설명 : 기본적인 윈도우(창)을 표시해주도록 '도와주는' 클래스
 class GameEngineWindow
 {
 private:
@@ -34,7 +34,7 @@ public:
 	static inline HDC GETDC()
 	{
 		return Inst_->HDC_;
-	}
+	} // GetDC와 다르게 맴버 변수에 있는 DC를 반환
 
 protected:
 
@@ -48,15 +48,10 @@ private:
 	GameEngineWindow();
 	~GameEngineWindow();
 
-	// delete Function
 	GameEngineWindow(const GameEngineWindow& _Other) = delete;
 	GameEngineWindow(GameEngineWindow&& _Other) noexcept = delete;
 	GameEngineWindow& operator=(const GameEngineWindow& _Other) = delete;
 	GameEngineWindow& operator=(GameEngineWindow&& _Other) noexcept = delete;
-
-protected:
-
-private:
 
 };
 

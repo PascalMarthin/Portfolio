@@ -22,7 +22,7 @@ LRESULT CALLBACK MessageProcess(HWND hWnd, UINT message, WPARAM wParam, LPARAM l
     }
 
     return DefWindowProc(hWnd, message, wParam, lParam);
-}
+} // 메시지 처리 함수
 
 GameEngineWindow* GameEngineWindow::Inst_ = new GameEngineWindow();
 
@@ -32,11 +32,10 @@ GameEngineWindow::GameEngineWindow()
     , WindowOn_(true)
     , HDC_(nullptr)
 {
-}
+} // 초기화
 
 GameEngineWindow::~GameEngineWindow()
 {
-    // 내가 만들어준게 아니라면 다 지워줘야 합니다.
     if (nullptr != HDC_)
     {
         ReleaseDC(hWnd_, HDC_);
@@ -48,12 +47,13 @@ GameEngineWindow::~GameEngineWindow()
         DestroyWindow(hWnd_);
         hWnd_ = nullptr;
     }
-}
+} // 할당 해제
 
 void GameEngineWindow::Off()
 {
     WindowOn_ = false;
-}
+} // 윈도우 종료 함수
+
 void GameEngineWindow::RegClass(HINSTANCE _hInst)
 {
     // 윈도우 클래스 등록
@@ -84,18 +84,21 @@ void GameEngineWindow::CreateGameWindow(HINSTANCE _hInst, const std::string& _Ti
     Title_ = _Title;
     // 클래스 등록은 1번만 하려고 친 코드
     hInst_ = _hInst;
+    // 부여받은 인스턴스 저장
     RegClass(_hInst);
+    // 레지스터리 등록
 
     hWnd_ = CreateWindowExA(0L, "GameEngineWindowClass", Title_.c_str(), WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, _hInst, nullptr);
+    // 윈도우(창) 생성
 
-    // 화면에 무언가를 그리기 위한 핸들입니다.
     HDC_ = GetDC(hWnd_);
+    // HDC 권한 저장
 
     if (!hWnd_)
     {
         return;
-    }
+    } // 생성이 안되었다면 반환
 }
 
 void GameEngineWindow::ShowGameWindow()
@@ -106,15 +109,13 @@ void GameEngineWindow::ShowGameWindow()
         return;
     }
 
-    // 이게 호출되기 전까지는 그릴수가 없다.
-    ShowWindow(hWnd_, SW_SHOW);
+    ShowWindow(hWnd_, SW_SHOW); // 윈도우 출력
     UpdateWindow(hWnd_);
 }
 
 
 void GameEngineWindow::MessageLoop(void(*_InitFunction)(), void(*_LoopFunction)())
 {
-    // 윈도우는 다 준비되었다.
     // 루프를 돌기전에
     // 뭔가 준비할게 있다면 준비함수를 실행해달라.
 
@@ -125,20 +126,13 @@ void GameEngineWindow::MessageLoop(void(*_InitFunction)(), void(*_LoopFunction)(
 
     MSG msg;
 
-    // 윈도우 내부에서는 보이지 않지만
-    // std::list<MSG> MessageQueue;
-    // 메세지를 처리했다면 MessageQueue.clear();
-
-    // 이 while이 1초에 60번 돌면 60프레임
-    // 3000프레임이라는건?
-
     while (WindowOn_)
     {
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
-        }
+        } // 메시지 처리, 행동이 없으면 반환
 
         // 여기서 무슨게임을 돌릴까요?
 

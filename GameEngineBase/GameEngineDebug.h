@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <Windows.h>
 
+// 설명 : 메모리 누수 등 외적인 내용을 관리하는 디버깅 클래스
 class GameEngineDebug
 {
 public:

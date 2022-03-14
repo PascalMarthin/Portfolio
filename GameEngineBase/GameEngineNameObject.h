@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-// 설명 :
+// 설명 : String을 통한 Object 이름관리 클래스
 class GameEngineNameObject
 {
 public:

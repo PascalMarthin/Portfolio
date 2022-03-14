@@ -1,9 +1,12 @@
 #pragma once
 #include <map>
 #include <string>
+#include <GameEngineBase/GameEngineDebug.h>
 
-// 게임엔진이란 게임 그자체의 시작점과 끝점 실행중을 담당하는 녀석이다.
-// 설명 :
+// GameEngine은 단순 인터페이스
+// 설명 : 게임엔진이란 게임 그자체의 시작점과 끝점 실행중을 담당하는 녀석이다.
+// 게임의 시작점과 루프와 끝을 담당하게 될 것이다. 
+
 class GameEngineLevel;
 class GameEngine
 {
@@ -11,20 +14,44 @@ public:
 	GameEngine();
 	~GameEngine();
 
-	// delete Function
 	GameEngine(const GameEngine& _Other) = delete;
 	GameEngine(GameEngine&& _Other) noexcept = delete;
 	GameEngine& operator=(const GameEngine& _Other) = delete;
 	GameEngine& operator=(GameEngine&& _Other) noexcept = delete;
 
-	// 내가 만드는 프레임워크에서는
-	// gameengine 이 세가지를 구현안하면
-	// 내용이 없다고 하더라도
-	// 안되.
 	virtual void GameInit() = 0;
 	virtual void GameLoop() = 0;
 	virtual void GameEnd() = 0;
 
+	// GameType = Level 2 게임 컨텐츠
+	template<typename GameType>
+	static void Start()
+	{
+		GameEngineDebug::LeakCheckOn();
+
+		GameType UserGame;
+		UserContents_ = &UserGame;
+
+		// 윈도우 생성, 윈도우 출력, 메시지 루프
+		WindowCreate();
+
+
+		//
+		// 종료
+		EngineEnd();
+	}
+
+	static GameEngine& GlobalEngine()
+	{
+		if (nullptr == UserContents_)
+		{
+			MsgBoxAssert("GEngine ERROR Engine Is Not Start ");
+		}
+
+		return *UserContents_;
+	}
+
+	void ChangeLevel(const std::string& _Name);
 
 protected:
 	template<typename LevelType>
@@ -32,11 +59,24 @@ protected:
 	{
 		LevelType* NewLevel = new LevelType();
 		NewLevel->SetName(_Name);
-		NewLevel->Loading();
+		GameEngineLevel* Level = NewLevel;
+		Level->Loading();
 		AllLevel_.insert(std::make_pair(_Name, NewLevel));
 	}
 
+
 private:
-	std::map<std::string, GameEngineLevel*> AllLevel_;
+	static std::map<std::string, GameEngineLevel*> AllLevel_;
+	// map이 가지고있는 string KEY로 GameEngineLevel 관리
+	static GameEngineLevel* CurrentLevel_;
+	static GameEngineLevel* NextLevel_;
+	static GameEngine* UserContents_;
+
+	static void WindowCreate();
+	static void EngineInit();
+	static void EngineLoop();
+	static void EngineEnd();
+
+
 };
 

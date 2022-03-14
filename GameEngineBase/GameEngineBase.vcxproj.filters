@@ -4,11 +4,11 @@
     <Filter Include="Debug">
       <UniqueIdentifier>{ffef3485-6639-4ceb-aab8-bd4fb492f1d1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object">
-      <UniqueIdentifier>{d24a1e1f-fd58-464b-8a6c-75307e025600}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{1d20b090-9dbf-4864-b38e-a0872bab971f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object%28Engine%29">
+      <UniqueIdentifier>{d24a1e1f-fd58-464b-8a6c-75307e025600}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -19,7 +19,7 @@
       <Filter>Debug</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineNameObject.cpp">
-      <Filter>Object</Filter>
+      <Filter>Object%28Engine%29</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -30,7 +30,7 @@
       <Filter>Debug</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineNameObject.h">
-      <Filter>Object</Filter>
+      <Filter>Object%28Engine%29</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
