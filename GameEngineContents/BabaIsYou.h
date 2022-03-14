@@ -5,17 +5,20 @@
 class BabaIsYou : public GameEngine
 {
 public:
-	// constrcuter destructer
 	BabaIsYou();
 	~BabaIsYou();
 
-	// delete Function
 	BabaIsYou(const BabaIsYou& _Other) = delete;
 	BabaIsYou(BabaIsYou&& _Other) noexcept = delete;
 	BabaIsYou& operator=(const BabaIsYou& _Other) = delete;
 	BabaIsYou& operator=(BabaIsYou&& _Other) noexcept = delete;
 
+	void GameInit() override;
+	void GameLoop() override;
+	void GameEnd() override;
+
 protected:
+
 
 private:
 
