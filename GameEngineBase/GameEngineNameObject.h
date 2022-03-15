@@ -1,11 +1,12 @@
 #pragma once
 #include <string>
 
-// 설명 : String을 통한 Object 이름관리 클래스
+// 설명 : String을 통한 Object(Actor, Level 등) 이름관리 클래스
 class GameEngineNameObject
 {
 public:
 	GameEngineNameObject();
+	// 자식 소멸자 호출을 위한 가상함수 선언 
 	virtual ~GameEngineNameObject();
 
 	GameEngineNameObject(const GameEngineNameObject& _Other) = delete;

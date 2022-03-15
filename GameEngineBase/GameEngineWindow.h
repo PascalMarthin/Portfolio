@@ -31,10 +31,11 @@ public:
 
 	void Off();
 
+	// GetDC와 다르게 맴버 변수에 있는 DC를 반환
 	static inline HDC GETDC()
 	{
 		return Inst_->HDC_;
-	} // GetDC와 다르게 맴버 변수에 있는 DC를 반환
+	} 
 
 protected:
 

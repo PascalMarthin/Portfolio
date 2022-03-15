@@ -1,7 +1,7 @@
 #include "GameEngineWindow.h"
 #include "GameEngineDebug.h"
 
-
+// 메시지 처리 함수
 LRESULT CALLBACK MessageProcess(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
@@ -22,19 +22,19 @@ LRESULT CALLBACK MessageProcess(HWND hWnd, UINT message, WPARAM wParam, LPARAM l
     }
 
     return DefWindowProc(hWnd, message, wParam, lParam);
-} // 메시지 처리 함수
+}
 
 GameEngineWindow* GameEngineWindow::Inst_ = new GameEngineWindow();
 
-GameEngineWindow::GameEngineWindow()
+GameEngineWindow::GameEngineWindow() // 초기화
     : hInst_(nullptr)
     , hWnd_(nullptr)
     , WindowOn_(true)
     , HDC_(nullptr)
 {
-} // 초기화
+} 
 
-GameEngineWindow::~GameEngineWindow()
+GameEngineWindow::~GameEngineWindow() // 할당 해제
 {
     if (nullptr != HDC_)
     {
@@ -47,16 +47,18 @@ GameEngineWindow::~GameEngineWindow()
         DestroyWindow(hWnd_);
         hWnd_ = nullptr;
     }
-} // 할당 해제
+} 
 
-void GameEngineWindow::Off()
+// 윈도우 종료 함수
+void GameEngineWindow::Off() 
 {
     WindowOn_ = false;
-} // 윈도우 종료 함수
+} 
 
-void GameEngineWindow::RegClass(HINSTANCE _hInst)
+// 윈도우 클래스 등록
+void GameEngineWindow::RegClass(HINSTANCE _hInst)  
 {
-    // 윈도우 클래스 등록
+  
     WNDCLASSEXA wcex;
     wcex.cbSize = sizeof(WNDCLASSEX);
     wcex.style = CS_HREDRAW | CS_VREDRAW;
@@ -83,22 +85,24 @@ void GameEngineWindow::CreateGameWindow(HINSTANCE _hInst, const std::string& _Ti
 
     Title_ = _Title;
     // 클래스 등록은 1번만 하려고 친 코드
-    hInst_ = _hInst;
     // 부여받은 인스턴스 저장
-    RegClass(_hInst);
+    hInst_ = _hInst;
+ 
     // 레지스터리 등록
+    RegClass(_hInst);
 
+    // 윈도우(창) 생성
     hWnd_ = CreateWindowExA(0L, "GameEngineWindowClass", Title_.c_str(), WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, _hInst, nullptr);
-    // 윈도우(창) 생성
 
-    HDC_ = GetDC(hWnd_);
     // HDC 권한 저장
+    HDC_ = GetDC(hWnd_);
 
+    // 생성이 안되었다면 반환
     if (!hWnd_)
     {
         return;
-    } // 생성이 안되었다면 반환
+    } 
 }
 
 void GameEngineWindow::ShowGameWindow()
@@ -110,7 +114,7 @@ void GameEngineWindow::ShowGameWindow()
     }
 
     ShowWindow(hWnd_, SW_SHOW); // 윈도우 출력
-    UpdateWindow(hWnd_);
+    UpdateWindow(hWnd_); 
 }
 
 

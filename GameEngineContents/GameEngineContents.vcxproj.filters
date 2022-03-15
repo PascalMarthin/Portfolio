@@ -11,6 +11,9 @@
     <ClCompile Include="EndingLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
+    <ClCompile Include="TitleLogo.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -23,10 +26,16 @@
     <ClInclude Include="EndingLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
+    <ClInclude Include="TitleLogo.h">
+      <Filter>Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
       <UniqueIdentifier>{d1f818af-67fb-44eb-964d-dd05d92df1f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Title">
+      <UniqueIdentifier>{5dc912b5-29f8-4a4b-89ad-070ad17b9422}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

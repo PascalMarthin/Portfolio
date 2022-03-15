@@ -17,16 +17,19 @@ GameEngine::~GameEngine()
 
 }
 
+// 게임 전 세팅
 void GameEngine::GameInit()
 {
 
 }
 
+// 게임 실행 (루프)
 void GameEngine::GameLoop()
 {
 
 }
 
+// 게임 종료
 void GameEngine::GameEnd()
 {
 
@@ -46,12 +49,17 @@ void GameEngine::EngineInit()
 {
     UserContents_->GameInit();
 }
+
 void GameEngine::EngineLoop()
 {
     // 엔진수준에서 매 프레임마다 체크하고 싶은거
     UserContents_->GameLoop();
 
-    // 업데이트 전 레벨 검사
+
+
+    // 시점함수
+
+    // 업데이트 전 레벨전환 검사
     if (nullptr != NextLevel_)
     {
         CurrentLevel_ = NextLevel_;

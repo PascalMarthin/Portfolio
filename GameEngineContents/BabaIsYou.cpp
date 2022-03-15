@@ -13,14 +13,14 @@ BabaIsYou::~BabaIsYou()
 
 void BabaIsYou::GameInit()
 {
-
-}
-void BabaIsYou::GameLoop()
-{
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("Play");
 	CreateLevel<EndingLevel>("Ending");
 	ChangeLevel("Title");
+}
+void BabaIsYou::GameLoop()
+{
+	
 }
 void BabaIsYou::GameEnd()
 {
