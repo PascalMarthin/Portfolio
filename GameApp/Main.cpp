@@ -11,5 +11,4 @@ int __stdcall WinMain(_In_ HINSTANCE hInstance,
 {
     GameEngine::Start<BabaIsYou>();
 
-    return 0;
 }

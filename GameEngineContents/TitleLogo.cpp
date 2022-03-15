@@ -8,3 +8,7 @@ TitleLogo::~TitleLogo()
 {
 }
 
+void TitleLogo::Start()
+{
+
+}

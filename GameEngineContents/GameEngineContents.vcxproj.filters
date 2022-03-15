@@ -14,6 +14,9 @@
     <ClCompile Include="TitleLogo.cpp">
       <Filter>Title</Filter>
     </ClCompile>
+    <ClCompile Include="TitleBackGround.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -27,6 +30,9 @@
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleBackGround.h">
       <Filter>Title</Filter>
     </ClInclude>
   </ItemGroup>

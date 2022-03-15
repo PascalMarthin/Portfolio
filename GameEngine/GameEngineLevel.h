@@ -1,8 +1,11 @@
 #pragma once
 #include "GameEngineBase/GameEngineNameObject.h"
+#include <list>
+#include <map>
 
 // 설명 :
 class GameEngine;
+class GameEngineActor;
 class GameEngineLevel : public GameEngineNameObject
 {
 	friend GameEngine;
@@ -31,12 +34,31 @@ protected:
 	virtual void SceneChangeEnd() {}
 
 	template<typename ActorType>
-	ActorType* CreateActor(const std::string& _Name)
+	ActorType* CreateActor(const std::string& _Name, int _Order)
 	{
-		return nullptr; // 미완
+		ActorType* NewActor = new ActorType();
+		// GameEngineNameObject의 SetName
+		NewActor->SetName(_Name);
+		// GameEngineActor의 SetLevel
+		NewActor->SetLevel(this);
+
+		// 키값에 value를 넣어준다. 이 때 list를 사용함으로서
+		// 중복을 허용하지 않는 map의 특징을 이용해 호출하고 싶은 키에 해당되는 value,
+		// 즉 list를 가져옴으로서 좀 더 효과적으로 데이터를 이용할 수 있게 한다.
+		// 아래 내용으로도 가능하다.
+		// std::list<GameEngineActor*>& Group = AllActor_[_Order];
+		// Group.push_back(NewActor);
+		AllActor_[_Order].push_back(NewActor);
+
+
+		return nullptr;
 	}
 
 private :
+	std::map<int, std::list<GameEngineActor*>> AllActor_;
+
+	void ActorUpdate();
+	void ActorRender();
 
 };
 
