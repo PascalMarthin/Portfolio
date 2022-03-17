@@ -7,6 +7,7 @@
 // 설명 : 게임엔진이란 게임 그자체의 시작점과 끝점 실행중을 담당하는 녀석이다.
 // 게임의 시작점과 루프와 끝을 담당하게 될 것이다. 
 
+class GameEngineImage;
 class GameEngineLevel;
 class GameEngine
 {
@@ -19,11 +20,19 @@ public:
 	GameEngine& operator=(const GameEngine& _Other) = delete;
 	GameEngine& operator=(GameEngine&& _Other) noexcept = delete;
 
+	static inline GameEngineImage* BackBufferImage()
+	{
+		return BackBufferImage_;
+	}
+
+	// 더블 버퍼를 위한 HDC
+	static HDC BackBufferDC();
+
 	virtual void GameInit() = 0;
 	virtual void GameLoop() = 0;
 	virtual void GameEnd() = 0;
 
-	// GameType = Level 2 게임 컨텐츠
+	// GameType = Level 2 Baba_is_you
 	template<typename GameType>
 	static void Start()
 	{
@@ -71,6 +80,7 @@ private:
 	static GameEngineLevel* CurrentLevel_;
 	static GameEngineLevel* NextLevel_;
 	static GameEngine* UserContents_;
+	static GameEngineImage* BackBufferImage_;
 
 	static void WindowCreate();
 	static void EngineInit();

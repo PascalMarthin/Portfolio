@@ -1,12 +1,18 @@
 #include "GameEngine.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include "GameEngineLevel.h"
+#include "GameEngineImageManager.h"
 
 std::map<std::string, GameEngineLevel*> GameEngine::AllLevel_;
 GameEngineLevel* GameEngine::CurrentLevel_ = nullptr;
 GameEngineLevel* GameEngine::NextLevel_ = nullptr;
 GameEngine* GameEngine::UserContents_ = nullptr;
+GameEngineImage* GameEngine::BackBufferImage_ = nullptr;
 
+HDC GameEngine::BackBufferDC()
+{
+    return BackBufferImage_->ImageDC();
+}
 
 GameEngine::GameEngine()
 {
@@ -47,7 +53,12 @@ void GameEngine::WindowCreate()
 
 void GameEngine::EngineInit()
 {
+    // 여기서 윈도우의 크기가 결정될것 이므로
     UserContents_->GameInit();
+
+    // 백버퍼를 만들어 낸다.
+    BackBufferImage_ = GameEngineImageManager::GetInst()->Create("BackBuffer", GameEngineWindow::GetScale());
+
 }
 
 void GameEngine::EngineLoop()
@@ -62,7 +73,7 @@ void GameEngine::EngineLoop()
     {
         if (nullptr != CurrentLevel_)
         {
-            CurrentLevel_->SceneChangeEnd();
+            CurrentLevel_->LevelChangeEnd();
         }
 
         // NextLevel이 CurrentLevel로 전환
@@ -70,7 +81,7 @@ void GameEngine::EngineLoop()
 
         if (nullptr != CurrentLevel_)
         {
-            CurrentLevel_->SceneChangeStart();
+            CurrentLevel_->LevelChangeStart();
         }
 
         NextLevel_ = nullptr;
@@ -109,7 +120,11 @@ void GameEngine::EngineEnd()
         delete StartIter->second;
     }
 
+    GameEngineImageManager::Destroy();
+
     GameEngineWindow::Destroy();
+
+
 }
 
 void GameEngine::ChangeLevel(const std::string& _Name)

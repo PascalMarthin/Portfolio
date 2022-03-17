@@ -11,6 +11,15 @@
     <ClInclude Include="GamePlayObject.h">
       <Filter>Custom</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineImageManager.h">
+      <Filter>Resources\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineImage.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineSound.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngine.cpp" />
@@ -23,6 +32,15 @@
     <ClCompile Include="GamePlayObject.cpp">
       <Filter>Custom</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineImageManager.cpp">
+      <Filter>Resources\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineImage.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineSound.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object%28Engine%29">
@@ -33,6 +51,12 @@
     </Filter>
     <Filter Include="Custom">
       <UniqueIdentifier>{ba10bd01-01f9-4be3-90c8-07e89f783941}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{5e6b706a-1f39-4a77-b209-bf5d84a46d7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Manager">
+      <UniqueIdentifier>{c7b35322-8587-4330-92d8-61f1c26d43f3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

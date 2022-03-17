@@ -42,6 +42,7 @@ protected:
 	virtual void Start() = 0;
 	// 지속적으로 게임이 실행될 떄 호출
 	virtual void Update() {}
+	// 지속적으로 게임이 실행될 떄 호출
 	virtual void Render() {}
 
 	// 디버그 렌더

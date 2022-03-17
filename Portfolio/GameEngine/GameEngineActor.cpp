@@ -1,4 +1,5 @@
 #include "GameEngineActor.h"
+#include "GameEngine/GameEngine.h"
 #include <GameEngineBase/GameEngineWindow.h>
 
 GameEngineActor::GameEngineActor() 
@@ -17,15 +18,9 @@ void GameEngineActor::DebugRectRender()
 
 	GameEngineRect DebugRect(Position_, Scale_);
 
-	for (int i = 0; i < 100; i++)
-	{
-		SetPixel(GameEngineWindow::GetHDC(), 100 + i, 100, RGB(255, 0, 0));
-	}
-
-
 
 	Rectangle(
-		GameEngineWindow::GetHDC(), 
+		GameEngine::BackBufferDC(),
 		DebugRect.CenterLeft(),
 		DebugRect.CenterTop(),
 		DebugRect.CenterRight(),

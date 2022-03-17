@@ -30,7 +30,7 @@ public:
 	void ShowGameWindow();
 	void MessageLoop(void(*_InitFunction)(), void(*_LoopFunction)());
 
-	void SetWindowScaleAndPosition(float4 _Pos, float4 _Size);
+	void SetWindowScaleAndPosition(float4 _Pos, float4 _Scale);
 
 	void Off();
 
@@ -53,6 +53,7 @@ private:
 	HINSTANCE hInst_;
 	HWND hWnd_;
 	HDC HDC_;
+	// 윈도우 창 크기
 	float4 Scale_;
 
 	GameEngineWindow();

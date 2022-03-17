@@ -29,6 +29,12 @@ public:
 	float w;
 
 public:
+	// 2D 크기가 0인지 확인 해주는 함수
+	bool IsZero2D()
+	{
+		return x == 0.0f && y == 0.0f;
+	}
+
 	// float -> int로 캐스팅
 	int ix()
 	{
@@ -66,10 +72,35 @@ public:
 		return static_cast<int>(z * 0.5f);
 	}
 
+	// 죄다 반으로 갈라라
 	float4 Half()
 	{
 		return { x * 0.5f, y * 0.5f , z * 0.5f, 1.0f };
 	}
+
+public :
+	// 생성자
+	float4()
+		: x(0.0f), y(0.0f), z(0.0f), w(1.0f)
+	{
+
+	}
+	float4(float _x, float _y)
+		: x(_x), y(_y), z(0.0f), w(1.0f)
+	{
+
+	}
+	float4(float _x, float _y, float _z)
+		: x(_x), y(_y), z(_z), w(1.0f)
+	{
+
+	}
+	float4(float _x, float _y, float _z, float _w)
+		: x(_x), y(_y), z(_z), w(_w)
+	{
+
+	}
+
 };
 
 struct GameEngineRect

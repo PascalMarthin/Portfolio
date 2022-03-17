@@ -16,7 +16,7 @@ public:
 protected:
 	void Loading() override;
 	void Update() override;
-	void SceneChangeStart() override;
+	void LevelChangeStart() override;
 
 private:
 

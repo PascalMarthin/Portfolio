@@ -3,7 +3,7 @@
 #include <list>
 #include <map>
 
-// 설명 :
+// 설명 : 각 Level을 관리 하며 Actor를 생성
 class GameEngine;
 class GameEngineActor;
 class GameEngineLevel : public GameEngineNameObject
@@ -29,9 +29,9 @@ protected:
 	virtual void Update() = 0;
 
 	// Current 레벨에서 Next 레벨로 이전 할 떄 Next 레벨이 실행하는 함수 
-	virtual void SceneChangeStart() {}
+	virtual void LevelChangeStart() {}
 	// Current 레벨에서 Next 레벨로 이전 할 떄 Current 레벨이 실행하는 함수 
-	virtual void SceneChangeEnd() {}
+	virtual void LevelChangeEnd() {}
 
 	template<typename ActorType>
 	ActorType* CreateActor(const std::string& _Name, int _Order)

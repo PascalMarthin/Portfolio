@@ -164,11 +164,79 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Baba_Text.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Baba_Unit.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EndingLevel.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Flag_Text.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Flag_Unit.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Glass_Text.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Glass_Unit.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Hot_Text.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Is_Text.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Lava_Text.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Lava_Unit.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Melt_Text.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Push_Text.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Rock_Text.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Rock_Unit.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sink_Text.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Skull_Text.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Skull_Unit.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -184,9 +252,37 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Wall_Text.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Wall_Unit.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Water_Text.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Water_Unit.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="You_Text.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BabaIsYou.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Baba_Text.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Baba_Unit.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -194,7 +290,67 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Flag_Text.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Flag_Unit.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Glass_Text.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Glass_Unit.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Hot_Text.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Is_Text.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Lava_Text.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Lava_Unit.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Melt_Text.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PlayLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Push_Text.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Rock_Text.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Rock_Unit.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sink_Text.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Skull_Text.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Skull_Unit.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -207,6 +363,26 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Wall_Text.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Wall_Unit.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Water_Text.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Water_Unit.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="You_Text.cpp">
       <SubType>
       </SubType>
     </ClCompile>
