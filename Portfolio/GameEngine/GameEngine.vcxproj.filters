@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="GameEngineLevel.h">
+      <Filter>Object%28Engine%29</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineActor.h">
+      <Filter>Object%28Engine%29\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayObject.h">
+      <Filter>Custom</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="GameEngineLevel.cpp">
+      <Filter>Object%28Engine%29</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineActor.cpp">
+      <Filter>Object%28Engine%29\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlayObject.cpp">
+      <Filter>Custom</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Object%28Engine%29">
+      <UniqueIdentifier>{2a1be2b3-b93b-481c-af17-717cc28d7e38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object%28Engine%29\Actor">
+      <UniqueIdentifier>{5501cffc-3f60-48cf-9a32-e1b416b0da20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Custom">
+      <UniqueIdentifier>{ba10bd01-01f9-4be3-90c8-07e89f783941}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
