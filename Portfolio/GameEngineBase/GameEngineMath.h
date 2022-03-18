@@ -30,50 +30,50 @@ public:
 
 public:
 	// 2D 크기가 0인지 확인 해주는 함수
-	bool IsZero2D()
+	bool IsZero2D() const
 	{
 		return x == 0.0f && y == 0.0f;
 	}
 
 	// float -> int로 캐스팅
-	int ix()
+	int ix() const
 	{
 		return static_cast<int>(x);
 	}
 
-	int iy()
+	int iy() const
 	{
 		return static_cast<int>(y);
 	}
 
-	int iz()
+	int iz() const
 	{
 		return static_cast<int>(z);
 	}
 
-	int iw()
+	int iw() const
 	{
 		return static_cast<int>(w);
 	}
 
 	// 기준은 오브젝트 중앙이기에 길이의 반을 나누는 경우가 잦다
-	int hix()
+	int hix() const
 	{
 		return static_cast<int>(x * 0.5f);
 	}
 
-	int hiy()
+	int hiy() const
 	{
 		return static_cast<int>(y * 0.5f);
 	}
 
-	int hiz()
+	int hiz() const
 	{
 		return static_cast<int>(z * 0.5f);
 	}
 
 	// 죄다 반으로 갈라라
-	float4 Half()
+	float4 Half() const
 	{
 		return { x * 0.5f, y * 0.5f , z * 0.5f, 1.0f };
 	}

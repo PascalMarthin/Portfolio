@@ -7,6 +7,8 @@
 // 관리되는 리소스들은 전부다 이름이 있다고 보고 쓸겁니다.
 
 // 싱글톤으로 생성 되어있다.
+// 이미지를 생성하는 함수를 호출하지만 결국 이미지 만드는게 아닌 만든 이미지를
+// 관리하기 위한 클래스
 class GameEngineImageManager
 {
 private:
@@ -32,6 +34,9 @@ public:
 public:
 	// 이미지 생성은 기본적으로 이 함수로 진행
 	GameEngineImage* Create(const std::string& _Name, float4 _Scale);
+
+	// DC가 이미 있는 이미지라면?
+	GameEngineImage* Create(const std::string& _Name, HDC _DC);
 
 protected:
 
