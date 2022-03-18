@@ -17,9 +17,6 @@
     <ClCompile Include="TitleBackGround.cpp">
       <Filter>Title</Filter>
     </ClCompile>
-    <ClCompile Include="Baba_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
-    </ClCompile>
     <ClCompile Include="Baba_Unit.cpp">
       <Filter>Object%28Game%29\Unit</Filter>
     </ClCompile>
@@ -44,27 +41,6 @@
     <ClCompile Include="Skull_Unit.cpp">
       <Filter>Object%28Game%29\Unit</Filter>
     </ClCompile>
-    <ClCompile Include="Flag_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
-    </ClCompile>
-    <ClCompile Include="Lava_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
-    </ClCompile>
-    <ClCompile Include="Skull_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
-    </ClCompile>
-    <ClCompile Include="Water_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
-    </ClCompile>
-    <ClCompile Include="Rock_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
-    </ClCompile>
-    <ClCompile Include="Glass_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
-    </ClCompile>
-    <ClCompile Include="Wall_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
-    </ClCompile>
     <ClCompile Include="Is_Text.cpp">
       <Filter>Object%28Game%29\Text\Verb</Filter>
     </ClCompile>
@@ -83,6 +59,36 @@
     <ClCompile Include="Sink_Text.cpp">
       <Filter>Object%28Game%29\Text\State</Filter>
     </ClCompile>
+    <ClCompile Include="Defeat_Text.cpp">
+      <Filter>Object%28Game%29\Text\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Baba_Text.cpp">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Flag_Text.cpp">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Glass_Text.cpp">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Lava_Text.cpp">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock_Text.cpp">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Skull_Text.cpp">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall_Text.cpp">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Water_Text.cpp">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlayUnitText.cpp">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -100,9 +106,6 @@
     </ClInclude>
     <ClInclude Include="TitleBackGround.h">
       <Filter>Title</Filter>
-    </ClInclude>
-    <ClInclude Include="Baba_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
     </ClInclude>
     <ClInclude Include="Baba_Unit.h">
       <Filter>Object%28Game%29\Unit</Filter>
@@ -128,27 +131,6 @@
     <ClInclude Include="Skull_Unit.h">
       <Filter>Object%28Game%29\Unit</Filter>
     </ClInclude>
-    <ClInclude Include="Flag_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
-    </ClInclude>
-    <ClInclude Include="Lava_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
-    </ClInclude>
-    <ClInclude Include="Water_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
-    </ClInclude>
-    <ClInclude Include="Skull_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
-    </ClInclude>
-    <ClInclude Include="Rock_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
-    </ClInclude>
-    <ClInclude Include="Glass_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
-    </ClInclude>
-    <ClInclude Include="Wall_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
-    </ClInclude>
     <ClInclude Include="Is_Text.h">
       <Filter>Object%28Game%29\Text\Verb</Filter>
     </ClInclude>
@@ -166,6 +148,36 @@
     </ClInclude>
     <ClInclude Include="Sink_Text.h">
       <Filter>Object%28Game%29\Text\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Defeat_Text.h">
+      <Filter>Object%28Game%29\Text\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Baba_Text.h">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Flag_Text.h">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Glass_Text.h">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Lava_Text.h">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock_Text.h">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Skull_Text.h">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall_Text.h">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Water_Text.h">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayUnitText.h">
+      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +207,9 @@
     </Filter>
     <Filter Include="Act">
       <UniqueIdentifier>{c2418dfd-d2b0-4170-95c2-57b87864c3c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object%28Game%29\Text\Object%28Unit_Text%29\Object">
+      <UniqueIdentifier>{29c0de7d-d5a3-4bde-aecd-2bf15bde73aa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
