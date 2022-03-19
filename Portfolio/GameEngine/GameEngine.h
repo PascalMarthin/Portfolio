@@ -74,7 +74,7 @@ protected:
 	}
 
 
-private:ㅣㄹ
+private:
 	// map이 가지고있는 string KEY로 GameEngineLevel* (VALUE) 관리
 	static std::map<std::string, GameEngineLevel*> AllLevel_;
 	static GameEngineLevel* CurrentLevel_;
