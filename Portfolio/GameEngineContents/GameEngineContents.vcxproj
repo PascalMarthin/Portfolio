@@ -164,11 +164,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Baba_Text.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Baba_Unit.h">
+    <ClInclude Include="Baba.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -176,27 +172,23 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="EndingLevel.h">
+    <ClInclude Include="Flag.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Flag_Text.h">
+    <ClInclude Include="GamePlayTextObject.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Flag_Unit.h">
+    <ClInclude Include="GamePlayTextStat.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="GamePlayUnitText.h">
+    <ClInclude Include="GamePlayUnitObject.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Glass_Text.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Glass_Unit.h">
+    <ClInclude Include="Glass.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -208,11 +200,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Lava_Text.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Lava_Unit.h">
+    <ClInclude Include="Lava.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -228,11 +216,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Rock_Text.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Rock_Unit.h">
+    <ClInclude Include="Rock.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -240,11 +224,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Skull_Text.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Skull_Unit.h">
+    <ClInclude Include="Skull.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -260,19 +240,11 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Wall_Text.h">
+    <ClInclude Include="Wall.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Wall_Unit.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Water_Text.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Water_Unit.h">
+    <ClInclude Include="Water.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -286,11 +258,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Baba_Text.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Baba_Unit.cpp">
+    <ClCompile Include="Baba.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -298,27 +266,23 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="EndingLevel.cpp">
+    <ClCompile Include="Flag.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Flag_Text.cpp">
+    <ClCompile Include="GamePlayTextObject.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Flag_Unit.cpp">
+    <ClCompile Include="GamePlayTextStat.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="GamePlayUnitText.cpp">
+    <ClCompile Include="GamePlayUnitObject.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Glass_Text.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Glass_Unit.cpp">
+    <ClCompile Include="Glass.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -330,11 +294,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Lava_Text.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Lava_Unit.cpp">
+    <ClCompile Include="Lava.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -350,11 +310,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Rock_Text.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Rock_Unit.cpp">
+    <ClCompile Include="Rock.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -362,11 +318,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Skull_Text.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Skull_Unit.cpp">
+    <ClCompile Include="Skull.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -382,19 +334,11 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Wall_Text.cpp">
+    <ClCompile Include="Wall.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Wall_Unit.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Water_Text.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Water_Unit.cpp">
+    <ClCompile Include="Water.cpp">
       <SubType>
       </SubType>
     </ClCompile>

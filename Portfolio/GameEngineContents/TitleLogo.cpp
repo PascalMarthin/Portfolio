@@ -16,7 +16,7 @@ void TitleLogo::Start()
 {
 	// GameEngineWindow::GetScale().Half() È­¸é Áß¾Ó
 	SetPosition(GameEngineWindow::GetScale().Half());
-	SetScale({ 500, 500 });
+	SetScale({ 200, 500 });
 }
 
 void TitleLogo::Render()

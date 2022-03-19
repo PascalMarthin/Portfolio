@@ -1,10 +1,19 @@
 #include "Baba.h"
 
-Baba::Baba() 
+Baba_Unit::Baba_Unit()
 {
 }
 
-Baba::~Baba() 
+Baba_Unit::~Baba_Unit()
+{
+}
+
+
+Baba_Text::Baba_Text() 
+{
+}
+
+Baba_Text::~Baba_Text() 
 {
 }
 

@@ -8,86 +8,65 @@
     <ClCompile Include="PlayLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="EndingLevel.cpp">
-      <Filter>Level</Filter>
-    </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
       <Filter>Title</Filter>
     </ClCompile>
     <ClCompile Include="TitleBackGround.cpp">
       <Filter>Title</Filter>
     </ClCompile>
-    <ClCompile Include="Baba_Unit.cpp">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="Lava_Unit.cpp">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="Water_Unit.cpp">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="Flag_Unit.cpp">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="Glass_Unit.cpp">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="Rock_Unit.cpp">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="Wall_Unit.cpp">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="Skull_Unit.cpp">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClCompile>
     <ClCompile Include="Is_Text.cpp">
       <Filter>Object%28Game%29\Text\Verb</Filter>
     </ClCompile>
     <ClCompile Include="Hot_Text.cpp">
-      <Filter>Object%28Game%29\Text\State</Filter>
+      <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClCompile>
     <ClCompile Include="Push_Text.cpp">
-      <Filter>Object%28Game%29\Text\State</Filter>
+      <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClCompile>
     <ClCompile Include="Melt_Text.cpp">
-      <Filter>Object%28Game%29\Text\State</Filter>
+      <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClCompile>
     <ClCompile Include="You_Text.cpp">
-      <Filter>Object%28Game%29\Text\State</Filter>
+      <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClCompile>
     <ClCompile Include="Sink_Text.cpp">
-      <Filter>Object%28Game%29\Text\State</Filter>
+      <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClCompile>
     <ClCompile Include="Defeat_Text.cpp">
-      <Filter>Object%28Game%29\Text\State</Filter>
+      <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClCompile>
-    <ClCompile Include="Baba_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClCompile Include="Baba.cpp">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Flag_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClCompile Include="Flag.cpp">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Glass_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClCompile Include="Glass.cpp">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Lava_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClCompile Include="Lava.cpp">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Rock_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClCompile Include="Rock.cpp">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Skull_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClCompile Include="Skull.cpp">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Wall_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Water_Text.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClCompile Include="Water.cpp">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
-    <ClCompile Include="GamePlayUnitText.cpp">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
+    <ClCompile Include="GamePlayTextObject.cpp">
+      <Filter>Object%28Game%29\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlayUnitObject.cpp">
+      <Filter>Object%28Game%29\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlayTextStat.cpp">
+      <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -98,86 +77,65 @@
     <ClInclude Include="PlayLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
-    <ClInclude Include="EndingLevel.h">
-      <Filter>Level</Filter>
-    </ClInclude>
     <ClInclude Include="TitleLogo.h">
       <Filter>Title</Filter>
     </ClInclude>
     <ClInclude Include="TitleBackGround.h">
       <Filter>Title</Filter>
     </ClInclude>
-    <ClInclude Include="Baba_Unit.h">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="Lava_Unit.h">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="Water_Unit.h">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="Flag_Unit.h">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="Glass_Unit.h">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="Rock_Unit.h">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="Wall_Unit.h">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="Skull_Unit.h">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClInclude>
     <ClInclude Include="Is_Text.h">
       <Filter>Object%28Game%29\Text\Verb</Filter>
     </ClInclude>
     <ClInclude Include="Hot_Text.h">
-      <Filter>Object%28Game%29\Text\State</Filter>
+      <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClInclude>
     <ClInclude Include="Push_Text.h">
-      <Filter>Object%28Game%29\Text\State</Filter>
+      <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClInclude>
     <ClInclude Include="Melt_Text.h">
-      <Filter>Object%28Game%29\Text\State</Filter>
+      <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClInclude>
     <ClInclude Include="You_Text.h">
-      <Filter>Object%28Game%29\Text\State</Filter>
+      <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClInclude>
     <ClInclude Include="Sink_Text.h">
-      <Filter>Object%28Game%29\Text\State</Filter>
+      <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClInclude>
     <ClInclude Include="Defeat_Text.h">
-      <Filter>Object%28Game%29\Text\State</Filter>
+      <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClInclude>
-    <ClInclude Include="Baba_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClInclude Include="Baba.h">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Flag_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClInclude Include="Flag.h">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Glass_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClInclude Include="Glass.h">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Lava_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClInclude Include="Lava.h">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Rock_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClInclude Include="Rock.h">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Skull_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClInclude Include="Skull.h">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Wall_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClInclude Include="Wall.h">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Water_Text.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29\Object</Filter>
+    <ClInclude Include="Water.h">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClInclude>
-    <ClInclude Include="GamePlayUnitText.h">
-      <Filter>Object%28Game%29\Text\Object%28Unit_Text%29</Filter>
+    <ClInclude Include="GamePlayTextObject.h">
+      <Filter>Object%28Game%29\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayUnitObject.h">
+      <Filter>Object%28Game%29\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayTextStat.h">
+      <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -196,20 +154,17 @@
     <Filter Include="Object%28Game%29\Text">
       <UniqueIdentifier>{cd7b1a96-7e2a-473e-bfdc-dc2bc28d5333}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object%28Game%29\Text\Object%28Unit_Text%29">
-      <UniqueIdentifier>{2636831c-b997-4640-b714-9a95a2992e07}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object%28Game%29\Text\State">
-      <UniqueIdentifier>{36a345e7-57fc-4297-b741-2a94b7bcd9c5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object%28Game%29\Text\Verb">
       <UniqueIdentifier>{e6629c85-5b6f-48e7-8e39-e9c393342882}</UniqueIdentifier>
     </Filter>
     <Filter Include="Act">
       <UniqueIdentifier>{c2418dfd-d2b0-4170-95c2-57b87864c3c9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object%28Game%29\Text\Object%28Unit_Text%29\Object">
+    <Filter Include="Object%28Game%29\Unit\Object">
       <UniqueIdentifier>{29c0de7d-d5a3-4bde-aecd-2bf15bde73aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object%28Game%29\Text\Stat">
+      <UniqueIdentifier>{36a345e7-57fc-4297-b741-2a94b7bcd9c5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

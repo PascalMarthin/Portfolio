@@ -111,6 +111,7 @@ public:
 
 public:
 	// X 좌표
+	// 실제 좌표를 구해주는 함수
 	int CenterLeft()
 	{
 		return Pos.ix() - Scale.hix();
