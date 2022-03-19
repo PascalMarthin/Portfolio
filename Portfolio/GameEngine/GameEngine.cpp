@@ -8,6 +8,7 @@ GameEngineLevel* GameEngine::CurrentLevel_ = nullptr;
 GameEngineLevel* GameEngine::NextLevel_ = nullptr;
 GameEngine* GameEngine::UserContents_ = nullptr;
 GameEngineImage* GameEngine::BackBufferImage_ = nullptr;
+GameEngineImage* GameEngine::WindowMainImage_ = nullptr; // 그려지면 화면에 진짜 나오게 되는 이미지
 
 HDC GameEngine::BackBufferDC()
 {
@@ -57,6 +58,7 @@ void GameEngine::EngineInit()
     UserContents_->GameInit();
 
     // 백버퍼를 만들어 낸다.
+    WindowMainImage_ = GameEngineImageManager::GetInst()->Create("WindowMain", GameEngineWindow::GetHDC());
     BackBufferImage_ = GameEngineImageManager::GetInst()->Create("BackBuffer", GameEngineWindow::GetScale());
 
 }
@@ -99,6 +101,7 @@ void GameEngine::EngineLoop()
     CurrentLevel_->Update();
     CurrentLevel_->ActorUpdate();
     CurrentLevel_->ActorRender();
+    WindowMainImage_->BitCopy(BackBufferImage_);
 
 }
 
