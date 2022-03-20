@@ -172,10 +172,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Empty.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Flag.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GamePlayObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GamePlayObjectNameEnum.h" />
     <ClInclude Include="GamePlayTextObject.h">
       <SubType>
       </SubType>
@@ -228,6 +237,22 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Stage0.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage1.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="StageData.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TitleBackGround.h">
       <SubType>
       </SubType>
@@ -245,6 +270,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Water.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Win_Text.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -266,7 +295,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Empty.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Flag.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GamePlayObject.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -322,6 +359,22 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Stage0.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage1.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage2.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="StageData.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleBackGround.cpp">
       <SubType>
       </SubType>
@@ -339,6 +392,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Water.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Win_Text.cpp">
       <SubType>
       </SubType>
     </ClCompile>

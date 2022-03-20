@@ -49,6 +49,8 @@ protected:
 
 private:
 	std::string Title_;
+	
+	
 	bool WindowOn_;
 	HINSTANCE hInst_;
 	HWND hWnd_;

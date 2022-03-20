@@ -17,9 +17,10 @@ void PlayLevel::Loading()
 void PlayLevel::Update()
 {
 
+
 }
 
 void PlayLevel::LevelChangeStart()
 {
-	int a = 0;
+
 }

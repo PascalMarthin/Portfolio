@@ -1,12 +1,12 @@
 #pragma once
-#include <GameEngine/GameEngineActor.h>
+#include "GamePlayObject.h"
 
 // Ό³Έν :
-class GamePlayTextObject : public GameEngineActor
+class GamePlayTextObject : public GamePlayObject
 {
 public:
 	GamePlayTextObject();
-	~GamePlayTextObject();
+	virtual ~GamePlayTextObject();
 
 	GamePlayTextObject(const GamePlayTextObject& _Other) = delete;
 	GamePlayTextObject(GamePlayTextObject&& _Other) noexcept = delete;
@@ -26,4 +26,3 @@ protected:
 private:
 
 };
-

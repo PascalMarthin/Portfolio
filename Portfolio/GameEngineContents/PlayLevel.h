@@ -1,7 +1,10 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
+#include <GameEngineBase/GameEngineMath.h>
+// #include "StageData.h"
 
-// 설명 : play 화면 클래스
+// 설명 : Stage 정보를 받아 화면에 출력해주는 Level
+class GamePlayObject;
 class PlayLevel : public GameEngineLevel
 {
 public:

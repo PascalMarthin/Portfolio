@@ -1,13 +1,13 @@
 #pragma once
-#include <GameEngine/GameEngineActor.h>
+#include "GamePlayObject.h"
 
 // Ό³Έν :
-class GamePlayTextStat : public GameEngineActor
+class GamePlayTextStat : public GamePlayObject
 {
 public:
 	// constrcuter destructer
 	GamePlayTextStat();
-	~GamePlayTextStat();
+	virtual ~GamePlayTextStat();
 
 	// delete Function
 	GamePlayTextStat(const GamePlayTextStat& _Other) = delete;

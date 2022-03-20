@@ -59,13 +59,32 @@
     <ClCompile Include="Water.cpp">
       <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
-    <ClCompile Include="GamePlayTextObject.cpp">
-      <Filter>Object%28Game%29\Text</Filter>
-    </ClCompile>
     <ClCompile Include="GamePlayUnitObject.cpp">
       <Filter>Object%28Game%29\Unit</Filter>
     </ClCompile>
     <ClCompile Include="GamePlayTextStat.cpp">
+      <Filter>Object%28Game%29\Text\Stat</Filter>
+    </ClCompile>
+    <ClCompile Include="Empty.cpp">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlayObject.cpp" />
+    <ClCompile Include="StageData.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlayTextObject.cpp">
+      <Filter>Object%28Game%29\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage2.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage0.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Win_Text.cpp">
       <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,13 +147,35 @@
     <ClInclude Include="Water.h">
       <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClInclude>
-    <ClInclude Include="GamePlayTextObject.h">
-      <Filter>Object%28Game%29\Text</Filter>
-    </ClInclude>
     <ClInclude Include="GamePlayUnitObject.h">
       <Filter>Object%28Game%29\Unit</Filter>
     </ClInclude>
     <ClInclude Include="GamePlayTextStat.h">
+      <Filter>Object%28Game%29\Text\Stat</Filter>
+    </ClInclude>
+    <ClInclude Include="Empty.h">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayObject.h" />
+    <ClInclude Include="StageData.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayTextObject.h">
+      <Filter>Object%28Game%29\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayObjectNameEnum.h">
+      <Filter>Object%28Game%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage2.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage0.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Win_Text.h">
       <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClInclude>
   </ItemGroup>
@@ -165,6 +206,9 @@
     </Filter>
     <Filter Include="Object%28Game%29\Text\Stat">
       <UniqueIdentifier>{36a345e7-57fc-4297-b741-2a94b7bcd9c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage">
+      <UniqueIdentifier>{780305e2-33e6-4f4b-81c3-333ee6bb5b83}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,12 +1,12 @@
 #pragma once
-#include <GameEngine/GameEngineActor.h>
+#include "GamePlayObject.h"
 
 // Ό³Έν :
-class GamePlayUnitObject : public GameEngineActor
+class GamePlayUnitObject : public GamePlayObject
 {
 public:
 	GamePlayUnitObject();
-	~GamePlayUnitObject();
+	virtual ~GamePlayUnitObject();
 
 	GamePlayUnitObject(const GamePlayUnitObject& _Other) = delete;
 	GamePlayUnitObject(GamePlayUnitObject&& _Other) noexcept = delete;
