@@ -32,12 +32,19 @@ public:
 	}
 
 public:
-	// 이미지 생성은 기본적으로 이 함수로 진행
-	GameEngineImage* Create(const std::string& _Name, float4 _Scale);
 
+
+
+	GameEngineImage* Find(const std::string& _Name);
+
+	// 이미지 생성은 기본적으로 이 함수로 진행
+	// 내가 비어있는 이미지를 만드는 기능이다.
+	GameEngineImage* Create(const std::string& _Name, const float4& _Scale);
 	// DC가 이미 있는 이미지라면?
 	GameEngineImage* Create(const std::string& _Name, HDC _DC);
 
+	GameEngineImage* Load(const std::string& _Path);
+	GameEngineImage* Load(const std::string& _Path, const std::string& _Name);
 protected:
 
 private:

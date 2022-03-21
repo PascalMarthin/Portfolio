@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <string>
 #include "GameEngineMath.h"
-
+#include "GameEngineDebug.h"
 // 설명 : 기본적인 윈도우(창)을 표시해주도록 '도와주는' 클래스
 class GameEngineWindow
 {

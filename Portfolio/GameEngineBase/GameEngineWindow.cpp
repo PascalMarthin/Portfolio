@@ -1,5 +1,4 @@
 #include "GameEngineWindow.h"
-#include "GameEngineDebug.h"
 
 // 메시지 처리 함수
 LRESULT CALLBACK MessageProcess(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
