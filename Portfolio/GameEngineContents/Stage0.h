@@ -1,6 +1,5 @@
 #pragma once
 #include "StageData.h"
-#include <map>
 
 // Ό³Έν :
 class Stage0 : public StageData

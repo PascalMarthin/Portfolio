@@ -87,6 +87,9 @@
     <ClCompile Include="Win_Text.cpp">
       <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClCompile>
+    <ClCompile Include="Stop_Text.cpp">
+      <Filter>Object%28Game%29\Text\Stat</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -176,6 +179,9 @@
       <Filter>Stage</Filter>
     </ClInclude>
     <ClInclude Include="Win_Text.h">
+      <Filter>Object%28Game%29\Text\Stat</Filter>
+    </ClInclude>
+    <ClInclude Include="Stop_Text.h">
       <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClInclude>
   </ItemGroup>

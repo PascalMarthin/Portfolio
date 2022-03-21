@@ -2,7 +2,6 @@
 Stage0::Stage0() 
 {
 	SetScale_({ 33, 18 });
-	
 	Data_[6][11].push_back(ObjectName::Baba_Text);
 	Data_[6][12].push_back(ObjectName::Is_Text);
 	Data_[6][13].push_back(ObjectName::You_Text);

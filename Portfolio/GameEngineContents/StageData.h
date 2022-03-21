@@ -32,15 +32,12 @@ protected:
 
 	std::map<int, std::map<int, std::vector<ObjectName>>> Data_;
 
-
-
 private:
 	float4 MapScale_;
-	std::map<int, std::map<int, std::vector<ObjectName>>> Map_;
+	std::map<int, StageData*> AllStage;
 
 	void FillObject(const ObjectName _Value);
 	void CreateMap();
-	void SetMapData();
 	bool CheckError();
 };
 

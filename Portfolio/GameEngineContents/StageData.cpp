@@ -12,22 +12,21 @@ StageData::~StageData()
 
 void StageData::CreateMap()
 {
+	
 	if (MapScale_.ix() == 0 || MapScale_.iy() == 0)
 	{
 		MsgBoxAssert("맵의 크기가 0인 맵입니다");
 		return;
 	}
-	SetMapData();
 	FillObject(ObjectName::Empty_Object);
-	// 비어있지 않다면 Error를 채워넣어라
-	CheckError();
+	// 맵 생성이 되었는지 체크
+	if (CheckError())
+	{
+		MsgBoxAssert("맵의 크기가 0인 맵입니다");
+	}
 	return;
 }
 
-void StageData::SetMapData()
-{
-	Map_ = Data_;
-}
 
 void StageData::FillObject(const ObjectName _Value)
 {
@@ -36,10 +35,10 @@ void StageData::FillObject(const ObjectName _Value)
 	{
 		for (int j = 0; j < GetScale_().ix(); j++)
 		{
-			StartVector = Map_[i][j].begin();
-			if (StartVector == Map_[i][j].end())
+			StartVector = Data_[i][j].begin();
+			if (StartVector == Data_[i][j].end())
 			{
-				Map_[i][j].push_back(_Value);
+				Data_[i][j].push_back(_Value);
 			}
 		}
 	}
@@ -53,8 +52,8 @@ bool StageData::CheckError()
 	{
 		for (int j = 0; j < GetScale_().ix(); j++)
 		{
-			StartVector = Map_[i][j].begin();
-			if (StartVector == Map_[i][j].end() || *StartVector == ObjectName::Error)
+			StartVector = Data_[i][j].begin();
+			if (StartVector == Data_[i][j].end() || *StartVector == ObjectName::Error)
 			{
 				MsgBoxAssert("맵 검사 중 Error 혹은 초기화가 되지 않은 블록을 발견 하였습니다");
 				return true;
