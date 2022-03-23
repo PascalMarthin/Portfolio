@@ -22,6 +22,9 @@
     </ClInclude>
     <ClInclude Include="GameEngineEnum.h" />
     <ClInclude Include="GameEngineRenderer.h" />
+    <ClInclude Include="GameEngineActorSubObject.h">
+      <Filter>Object%28Engine%29\Actor\Sub</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngine.cpp" />
@@ -44,6 +47,9 @@
       <Filter>Resources</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineRenderer.cpp" />
+    <ClCompile Include="GameEngineActorSubObject.cpp">
+      <Filter>Object%28Engine%29\Actor\Sub</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object%28Engine%29">
@@ -60,6 +66,9 @@
     </Filter>
     <Filter Include="Resources\Manager">
       <UniqueIdentifier>{c7b35322-8587-4330-92d8-61f1c26d43f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object%28Engine%29\Actor\Sub">
+      <UniqueIdentifier>{92768304-faa1-45f5-80ae-88f6e7d69a0f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

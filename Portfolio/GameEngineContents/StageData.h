@@ -34,7 +34,6 @@ protected:
 
 private:
 	float4 MapScale_;
-	std::map<int, StageData*> AllStage;
 
 	void FillObject(const ObjectName _Value);
 	void CreateMap();
