@@ -29,6 +29,10 @@ public:
 	{
 		return Scale_;
 	}
+	inline void SetMove(float4 _Value)
+	{
+		Position_ += _Value;
+	}
 
 	inline void SetPosition(float4 _Value)
 	{
@@ -66,11 +70,10 @@ public:
 	// 벡터의 값
 	// 가장 빠를겁니다.
 	// 디폴트 인자는 선언에서만 지정 가능합니다.
-	GameEngineRenderer* CreateRenderer(
-		const std::string& _Image,
-		RenderPivot _PivotType /*= RenderPivot::CENTER*/,
-		const float4& _PivotPos /*= { 0,0 }*/
-	);
+	GameEngineRenderer* CreateRenderer(const std::string& _Image, RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
+
+	GameEngineRenderer* CreateRendererToScale(const std::string& _Image, const float4& _Scale, RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
+
 
 	void Renderering();
 
@@ -78,6 +81,18 @@ private:
 	std::list<GameEngineRenderer*> RenderList_;
 	std::list<GameEngineRenderer*>::iterator StartRenderIter;
 	std::list<GameEngineRenderer*>::iterator EndRenderIter;
+	
+	// 개인적으로 추가
+	bool RenderSwitch;
 
+protected:
+	inline bool IsRender()
+	{
+		return Render;
+	}
+	inline void SetRenderSwitch(bool _On)
+	{
+		RenderSwitch = _On;
+	}
 };
 

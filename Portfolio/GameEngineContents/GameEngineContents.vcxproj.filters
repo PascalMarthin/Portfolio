@@ -68,7 +68,6 @@
     <ClCompile Include="Empty.cpp">
       <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
-    <ClCompile Include="GamePlayObject.cpp" />
     <ClCompile Include="StageData.cpp">
       <Filter>Stage</Filter>
     </ClCompile>
@@ -89,6 +88,24 @@
     </ClCompile>
     <ClCompile Include="Stop_Text.cpp">
       <Filter>Object%28Game%29\Text\Stat</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlayObject.cpp">
+      <Filter>Object%28Game%29</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleMenu.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="MainLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="MainBackGround.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="MainCursor.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="MainStage.cpp">
+      <Filter>Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +176,6 @@
     <ClInclude Include="Empty.h">
       <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClInclude>
-    <ClInclude Include="GamePlayObject.h" />
     <ClInclude Include="StageData.h">
       <Filter>Stage</Filter>
     </ClInclude>
@@ -183,6 +199,24 @@
     </ClInclude>
     <ClInclude Include="Stop_Text.h">
       <Filter>Object%28Game%29\Text\Stat</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayObject.h">
+      <Filter>Object%28Game%29</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleMenu.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="MainLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="MainBackGround.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="MainCursor.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="MainStage.h">
+      <Filter>Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +249,9 @@
     </Filter>
     <Filter Include="Stage">
       <UniqueIdentifier>{780305e2-33e6-4f4b-81c3-333ee6bb5b83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{48d600ad-b9e2-4d59-8d28-fa6996879e31}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

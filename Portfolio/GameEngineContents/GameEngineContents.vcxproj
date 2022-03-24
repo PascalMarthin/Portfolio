@@ -217,6 +217,22 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MainBackGround.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MainCursor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MainLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MainStage.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Melt_Text.h">
       <SubType>
       </SubType>
@@ -270,6 +286,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TitleMenu.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -343,6 +363,22 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MainBackGround.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MainCursor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MainLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MainStage.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Melt_Text.cpp">
       <SubType>
       </SubType>
@@ -396,6 +432,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TitleMenu.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -20,10 +20,14 @@
     <ClInclude Include="GameEngineSound.h">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngineEnum.h" />
-    <ClInclude Include="GameEngineRenderer.h" />
     <ClInclude Include="GameEngineActorSubObject.h">
       <Filter>Object%28Engine%29\Actor\Sub</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineRenderer.h">
+      <Filter>Object%28Engine%29\Actor\Sub</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineEnum.h">
+      <Filter>Global</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -46,8 +50,10 @@
     <ClCompile Include="GameEngineSound.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineRenderer.cpp" />
     <ClCompile Include="GameEngineActorSubObject.cpp">
+      <Filter>Object%28Engine%29\Actor\Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineRenderer.cpp">
       <Filter>Object%28Engine%29\Actor\Sub</Filter>
     </ClCompile>
   </ItemGroup>
@@ -69,6 +75,9 @@
     </Filter>
     <Filter Include="Object%28Engine%29\Actor\Sub">
       <UniqueIdentifier>{92768304-faa1-45f5-80ae-88f6e7d69a0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global">
+      <UniqueIdentifier>{1af3cb3b-f38d-41e5-a934-6be2f83ed269}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

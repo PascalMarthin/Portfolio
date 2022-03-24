@@ -72,6 +72,8 @@ std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(const std::string& _
 		if (true == Entry.is_directory())
 		{
 			// 이때 재귀 돌려야죠.
+
+			//커스텀
 			continue;
 		}
 

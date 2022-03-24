@@ -14,15 +14,28 @@ GameEngineRenderer::GameEngineRenderer()
 	, ScaleMode_(RenderScaleMode::Image)
 	, TransColor_(RGB(255, 0, 255))
 {
-
 }
+
 GameEngineRenderer::~GameEngineRenderer()
 {
 }
 
+void GameEngineRenderer::SetImageScale()
+{
+	if (nullptr == Image_)
+	{
+		MsgBoxAssert("존재하지 않는 이미지로 크기를 조절하려고 했습니다.");
+		return;
+	}
+
+	ScaleMode_ = RenderScaleMode::Image;
+	RenderScale_ = Image_->GetScale();
+}
+
+
 void GameEngineRenderer::SetImage(const std::string& _Name)
 {
-	GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find("Idle.bmp");
+	GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find(_Name);
 	if (nullptr == FindImage)
 	{
 		MsgBoxAssertString(_Name + "존재하지 않는 이미지를 랜더러에 세팅하려고 했습니다.");
@@ -41,30 +54,16 @@ void GameEngineRenderer::Render()
 	}
 
 	float4 RenderPos = GetActor()->GetPosition() + RenderPivot_;
-	float4 RenderScale = RenderScale_;
-
-	switch (ScaleMode_)
-	{
-	case RenderScaleMode::Image:
-		RenderScale = Image_->GetScale();
-		break;
-	case RenderScaleMode::User:
-		break;
-	default:
-		break;
-	}
-
 
 	switch (PivotType_)
 	{
 	case RenderPivot::CENTER:
-		GameEngine::BackBufferImage()->BitCopyCenter(Image_, RenderPos);
+		GameEngine::BackBufferImage()->TransCopyCenterScale(Image_, RenderPos, RenderScale_, TransColor_);
 		break;
 	case RenderPivot::BOT:
-		GameEngine::BackBufferImage()->BitCopyBot(Image_, RenderPos);
+		// GameEngine::BackBufferImage()->TransCopyCenterScale(Image_, RenderPos, RenderScale, TransColor_);
 		break;
 	default:
 		break;
 	}
-
 }
