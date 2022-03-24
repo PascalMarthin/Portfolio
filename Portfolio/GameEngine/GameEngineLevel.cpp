@@ -83,6 +83,11 @@ void GameEngineLevel::ActorRender()
 
 		for (; StartActor != EndActor; ++StartActor)
 		{
+			// 렌더를 실행 시키고 싶지 않을때
+			if ((*StartActor)->IsRender() == false)
+			{
+				continue;
+			}
 			(*StartActor)->Renderering();
 		}
 

@@ -172,6 +172,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Coordinate.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CoordinateManagement.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Defeat_Text.h">
       <SubType>
       </SubType>
@@ -184,11 +192,11 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GamePalyEnum.h" />
     <ClInclude Include="GamePlayObject.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="GamePlayObjectNameEnum.h" />
     <ClInclude Include="GamePlayTextObject.h">
       <SubType>
       </SubType>
@@ -246,6 +254,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Rock.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ScreenFade.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -316,6 +328,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Baba.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Coordinate.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CoordinateManagement.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -392,6 +412,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Rock.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ScreenFade.cpp">
       <SubType>
       </SubType>
     </ClCompile>

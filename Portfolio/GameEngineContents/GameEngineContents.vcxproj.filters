@@ -107,6 +107,15 @@
     <ClCompile Include="MainStage.cpp">
       <Filter>Stage</Filter>
     </ClCompile>
+    <ClCompile Include="ScreenFade.cpp">
+      <Filter>Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Coordinate.cpp">
+      <Filter>Coordinate</Filter>
+    </ClCompile>
+    <ClCompile Include="CoordinateManagement.cpp">
+      <Filter>Coordinate\Management</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -182,9 +191,6 @@
     <ClInclude Include="GamePlayTextObject.h">
       <Filter>Object%28Game%29\Text</Filter>
     </ClInclude>
-    <ClInclude Include="GamePlayObjectNameEnum.h">
-      <Filter>Object%28Game%29</Filter>
-    </ClInclude>
     <ClInclude Include="Stage2.h">
       <Filter>Stage</Filter>
     </ClInclude>
@@ -217,6 +223,18 @@
     </ClInclude>
     <ClInclude Include="MainStage.h">
       <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenFade.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePalyEnum.h">
+      <Filter>Gobal</Filter>
+    </ClInclude>
+    <ClInclude Include="Coordinate.h">
+      <Filter>Coordinate</Filter>
+    </ClInclude>
+    <ClInclude Include="CoordinateManagement.h">
+      <Filter>Coordinate\Management</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -252,6 +270,18 @@
     </Filter>
     <Filter Include="Main">
       <UniqueIdentifier>{48d600ad-b9e2-4d59-8d28-fa6996879e31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effect">
+      <UniqueIdentifier>{97c90220-b1fd-4ce7-80fb-49cf61afea05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gobal">
+      <UniqueIdentifier>{6820f25f-c541-4a08-bf4d-1f73e544f9a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Coordinate">
+      <UniqueIdentifier>{bcf33693-ec4e-44fe-a59d-5978e70a9a3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Coordinate\Management">
+      <UniqueIdentifier>{c2d4c392-3e4c-4104-aeea-e81b3b493ef8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,11 +1,13 @@
 #include "BabaIsYou.h"
 #include "PlayLevel.h"
 #include "TitleLevel.h"
+#include "MainLevel.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEngineFile.h>
 #include <GameEngine/GameEngineImageManager.h>
-#include "MainLevel.h"
+#include <GameEngineBase/GameEngineInput.h>
+
 
 BabaIsYou::BabaIsYou() 
 {
@@ -18,6 +20,8 @@ BabaIsYou::~BabaIsYou()
 void BabaIsYou::GameInit()
 {
 	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, { 1920, 1080 });
+
+	CreateKeyBaba();
 
 	// 리소스 파일 위치 적용
 	GameEngineDirectory ResourcesDir;
@@ -88,13 +92,29 @@ void BabaIsYou::GameInit()
 	CreateLevel<PlayLevel>("Play");
 
 	//CreateLevel<EndingLevel>("Ending");
-	ChangeLevel("Title");
+	ChangeLevel("Main");
 }
 void BabaIsYou::GameLoop()
 {
-	
+
 }
 void BabaIsYou::GameEnd()
 {
 
+}
+
+void BabaIsYou::CreateKeyBaba()
+{
+	if (false == GameEngineInput::GetInst()->IsKey("MoveLeft"))
+	{
+		// 이때 대문자여야 합니다.
+		GameEngineInput::GetInst()->CreateKey("Left", VK_LEFT);
+		GameEngineInput::GetInst()->CreateKey("Right", VK_RIGHT);
+		GameEngineInput::GetInst()->CreateKey("Up", VK_UP);
+		GameEngineInput::GetInst()->CreateKey("Down", VK_DOWN);
+		GameEngineInput::GetInst()->CreateKey("Enter", VK_RETURN);
+		GameEngineInput::GetInst()->CreateKey("R", 'r');
+		GameEngineInput::GetInst()->CreateKey("Space", VK_SPACE);
+		// VK_LBUTTON;
+	}
 }

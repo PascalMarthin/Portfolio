@@ -16,7 +16,7 @@ void TitleBackGround::Start()
 	SetPosition(GameEngineWindow::GetScale().Half());
 	SetScale(GameEngineWindow::GetScale());
 	
-	CreateRenderer("BackGround.bmp");
+	CreateRenderer("BackGround1.bmp");
 
 }
 

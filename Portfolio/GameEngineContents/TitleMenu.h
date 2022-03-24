@@ -1,11 +1,17 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include <vector>
+#include <map>
+#include <GameEngineBase/GameEngineInput.h>
+#include <GameEngine/GameEngineImage.h>
+#include "GamePalyEnum.h"
+
 
 // Ό³Έν :
-
-enum class BabaLocation;
+class TitleLevel;
 class TitleMenu : public GameEngineActor
 {
+	friend TitleLevel;
 public:
 	// constrcuter destructer
 	TitleMenu();
@@ -17,18 +23,19 @@ public:
 	TitleMenu& operator=(const TitleMenu& _Other) = delete;
 	TitleMenu& operator=(TitleMenu&& _Other) noexcept = delete;
 
+
 protected:
 	void Start() override;
 	void Update() override;
 	void Render() override;
 
 private:
-	BabaLocation BabaTitleLocate;
-};
-enum class BabaLocation
-{
-	Null,
-	Start_the_Game,
-	Settings,
-	Exit_The_Game
+	static BabaLocation BabaTitleLocate;
+	std::map<BabaLocation, std::vector<GameEngineImage*>> TilteMenuImage;
+	float4 StartPos_;
+	float4 SettingPos_;
+	float4 ExitPos_;
+	float4 BabaPos_;
+	float4 BabaPosFF_;
+	
 };

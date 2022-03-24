@@ -1,5 +1,7 @@
 #include "MainBackGround.h"
 #include <GameEngineBase/GameEngineWindow.h>
+#include "GamePalyEnum.h"
+#define MAX_FIXEL 48
 
 MainBackGround::MainBackGround()
 {
@@ -13,9 +15,9 @@ void MainBackGround::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
 	//SetScale(GameEngineWindow::GetScale());
-
-	CreateRendererToScale("island_1.bmp", {1920, 1080});
-	CreateRendererToScale("island_decor_1.bmp", { 1920, 1080 });
+	CreateRenderer("BackGround1.bmp");
+	CreateRendererToScale("island_1.bmp", { (33 * MAX_FIXEL), (18 * MAX_FIXEL) });
+	CreateRendererToScale("island_decor_1.bmp", { (33 * MAX_FIXEL), (18 * MAX_FIXEL) });
 }
 
 void MainBackGround::Update()

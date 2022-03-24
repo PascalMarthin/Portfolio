@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngine.h>
 
+
 // Ό³Έν :
 class BabaIsYou : public GameEngine
 {
@@ -21,6 +22,6 @@ protected:
 
 
 private:
-
+	void CreateKeyBaba();
 };
 

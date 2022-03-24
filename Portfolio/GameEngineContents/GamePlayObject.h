@@ -1,6 +1,6 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
-#include "GamePlayObjectNameEnum.h"
+#include "GamePalyEnum.h"
 
 // Ό³Έν :
 class GamePlayObject : public GameEngineActor

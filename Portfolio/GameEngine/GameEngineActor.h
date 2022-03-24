@@ -83,16 +83,16 @@ private:
 	std::list<GameEngineRenderer*>::iterator EndRenderIter;
 	
 	// 개인적으로 추가
-	bool RenderSwitch;
+	bool AutoRenderSwitch;
 
 protected:
 	inline bool IsRender()
 	{
-		return Render;
+		return AutoRenderSwitch;
 	}
-	inline void SetRenderSwitch(bool _On)
+	inline void SetAutoRenderSwitch(bool _On)
 	{
-		RenderSwitch = _On;
+		AutoRenderSwitch = _On;
 	}
 };
 

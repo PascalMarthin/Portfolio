@@ -4,7 +4,7 @@
 #include <GameEngine/GameEngineRenderer.h>
 
 GameEngineActor::GameEngineActor()
-	: Level_(nullptr), RenderSwitch(true)
+	: Level_(nullptr), AutoRenderSwitch(true)
 {
 	// delete this;
 }
