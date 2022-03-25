@@ -45,7 +45,6 @@ void TitleMenu::Start()
 	TilteMenuImage[BabaLocation::Exit_The_Game].push_back(GameEngineImageManager::GetInst()->Find("Exit_The_Game1.bmp"));
 	TilteMenuImage[BabaLocation::Exit_The_Game].push_back(GameEngineImageManager::GetInst()->Find("Exit_The_Game2.bmp"));
 
-	SetAutoRenderSwitch(false);
 }
 
 void TitleMenu::Update()
@@ -56,27 +55,27 @@ void TitleMenu::Update()
 void TitleMenu::Render()
 {
 
-	GameEngine::BackBufferImage()->TransCopyCenter(TilteMenuImage[BabaLocation::Start_the_Game][0], StartPos_, RGB(255, 0, 255));
-	GameEngine::BackBufferImage()->TransCopyCenter(TilteMenuImage[BabaLocation::Settings][0], SettingPos_, RGB(255, 0, 255));
-	GameEngine::BackBufferImage()->TransCopyCenter(TilteMenuImage[BabaLocation::Exit_The_Game][0], ExitPos_, RGB(255, 0, 255));
+	GameEngine::BackBufferImage()->TransCopy(TilteMenuImage[BabaLocation::Start_the_Game][0], StartPos_, RGB(255, 0, 255));
+	GameEngine::BackBufferImage()->TransCopy(TilteMenuImage[BabaLocation::Settings][0], SettingPos_, RGB(255, 0, 255));
+	GameEngine::BackBufferImage()->TransCopy(TilteMenuImage[BabaLocation::Exit_The_Game][0], ExitPos_, RGB(255, 0, 255));
 	switch (BabaTitleLocate)
 	{
 	case BabaLocation::Start_the_Game:
-		GameEngine::BackBufferImage()->TransCopyCenter(TilteMenuImage[BabaLocation::Start_the_Game][1], StartPos_, RGB(255, 0, 255));
+		GameEngine::BackBufferImage()->TransCopy(TilteMenuImage[BabaLocation::Start_the_Game][1], StartPos_, RGB(255, 0, 255));
 		BabaPos_ = StartPos_ + BabaPosFF_;
 		break;
 	case BabaLocation::Settings:
-		GameEngine::BackBufferImage()->TransCopyCenter(TilteMenuImage[BabaLocation::Settings][1], SettingPos_, RGB(255, 0, 255));
+		GameEngine::BackBufferImage()->TransCopy(TilteMenuImage[BabaLocation::Settings][1], SettingPos_, RGB(255, 0, 255));
 		BabaPos_ = SettingPos_ + BabaPosFF_;
 		break;
 	case BabaLocation::Exit_The_Game:
-		GameEngine::BackBufferImage()->TransCopyCenter(TilteMenuImage[BabaLocation::Exit_The_Game][1], ExitPos_, RGB(255, 0, 255));
+		GameEngine::BackBufferImage()->TransCopy(TilteMenuImage[BabaLocation::Exit_The_Game][1], ExitPos_, RGB(255, 0, 255));
 		BabaPos_ = ExitPos_ + BabaPosFF_;
 		break;
 	default:
 		MsgBoxAssert("BabaTitleLocate_Swicth Error");
 		break;
 	}
-	GameEngine::BackBufferImage()->TransCopyCenter(TilteMenuImage[BabaLocation::Baba][0], BabaPos_, RGB(255, 0, 255));
+	GameEngine::BackBufferImage()->TransCopy(TilteMenuImage[BabaLocation::Baba][0], BabaPos_, RGB(255, 0, 255));
 
 }

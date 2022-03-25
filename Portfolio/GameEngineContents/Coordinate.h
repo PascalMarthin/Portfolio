@@ -48,6 +48,6 @@ private:
 	Stage Stage_;
 
 
-	std::vector<ObjectName> Object_;
+	//std::map<ObjectName, GamePlayObject*> Object_;
 };
 

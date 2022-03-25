@@ -29,8 +29,8 @@ public:
 	{
 		return Stage_;
 	}
-
-	void Create(const StageData* _Data);
+	// const 차후에 붙히기
+	void Create(StageData* _Data);
 
 protected:
 	
@@ -39,10 +39,10 @@ private:
 	Stage Stage_;
 	float4 MapScale_;
 
-	std::map<int, std::map<int, std::vector<Coordinate*>*>*> MapPos_;
+	std::map<int ,std::map<int ,Coordinate*>> Map_;
 	// need prevData
 	
-	bool ScanData(const StageData* _Data);
+	bool ScanData(StageData* _Data);
 
 };
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineBase/GameEngineNameObject.h>
+#include <GameEngineBase/GameEngineUpdateObject.h>
 #include <GameEngineBase/GameEngineMath.h>
 #include "GameEngineEnum.h"
 #include <list>
@@ -7,7 +8,7 @@
 // 설명 : 위치를 가지고있는 오브젝트 부모 클래스
 class GameEngineRenderer;
 class GameEngineLevel;
-class GameEngineActor : public GameEngineNameObject
+class GameEngineActor : public GameEngineNameObject, public GameEngineUpdateObject
 {
 public:
 	friend GameEngineLevel;
@@ -20,6 +21,11 @@ public:
 	GameEngineActor(GameEngineActor&& _Other) noexcept = delete;
 	GameEngineActor& operator=(const GameEngineActor& _Other) = delete;
 	GameEngineActor& operator=(GameEngineActor&& _Other) noexcept = delete;
+
+	inline GameEngineLevel* GetLevel()
+	{
+		return Level_;
+	}
 
 	inline float4 GetPosition()
 	{
@@ -82,17 +88,8 @@ private:
 	std::list<GameEngineRenderer*>::iterator StartRenderIter;
 	std::list<GameEngineRenderer*>::iterator EndRenderIter;
 	
-	// 개인적으로 추가
-	bool AutoRenderSwitch;
 
 protected:
-	inline bool IsRender()
-	{
-		return AutoRenderSwitch;
-	}
-	inline void SetAutoRenderSwitch(bool _On)
-	{
-		AutoRenderSwitch = _On;
-	}
+
 };
 

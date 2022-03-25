@@ -57,10 +57,54 @@ void GameEngineLevel::ActorUpdate()
 
 		for (; StartActor != EndActor; ++StartActor)
 		{
+			(*StartActor)->ReleaseUpdate();
+			if (false == (*StartActor)->IsUpdate())
+			{
+				continue;
+			}
+
 			(*StartActor)->Update();
 		}
 	}
 
+}
+
+void GameEngineLevel::ActorRelease()
+{
+	std::map<int, std::list<GameEngineActor*>>::iterator GroupStart;
+	std::map<int, std::list<GameEngineActor*>>::iterator GroupEnd;
+
+	std::list<GameEngineActor*>::iterator StartActor;
+	std::list<GameEngineActor*>::iterator EndActor;
+
+	GroupStart = AllActor_.begin();
+	GroupEnd = AllActor_.end();
+
+	for (; GroupStart != GroupEnd; ++GroupStart)
+	{
+		std::list<GameEngineActor*>& Group = GroupStart->second;
+
+
+		//       
+		// i
+		// 3?????
+		//       i
+		// 0 1 2 4 5 
+		//       d
+		StartActor = Group.begin();
+		EndActor = Group.end();
+		for (; StartActor != EndActor; )
+		{
+			if (true == (*StartActor)->IsDeath())
+			{
+				delete* StartActor;
+				StartActor = Group.erase(StartActor);
+				continue;
+			}
+
+			++StartActor;
+		}
+	}
 }
 void GameEngineLevel::ActorRender()
 {
@@ -84,10 +128,11 @@ void GameEngineLevel::ActorRender()
 		for (; StartActor != EndActor; ++StartActor)
 		{
 			// 렌더를 실행 시키고 싶지 않을때
-			if ((*StartActor)->IsRender() == false)
+			if (false == (*StartActor)->IsUpdate())
 			{
 				continue;
 			}
+
 			(*StartActor)->Renderering();
 		}
 
@@ -97,6 +142,10 @@ void GameEngineLevel::ActorRender()
 
 		for (; StartActor != EndActor; ++StartActor)
 		{
+			if (false == (*StartActor)->IsUpdate())
+			{
+				continue;
+			}
 			(*StartActor)->Render();
 		}
 	}

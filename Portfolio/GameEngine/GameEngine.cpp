@@ -107,6 +107,9 @@ void GameEngine::EngineLoop()
     CurrentLevel_->ActorRender();
     WindowMainImage_->BitCopy(BackBufferImage_);
 
+    CurrentLevel_->ActorRelease();
+
+
 }
 
 // 엔진 종료
@@ -128,10 +131,10 @@ void GameEngine::EngineEnd()
     }
 
     GameEngineImageManager::Destroy();
-    GameEngineWindow::Destroy();
+
     GameEngineInput::Destroy();
     GameEngineTime::Destroy();
-
+    GameEngineWindow::Destroy();
 
 }
 

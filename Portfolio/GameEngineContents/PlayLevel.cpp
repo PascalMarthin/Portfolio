@@ -17,7 +17,9 @@ void PlayLevel::Loading()
 
 void PlayLevel::Update()
 {
-
+	// ¸Ê ½ºÄµÇÑ´Ù
+	// MapScan();
+	// fucn();
 
 }
 

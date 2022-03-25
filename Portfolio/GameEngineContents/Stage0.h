@@ -1,7 +1,7 @@
 #pragma once
 #include "StageData.h"
 
-// º≥∏Ì :
+// º≥∏Ì : ΩÃ±€≈Ê
 class Stage0 : public StageData
 {
 	Stage0();
@@ -15,10 +15,7 @@ class Stage0 : public StageData
 protected:
 
 private:
-	std::map<int, std::map<int, Coordinate*>>::iterator Startiter = Data_.begin();
-	std::map<int, std::map<int, Coordinate*>>::iterator Enditer = Data_.end();
-	std::map<int, Coordinate*>::iterator Startiter2;
-	std::map<int, Coordinate*>::iterator Enditer2;
+
 
 
 };

@@ -25,8 +25,8 @@ void MainLevel::Update()
 
 void MainLevel::LevelChangeStart()
 {
-	CreateActor<MainBackGround>("BackGround", 0);
-	CreateActor<MainBackGround>("MainBackGround", 1);
+
+	CreateActor<MainBackGround>(1, "MainBackGround");
 	//CreateActor<MainStage>("MainStage", 2);
-	CreateActor<MainCursor>("MainCursor", 3);
+	CreateActor<MainCursor>(2, "MainCursor");
 }
