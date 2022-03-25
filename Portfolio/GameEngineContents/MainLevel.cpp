@@ -1,5 +1,4 @@
 #include "MainLevel.h"
-#include "MainStage.h"
 #include "MainBackGround.h"
 #include "MainCursor.h"
 

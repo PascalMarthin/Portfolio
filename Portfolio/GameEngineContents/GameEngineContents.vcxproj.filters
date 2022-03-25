@@ -68,20 +68,8 @@
     <ClCompile Include="Empty.cpp">
       <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
-    <ClCompile Include="StageData.cpp">
-      <Filter>Stage</Filter>
-    </ClCompile>
     <ClCompile Include="GamePlayTextObject.cpp">
       <Filter>Object%28Game%29\Text</Filter>
-    </ClCompile>
-    <ClCompile Include="Stage2.cpp">
-      <Filter>Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Stage1.cpp">
-      <Filter>Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Stage0.cpp">
-      <Filter>Stage</Filter>
     </ClCompile>
     <ClCompile Include="Win_Text.cpp">
       <Filter>Object%28Game%29\Text\Stat</Filter>
@@ -104,17 +92,8 @@
     <ClCompile Include="MainCursor.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="MainStage.cpp">
-      <Filter>Stage</Filter>
-    </ClCompile>
     <ClCompile Include="ScreenFade.cpp">
       <Filter>Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="Coordinate.cpp">
-      <Filter>Coordinate</Filter>
-    </ClCompile>
-    <ClCompile Include="CoordinateManagement.cpp">
-      <Filter>Coordinate\Management</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,20 +164,8 @@
     <ClInclude Include="Empty.h">
       <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClInclude>
-    <ClInclude Include="StageData.h">
-      <Filter>Stage</Filter>
-    </ClInclude>
     <ClInclude Include="GamePlayTextObject.h">
       <Filter>Object%28Game%29\Text</Filter>
-    </ClInclude>
-    <ClInclude Include="Stage2.h">
-      <Filter>Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Stage1.h">
-      <Filter>Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Stage0.h">
-      <Filter>Stage</Filter>
     </ClInclude>
     <ClInclude Include="Win_Text.h">
       <Filter>Object%28Game%29\Text\Stat</Filter>
@@ -221,20 +188,11 @@
     <ClInclude Include="MainCursor.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="MainStage.h">
-      <Filter>Stage</Filter>
-    </ClInclude>
     <ClInclude Include="ScreenFade.h">
       <Filter>Effect</Filter>
     </ClInclude>
     <ClInclude Include="GamePalyEnum.h">
       <Filter>Gobal</Filter>
-    </ClInclude>
-    <ClInclude Include="Coordinate.h">
-      <Filter>Coordinate</Filter>
-    </ClInclude>
-    <ClInclude Include="CoordinateManagement.h">
-      <Filter>Coordinate\Management</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
