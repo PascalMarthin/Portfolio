@@ -23,17 +23,6 @@ protected:
 	void LevelChangeStart() override;
 
 private:
-	void CreatMap();
-	void MoveMap();
-	void ScanMap();
-	void EndGame();
-
-	float4 MapScale_;
-	float4 WindowHalfScale;
-	float GameWindowPosX_;
-	float GameWindowPosY_;
-
-	std::map<int, std::map<int, Coordinate*>>* CurrentMap_;
 
 };
 
