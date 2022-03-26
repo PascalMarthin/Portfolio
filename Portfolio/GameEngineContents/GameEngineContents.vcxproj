@@ -180,15 +180,11 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Empty.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Flag.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="GamePalyEnum.h" />
+    <ClInclude Include="GamePlayEnum.h" />
     <ClInclude Include="GamePlayGobal.h">
       <SubType>
       </SubType>
@@ -316,10 +312,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Defeat_Text.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Empty.cpp">
       <SubType>
       </SubType>
     </ClCompile>

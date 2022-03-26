@@ -19,9 +19,6 @@ public:
 	Baba_Unit& operator=(Baba_Unit&& _Other) noexcept = delete;
 
 protected:
-	void Start() override;
-	void Update() override;
-	void Render() override {}
 
 private:
 
@@ -31,20 +28,15 @@ private:
 class Baba_Text : public GamePlayTextObject
 {
 public:
-	// constrcuter destructer
 	Baba_Text();
 	~Baba_Text();
 
-	// delete Function
 	Baba_Text(const Baba_Text& _Other) = delete;
 	Baba_Text(Baba_Text&& _Other) noexcept = delete;
 	Baba_Text& operator=(const Baba_Text& _Other) = delete;
 	Baba_Text& operator=(Baba_Text&& _Other) noexcept = delete;
 
 protected:
-	void Start() override {}
-	void Update() override {}
-	void Render() override {}
 
 private:
 

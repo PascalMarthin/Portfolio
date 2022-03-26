@@ -19,9 +19,6 @@ public:
 	Lava_Unit& operator=(Lava_Unit&& _Other) noexcept = delete;
 
 protected:
-	void Start() override {}
-	void Update() override {}
-	void Render() override {}
 
 private:
 
@@ -42,9 +39,6 @@ public:
 	Lava_Text& operator=(Lava_Text&& _Other) noexcept = delete;
 
 protected:
-	void Start() override {}
-	void Update() override {}
-	void Render() override {}
 
 private:
 

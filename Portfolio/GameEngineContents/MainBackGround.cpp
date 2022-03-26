@@ -1,6 +1,6 @@
 #include "MainBackGround.h"
 #include <GameEngineBase/GameEngineWindow.h>
-#include "GamePalyEnum.h"
+#include "GamePlayEnum.h"
 #define MAX_FIXEL 48
 
 MainBackGround::MainBackGround()

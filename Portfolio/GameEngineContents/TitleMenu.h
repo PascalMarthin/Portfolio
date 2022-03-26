@@ -4,7 +4,7 @@
 #include <map>
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineImage.h>
-#include "GamePalyEnum.h"
+#include "GamePlayEnum.h"
 
 
 // Ό³Έν :

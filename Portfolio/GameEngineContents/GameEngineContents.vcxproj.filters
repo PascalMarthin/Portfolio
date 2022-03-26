@@ -62,9 +62,6 @@
     <ClCompile Include="GamePlayUnitObject.cpp">
       <Filter>Object%28Game%29\Unit</Filter>
     </ClCompile>
-    <ClCompile Include="Empty.cpp">
-      <Filter>Object%28Game%29\Unit\Object</Filter>
-    </ClCompile>
     <ClCompile Include="GamePlayTextObject.cpp">
       <Filter>Object%28Game%29\Text</Filter>
     </ClCompile>
@@ -164,9 +161,6 @@
     <ClInclude Include="GamePlayUnitObject.h">
       <Filter>Object%28Game%29\Unit</Filter>
     </ClInclude>
-    <ClInclude Include="Empty.h">
-      <Filter>Object%28Game%29\Unit\Object</Filter>
-    </ClInclude>
     <ClInclude Include="GamePlayTextObject.h">
       <Filter>Object%28Game%29\Text</Filter>
     </ClInclude>
@@ -194,7 +188,7 @@
     <ClInclude Include="ScreenFade.h">
       <Filter>Effect</Filter>
     </ClInclude>
-    <ClInclude Include="GamePalyEnum.h">
+    <ClInclude Include="GamePlayEnum.h">
       <Filter>Gobal</Filter>
     </ClInclude>
     <ClInclude Include="GamePlayGobal.h">

@@ -14,15 +14,8 @@ public:
 	GamePlayTextObject& operator=(GamePlayTextObject&& _Other) noexcept = delete;
 
 protected:
-	virtual void Start() = 0;
-	virtual void Update() {}
-	virtual void Render() {}
-
-	//virtual bool TextEffect() = 0;
-	//virtual void GameSet() = 0;
 
 
 private:
-	TextType TTpye_;
 
 };

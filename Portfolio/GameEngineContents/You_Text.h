@@ -15,9 +15,6 @@ public:
 	You_Text& operator=(You_Text&& _Other) noexcept = delete;
 
 protected:
-	void Start() override {}
-	void Update() override {}
-	void Render() override {}
 
 private:
 

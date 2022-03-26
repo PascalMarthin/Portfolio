@@ -22,9 +22,6 @@ public:
 	Water_Unit& operator=(Water_Unit&& _Other) noexcept = delete;
 
 protected:
-	void Start() override {}
-	void Update() override {}
-	void Render() override {}
 
 private:
 
@@ -45,9 +42,6 @@ public:
 	Water_Text& operator=(Water_Text&& _Other) noexcept = delete;
 
 protected:
-	void Start() override {}
-	void Update() override {}
-	void Render() override {}
 
 private:
 

@@ -8,3 +8,15 @@ Coordinate::~Coordinate()
 {
 }
 
+void Coordinate::Start()
+{
+
+}
+void Coordinate::Update()
+{
+
+}
+void Coordinate::Render()
+{
+
+}

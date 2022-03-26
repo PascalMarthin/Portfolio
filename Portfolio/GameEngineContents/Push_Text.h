@@ -15,9 +15,7 @@ public:
 	Push_Text& operator=(Push_Text&& _Other) noexcept = delete;
 
 protected:
-	void Start() override {}
-	void Update() override {}
-	void Render() override {}
+
 private:
 
 };

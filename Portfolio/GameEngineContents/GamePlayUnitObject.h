@@ -13,9 +13,6 @@ public:
 	GamePlayUnitObject& operator=(const GamePlayUnitObject& _Other) = delete;
 	GamePlayUnitObject& operator=(GamePlayUnitObject&& _Other) noexcept = delete;
 protected:
-	virtual void Start() = 0;
-	virtual void Update() {}
-	virtual void Render() {}
 
 private:
 

@@ -18,9 +18,6 @@ public:
 	Glass_Unit& operator=(Glass_Unit&& _Other) noexcept = delete;
 
 protected:
-	void Start() override {}
-	void Update() override {}
-	void Render() override {}
 
 private:
 
@@ -41,9 +38,7 @@ public:
 	Glass_Text& operator=(Glass_Text&& _Other) noexcept = delete;
 
 protected:
-	void Start() override {}
-	void Update() override {}
-	void Render() override {}
+
 
 private:
 

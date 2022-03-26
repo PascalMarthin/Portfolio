@@ -1,64 +1,43 @@
 #pragma once
-#include <GameEngine/GameEngineActor.h>
-#include "GamePalyEnum.h"
-#include <GameEngineBase/GameEngineMath.h>  
+#include <vector>
+#include <GameEngine/GameEngineImage.h>
+#include <GameEngine/GameEngineImageManager.h>
+#include "GamePlayEnum.h"
 
 // Ό³Έν :
-class GamePlayObject : public GameEngineActor
+class GamePlayObject
 {
 public:
-	// constrcuter destructer
 	GamePlayObject();
 	virtual ~GamePlayObject();
 
-	// delete Function
 	GamePlayObject(const GamePlayObject& _Other) = delete;
 	GamePlayObject(GamePlayObject&& _Other) noexcept = delete;
 	GamePlayObject& operator=(const GamePlayObject& _Other) = delete;
 	GamePlayObject& operator=(GamePlayObject&& _Other) noexcept = delete;
 
-	inline ObjectName GetObjectName() const
+	inline std::map<int ,std::vector<GameEngineImage*>>* GetStopImage()
 	{
-		return ObjectName_;
+		return &StopImage_;
 	}
 
-	inline ObjectType GetOType() const
+	inline std::vector<GameEngineImage*>* GetMoveImage()
 	{
-		return OType_;
+		return &MoveImage_;
 	}
-
-	inline float4 GetObjectCPos() const
+	
+	inline ObjectName GetName()
 	{
-		return CPos_;
-	}
-
-	inline void SetObjectCPos(float4 _Pos)
-	{
-		CPos_ = _Pos;
+		return Name_;
 	}
 
 protected:
-	virtual void Start() = 0;
-	virtual void Update() {}
-	virtual void Render() {}
+	std::map<int ,std::vector<GameEngineImage*>> StopImage_;
+	std::vector<GameEngineImage*> MoveImage_;
 
-	inline void SetObjectName(ObjectName _Idx)
-	{
-		ObjectName_ = _Idx;
-	}
-
-	inline void SetOType(ObjectType _Idx)
-	{
-		OType_ = _Idx;
-	}
-
+	ObjectName Name_;
 
 private:
-	ObjectName ObjectName_;
-	ObjectType OType_;
-
-	float4 CPos_;
-
 
 };
 

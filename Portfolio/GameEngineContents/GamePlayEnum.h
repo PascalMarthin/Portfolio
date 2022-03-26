@@ -1,5 +1,5 @@
 #pragma once
-//#include "GamePalyEnum.h"
+//#include "GamePlayEnum.h"
 enum class ChangeLevel
 {
 	Error,

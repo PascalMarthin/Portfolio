@@ -15,9 +15,6 @@ public:
 	Hot_Text& operator=(Hot_Text&& _Other) noexcept = delete;
 
 protected:
-	void Start() override {}
-	void Update() override {}
-	void Render() override {}
 
 private:
 	

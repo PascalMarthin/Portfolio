@@ -19,9 +19,6 @@ public:
 	Rock_Unit& operator=(Rock_Unit&& _Other) noexcept = delete;
 
 protected:
-	void Start() override {}
-	void Update() override {}
-	void Render() override {}
 
 private:
 
@@ -42,9 +39,6 @@ public:
 	Rock_Text& operator=(Rock_Text&& _Other) noexcept = delete;
 
 protected:
-	void Start() override {}
-	void Update() override {}
-	void Render() override {}
 
 private:
 

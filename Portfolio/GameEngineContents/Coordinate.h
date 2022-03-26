@@ -1,12 +1,13 @@
 #pragma once
 #include <GameEngineBase/GameEngineMath.h>
-#include "GamePalyEnum.h"
+#include <GameEngine/GameEngineActor.h>
+#include "GamePlayEnum.h"
 #include "GamePlayObject.h"
 #include <map>
 
 // Ό³Έν :
 class PlayLevel;
-class Coordinate
+class Coordinate : public GameEngineActor
 {
 	friend PlayLevel;
 public:
@@ -30,12 +31,16 @@ public:
 	//	Pos_ = _Pos;
 	//}
 
+
 protected:
+	void Start() override;
+	void Update() override;
+	void Render() override;
 
 private:
-	float4 Pos_;
 	float4 CPos_;
-	std::map<ObjectName ,GamePlayObject*> Object_;
 
+	std::map<int, std::vector<GameEngineImage*>>* StopImage_;
+	std::map<int, std::vector<GameEngineImage*>>* MoveImage_;
 };
 
