@@ -1,7 +1,7 @@
-#pragma once
+#include "GamePlayTextObject.h"
 
 // Ό³Έν :
-class Melt_Text
+class Melt_Text : public GamePlayTextObject
 {
 public:
 	// constrcuter destructer
@@ -15,6 +15,9 @@ public:
 	Melt_Text& operator=(Melt_Text&& _Other) noexcept = delete;
 
 protected:
+	void Start() override {}
+	void Update() override {}
+	void Render() override {}
 
 private:
 

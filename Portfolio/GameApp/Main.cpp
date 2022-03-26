@@ -9,6 +9,7 @@ int __stdcall WinMain(_In_ HINSTANCE hInstance,
     _In_ char*     lpCmdLine,
     _In_ int       nCmdShow)
 {
+    new int();
     GameEngine::Start<BabaIsYou>();
 
 }

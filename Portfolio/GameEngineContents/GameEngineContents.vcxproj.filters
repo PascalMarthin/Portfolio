@@ -62,9 +62,6 @@
     <ClCompile Include="GamePlayUnitObject.cpp">
       <Filter>Object%28Game%29\Unit</Filter>
     </ClCompile>
-    <ClCompile Include="GamePlayTextStat.cpp">
-      <Filter>Object%28Game%29\Text\Stat</Filter>
-    </ClCompile>
     <ClCompile Include="Empty.cpp">
       <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
@@ -94,6 +91,15 @@
     </ClCompile>
     <ClCompile Include="ScreenFade.cpp">
       <Filter>Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlayGobal.cpp">
+      <Filter>Gobal</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Coordinate.cpp">
+      <Filter>Coordinate</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,9 +164,6 @@
     <ClInclude Include="GamePlayUnitObject.h">
       <Filter>Object%28Game%29\Unit</Filter>
     </ClInclude>
-    <ClInclude Include="GamePlayTextStat.h">
-      <Filter>Object%28Game%29\Text\Stat</Filter>
-    </ClInclude>
     <ClInclude Include="Empty.h">
       <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClInclude>
@@ -193,6 +196,15 @@
     </ClInclude>
     <ClInclude Include="GamePalyEnum.h">
       <Filter>Gobal</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayGobal.h">
+      <Filter>Gobal</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Coordinate.h">
+      <Filter>Coordinate</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

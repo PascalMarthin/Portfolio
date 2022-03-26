@@ -1,7 +1,7 @@
 #include "GamePlayTextObject.h"
 
 GamePlayTextObject::GamePlayTextObject() 
-	: IsActivate(false)
+	: TTpye_(TextType::Error)
 {
 }
 

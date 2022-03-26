@@ -18,11 +18,11 @@ protected:
 	virtual void Update() {}
 	virtual void Render() {}
 
-	virtual bool TextEffect() = 0;
-	virtual void GameSet() = 0;
+	//virtual bool TextEffect() = 0;
+	//virtual void GameSet() = 0;
 
-	bool IsActivate;
 
 private:
+	TextType TTpye_;
 
 };

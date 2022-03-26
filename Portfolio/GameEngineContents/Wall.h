@@ -19,6 +19,9 @@ public:
 	Wall_Unit& operator=(Wall_Unit&& _Other) noexcept = delete;
 
 protected:
+	void Start() override {}
+	void Update() override {}
+	void Render() override {}
 
 private:
 
@@ -39,7 +42,7 @@ public:
 	Wall_Text& operator=(Wall_Text&& _Other) noexcept = delete;
 
 protected:
-	void Start() override;
+	void Start() override {}
 	void Update() override {}
 	void Render() override {}
 

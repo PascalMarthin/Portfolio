@@ -1,7 +1,8 @@
 #include "GamePlayObject.h"
 
 GamePlayObject::GamePlayObject()
-	: EnumClass_(ObjectName::Error)
+	: ObjectName_(ObjectName::Error),
+	OType_(ObjectType::Error)
 {
 }
 

@@ -1,10 +1,11 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
 #include <GameEngineBase/GameEngineMath.h>
-// #include "StageData.h"
+#include "GamePlayGobal.h"
 
 // 설명 : Stage 정보를 받아 화면에 출력해주는 Level
 class GamePlayObject;
+class Coordinate;
 class PlayLevel : public GameEngineLevel
 {
 public:
@@ -22,6 +23,17 @@ protected:
 	void LevelChangeStart() override;
 
 private:
+	void CreatMap();
+	void MoveMap();
+	void ScanMap();
+	void EndGame();
+
+	float4 MapScale_;
+	float4 WindowHalfScale;
+	float GameWindowPosX_;
+	float GameWindowPosY_;
+
+	std::map<int, std::map<int, Coordinate*>>* CurrentMap_;
 
 };
 

@@ -1,7 +1,8 @@
 #pragma once
+#include "GamePlayTextObject.h"
 
 // Ό³Έν :
-class Is_Text
+class Is_Text : public GamePlayTextObject
 {
 public:
 	// constrcuter destructer
@@ -15,6 +16,9 @@ public:
 	Is_Text& operator=(Is_Text&& _Other) noexcept = delete;
 
 protected:
+	void Start() override {}
+	void Update() override {}
+	void Render() override {}
 
 private:
 

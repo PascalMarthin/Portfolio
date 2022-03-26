@@ -19,7 +19,7 @@ public:
 	Flag_Unit& operator=(Flag_Unit&& _Other) noexcept = delete;
 
 protected:
-	void Start() override;
+	void Start() override {}
 	void Update() override {}
 	void Render() override {}
 
@@ -42,6 +42,9 @@ public:
 	Flag_Text& operator=(Flag_Text&& _Other) noexcept = delete;
 
 protected:
+	void Start() override {}
+	void Update() override {}
+	void Render() override {}
 
 private:
 

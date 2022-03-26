@@ -7,6 +7,7 @@
 #include <GameEngineBase/GameEngineFile.h>
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngineBase/GameEngineInput.h>
+#include "GamePlayGobal.h"
 
 
 BabaIsYou::BabaIsYou() 
@@ -19,8 +20,8 @@ BabaIsYou::~BabaIsYou()
 
 void BabaIsYou::GameInit()
 {
-	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, { 1920, 1080 });
-
+	GamePlayGobal::GetInst();
+	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, { 1700, 880 });
 	CreateKeyBaba();
 
 	// 리소스 파일 위치 적용
@@ -92,7 +93,7 @@ void BabaIsYou::GameInit()
 	CreateLevel<PlayLevel>("Play");
 
 	//CreateLevel<EndingLevel>("Ending");
-	ChangeLevel("Main");
+	ChangeLevel("Play");
 }
 void BabaIsYou::GameLoop()
 {
@@ -100,6 +101,7 @@ void BabaIsYou::GameLoop()
 }
 void BabaIsYou::GameEnd()
 {
+	GamePlayGobal::GetInst()->Destroy();
 
 }
 
@@ -114,6 +116,7 @@ void BabaIsYou::CreateKeyBaba()
 		GameEngineInput::GetInst()->CreateKey("Down", VK_DOWN);
 		GameEngineInput::GetInst()->CreateKey("Enter", VK_RETURN);
 		GameEngineInput::GetInst()->CreateKey("R", 'r');
+		GameEngineInput::GetInst()->CreateKey("Z", 'z');
 		GameEngineInput::GetInst()->CreateKey("Space", VK_SPACE);
 		// VK_LBUTTON;
 	}

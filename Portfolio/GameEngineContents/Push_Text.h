@@ -1,7 +1,7 @@
-#pragma once
+#include "GamePlayTextObject.h"
 
 // Ό³Έν :
-class Push_Text
+class Push_Text : public GamePlayTextObject
 {
 public:
 	// constrcuter destructer
@@ -15,7 +15,9 @@ public:
 	Push_Text& operator=(Push_Text&& _Other) noexcept = delete;
 
 protected:
-
+	void Start() override {}
+	void Update() override {}
+	void Render() override {}
 private:
 
 };

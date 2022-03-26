@@ -59,7 +59,17 @@ enum class ObjectName
 	Sink_Text,
 	Win_Text,
 	You_Text
-
-
-
+};
+enum class ObjectType
+{
+	Error,
+	Unit,
+	Text
+};
+enum class TextType
+{
+	Error,
+	Unit_Text,
+	Verb_Text,
+	Stat_Text
 };

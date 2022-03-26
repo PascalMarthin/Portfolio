@@ -20,7 +20,7 @@ public:
 
 protected:
 	void Start() override;
-	void Update() override {}
+	void Update() override;
 	void Render() override {}
 
 private:
@@ -42,6 +42,9 @@ public:
 	Baba_Text& operator=(Baba_Text&& _Other) noexcept = delete;
 
 protected:
+	void Start() override {}
+	void Update() override {}
+	void Render() override {}
 
 private:
 
