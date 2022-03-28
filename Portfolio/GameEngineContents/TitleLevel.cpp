@@ -71,11 +71,12 @@ void TitleLevel::Update()
 		switch (TitleMenu::BabaTitleLocate)
 		{
 		case BabaLocation::Start_the_Game:
-
+			GameEngine::GlobalEngine().ChangeLevel("MainLevel");
+			break;
 		case BabaLocation::Settings:
-
+			break;
 		case BabaLocation::Exit_The_Game:
-
+			break;
 		default:
 			MsgBoxAssert("BabaTitleLocate Error");
 			break;
