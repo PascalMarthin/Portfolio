@@ -93,7 +93,7 @@ void BabaIsYou::GameInit()
 	CreateLevel<PlayLevel>("Play");
 
 	//CreateLevel<EndingLevel>("Ending");
-	ChangeLevel("Play");
+	ChangeLevel("Title");
 }
 void BabaIsYou::GameLoop()
 {

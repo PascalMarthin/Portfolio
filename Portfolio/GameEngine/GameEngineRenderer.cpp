@@ -70,7 +70,7 @@ void GameEngineRenderer::Render()
 	}
 }
 
-void GameEngineRenderer::SetIndex(size_t _Index)
+void GameEngineRenderer::SetIndex(size_t _Index, float4 _Scale)
 {
 	if (false == Image_->IsCut())
 	{
@@ -79,6 +79,14 @@ void GameEngineRenderer::SetIndex(size_t _Index)
 	}
 
 	RenderImagePivot_ = Image_->GetCutPivot(_Index);
+	if (-1.0f == _Scale.x ||
+		-1.0f == _Scale.y)
+	{
 	RenderScale_ = Image_->GetCutScale(_Index);
+	}
+	else
+	{
+		RenderScale_ = _Scale;
+	}	
 	RenderImageScale_ = Image_->GetCutScale(_Index);
 }
