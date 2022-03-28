@@ -21,7 +21,7 @@ public:
 		return &StopImage_;
 	}
 
-	inline std::vector<GameEngineImage*>* GetMoveImage()
+	inline std::map<int, std::vector<GameEngineImage*>>* GetMoveImage()
 	{
 		return &MoveImage_;
 	}
@@ -33,7 +33,7 @@ public:
 
 protected:
 	std::map<int ,std::vector<GameEngineImage*>> StopImage_;
-	std::vector<GameEngineImage*> MoveImage_;
+	std::map<int, std::vector<GameEngineImage*>> MoveImage_;
 
 	ObjectName Name_;
 

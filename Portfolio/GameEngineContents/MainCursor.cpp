@@ -11,10 +11,9 @@ MainCursor::~MainCursor()
 
 void MainCursor::Start()
 {
-	SetPosition(GameEngineWindow::GetScale().Half());
-	//SetScale(GameEngineWindow::GetScale());
+	//SetPosition(GameEngineWindow::GetScale().Half());
 
-	CreateRenderer("cursor_0_1.bmp");
+	//CreateRenderer("cursor_0_1.bmp");
 }
 
 void MainCursor::Update()

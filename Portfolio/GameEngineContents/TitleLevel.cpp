@@ -3,7 +3,7 @@
 #include "TitleLogo.h"
 #include "TitleBackGround.h"
 #include "TitleMenu.h"
-#include "GamePalyEnum.h"
+#include "GamePlayEnum.h"
 
 
 TitleLevel::TitleLevel() 
