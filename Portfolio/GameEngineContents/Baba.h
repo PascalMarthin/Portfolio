@@ -13,16 +13,16 @@ class Baba_Unit : public GamePlayUnitObject
 			return Inst_;
 		}
 
-		static void Destroy()
+	void Destroy()
+	{
+		if (nullptr == Inst_)
 		{
-			if (nullptr == Inst_)
-			{
-				return;
-			}
-
-			delete Inst_;
-			Inst_ = nullptr;
+			return;
 		}
+
+		delete Inst_;
+		Inst_ = nullptr;
+	}
 	void SettingImg() override;
 
 private:
@@ -46,7 +46,7 @@ public:
 		return Inst_;
 	}
 
-	static void Destroy()
+	void Destroy()
 	{
 		if (nullptr == Inst_)
 		{

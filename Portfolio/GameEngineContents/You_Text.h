@@ -9,7 +9,7 @@ public:
 		return Inst_;
 	}
 
-	static void Destroy()
+	void Destroy()
 	{
 		if (nullptr == Inst_)
 		{

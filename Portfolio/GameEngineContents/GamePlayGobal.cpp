@@ -91,7 +91,7 @@ void  GamePlayGobal::DestroyName()
 	{
 		if (StartIter->second != nullptr)
 		{
-			StartIter->second
+			StartIter->second;
 		}
 
 	}
