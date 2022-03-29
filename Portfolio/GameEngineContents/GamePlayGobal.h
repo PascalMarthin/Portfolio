@@ -18,6 +18,8 @@ public:
 
 	static void Destroy()
 	{
+		Inst_->DestroyName();
+
 		if (nullptr == Inst_)
 		{
 			return;
@@ -27,8 +29,15 @@ public:
 		Inst_ = nullptr;
 	}
 
+
+	GamePlayObject* Find(ObjectName _Name);
 	void  DestroyName();
-public:
+	void SetName();
+protected:
+
+private:
+	std::map<ObjectName, GamePlayObject*> ObjectName_;
+
 	GamePlayGobal();
 	~GamePlayGobal();
 
@@ -36,13 +45,6 @@ public:
 	GamePlayGobal(GamePlayGobal&& _Other) noexcept = delete;
 	GamePlayGobal& operator=(const GamePlayGobal& _Other) = delete;
 	GamePlayGobal& operator=(GamePlayGobal&& _Other) noexcept = delete;
-
-	GamePlayObject* Find(ObjectName _Name);
-protected:
-
-private:
-	void SetName();
-	std::map<ObjectName, GamePlayObject*> ObjectName_;
 
 };
 

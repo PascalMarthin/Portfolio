@@ -88,6 +88,11 @@ void BabaIsYou::GameInit()
 	}
 
 
+
+	GamePlayGobal::GetInst()->SetName();
+
+
+
 	CreateLevel<TitleLevel>("TitleLevel");
 	CreateLevel<MainLevel>("MainLevel");
 	CreateLevel<PlayLevel>("PlayLevel");

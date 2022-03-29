@@ -30,7 +30,8 @@ public:
 	{
 		return Name_;
 	}
-	virtual void SettingImg();
+	virtual void SettingImg(){}
+	virtual void Destory(){}
 
 protected:
 	std::map<int ,std::vector<GameEngineImage*>> StopImage_;

@@ -24,7 +24,6 @@ GamePlayGobal* GamePlayGobal::Inst_ = new GamePlayGobal();
 
 GamePlayGobal::GamePlayGobal() 
 {
-	SetName();
 }
 
 GamePlayGobal::~GamePlayGobal() 
@@ -91,7 +90,7 @@ void  GamePlayGobal::DestroyName()
 	{
 		if (StartIter->second != nullptr)
 		{
-			StartIter->second;
+			(StartIter->second)->Destory();
 		}
 
 	}

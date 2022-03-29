@@ -1,7 +1,7 @@
 #include "Flag.h"
 
 Flag_Unit* Flag_Unit::Inst_ = new Flag_Unit();
-Flag_Unit* Flag_Unit::Inst_ = new Flag_Unit();
+Flag_Text* Flag_Text::Inst_ = new Flag_Text();
 
 
 Flag_Unit::Flag_Unit()

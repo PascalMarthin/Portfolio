@@ -13,7 +13,8 @@ public:
 	GamePlayTextObject& operator=(const GamePlayTextObject& _Other) = delete;
 	GamePlayTextObject& operator=(GamePlayTextObject&& _Other) noexcept = delete;
 
-	virtual void SettingImg();
+	virtual void SettingImg() {}
+	virtual void Destory() {}
 
 protected:
 
