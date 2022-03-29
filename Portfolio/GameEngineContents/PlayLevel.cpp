@@ -4,9 +4,11 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include "Coordinate.h"
 #include "BackGround.h"
-#include "Baba.h"
 
 PlayLevel::PlayLevel() 
+	: CurrentMap_(nullptr),
+	GameWindowPosX_(0),
+	GameWindowPosY_(0)
 {
 }
 
@@ -60,29 +62,33 @@ void PlayLevel::Update()
 void PlayLevel::LevelChangeStart()
 {
 	CreateActor<BackGround>(0);
-	MapScale_ = { 33, 18 };
+	MapScale_ = StageData::Inst_->Scale_[0];
 	GameWindowPosX_ = GameEngineWindow::GetScale().Half().x + 24 - MapScale_.x * 24;
 	GameWindowPosY_ = GameEngineWindow::GetScale().Half().y + 24 - MapScale_.y * 24;
-	CreatMap();
-
+	CreatMap(StageData::Inst_->StageData_[0]);
 	//`EndGame();
 }
 
 
-void PlayLevel::CreatMap()
+void PlayLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 {
+
 	float4 CPos;
 	std::map<int, std::map<int, Coordinate*>> Makemap;
 	for (int y = 0; y < MapScale_.iy(); ++y)
 	{
 		for (int x = 0; x < MapScale_.ix(); ++x)
 		{
-			GamePlayObject* Idx = (GamePlayGobal::GetInst()->Find(ObjectName::Baba_Object));
+			GamePlayObject* Idx = (GamePlayGobal::GetInst()->Find(_Stage[y][x]));
+			if (Idx == nullptr)
+			{
+				continue;
+			}
 			Coordinate* Coordi = CreateActor<Coordinate>(1);
 			CPos = { GameWindowPosX_ + static_cast<float>(x * 48), GameWindowPosY_ + static_cast<float>(y * 48) };
 			Coordi->Pos_ = { static_cast<float>(x), static_cast<float>(y) };
 			Coordi->CPos_ = CPos;
-			Coordi->Object_ = ObjectName::Baba_Object;
+			Coordi->Object_ = _Stage[y][x];
 			Coordi->StopImage_ = Idx->GetStopImage();
 			Coordi->MoveImage_ = Idx->GetMoveImage();
 			Makemap[y][x] = Coordi;

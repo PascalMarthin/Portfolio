@@ -42,7 +42,7 @@ GamePlayGobal::~GamePlayGobal()
 }
 
 
-GamePlayObject* GamePlayGobal::Find(ObjectName _Name)
+GamePlayObject* GamePlayGobal::Find(const ObjectName _Name)
 {
 	return ObjectName_[_Name];
 }
@@ -50,26 +50,26 @@ GamePlayObject* GamePlayGobal::Find(ObjectName _Name)
 
 void  GamePlayGobal::SetName()
 {
-	if (ObjectName_[ObjectName::Baba_Object] != nullptr)
+	if (ObjectName_[ObjectName::Baba_Unit] != nullptr)
 	{
 		MsgBoxAssert("GamePlayGobal : 이미 만들어진 Name입니다")
 	}
-		ObjectName_[ObjectName::Baba_Object] =  Baba_Unit::GetInst();
+		ObjectName_[ObjectName::Baba_Unit] =  Baba_Unit::GetInst();
 		ObjectName_[ObjectName::Baba_Text] =	Baba_Text::GetInst();
-		ObjectName_[ObjectName::Flag_Object] =  Flag_Unit::GetInst();
+		ObjectName_[ObjectName::Flag_Unit] =  Flag_Unit::GetInst();
 		ObjectName_[ObjectName::Flag_Text] =	Flag_Text::GetInst();
-		ObjectName_[ObjectName::Glass_Object] = Glass_Unit::GetInst();
-		ObjectName_[ObjectName::Lava_Object] =  Lava_Unit::GetInst();
+		ObjectName_[ObjectName::Grass_Unit] = Grass_Unit::GetInst();
+		ObjectName_[ObjectName::Lava_Unit] =  Lava_Unit::GetInst();
 		ObjectName_[ObjectName::Lava_Text] =	Lava_Text::GetInst();
-		ObjectName_[ObjectName::Rock_Object] =  Rock_Unit::GetInst();
+		ObjectName_[ObjectName::Rock_Unit] =  Rock_Unit::GetInst();
 		ObjectName_[ObjectName::Rock_Text] =	Rock_Text::GetInst();
-		ObjectName_[ObjectName::Skull_Object] = Skull_Unit::GetInst();
+		ObjectName_[ObjectName::Skull_Unit] = Skull_Unit::GetInst();
 		ObjectName_[ObjectName::Skull_Text] =	Skull_Text::GetInst();
-		ObjectName_[ObjectName::Wall_Object] =  Wall_Unit::GetInst();
+		ObjectName_[ObjectName::Wall_Unit] =  Wall_Unit::GetInst();
 		ObjectName_[ObjectName::Wall_Text] =	Wall_Text::GetInst();
-		ObjectName_[ObjectName::Water_Object] = Water_Unit::GetInst();
+		ObjectName_[ObjectName::Water_Unit] = Water_Unit::GetInst();
 		ObjectName_[ObjectName::Water_Text] =	Water_Text::GetInst();
-		ObjectName_[ObjectName::Tile_Object] =	Tile_Unit::GetInst();
+		ObjectName_[ObjectName::Tile_Unit] =	Tile_Unit::GetInst();
 		ObjectName_[ObjectName::Is_Text] =		Is_Text::GetInst();
 		ObjectName_[ObjectName::Stop_Text] =	Stop_Text::GetInst();
 		ObjectName_[ObjectName::Defeat_Text] =	Defeat_Text::GetInst();

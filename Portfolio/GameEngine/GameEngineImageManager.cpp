@@ -33,7 +33,7 @@ GameEngineImage* GameEngineImageManager::Find(const std::string& _Name)
 
 	if (AllRes.end() == FindIter)
 	{
-		// MsgBoxAssert("이미 존재하는 이름의 이미지를 또 만들려고 했습니다.");
+		MsgBoxAssert((_Name + "없다").c_str());
 		return nullptr;
 	}
 

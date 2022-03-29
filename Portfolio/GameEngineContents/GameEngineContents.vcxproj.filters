@@ -98,7 +98,7 @@
     <ClCompile Include="BackGround.cpp">
       <Filter>Gobal</Filter>
     </ClCompile>
-    <ClCompile Include="Stage0.cpp">
+    <ClCompile Include="StageData.cpp">
       <Filter>Stage</Filter>
     </ClCompile>
   </ItemGroup>
@@ -203,7 +203,7 @@
     <ClInclude Include="BackGround.h">
       <Filter>Gobal</Filter>
     </ClInclude>
-    <ClInclude Include="Stage0.h">
+    <ClInclude Include="StageData.h">
       <Filter>Stage</Filter>
     </ClInclude>
   </ItemGroup>

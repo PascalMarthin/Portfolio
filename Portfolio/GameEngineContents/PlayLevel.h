@@ -2,6 +2,7 @@
 #include <GameEngine/GameEngineLevel.h>
 #include <GameEngineBase/GameEngineMath.h>
 #include "GamePlayGobal.h"
+#include "StageData.h"
 
 // 설명 : Stage 정보를 받아 화면에 출력해주는 Level
 class GamePlayObject;
@@ -23,7 +24,8 @@ protected:
 	void LevelChangeStart() override;
 
 private:
-	void CreatMap();
+	void CreatMap (std::map<int, std::map<int, ObjectName>>& _Stage);
+
 	void EndGame();
 
 	float4 MapScale_;

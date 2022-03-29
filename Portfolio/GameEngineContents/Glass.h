@@ -3,12 +3,12 @@
 #include "GamePlayTextObject.h"
 
 // Ό³Έν :
-class Glass_Unit : public GamePlayUnitObject
+class Grass_Unit : public GamePlayUnitObject
 {
-	static Glass_Unit* Inst_;
+	static Grass_Unit* Inst_;
 
 public:
-	static Glass_Unit* GetInst()
+	static Grass_Unit* GetInst()
 	{
 		return Inst_;
 	}
@@ -26,12 +26,12 @@ public:
 	void SettingImg() override;
 
 private:
-	Glass_Unit();
-	~Glass_Unit();
+	Grass_Unit();
+	~Grass_Unit();
 
-	Glass_Unit(const Glass_Unit& _Other) = delete;
-	Glass_Unit(Glass_Unit&& _Other) noexcept = delete;
-	Glass_Unit& operator=(const Glass_Unit& _Other) = delete;
-	Glass_Unit& operator=(Glass_Unit&& _Other) noexcept = delete;
+	Grass_Unit(const Grass_Unit& _Other) = delete;
+	Grass_Unit(Grass_Unit&& _Other) noexcept = delete;
+	Grass_Unit& operator=(const Grass_Unit& _Other) = delete;
+	Grass_Unit& operator=(Grass_Unit&& _Other) noexcept = delete;
 
 };

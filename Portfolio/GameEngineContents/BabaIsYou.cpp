@@ -47,7 +47,7 @@ void BabaIsYou::GameInit()
 	{
 		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 	}
-	
+
 	// 타이틀매뉴
 	ResourcesDir.MoveParent("Ui");
 	ResourcesDir.Move("TitleMenu");
@@ -75,19 +75,423 @@ void BabaIsYou::GameInit()
 		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 	}
 
-	// BABA OBJECT
-	ResourcesDir.MoveParent("Sprites");
-	ResourcesDir.Move("Object");
-	ResourcesDir.Move("Object");
-	ResourcesDir.Move("it");
-	ResourcesDir.Move("baba");
-	AllImageFileList = ResourcesDir.GetAllFile("Bmp");
-	for (size_t i = 0; i < AllImageFileList.size(); i++)
 	{
-		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+	// BABA OBJECT
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("it");
+			ResourcesDir.Move("baba");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+		// flag
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("it");
+			ResourcesDir.Move("flag");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+
+		// grass
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("it");
+			ResourcesDir.Move("grass");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+
+		// lava
+		{
+			GameEngineDirectory ResourcesDir;
+ResourcesDir.MoveParent("Portfolio");
+ResourcesDir.Move("Resources");
+ResourcesDir.Move("Sprites");
+ResourcesDir.Move("Object");
+ResourcesDir.Move("Object");
+ResourcesDir.Move("it");
+ResourcesDir.Move("lava");
+AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+for (size_t i = 0; i < AllImageFileList.size(); i++)
+{
+	GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+}
+		}
+
+		// rock
+		{
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("Portfolio");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Sprites");
+		ResourcesDir.Move("Object");
+		ResourcesDir.Move("Object");
+		ResourcesDir.Move("it");
+		ResourcesDir.Move("rock");
+		AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		}
+		}
+
+		// skull
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("it");
+			ResourcesDir.Move("skull");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+
+		// tile
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("it");
+			ResourcesDir.Move("tile");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+
+		// wall
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("it");
+			ResourcesDir.Move("wall");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+
+		// water
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("it");
+			ResourcesDir.Move("water");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
 	}
 
+	{
+	// baba
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("baba");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
 
+		// defeat
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("defeat");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+
+		// flag
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("flag");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+
+		// grass
+
+		// hot
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("hot");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+		//is
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("is");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+		// lava
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("lava");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+		// melt
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("melt");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+		// push
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("push");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+		// rock
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("rock");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+		// sink
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("sink");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+		// skull
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("skull");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+		// stop
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("stop");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+		// wall
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("wall");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+		//water
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("water");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+		// win
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("win");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+		// you
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("you");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+			}
+		}
+	}
 
 	GamePlayGobal::GetInst()->SetName();
 

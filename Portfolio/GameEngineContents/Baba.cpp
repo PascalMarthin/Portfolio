@@ -15,7 +15,7 @@ Baba_Unit::~Baba_Unit()
 
 void Baba_Unit::SettingImg()
 {
-	Name_ = ObjectName::Baba_Object;
+	Name_ = ObjectName::Baba_Unit;
 	StopImage_[0].push_back(GameEngineImageManager::GetInst()->Find("baba_0_1.bmp"));
 	StopImage_[0].push_back(GameEngineImageManager::GetInst()->Find("baba_0_2.bmp"));
 	StopImage_[0].push_back(GameEngineImageManager::GetInst()->Find("baba_0_3.bmp"));
@@ -103,5 +103,12 @@ Baba_Text::~Baba_Text()
 
 void Baba_Text::SettingImg()
 {
+	Name_ = ObjectName::Baba_Text;
+	StopImage_[0].push_back(GameEngineImageManager::GetInst()->Find("text_baba_F_1.bmp"));
+	StopImage_[0].push_back(GameEngineImageManager::GetInst()->Find("text_baba_F_2.bmp"));
+	StopImage_[0].push_back(GameEngineImageManager::GetInst()->Find("text_baba_F_3.bmp"));
 
+	MoveImage_[0].push_back(GameEngineImageManager::GetInst()->Find("text_baba_0_1.bmp"));
+	MoveImage_[0].push_back(GameEngineImageManager::GetInst()->Find("text_baba_0_2.bmp"));
+	MoveImage_[0].push_back(GameEngineImageManager::GetInst()->Find("text_baba_0_3.bmp"));
 }
