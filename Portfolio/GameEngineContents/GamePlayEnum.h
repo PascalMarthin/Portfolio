@@ -38,7 +38,6 @@ enum class ObjectName
 	Flag_Object,
 	Flag_Text,
 	Glass_Object,
-	Glass_Text,
 	Lava_Object,
 	Lava_Text,
 	Rock_Object,

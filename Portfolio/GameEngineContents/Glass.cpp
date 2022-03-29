@@ -1,5 +1,7 @@
 #include "Glass.h"
 
+Glass_Unit* Glass_Unit::Inst_ = new Glass_Unit();
+
 Glass_Unit::Glass_Unit()
 {
 }
@@ -8,12 +10,7 @@ Glass_Unit::~Glass_Unit()
 {
 }
 
-
-Glass_Text::Glass_Text() 
+void Glass_Unit::SettingImg()
 {
-}
 
-Glass_Text::~Glass_Text() 
-{
 }
-

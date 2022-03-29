@@ -3,44 +3,70 @@
 #include "GamePlayTextObject.h"
 
 // Ό³Έν :
-class Wall_Text;
 class Wall_Unit : public GamePlayUnitObject
 {
-	friend Wall_Text;
+	static Wall_Unit* Inst_;
+
 public:
-	// constrcuter destructer
+	static Wall_Unit* GetInst()
+	{
+		return Inst_;
+	}
+
+	static void Destroy()
+	{
+		if (nullptr == Inst_)
+		{
+			return;
+		}
+
+		delete Inst_;
+		Inst_ = nullptr;
+	}
+	void SettingImg() override;
+
+private:
 	Wall_Unit();
 	~Wall_Unit();
 
-	// delete Function
 	Wall_Unit(const Wall_Unit& _Other) = delete;
 	Wall_Unit(Wall_Unit&& _Other) noexcept = delete;
 	Wall_Unit& operator=(const Wall_Unit& _Other) = delete;
 	Wall_Unit& operator=(Wall_Unit&& _Other) noexcept = delete;
-
-protected:
-
-private:
 
 };
 
 
 class Wall_Text : public GamePlayTextObject
 {
+
 public:
-	// constrcuter destructer
+	static Wall_Text* GetInst()
+	{
+		return Inst_;
+	}
+
+	static void Destroy()
+	{
+		if (nullptr == Inst_)
+		{
+			return;
+		}
+
+		delete Inst_;
+		Inst_ = nullptr;
+	}
+	void SettingImg() override;
+
+private:
+	static Wall_Text* Inst_;
 	Wall_Text();
 	~Wall_Text();
 
-	// delete Function
 	Wall_Text(const Wall_Text& _Other) = delete;
 	Wall_Text(Wall_Text&& _Other) noexcept = delete;
 	Wall_Text& operator=(const Wall_Text& _Other) = delete;
 	Wall_Text& operator=(Wall_Text&& _Other) noexcept = delete;
-
-protected:
-
-private:
 
 };
 

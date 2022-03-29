@@ -12,6 +12,9 @@ public:
 	GamePlayUnitObject(GamePlayUnitObject&& _Other) noexcept = delete;
 	GamePlayUnitObject& operator=(const GamePlayUnitObject& _Other) = delete;
 	GamePlayUnitObject& operator=(GamePlayUnitObject&& _Other) noexcept = delete;
+
+	virtual void SettingImg();
+
 protected:
 
 private:

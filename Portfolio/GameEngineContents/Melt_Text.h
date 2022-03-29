@@ -4,19 +4,32 @@
 class Melt_Text : public GamePlayTextObject
 {
 public:
-	// constrcuter destructer
+	static Melt_Text* GetInst()
+	{
+		return Inst_;
+	}
+
+	void Destroy()
+	{
+		if (nullptr == Inst_)
+		{
+			return;
+		}
+
+		delete Inst_;
+		Inst_ = nullptr;
+	}
+	void SettingImg() override;
+
+private:
+	static Melt_Text* Inst_;
 	Melt_Text();
 	~Melt_Text();
 
-	// delete Function
 	Melt_Text(const Melt_Text& _Other) = delete;
 	Melt_Text(Melt_Text&& _Other) noexcept = delete;
 	Melt_Text& operator=(const Melt_Text& _Other) = delete;
 	Melt_Text& operator=(Melt_Text&& _Other) noexcept = delete;
-
-protected:
-
-private:
 
 };
 

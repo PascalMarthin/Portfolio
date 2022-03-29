@@ -26,12 +26,12 @@ public:
 		delete Inst_;
 		Inst_ = nullptr;
 	}
+
+	void  DestroyName();
 public:
-	// constrcuter destructer
 	GamePlayGobal();
 	~GamePlayGobal();
 
-	// delete Function
 	GamePlayGobal(const GamePlayGobal& _Other) = delete;
 	GamePlayGobal(GamePlayGobal&& _Other) noexcept = delete;
 	GamePlayGobal& operator=(const GamePlayGobal& _Other) = delete;

@@ -55,33 +55,46 @@ void  GamePlayGobal::SetName()
 	{
 		MsgBoxAssert("GamePlayGobal : 이미 만들어진 Name입니다")
 	}
-		ObjectName_[ObjectName::Baba_Object] =  new Baba_Unit();
-		ObjectName_[ObjectName::Baba_Text] =	new Baba_Text();
-		ObjectName_[ObjectName::Flag_Object] =  new Flag_Unit();
-		ObjectName_[ObjectName::Flag_Text] =    new	Flag_Text();
-		ObjectName_[ObjectName::Glass_Object] = new	Glass_Unit();
-		ObjectName_[ObjectName::Glass_Text] =   new Glass_Text();
-		ObjectName_[ObjectName::Lava_Object] =  new	Lava_Unit();
-		ObjectName_[ObjectName::Lava_Text] =    new	Lava_Text();
-		ObjectName_[ObjectName::Rock_Object] =  new	Rock_Unit();
-		ObjectName_[ObjectName::Rock_Text] =    new	Rock_Text();
-		ObjectName_[ObjectName::Skull_Object] = new	Skull_Unit();
-		ObjectName_[ObjectName::Skull_Text] =   new	Skull_Text();
-		ObjectName_[ObjectName::Wall_Object] =  new	Wall_Unit();
-		ObjectName_[ObjectName::Wall_Text] =    new Wall_Text();
-		ObjectName_[ObjectName::Water_Object] = new	Water_Unit();
-		ObjectName_[ObjectName::Water_Text] =   new	Water_Text();
-		ObjectName_[ObjectName::Tile_Object] =  new	Tile_Unit();
-		ObjectName_[ObjectName::Is_Text] =      new	Is_Text();
-		ObjectName_[ObjectName::Stop_Text] =    new	Stop_Text();
-		ObjectName_[ObjectName::Defeat_Text] =  new	Defeat_Text();
-		ObjectName_[ObjectName::Hot_Text] =     new	Hot_Text();
-		ObjectName_[ObjectName::Melt_Text] =    new	Melt_Text();
-		ObjectName_[ObjectName::Push_Text] =    new	Push_Text();
-		ObjectName_[ObjectName::Sink_Text] =    new	Sink_Text();
-		ObjectName_[ObjectName::Win_Text] =     new	Win_Text();
-		ObjectName_[ObjectName::You_Text] =     new	You_Text();
+		ObjectName_[ObjectName::Baba_Object] =  Baba_Unit::GetInst();
+		ObjectName_[ObjectName::Baba_Text] =	Baba_Text::GetInst();
+		ObjectName_[ObjectName::Flag_Object] =  Flag_Unit::GetInst();
+		ObjectName_[ObjectName::Flag_Text] =	Flag_Text::GetInst();
+		ObjectName_[ObjectName::Glass_Object] = Glass_Unit::GetInst();
+		ObjectName_[ObjectName::Lava_Object] =  Lava_Unit::GetInst();
+		ObjectName_[ObjectName::Lava_Text] =	Lava_Text::GetInst();
+		ObjectName_[ObjectName::Rock_Object] =  Rock_Unit::GetInst();
+		ObjectName_[ObjectName::Rock_Text] =	Rock_Text::GetInst();
+		ObjectName_[ObjectName::Skull_Object] = Skull_Unit::GetInst();
+		ObjectName_[ObjectName::Skull_Text] =	Skull_Text::GetInst();
+		ObjectName_[ObjectName::Wall_Object] =  Wall_Unit::GetInst();
+		ObjectName_[ObjectName::Wall_Text] =	Wall_Text::GetInst();
+		ObjectName_[ObjectName::Water_Object] = Water_Unit::GetInst();
+		ObjectName_[ObjectName::Water_Text] =	Water_Text::GetInst();
+		ObjectName_[ObjectName::Tile_Object] =	Tile_Unit::GetInst();
+		ObjectName_[ObjectName::Is_Text] =		Is_Text::GetInst();
+		ObjectName_[ObjectName::Stop_Text] =	Stop_Text::GetInst();
+		ObjectName_[ObjectName::Defeat_Text] =	Defeat_Text::GetInst();
+		ObjectName_[ObjectName::Hot_Text] =		Hot_Text::GetInst();
+		ObjectName_[ObjectName::Melt_Text] =	Melt_Text::GetInst();
+		ObjectName_[ObjectName::Push_Text] =	Push_Text::GetInst();
+		ObjectName_[ObjectName::Sink_Text] =	Sink_Text::GetInst();
+		ObjectName_[ObjectName::Win_Text] =		Win_Text::GetInst();
+		ObjectName_[ObjectName::You_Text] =		You_Text::GetInst();
 }
 
+void  GamePlayGobal::DestroyName()
+{
+	std::map<ObjectName, GamePlayObject*>::iterator StartIter = ObjectName_.begin();
+	std::map<ObjectName, GamePlayObject*>::iterator EndIter = ObjectName_.end();
+
+	for (; StartIter != EndIter ; ++StartIter)
+	{
+		if (StartIter->second != nullptr)
+		{
+			StartIter->second
+		}
+
+	}
+}
 
 

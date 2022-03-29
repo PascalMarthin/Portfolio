@@ -4,19 +4,32 @@
 class Push_Text : public GamePlayTextObject
 {
 public:
-	// constrcuter destructer
+	static Push_Text* GetInst()
+	{
+		return Inst_;
+	}
+
+	static void Destroy()
+	{
+		if (nullptr == Inst_)
+		{
+			return;
+		}
+
+		delete Inst_;
+		Inst_ = nullptr;
+	}
+	void SettingImg() override;
+
+private:
+	static Push_Text* Inst_;
 	Push_Text();
 	~Push_Text();
 
-	// delete Function
 	Push_Text(const Push_Text& _Other) = delete;
 	Push_Text(Push_Text&& _Other) noexcept = delete;
 	Push_Text& operator=(const Push_Text& _Other) = delete;
 	Push_Text& operator=(Push_Text&& _Other) noexcept = delete;
-
-protected:
-
-private:
 
 };
 

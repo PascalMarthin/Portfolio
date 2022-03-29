@@ -6,44 +6,70 @@
 #include "GamePlayTextObject.h"
 
 // Ό³Έν :
-class Water_Text;
 class Water_Unit : public GamePlayUnitObject
 {
-	friend Water_Text;
+	static Water_Unit* Inst_;
+
 public:
-	// constrcuter destructer
+	static Water_Unit* GetInst()
+	{
+		return Inst_;
+	}
+
+	static void Destroy()
+	{
+		if (nullptr == Inst_)
+		{
+			return;
+		}
+
+		delete Inst_;
+		Inst_ = nullptr;
+	}
+	void SettingImg() override;
+
+private:
 	Water_Unit();
 	~Water_Unit();
 
-	// delete Function
 	Water_Unit(const Water_Unit& _Other) = delete;
 	Water_Unit(Water_Unit&& _Other) noexcept = delete;
 	Water_Unit& operator=(const Water_Unit& _Other) = delete;
 	Water_Unit& operator=(Water_Unit&& _Other) noexcept = delete;
-
-protected:
-
-private:
 
 };
 
 
 class Water_Text : public GamePlayTextObject
 {
+
 public:
-	// constrcuter destructer
+	static Water_Text* GetInst()
+	{
+		return Inst_;
+	}
+
+	static void Destroy()
+	{
+		if (nullptr == Inst_)
+		{
+			return;
+		}
+
+		delete Inst_;
+		Inst_ = nullptr;
+	}
+	void SettingImg() override;
+
+private:
+	static Water_Text* Inst_;
 	Water_Text();
 	~Water_Text();
 
-	// delete Function
 	Water_Text(const Water_Text& _Other) = delete;
 	Water_Text(Water_Text&& _Other) noexcept = delete;
 	Water_Text& operator=(const Water_Text& _Other) = delete;
 	Water_Text& operator=(Water_Text&& _Other) noexcept = delete;
-
-protected:
-
-private:
 
 };
 

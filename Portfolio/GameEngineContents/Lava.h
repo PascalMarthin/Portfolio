@@ -3,44 +3,70 @@
 #include "GamePlayTextObject.h"
 
 // Ό³Έν :
-class Lava_Text;
 class Lava_Unit : public GamePlayUnitObject
 {
-	friend Lava_Text;
+	static Lava_Unit* Inst_;
+
 public:
-	// constrcuter destructer
+	static Lava_Unit* GetInst()
+	{
+		return Inst_;
+	}
+
+	static void Destroy()
+	{
+		if (nullptr == Inst_)
+		{
+			return;
+		}
+
+		delete Inst_;
+		Inst_ = nullptr;
+	}
+	void SettingImg() override;
+
+private:
 	Lava_Unit();
 	~Lava_Unit();
 
-	// delete Function
 	Lava_Unit(const Lava_Unit& _Other) = delete;
 	Lava_Unit(Lava_Unit&& _Other) noexcept = delete;
 	Lava_Unit& operator=(const Lava_Unit& _Other) = delete;
 	Lava_Unit& operator=(Lava_Unit&& _Other) noexcept = delete;
-
-protected:
-
-private:
 
 };
 
 
 class Lava_Text : public GamePlayTextObject
 {
+
 public:
-	// constrcuter destructer
+	static Lava_Text* GetInst()
+	{
+		return Inst_;
+	}
+
+	static void Destroy()
+	{
+		if (nullptr == Inst_)
+		{
+			return;
+		}
+
+		delete Inst_;
+		Inst_ = nullptr;
+	}
+	void SettingImg() override;
+
+private:
+	static Lava_Text* Inst_;
 	Lava_Text();
 	~Lava_Text();
 
-	// delete Function
 	Lava_Text(const Lava_Text& _Other) = delete;
 	Lava_Text(Lava_Text&& _Other) noexcept = delete;
 	Lava_Text& operator=(const Lava_Text& _Other) = delete;
 	Lava_Text& operator=(Lava_Text&& _Other) noexcept = delete;
-
-protected:
-
-private:
 
 };
 

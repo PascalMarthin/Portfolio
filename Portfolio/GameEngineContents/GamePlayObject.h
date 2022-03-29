@@ -30,6 +30,7 @@ public:
 	{
 		return Name_;
 	}
+	virtual void SettingImg();
 
 protected:
 	std::map<int ,std::vector<GameEngineImage*>> StopImage_;
