@@ -46,7 +46,6 @@ void GameEngineRenderer::SetImage(const std::string& _Name)
 	}
 
 	Image_ = FindImage;
-	SetImageScale();
 }
 
 void GameEngineRenderer::Render()
