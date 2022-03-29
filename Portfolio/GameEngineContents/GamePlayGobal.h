@@ -29,10 +29,10 @@ public:
 		Inst_ = nullptr;
 	}
 
-
 	GamePlayObject* Find(ObjectName _Name);
-	void  DestroyName();
 	void SetName();
+	void SettingImg();
+	void DestroyName();
 protected:
 
 private:

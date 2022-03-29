@@ -3,6 +3,8 @@
 #include <GameEngine/GameEngineLevel.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include "Coordinate.h"
+#include "BackGround.h"
+#include "Baba.h"
 
 PlayLevel::PlayLevel() 
 {
@@ -57,6 +59,7 @@ void PlayLevel::Update()
 
 void PlayLevel::LevelChangeStart()
 {
+	CreateActor<BackGround>(0);
 	MapScale_ = { 33, 18 };
 	GameWindowPosX_ = GameEngineWindow::GetScale().Half().x + 24 - MapScale_.x * 24;
 	GameWindowPosY_ = GameEngineWindow::GetScale().Half().y + 24 - MapScale_.y * 24;

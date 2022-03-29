@@ -11,9 +11,6 @@
     <ClCompile Include="TitleLogo.cpp">
       <Filter>Title</Filter>
     </ClCompile>
-    <ClCompile Include="TitleBackGround.cpp">
-      <Filter>Title</Filter>
-    </ClCompile>
     <ClCompile Include="Is_Text.cpp">
       <Filter>Object%28Game%29\Text\Verb</Filter>
     </ClCompile>
@@ -98,6 +95,12 @@
     <ClCompile Include="Coordinate.cpp">
       <Filter>Coordinate</Filter>
     </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>Gobal</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage0.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -108,9 +111,6 @@
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
-      <Filter>Title</Filter>
-    </ClInclude>
-    <ClInclude Include="TitleBackGround.h">
       <Filter>Title</Filter>
     </ClInclude>
     <ClInclude Include="Is_Text.h">
@@ -199,6 +199,12 @@
     </ClInclude>
     <ClInclude Include="Coordinate.h">
       <Filter>Coordinate</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>Gobal</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage0.h">
+      <Filter>Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

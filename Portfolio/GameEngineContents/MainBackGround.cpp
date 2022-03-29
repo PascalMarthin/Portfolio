@@ -15,7 +15,6 @@ void MainBackGround::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
 	//SetScale(GameEngineWindow::GetScale());
-	CreateRenderer("BackGround1.bmp");
 	CreateRendererToScale("island_1.bmp", { (33 * MAX_FIXEL), (18 * MAX_FIXEL) });
 	CreateRendererToScale("island_decor_1.bmp", { (33 * MAX_FIXEL), (18 * MAX_FIXEL) });
 }

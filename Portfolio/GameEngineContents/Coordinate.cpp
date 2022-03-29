@@ -21,5 +21,5 @@ void Coordinate::Update()
 }
 void Coordinate::Render()
 {
-	//GameEngine::BackBufferImage()->TransCopy((Iter->second)[0], CPos_, RGB(255, 0, 255));
+	GameEngine::BackBufferImage()->TransCopy((*StopImage_)[0][0], CPos_, RGB(255, 0, 255));
 }

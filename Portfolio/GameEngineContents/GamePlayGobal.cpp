@@ -79,6 +79,21 @@ void  GamePlayGobal::SetName()
 		ObjectName_[ObjectName::Sink_Text] =	Sink_Text::GetInst();
 		ObjectName_[ObjectName::Win_Text] =		Win_Text::GetInst();
 		ObjectName_[ObjectName::You_Text] =		You_Text::GetInst();
+
+		SettingImg();
+}
+
+void GamePlayGobal::SettingImg()
+{
+	std::map<ObjectName, GamePlayObject*>::iterator StartIter = ObjectName_.begin();
+	std::map<ObjectName, GamePlayObject*>::iterator EndIter = ObjectName_.end();
+	for (; StartIter != EndIter; ++StartIter)
+	{
+		if (StartIter->second != nullptr)
+		{
+			(StartIter->second)->SettingImg();
+		}
+	}
 }
 
 void  GamePlayGobal::DestroyName()
@@ -91,6 +106,7 @@ void  GamePlayGobal::DestroyName()
 		if (StartIter->second != nullptr)
 		{
 			(StartIter->second)->Destory();
+			(StartIter->second) = nullptr;
 		}
 
 	}

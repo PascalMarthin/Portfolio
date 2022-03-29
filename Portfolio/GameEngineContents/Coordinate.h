@@ -42,7 +42,6 @@ private:
 	float4 CPos_;
 	ObjectName Object_;
 
-	//std::map<int, std::vector<GameEngineImage*>>::iterator Iter;
 	std::map<int, std::vector<GameEngineImage*>>* StopImage_;
 	std::map<int, std::vector<GameEngineImage*>>* MoveImage_;
 };

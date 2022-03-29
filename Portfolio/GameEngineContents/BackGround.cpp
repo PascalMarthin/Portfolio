@@ -1,30 +1,30 @@
-#include "TitleBackGround.h"
+#include "BackGround.h"
 #include <GameEngineBase/GameEngineWindow.h>
 
-TitleBackGround::TitleBackGround() 
+BackGround::BackGround()
 {
 }
 
-TitleBackGround::~TitleBackGround() 
+BackGround::~BackGround()
 {
 }
 
 
-void TitleBackGround::Start()
+void BackGround::Start()
 {
 	// GetScale().Half() Áß¾Ó
 	SetPosition(GameEngineWindow::GetScale().Half());
 	SetScale(GameEngineWindow::GetScale());
-	
+
 	CreateRenderer("BackGround1.bmp");
 
 }
 
-void TitleBackGround::Update()
+void BackGround::Update()
 {
 
 }
 
-void TitleBackGround::Render()
+void BackGround::Render()
 {
 }
