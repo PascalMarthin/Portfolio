@@ -195,6 +195,14 @@ void GameEngineImage::TransCopy(GameEngineImage* _Other, const float4& _CopyPos,
 		_TransColor // 복사하라는 명령
 	);
 }
+
+
+void GameEngineImage::CutCount(int _x, int _y)
+{
+	float4 Scale = { GetScale().x / _x, GetScale().y / _y };
+	Cut(Scale);
+}
+
 void GameEngineImage::Cut(const float4& _CutSize)
 {
 	if (0 != (GetScale().ix() % _CutSize.ix()))
