@@ -1,31 +1,26 @@
 #include "GameEngineLevel.h"
 #include "GameEngineActor.h"
 
-GameEngineLevel::GameEngineLevel() 
+
+GameEngineLevel::GameEngineLevel()
+	: CameraPos_(float4::ZERO)
 {
 }
 
-GameEngineLevel::~GameEngineLevel() 
+GameEngineLevel::~GameEngineLevel()
 {
-	// 동적으로 할당된 map의 value는 delete가 필요하다
-	// map의 begin() iterator
 	std::map<int, std::list<GameEngineActor*>>::iterator GroupStart = AllActor_.begin();
-	// map의 end() iterator
 	std::map<int, std::list<GameEngineActor*>>::iterator GroupEnd = AllActor_.end();
 
 	for (; GroupStart != GroupEnd; ++GroupStart)
 	{
-		// map iterator의 키값 = value (list)
 		std::list<GameEngineActor*>& Group = GroupStart->second;
 
 		std::list<GameEngineActor*>::iterator StartActor = Group.begin();
 		std::list<GameEngineActor*>::iterator EndActor = Group.end();
-		
-		// list 지워 버려
+
 		for (; StartActor != EndActor; ++StartActor)
 		{
-
-			// 결국 StartActor는 nullptr인 EndActor가 될 것이다
 			if (nullptr == (*StartActor))
 			{
 				continue;
@@ -66,46 +61,9 @@ void GameEngineLevel::ActorUpdate()
 			(*StartActor)->Update();
 		}
 	}
-
 }
 
-void GameEngineLevel::ActorRelease()
-{
-	std::map<int, std::list<GameEngineActor*>>::iterator GroupStart;
-	std::map<int, std::list<GameEngineActor*>>::iterator GroupEnd;
 
-	std::list<GameEngineActor*>::iterator StartActor;
-	std::list<GameEngineActor*>::iterator EndActor;
-
-	GroupStart = AllActor_.begin();
-	GroupEnd = AllActor_.end();
-
-	for (; GroupStart != GroupEnd; ++GroupStart)
-	{
-		std::list<GameEngineActor*>& Group = GroupStart->second;
-
-
-		//       
-		// i
-		// 3?????
-		//       i
-		// 0 1 2 4 5 
-		//       d
-		StartActor = Group.begin();
-		EndActor = Group.end();
-		for (; StartActor != EndActor; )
-		{
-			if (true == (*StartActor)->IsDeath())
-			{
-				delete* StartActor;
-				StartActor = Group.erase(StartActor);
-				continue;
-			}
-
-			++StartActor;
-		}
-	}
-}
 void GameEngineLevel::ActorRender()
 {
 	std::map<int, std::list<GameEngineActor*>>::iterator GroupStart;
@@ -127,12 +85,10 @@ void GameEngineLevel::ActorRender()
 
 		for (; StartActor != EndActor; ++StartActor)
 		{
-			// 렌더를 실행 시키고 싶지 않을때
 			if (false == (*StartActor)->IsUpdate())
 			{
 				continue;
 			}
-
 			(*StartActor)->Renderering();
 		}
 
@@ -140,15 +96,46 @@ void GameEngineLevel::ActorRender()
 		StartActor = Group.begin();
 		EndActor = Group.end();
 
+
 		for (; StartActor != EndActor; ++StartActor)
 		{
 			if (false == (*StartActor)->IsUpdate())
 			{
 				continue;
 			}
+
 			(*StartActor)->Render();
 		}
 	}
-
 }
 
+void GameEngineLevel::ActorRelease()
+{
+	std::map<int, std::list<GameEngineActor*>>::iterator GroupStart;
+	std::map<int, std::list<GameEngineActor*>>::iterator GroupEnd;
+
+	std::list<GameEngineActor*>::iterator StartActor;
+	std::list<GameEngineActor*>::iterator EndActor;
+
+	GroupStart = AllActor_.begin();
+	GroupEnd = AllActor_.end();
+
+	for (; GroupStart != GroupEnd; ++GroupStart)
+	{
+		std::list<GameEngineActor*>& Group = GroupStart->second;
+
+		StartActor = Group.begin();
+		EndActor = Group.end();
+		for (; StartActor != EndActor; )
+		{
+			if (true == (*StartActor)->IsDeath())
+			{
+				delete* StartActor;
+				StartActor = Group.erase(StartActor);
+				continue;
+			}
+
+			++StartActor;
+		}
+	}
+}

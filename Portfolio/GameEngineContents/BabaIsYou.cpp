@@ -502,7 +502,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 	CreateLevel<PlayLevel>("PlayLevel");
 
 	//CreateLevel<EndingLevel>("Ending");
-	ChangeLevel("PlayLevel");
+	ChangeLevel("TitleLevel");
 }
 void BabaIsYou::GameLoop()
 {
