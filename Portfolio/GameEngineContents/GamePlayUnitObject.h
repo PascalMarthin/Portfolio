@@ -14,7 +14,7 @@ public:
 	GamePlayUnitObject& operator=(GamePlayUnitObject&& _Other) noexcept = delete;
 
 	virtual void SettingImg() {}
-	virtual void Destory() {}
+	virtual void Destroy() {}
 
 protected:
 

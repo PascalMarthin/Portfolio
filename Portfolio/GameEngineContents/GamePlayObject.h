@@ -31,7 +31,7 @@ public:
 		return Name_;
 	}
 	virtual void SettingImg(){}
-	virtual void Destory(){}
+	virtual void Destroy() = 0;
 
 protected:
 	std::map<int ,std::vector<GameEngineImage*>> StopImage_;

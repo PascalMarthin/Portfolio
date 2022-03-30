@@ -13,7 +13,7 @@ public:
 		return Inst_;
 	}
 
-	void Destroy()
+	void Destroy() override
 	{
 		if (nullptr == Inst_)
 		{
@@ -46,7 +46,7 @@ public:
 		return Inst_;
 	}
 
-	void Destroy()
+	void Destroy() override
 	{
 		if (nullptr == Inst_)
 		{

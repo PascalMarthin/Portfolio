@@ -46,7 +46,7 @@ public:
 		return Inst_;
 	}
 
-	static void Destroy()
+	void Destroy() override
 	{
 		if (nullptr == Inst_)
 		{

@@ -65,18 +65,18 @@ void  GamePlayGobal::SetName()
 		ObjectName_[ObjectName::Rock_Text] =	Rock_Text::GetInst();
 		ObjectName_[ObjectName::Skull_Unit] = Skull_Unit::GetInst();
 		ObjectName_[ObjectName::Skull_Text] =	Skull_Text::GetInst();
+		ObjectName_[ObjectName::Tile_Unit] =	Tile_Unit::GetInst();
 		ObjectName_[ObjectName::Wall_Unit] =  Wall_Unit::GetInst();
 		ObjectName_[ObjectName::Wall_Text] =	Wall_Text::GetInst();
 		ObjectName_[ObjectName::Water_Unit] = Water_Unit::GetInst();
 		ObjectName_[ObjectName::Water_Text] =	Water_Text::GetInst();
-		ObjectName_[ObjectName::Tile_Unit] =	Tile_Unit::GetInst();
 		ObjectName_[ObjectName::Is_Text] =		Is_Text::GetInst();
-		ObjectName_[ObjectName::Stop_Text] =	Stop_Text::GetInst();
 		ObjectName_[ObjectName::Defeat_Text] =	Defeat_Text::GetInst();
 		ObjectName_[ObjectName::Hot_Text] =		Hot_Text::GetInst();
 		ObjectName_[ObjectName::Melt_Text] =	Melt_Text::GetInst();
 		ObjectName_[ObjectName::Push_Text] =	Push_Text::GetInst();
 		ObjectName_[ObjectName::Sink_Text] =	Sink_Text::GetInst();
+		ObjectName_[ObjectName::Stop_Text] =	Stop_Text::GetInst();
 		ObjectName_[ObjectName::Win_Text] =		Win_Text::GetInst();
 		ObjectName_[ObjectName::You_Text] =		You_Text::GetInst();
 
@@ -105,7 +105,7 @@ void  GamePlayGobal::DestroyName()
 	{
 		if (StartIter->second != nullptr)
 		{
-			(StartIter->second)->Destory();
+			(StartIter->second)->Destroy();
 			(StartIter->second) = nullptr;
 		}
 

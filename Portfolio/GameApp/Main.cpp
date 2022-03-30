@@ -11,7 +11,7 @@ int __stdcall WinMain(_In_ HINSTANCE hInstance,
 {
 
     //_CrtSetBreakAlloc(163);
-    //new int();
+    new int();
     GameEngine::Start<BabaIsYou>();
 
 }

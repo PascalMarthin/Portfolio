@@ -20,7 +20,6 @@ BabaIsYou::~BabaIsYou()
 
 void BabaIsYou::GameInit()
 {
-	GamePlayGobal::GetInst();
 	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, { 1700, 880 });
 	CreateKeyBaba();
 
