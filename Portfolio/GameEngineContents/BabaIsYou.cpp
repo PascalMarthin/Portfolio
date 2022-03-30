@@ -38,6 +38,13 @@ void BabaIsYou::GameInit()
 		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 	}
 
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("island_decor_sheet.bmp");
+		Image->Cut({ 1584 , 864});
+		Image = GameEngineImageManager::GetInst()->Find("island_sheet.bmp");
+		Image->Cut({ 1584 , 864 });
+	}
+
 	// 타이틀로고
 	ResourcesDir.MoveParent("Sprites");
 	ResourcesDir.Move("Ui");
@@ -46,6 +53,11 @@ void BabaIsYou::GameInit()
 	for (size_t i = 0; i < AllImageFileList.size(); i++)
 	{
 		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+	}
+
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("TitleLogo_sheet.bmp");
+		Image->Cut({ 900 , 350 });
 	}
 
 	// 타이틀매뉴
@@ -74,7 +86,18 @@ void BabaIsYou::GameInit()
 	{
 		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 	}
-
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("button_move_sheet.bmp");
+		Image->Cut({ 96 , 48 });
+		Image = GameEngineImageManager::GetInst()->Find("button_restart_sheet.bmp");
+		Image->Cut({ 96 , 48 });
+		Image = GameEngineImageManager::GetInst()->Find("button_undo_sheet.bmp");
+		Image->Cut({ 96 , 48 });
+		Image = GameEngineImageManager::GetInst()->Find("cursor_sheet.bmp");
+		Image->Cut({ 64 , 64 });
+		Image = GameEngineImageManager::GetInst()->Find("default_sheet.bmp");
+		Image->Cut({ 48 , 48 });
+	}
 	{
 	// BABA OBJECT
 		{
@@ -89,8 +112,9 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				(GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath()))->Cut({ 48 , 48 });
 			}
+
 		}
 		// flag
 		{
@@ -105,7 +129,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				(GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath()))->Cut({ 48 , 48 });
 			}
 		}
 
@@ -122,42 +146,42 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				(GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath()))->Cut({ 48 , 48 });
 			}
 		}
 
 		// lava
 		{
 			GameEngineDirectory ResourcesDir;
-ResourcesDir.MoveParent("Portfolio");
-ResourcesDir.Move("Resources");
-ResourcesDir.Move("Sprites");
-ResourcesDir.Move("Object");
-ResourcesDir.Move("Object");
-ResourcesDir.Move("it");
-ResourcesDir.Move("lava");
-AllImageFileList = ResourcesDir.GetAllFile("Bmp");
-for (size_t i = 0; i < AllImageFileList.size(); i++)
-{
-	GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
-}
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("it");
+			ResourcesDir.Move("lava");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				(GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath()))->Cut({ 48 , 48 });
+			}
 		}
 
 		// rock
 		{
-		GameEngineDirectory ResourcesDir;
-		ResourcesDir.MoveParent("Portfolio");
-		ResourcesDir.Move("Resources");
-		ResourcesDir.Move("Sprites");
-		ResourcesDir.Move("Object");
-		ResourcesDir.Move("Object");
-		ResourcesDir.Move("it");
-		ResourcesDir.Move("rock");
-		AllImageFileList = ResourcesDir.GetAllFile("Bmp");
-		for (size_t i = 0; i < AllImageFileList.size(); i++)
-		{
-			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
-		}
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("it");
+			ResourcesDir.Move("rock");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+			}
 		}
 
 		// skull
@@ -173,7 +197,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 
@@ -190,7 +214,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 
@@ -207,7 +231,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 
@@ -224,7 +248,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 	}
@@ -243,7 +267,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 
@@ -260,7 +284,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 
@@ -277,7 +301,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 
@@ -296,7 +320,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 		//is
@@ -312,7 +336,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 		// lava
@@ -328,7 +352,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 		// melt
@@ -344,7 +368,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 		// push
@@ -360,7 +384,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 		// rock
@@ -376,7 +400,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 		// sink
@@ -392,7 +416,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 		// skull
@@ -408,7 +432,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 		// stop
@@ -424,7 +448,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 		// wall
@@ -440,7 +464,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 		//water
@@ -456,7 +480,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 		// win
@@ -472,7 +496,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 		// you
@@ -488,7 +512,7 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
 			}
 		}
 	}
@@ -498,8 +522,8 @@ for (size_t i = 0; i < AllImageFileList.size(); i++)
 
 
 	CreateLevel<TitleLevel>("TitleLevel");
-	CreateLevel<MainLevel>("MainLevel");
-	CreateLevel<PlayLevel>("PlayLevel");
+	//CreateLevel<MainLevel>("MainLevel");
+	//CreateLevel<PlayLevel>("PlayLevel");
 
 	//CreateLevel<EndingLevel>("Ending");
 	ChangeLevel("TitleLevel");

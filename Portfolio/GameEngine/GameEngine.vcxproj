@@ -185,10 +185,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="GamePlayObject.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngine.cpp">
@@ -217,10 +213,6 @@
     </ClCompile>
     <ClCompile Include="GameEngineRenderer.cpp" />
     <ClCompile Include="GameEngineSound.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="GamePlayObject.cpp">
       <SubType>
       </SubType>
     </ClCompile>
