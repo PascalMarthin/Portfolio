@@ -47,7 +47,7 @@ GameEngineRenderer* GameEngineActor::CreateRenderer(RenderPivot _PivotType /*= R
 
 	NewRenderer->SetActor(this);
 	// NewRenderer->SetImage(_Image);
-	NewRenderer->SetPivot({ 0.0, 0.0f });
+	NewRenderer->SetPivot(_PivotPos);
 	NewRenderer->SetPivotType(_PivotType);
 
 	RenderList_.push_back(NewRenderer);
