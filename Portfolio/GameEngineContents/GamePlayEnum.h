@@ -21,7 +21,7 @@ enum class BabaLocation
 
 enum class Stage
 {
-	Error,
+	MainStage,
 	Stage0,
 	Stage1,
 	Stage2,
@@ -60,7 +60,17 @@ enum class ObjectName
 	Push_Text,
 	Sink_Text,
 	Win_Text,
-	You_Text
+	You_Text,
+	Default,
+	Stage00,
+	Stage01,
+	Stage02,
+	Stage03,
+	Stage04,
+	Stage05,
+	Stage06,
+	Stage07,
+	Line
 };
 enum class ObjectType
 {

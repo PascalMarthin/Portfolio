@@ -104,6 +104,9 @@
     <ClCompile Include="TitleBaba.cpp">
       <Filter>Title</Filter>
     </ClCompile>
+    <ClCompile Include="Default.cpp">
+      <Filter>Object%28Game%29\etc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -212,6 +215,9 @@
     <ClInclude Include="TitleBaba.h">
       <Filter>Title</Filter>
     </ClInclude>
+    <ClInclude Include="Default.h">
+      <Filter>Object%28Game%29\etc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -258,6 +264,9 @@
     </Filter>
     <Filter Include="Coordinate\Management">
       <UniqueIdentifier>{c2d4c392-3e4c-4104-aeea-e81b3b493ef8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object%28Game%29\etc">
+      <UniqueIdentifier>{68815a7b-cc78-4088-8a40-8a652daf9e89}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

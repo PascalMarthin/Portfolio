@@ -26,12 +26,10 @@ protected:
 private:
 	void CreatMap (std::map<int, std::map<int, ObjectName>>& _Stage);
 
-	void EndGame();
-
 	float4 MapScale_;
 	float GameWindowPosX_;
 	float GameWindowPosY_;
 
-	std::map<int, std::map<int, Coordinate*>> CurrentMap_;
+	std::map<int, std::map<int, std::vector<Coordinate*>>> CurrentMap_;
 };
 

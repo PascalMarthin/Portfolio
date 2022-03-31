@@ -38,6 +38,10 @@ void Coordinate::Render()
 
 void Coordinate::FrameUpdate()
 {
+	if (ObjectImage_->IsCut() == false)
+	{
+		MsgBoxAssert("Coordinate 못자름");
+	}
 	CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime();
 	if (0 >= CurrentInterTime_)
 	{
@@ -50,10 +54,7 @@ void Coordinate::FrameUpdate()
 		}
 	}
 
-	if (ObjectImage_->IsCut() == false)
-	{
-		MsgBoxAssert("Coordinate에서 가져온 이미지가 잘못되어있습니다")
-	}
+
 	CurrentImgScale = ObjectImage_->GetCutScale(CurrentFrame_);
 	CurrentImgPivot = ObjectImage_->GetCutPivot(CurrentFrame_);
 }

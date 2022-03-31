@@ -7,7 +7,8 @@
 
 PlayLevel::PlayLevel() 
 	:GameWindowPosX_(0),
-	GameWindowPosY_(0)
+	GameWindowPosY_(0),
+	MapScale_({ 0, 0 })
 {
 }
 
@@ -62,10 +63,10 @@ void PlayLevel::Update()
 void PlayLevel::LevelChangeStart()
 {
 	CreateActor<BackGround>(0);
-	MapScale_ = StageData::Inst_->Scale_[0];
+	MapScale_ = StageData::Inst_->Scale_[1];
 	GameWindowPosX_ = GameEngineWindow::GetScale().Half().x + 24 - MapScale_.x * 24;
 	GameWindowPosY_ = GameEngineWindow::GetScale().Half().y + 24 - MapScale_.y * 24;
-	CreatMap(StageData::Inst_->StageData_[0]);
+	CreatMap(StageData::Inst_->StageData_[1]);
 
 }
 
@@ -89,7 +90,7 @@ void PlayLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 			Coordi->CPos_ = CPos;
 			Coordi->Object_ = _Stage[y][x];
 			Coordi->SetImg(Idx->GetImage());
-			CurrentMap_[y][x] = Coordi;
+			CurrentMap_[y][x].push_back(Coordi);
 		}
 	}
 }

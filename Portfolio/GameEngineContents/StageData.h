@@ -1,5 +1,6 @@
 #pragma once
 #include <map>
+#include <vector>
 #include <GameEngineBase/GameEngineMath.h>
 #include "GamePlayEnum.h"
 
@@ -7,6 +8,7 @@
 class StageData
 {
 	friend class PlayLevel;
+	friend class MainLevel;
 private:
 	static StageData* Inst_;
 
@@ -29,10 +31,12 @@ public:
 
 private:
 	std::map<int, std::map<int, std::map<int, ObjectName>>> StageData_;
+	std::map<int, std::map<int, std::vector<ObjectName>>> MainData_;
 	std::map<int, float4> Scale_;
 
+	void MainStage();
 	void Stage0();
-
+	
 
 
 	StageData();

@@ -5,12 +5,22 @@ StageData* StageData::Inst_ = new StageData();
 StageData::StageData() 
 {
 	Stage0();
+	MainStage();
 }
 
 StageData::~StageData() 
 {
 }
 
+void StageData::MainStage()
+{
+
+	std::map<int, std::map<int, std::vector<ObjectName>>> MainData_;
+	MainData_[15][9].push_back(ObjectName::Default);
+	MainData_[15][9].push_back(ObjectName::Stage00);
+	MainData_[15][10].push_back(ObjectName::Stage00);
+
+}
 void StageData::Stage0()
 {
 	Scale_[0] = { 33, 18 };
