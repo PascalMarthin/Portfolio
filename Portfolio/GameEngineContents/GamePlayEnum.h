@@ -1,6 +1,7 @@
 #pragma once
 //#include "GamePlayEnum.h"
-#define DotSize 48
+#define DotSizeX 48
+#define DotSizeY 48
 #define ImageSpeed 0.15f
 enum class ChangeLevel
 {

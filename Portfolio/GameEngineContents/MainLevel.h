@@ -2,6 +2,7 @@
 #include <GameEngine/GameEngineLevel.h>
 
 // Ό³Έν :
+class Coordinate;
 class MainLevel : public GameEngineLevel
 {
 public:

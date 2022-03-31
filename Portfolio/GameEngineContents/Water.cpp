@@ -14,6 +14,8 @@ Water_Unit::~Water_Unit()
 
 void Water_Unit::SettingImg()
 {
+	Name_ = ObjectName::Water_Unit;
+	Image_ = GameEngineImageManager::GetInst()->Find("unit_water_sheet.bmp");
 }
 
 Water_Text::Water_Text()
@@ -27,5 +29,5 @@ Water_Text::~Water_Text()
 void Water_Text::SettingImg()
 {
 	Name_ = ObjectName::Water_Text;
-
+	Image_ = GameEngineImageManager::GetInst()->Find("text_water_sheet.bmp");
 }

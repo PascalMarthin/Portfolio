@@ -13,5 +13,5 @@ Win_Text::~Win_Text()
 void Win_Text::SettingImg()
 {
 	Name_ = ObjectName::Win_Text;
-
+	Image_ = GameEngineImageManager::GetInst()->Find("text_win_sheet.bmp");
 }

@@ -111,7 +111,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				(GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath()))->Cut({ 48 , 48 });
+				(GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath()))->Cut({ DotSizeX , DotSizeY });
 			}
 
 		}
@@ -128,7 +128,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				(GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath()))->Cut({ 48 , 48 });
+				(GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath()))->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 
@@ -145,7 +145,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				(GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath()))->Cut({ 48 , 48 });
+				(GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath()))->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 
@@ -162,7 +162,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				(GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath()))->Cut({ 48 , 48 });
+				(GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath()))->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 
@@ -179,7 +179,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 
@@ -196,7 +196,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 
@@ -213,7 +213,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 
@@ -230,7 +230,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 
@@ -247,7 +247,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 	}
@@ -266,7 +266,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 
@@ -283,7 +283,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 
@@ -300,7 +300,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 
@@ -319,7 +319,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 		//is
@@ -335,7 +335,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 		// lava
@@ -351,7 +351,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 		// melt
@@ -367,7 +367,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 		// push
@@ -383,7 +383,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 		// rock
@@ -399,7 +399,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 		// sink
@@ -415,7 +415,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 		// skull
@@ -431,7 +431,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 		// stop
@@ -447,7 +447,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 		// wall
@@ -463,7 +463,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 		//water
@@ -479,7 +479,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 		// win
@@ -495,7 +495,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 		// you
@@ -511,7 +511,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ 48 , 48 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 	}
@@ -522,10 +522,10 @@ void BabaIsYou::GameInit()
 
 	CreateLevel<TitleLevel>("TitleLevel");
 	CreateLevel<MainLevel>("MainLevel");
-	//CreateLevel<PlayLevel>("PlayLevel");
+	CreateLevel<PlayLevel>("PlayLevel");
 
 	//CreateLevel<EndingLevel>("Ending");
-	ChangeLevel("TitleLevel");
+	ChangeLevel("PlayLevel");
 }
 void BabaIsYou::GameLoop()
 {

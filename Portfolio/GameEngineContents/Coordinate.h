@@ -7,9 +7,11 @@
 
 // Ό³Έν :
 class PlayLevel;
+class MainLevel;
 class Coordinate : public GameEngineActor
 {
 	friend PlayLevel;
+	friend MainLevel;
 public:
 	// constrcuter destructer
 	Coordinate();
@@ -53,7 +55,7 @@ private:
 	Direction UnitDirection_;
 
 	void FrameUpdate();
-	void SetImg(GameEngineImage* _Img, Direction _Dir);
+	void SetImg(GameEngineImage* _Img, Direction _Dir = Direction::None, const float4& _Size = { DotSizeX, DotSizeY });
 
 	GameEngineImage* ObjectImage_;
 

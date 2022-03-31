@@ -13,5 +13,5 @@ Melt_Text::~Melt_Text()
 void Melt_Text::SettingImg()
 {
 	Name_ = ObjectName::Melt_Text;
-
+	Image_ = GameEngineImageManager::GetInst()->Find("text_melt_sheet.bmp");
 }

@@ -18,8 +18,7 @@ void MainLevel::Loading()
 {
 	std::map<int, std::map<int, Coordinate*>> Makemap;
 	{
-		Coordinate* Idx = new Coordinate();
-		Makemap[15][9];
+
 	}
 }
 

@@ -19,14 +19,14 @@ void MainBackGround::Start()
 		GameEngineRenderer* RenderImg = CreateRenderer();
 		RenderImg->CreateAnimation("island_sheet.bmp", "MainBackGround", 0, 2, ImageSpeed, true);
 		RenderImg->ChangeAnimation("MainBackGround");
-		RenderImg->SetScale({ (33 * DotSize), (18 * DotSize) });
+		RenderImg->SetScale({ (33 * DotSizeX), (18 * DotSizeY) });
 	}
 
 	{
 		GameEngineRenderer* RenderImg = CreateRenderer();
 		RenderImg->CreateAnimation("island_decor_sheet.bmp", "MainBackGroundDecor", 0, 2, ImageSpeed, true);
 		RenderImg->ChangeAnimation("MainBackGroundDecor");
-		RenderImg->SetScale({ (33 * DotSize), (18 * DotSize) });
+		RenderImg->SetScale({ (33 * DotSizeX), (18 * DotSizeY) });
 	}
 
 }

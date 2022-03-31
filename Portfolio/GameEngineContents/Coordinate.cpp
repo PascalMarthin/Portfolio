@@ -9,6 +9,7 @@ Coordinate::Coordinate()
 	, CurrentImgScale({0, 0})
 	, CurrentImgPivot({0, 0})
 	, Object_(ObjectName::Error)
+	, UnitDirection_(Direction::Error)
 	, CurrentFrame_(0)
 	, StartFrame_(0)
 	, EndFrame_(2)
@@ -53,12 +54,13 @@ void Coordinate::FrameUpdate()
 	{
 		MsgBoxAssert("Coordinate에서 가져온 이미지가 잘못되어있습니다")
 	}
-	CurrentImgScale = ObjectImage_->GetCutPivot(CurrentFrame_);
-	CurrentImgPivot = ObjectImage_->GetCutScale(CurrentFrame_);
+	CurrentImgScale = ObjectImage_->GetCutScale(CurrentFrame_);
+	CurrentImgPivot = ObjectImage_->GetCutPivot(CurrentFrame_);
 }
 
-void Coordinate::SetImg(GameEngineImage* _Img, Direction _Dir)
+void Coordinate::SetImg(GameEngineImage* _Img, Direction _Dir, const float4& _Size)
 {
 	ObjectImage_ = _Img;
 	UnitDirection_ = _Dir;
+	CurrentImgScale = _Size;
 }

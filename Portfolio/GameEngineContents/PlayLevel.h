@@ -32,6 +32,6 @@ private:
 	float GameWindowPosX_;
 	float GameWindowPosY_;
 
-	std::map<int, std::map<int, Coordinate*>>* CurrentMap_;
+	std::map<int, std::map<int, Coordinate*>> CurrentMap_;
 };
 

@@ -6,6 +6,9 @@
 
 GameEngineImage::GameEngineImage()
 	: ImageDC_(nullptr)
+	, BitMap_()
+    , OldBitMap_()
+	, Info_()
 {
 }
 

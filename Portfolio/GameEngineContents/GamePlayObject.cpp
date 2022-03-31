@@ -2,6 +2,7 @@
 
 GamePlayObject::GamePlayObject()
 	: Name_(ObjectName::Error)
+	, Image_(nullptr)
 {
 }
 
