@@ -12,7 +12,7 @@ Coordinate::~Coordinate()
 
 void Coordinate::Start()
 {
-	SetPosition(GameEngineWindow::GetScale().Half());
+	// 안만들어도 되나? SetPosition(GameEngineWindow::GetScale().Half());
 
 }
 void Coordinate::Update()

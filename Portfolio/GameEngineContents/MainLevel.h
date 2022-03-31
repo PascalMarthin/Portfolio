@@ -22,6 +22,6 @@ protected:
 
 
 private:
-
+	std::map<int, std::map<int, Coordinate*>>* MainMap_;
 };
 

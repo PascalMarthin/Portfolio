@@ -4,6 +4,7 @@
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngine/GameEngineRenderer.h>
+#include "GamePlayEnum.h"
 
 TitleLogo::TitleLogo()
 {
@@ -23,7 +24,7 @@ void TitleLogo::Start()
 	//CreateRenderer("TitleLogo_1.bmp", RenderPivot::CENTER, { 0,-250 });
 
 	GameEngineRenderer* RenderImg = CreateRenderer(RenderPivot::CENTER, { 0,-150 });
-	RenderImg->CreateAnimation("TitleLogo_sheet.bmp", "Title_Logo", 0, 2, 0.17f, true);
+	RenderImg->CreateAnimation("TitleLogo_sheet.bmp", "Title_Logo", 0, 2, ImageSpeed, true);
 	RenderImg->ChangeAnimation("Title_Logo");
 }
 

@@ -521,7 +521,7 @@ void BabaIsYou::GameInit()
 
 
 	CreateLevel<TitleLevel>("TitleLevel");
-	//CreateLevel<MainLevel>("MainLevel");
+	CreateLevel<MainLevel>("MainLevel");
 	//CreateLevel<PlayLevel>("PlayLevel");
 
 	//CreateLevel<EndingLevel>("Ending");

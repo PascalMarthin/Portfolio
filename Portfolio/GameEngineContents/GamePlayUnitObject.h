@@ -1,5 +1,6 @@
 #pragma once
 #include "GamePlayObject.h"
+#include <GameEngine/GameEngineActor.h>
 
 // Ό³Έν :
 class GamePlayUnitObject : public GamePlayObject
@@ -17,6 +18,7 @@ public:
 	virtual void Destroy() {}
 
 protected:
+	GameEngineActor* Actor;
 
 private:
 

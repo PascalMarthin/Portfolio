@@ -25,7 +25,7 @@ void TitleBaba::Start()
 	BabaImgSheet_ = GameEngineImageManager::GetInst()->Find("unit_baba_right_Sheet.bmp");
 
 	Render_ = CreateRenderer(RenderPivot::CENTER, BabaPos_);
-	Render_->CreateAnimation("unit_baba_right_Sheet.bmp", "Baba", 0, 2, 0.17f, true);
+	Render_->CreateAnimation("unit_baba_right_Sheet.bmp", "Baba", 0, 2, ImageSpeed, true);
 	Render_->ChangeAnimation("Baba");
 }
 

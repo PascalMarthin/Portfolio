@@ -15,6 +15,10 @@ TitleLevel::~TitleLevel()
 {
 }
 
+void TitleLevel::LevelChangeStart()
+{
+
+}
 
 void TitleLevel::Loading()
 {
