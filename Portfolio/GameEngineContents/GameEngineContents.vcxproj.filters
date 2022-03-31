@@ -107,6 +107,9 @@
     <ClCompile Include="Default.cpp">
       <Filter>Object%28Game%29\etc</Filter>
     </ClCompile>
+    <ClCompile Include="Line.cpp">
+      <Filter>Object%28Game%29\etc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -216,6 +219,9 @@
       <Filter>Title</Filter>
     </ClInclude>
     <ClInclude Include="Default.h">
+      <Filter>Object%28Game%29\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
       <Filter>Object%28Game%29\etc</Filter>
     </ClInclude>
   </ItemGroup>

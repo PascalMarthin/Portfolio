@@ -28,10 +28,12 @@ public:
 	//	Pos_ = _Pos;
 	//}
 
-	//inline void SetCPos(float4 _Pos)
-	//{
-	//	Pos_ = _Pos;
-	//}
+	void SetCFrame(int _Start, int _End)
+	{
+		CurrentFrame_ = _Start;
+		StartFrame_ = _Start;
+		EndFrame_ = _End;
+	}
 
 
 protected:

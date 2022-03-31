@@ -13,7 +13,7 @@ MainBackGround::~MainBackGround()
 void MainBackGround::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
-	//SetScale(GameEngineWindow::GetScale());
+	SetScale({ (33 * DotSizeX), (18 * DotSizeY) });
 
 	{
 		GameEngineRenderer* RenderImg = CreateRenderer();

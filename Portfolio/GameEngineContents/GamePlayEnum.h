@@ -62,14 +62,6 @@ enum class ObjectName
 	Win_Text,
 	You_Text,
 	Default,
-	Stage00,
-	Stage01,
-	Stage02,
-	Stage03,
-	Stage04,
-	Stage05,
-	Stage06,
-	Stage07,
 	Line
 };
 enum class ObjectType

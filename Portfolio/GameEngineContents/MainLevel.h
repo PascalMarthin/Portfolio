@@ -1,7 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
-#include <vector>
 #include <map>
+#include "GamePlayEnum.h"
 
 // Ό³Έν :
 class Coordinate;
@@ -24,9 +24,10 @@ protected:
 	void LevelChangeStart() override;
 
 private:
-	std::map<int, std::map<int, std::vector<Coordinate*>>> MainMap_;
+	std::map<int, std::map<int, Coordinate*>> MainMap_;
 
 	float4 MapScale_;
+	float4 BackGroundScale_;
 	float GameWindowPosX_;
 	float GameWindowPosY_;
 

@@ -21,10 +21,6 @@ MainLevel::~MainLevel()
 
 void MainLevel::Loading()
 {
-	MapScale_ = StageData::Inst_->Scale_[0];
-	GameWindowPosX_ = GameEngineWindow::GetScale().Half().x + 24 - MapScale_.x * 24;
-	GameWindowPosY_ = GameEngineWindow::GetScale().Half().y + 24 - MapScale_.y * 24;
-	CreatMap(StageData::Inst_->StageData_[0]);
 
 }
 
@@ -37,9 +33,22 @@ void MainLevel::Update()
 void MainLevel::LevelChangeStart()
 {
 	CreateActor<BackGround>(0);
-	CreateActor<MainBackGround>(1, "MainBackGround");
-	//CreateActor<MainStage>("MainStage", 2);
+	BackGroundScale_ = CreateActor<MainBackGround>(1, "MainBackGround")->GetScale();
 	//CreateActor<MainCursor>(2, "MainCursor");
+
+	MapScale_ = StageData::Inst_->Scale_[0];
+	GameWindowPosX_ = GameEngineWindow::GetScale().Half().x - BackGroundScale_.Half().x;
+	GameWindowPosY_ = GameEngineWindow::GetScale().Half().y - BackGroundScale_.Half().y;
+	CreatMap(StageData::Inst_->StageData_[0]);
+	MainMap_[14][10]->SetCFrame(3, 5);
+	MainMap_[13][10]->SetCFrame(3, 5);
+	MainMap_[12][10]->SetCFrame(6, 8);
+	MainMap_[11][10]->SetCFrame(15, 17);
+	MainMap_[11][11]->SetCFrame(18, 20);
+	MainMap_[12][11]->SetCFrame(12, 14);
+	MainMap_[13][11]->SetCFrame(9, 11);
+	MainMap_[12][12]->SetCFrame(21, 23);
+	MainMap_[11][12]->SetCFrame(6, 8);
 }
 
 void MainLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
@@ -54,13 +63,35 @@ void MainLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 			{
 				continue;
 			}
-			Coordinate* Coordi = CreateActor<Coordinate>(1);
-			CPos = { GameWindowPosX_ + static_cast<float>(x * DotSizeX), GameWindowPosY_ + static_cast<float>(y * DotSizeY) };
-			Coordi->Pos_ = { static_cast<float>(x), static_cast<float>(y) };
-			Coordi->CPos_ = CPos;
-			Coordi->Object_ = _Stage[y][x];
-			Coordi->SetImg(Idx->GetImage());
-			MainMap_[y][x].push_back(Coordi);
+			else
+			{
+				Coordinate* Coordi = CreateActor<Coordinate>(1);
+				CPos = { GameWindowPosX_ + static_cast<float>(x * DotSizeX), GameWindowPosY_ + static_cast<float>(y * DotSizeY) };
+				Coordi->Pos_ = { static_cast<float>(x), static_cast<float>(y) };
+				Coordi->CPos_ = CPos;
+				Coordi->Object_ = _Stage[y][x];
+				Coordi->SetImg(Idx->GetImage());
+				MainMap_[y][x] = Coordi;
+			}
 		}
 	}
 }
+
+//if (Idx == nullptr)
+//{
+//	Coordinate* Coordi = CreateActor<Coordinate>(1);
+//	CPos = { GameWindowPosX_ + static_cast<float>(x * DotSizeX), GameWindowPosY_ + static_cast<float>(y * DotSizeY) };
+//	Coordi->Pos_ = { static_cast<float>(x), static_cast<float>(y) };
+//	Coordi->CPos_ = CPos;
+//	Coordi->Object_ = ObjectName::Baba_Unit;
+//	Coordi->SetImg(GamePlayGobal::GetInst()->Find(ObjectName::Baba_Unit)->GetImage());
+//}
+//else {
+//	Coordinate* Coordi = CreateActor<Coordinate>(1);
+//	CPos = { GameWindowPosX_ + static_cast<float>(x * DotSizeX), GameWindowPosY_ + static_cast<float>(y * DotSizeY) };
+//	Coordi->Pos_ = { static_cast<float>(x), static_cast<float>(y) };
+//	Coordi->CPos_ = CPos;
+//	Coordi->Object_ = _Stage[y][x];
+//	Coordi->SetImg(Idx->GetImage());
+//	MainMap_[y][x] = Coordi;
+//}

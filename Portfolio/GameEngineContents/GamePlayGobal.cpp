@@ -19,6 +19,8 @@
 #include "Win_Text.h"
 #include "You_Text.h"
 #include "Tile.h"
+#include "Default.h"
+#include "Line.h"
 
 GamePlayGobal* GamePlayGobal::Inst_ = new GamePlayGobal();
 
@@ -79,6 +81,8 @@ void  GamePlayGobal::SetName()
 		ObjectName_[ObjectName::Stop_Text] =	Stop_Text::GetInst();
 		ObjectName_[ObjectName::Win_Text] =		Win_Text::GetInst();
 		ObjectName_[ObjectName::You_Text] =		You_Text::GetInst();
+		ObjectName_[ObjectName::Default]  =		Default::GetInst();
+		ObjectName_[ObjectName::Line] =			Line::GetInst();
 
 		SettingImg();
 }

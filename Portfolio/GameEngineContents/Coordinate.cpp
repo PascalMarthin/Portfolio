@@ -23,7 +23,6 @@ Coordinate::~Coordinate()
 
 void Coordinate::Start()
 {
-	// 안만들어도 되나? SetPosition(GameEngineWindow::GetScale().Half());
 
 }
 void Coordinate::Update()

@@ -68,6 +68,19 @@ void BabaIsYou::GameInit()
 		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 	}
 
+	// stage
+	ResourcesDir.MoveParent("Ui");
+	ResourcesDir.Move("Stage");
+	AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+	for (size_t i = 0; i < AllImageFileList.size(); i++)
+	{
+		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Main_stage_sheet.bmp");
+		Image->Cut({ DotSizeX , DotSizeY });
+	}
+
 	// 메인메뉴
 	ResourcesDir.MoveParent("Ui");
 	ResourcesDir.Move("MainMenu");
@@ -514,6 +527,23 @@ void BabaIsYou::GameInit()
 				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
+
+		// line
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("it");
+			ResourcesDir.Move("line");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
+			}
+		}
 	}
 
 	GamePlayGobal::GetInst()->SetName();
@@ -525,7 +555,7 @@ void BabaIsYou::GameInit()
 	CreateLevel<PlayLevel>("PlayLevel");
 
 	//CreateLevel<EndingLevel>("Ending");
-	ChangeLevel("PlayLevel");
+	ChangeLevel("TitleLevel");
 }
 void BabaIsYou::GameLoop()
 {

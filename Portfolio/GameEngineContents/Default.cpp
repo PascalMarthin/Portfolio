@@ -13,5 +13,5 @@ Default::~Default()
 void Default::SettingImg()
 {
 	Name_ = ObjectName::Default;
-	Image_ = GameEngineImageManager::GetInst()->Find("default_sheet.bmp");
+	Image_ = GameEngineImageManager::GetInst()->Find("Main_stage_sheet.bmp");
 }
