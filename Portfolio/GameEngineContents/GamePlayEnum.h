@@ -74,3 +74,12 @@ enum class TextType
 	Verb_Text,
 	Stat_Text
 };
+enum class Direction
+{
+	Error,
+	None,
+	Right,
+	Up,
+	Left,
+	Down
+};

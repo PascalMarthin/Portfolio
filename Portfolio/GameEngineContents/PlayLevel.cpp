@@ -89,8 +89,7 @@ void PlayLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 			Coordi->Pos_ = { static_cast<float>(x), static_cast<float>(y) };
 			Coordi->CPos_ = CPos;
 			Coordi->Object_ = _Stage[y][x];
-			Coordi->StopImage_ = Idx->GetStopImage();
-			Coordi->MoveImage_ = Idx->GetMoveImage();
+			Coordi->SetImg(Idx->GetImage());
 			Makemap[y][x] = Coordi;
 		}
 	}

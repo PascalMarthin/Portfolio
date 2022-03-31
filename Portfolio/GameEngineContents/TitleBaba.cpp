@@ -9,8 +9,6 @@ BabaLocation TitleBaba::BabaTitleLocate_ = BabaLocation::Baba;
 
 TitleBaba::TitleBaba() 
 	: BabaPos_(-330, 100)
-	, BabaImgSheet_(nullptr)
-	, BabaImg_(nullptr)
 	, Render_(nullptr)
 {
 }
@@ -22,10 +20,9 @@ TitleBaba::~TitleBaba()
 void TitleBaba::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
-	BabaImgSheet_ = GameEngineImageManager::GetInst()->Find("unit_baba_right_Sheet.bmp");
 
 	Render_ = CreateRenderer(RenderPivot::CENTER, BabaPos_);
-	Render_->CreateAnimation("unit_baba_right_Sheet.bmp", "Baba", 0, 2, ImageSpeed, true);
+	Render_->CreateAnimation("unit_baba_Sheet.bmp", "Baba", 0, 2, ImageSpeed, true);
 	Render_->ChangeAnimation("Baba");
 }
 

@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 #include <GameEngine/GameEngineImage.h>
 #include <GameEngine/GameEngineImageManager.h>
 #include "GamePlayEnum.h"
@@ -16,15 +15,11 @@ public:
 	GamePlayObject& operator=(const GamePlayObject& _Other) = delete;
 	GamePlayObject& operator=(GamePlayObject&& _Other) noexcept = delete;
 
-	inline std::map<int ,std::vector<GameEngineImage*>>* GetStopImage()
+	inline GameEngineImage* GetImage()
 	{
-		return &StopImage_;
+		return Image_;
 	}
 
-	inline std::map<int, std::vector<GameEngineImage*>>* GetMoveImage()
-	{
-		return &MoveImage_;
-	}
 	
 	inline ObjectName GetName()
 	{
@@ -34,9 +29,7 @@ public:
 	virtual void Destroy() = 0;
 
 protected:
-	std::map<int ,std::vector<GameEngineImage*>> StopImage_;
-	std::map<int, std::vector<GameEngineImage*>> MoveImage_;
-
+	GameEngineImage* Image_;
 	ObjectName Name_;
 
 private:

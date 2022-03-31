@@ -3,7 +3,7 @@
 #include <GameEngine/GameEngineActor.h>
 #include "GamePlayEnum.h"
 #include "GamePlayObject.h"
-#include <map>
+#include <vector>
 
 // Ό³Έν :
 class PlayLevel;
@@ -42,7 +42,20 @@ private:
 	float4 CPos_;
 	ObjectName Object_;
 
-	std::map<int, std::vector<GameEngineImage*>>* StopImage_;
-	std::map<int, std::vector<GameEngineImage*>>* MoveImage_;
+	
+	// img
+	int CurrentFrame_;
+	int StartFrame_;
+	int EndFrame_;
+	float CurrentInterTime_;
+	float4 CurrentImgScale;
+	float4 CurrentImgPivot;
+	Direction UnitDirection_;
+
+	void FrameUpdate();
+	void SetImg(GameEngineImage* _Img, Direction _Dir);
+
+	GameEngineImage* ObjectImage_;
+
 };
 

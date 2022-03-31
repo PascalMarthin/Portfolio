@@ -32,8 +32,6 @@ private:
 	static BabaLocation BabaTitleLocate_;
 	GameEngineRenderer* Render_;
 
-	GameEngineImage* BabaImgSheet_;
-	GameEngineImage* BabaImg_;
 
 	float4 BabaPos_;
 };
