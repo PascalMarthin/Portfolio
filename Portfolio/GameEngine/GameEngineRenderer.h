@@ -57,6 +57,15 @@ public:
 	// 
 	void SetIndex(size_t _Index, const float4& _Scale = { -1, -1 });
 
+	void CameraEffectOff()
+	{
+		IsCameraEffect_ = false;
+	}
+
+	void CameraEffectOn()
+	{
+		IsCameraEffect_ = true;
+	}
 
 protected:
 	void Render();
@@ -64,6 +73,7 @@ protected:
 private:
 	friend class FrameAnimation;
 
+	bool IsCameraEffect_;
 	GameEngineImage* Image_;
 	RenderPivot PivotType_; // 센터 bot
 	RenderScaleMode ScaleMode_;
@@ -76,8 +86,6 @@ private:
 	float4 RenderImagePivot_;
 
 	unsigned int TransColor_;
-
-	bool IsCameraEffect_;
 
 	///////////////////////////////////////////////////////////////// 애니메이션
 

@@ -7,9 +7,12 @@
 // 설명 : 각 Level을 관리 하며 Actor를 생성
 class GameEngine;
 class GameEngineActor;
+class GameEngineCollision;
 class GameEngineLevel : public GameEngineNameObject
 {
 	friend GameEngine;
+	friend GameEngineActor;
+	friend GameEngineCollision;
 public:
 	GameEngineLevel();
 
@@ -88,5 +91,12 @@ private :
 	void ActorUpdate();
 	void ActorRender();
 	void ActorRelease();
+
+private:
+	// 삭제는 액터가 하지만 실제 사용은 Level
+	// 여기서 함부로 GameEngineCollision*을 delete 하는 일이 있으면 안된다.,
+	std::map<std::string, std::list<GameEngineCollision*>> AllCollision_;
+
+	void AddCollision(const std::string& _GroupName, GameEngineCollision* _Collision);
 };
 

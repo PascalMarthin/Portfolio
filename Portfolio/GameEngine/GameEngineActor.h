@@ -6,8 +6,9 @@
 #include <list>
 
 // 설명 : 위치를 가지고있는 오브젝트 부모 클래스
-class GameEngineRenderer;
 class GameEngineLevel;
+class GameEngineRenderer;
+class GameEngineCollision;
 class GameEngineActor : public GameEngineNameObject, public GameEngineUpdateObject
 {
 public:
@@ -92,8 +93,16 @@ private:
 	std::list<GameEngineRenderer*>::iterator StartRenderIter;
 	std::list<GameEngineRenderer*>::iterator EndRenderIter;
 	
+	////////////////////////////////////////////////////////// Collision
 
-protected:
+public:
+	GameEngineCollision* CreateCollision(const std::string& _GroupName, float4 _Scale, float4 _Pivot = { 0, 0 });
+
+	// 
+
+private:
+	// 이터레이터
+	std::list<GameEngineCollision*> CollisionList_;
 
 };
 

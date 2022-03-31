@@ -26,6 +26,9 @@
     <ClInclude Include="GameEngineEnum.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineCollision.h">
+      <Filter>Object%28Engine%29\Actor\Sub</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngine.cpp" />
@@ -48,6 +51,9 @@
       <Filter>Object%28Engine%29\Actor\Sub</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineRenderer.cpp">
+      <Filter>Object%28Engine%29\Actor\Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineCollision.cpp">
       <Filter>Object%28Engine%29\Actor\Sub</Filter>
     </ClCompile>
   </ItemGroup>
