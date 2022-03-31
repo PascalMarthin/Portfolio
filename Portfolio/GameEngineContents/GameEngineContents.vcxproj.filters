@@ -101,6 +101,9 @@
     <ClCompile Include="StageData.cpp">
       <Filter>Stage</Filter>
     </ClCompile>
+    <ClCompile Include="TitleBaba.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -205,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="StageData.h">
       <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleBaba.h">
+      <Filter>Title</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

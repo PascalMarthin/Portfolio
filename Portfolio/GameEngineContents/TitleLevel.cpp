@@ -4,6 +4,7 @@
 #include "BackGround.h"
 #include "TitleMenu.h"
 #include "GamePlayEnum.h"
+#include "TitleBaba.h"
 
 
 TitleLevel::TitleLevel() 
@@ -19,25 +20,26 @@ void TitleLevel::Loading()
 {
 	CreateActor<BackGround>(0);
 	CreateActor<TitleLogo>(1, "TitleLogo");
-	//CreateActor<TitleMenu>(1, "TitleMenu");
-		
+	CreateActor<TitleMenu>(1, "TitleMenu");
+	CreateActor<TitleBaba>(2, "TitleBaba");
+	TitleBaba::BabaTitleLocate_ = BabaLocation::Start_The_Game;
 }
 
 void TitleLevel::Update()
 {
 	if (GameEngineInput::GetInst()->IsDown("Up"))
 	{
-		if (TitleMenu::BabaTitleLocate == BabaLocation::Start_the_Game)
+		if (TitleBaba::BabaTitleLocate_ == BabaLocation::Start_The_Game)
 		{
-			TitleMenu::BabaTitleLocate = BabaLocation::Exit_The_Game;
+			TitleBaba::BabaTitleLocate_ = BabaLocation::Exit_The_Game;
 		}
-		else if (TitleMenu::BabaTitleLocate == BabaLocation::Settings)
+		else if (TitleBaba::BabaTitleLocate_ == BabaLocation::Settings)
 		{
-			TitleMenu::BabaTitleLocate = BabaLocation::Start_the_Game;
+			TitleBaba::BabaTitleLocate_ = BabaLocation::Start_The_Game;
 		}
-		else if (TitleMenu::BabaTitleLocate == BabaLocation::Exit_The_Game)
+		else if (TitleBaba::BabaTitleLocate_ == BabaLocation::Exit_The_Game)
 		{
-			TitleMenu::BabaTitleLocate = BabaLocation::Settings;
+			TitleBaba::BabaTitleLocate_ = BabaLocation::Settings;
 		}
 		else
 		{
@@ -47,17 +49,17 @@ void TitleLevel::Update()
 	}
 	if (GameEngineInput::GetInst()->IsDown("Down"))
 	{
-		if (TitleMenu::BabaTitleLocate == BabaLocation::Start_the_Game)
+		if (TitleBaba::BabaTitleLocate_ == BabaLocation::Start_The_Game)
 		{
-			TitleMenu::BabaTitleLocate = BabaLocation::Settings;
+			TitleBaba::BabaTitleLocate_ = BabaLocation::Settings;
 		}
-		else if (TitleMenu::BabaTitleLocate == BabaLocation::Settings)
+		else if (TitleBaba::BabaTitleLocate_ == BabaLocation::Settings)
 		{
-			TitleMenu::BabaTitleLocate = BabaLocation::Exit_The_Game;
+			TitleBaba::BabaTitleLocate_ = BabaLocation::Exit_The_Game;
 		}
-		else if (TitleMenu::BabaTitleLocate == BabaLocation::Exit_The_Game)
+		else if (TitleBaba::BabaTitleLocate_ == BabaLocation::Exit_The_Game)
 		{
-			TitleMenu::BabaTitleLocate = BabaLocation::Start_the_Game;
+			TitleBaba::BabaTitleLocate_ = BabaLocation::Start_The_Game;
 		}
 		else
 		{
@@ -68,9 +70,9 @@ void TitleLevel::Update()
 
 	if (GameEngineInput::GetInst()->IsPress("Space") || GameEngineInput::GetInst()->IsPress("Enter"))
 	{
-		switch (TitleMenu::BabaTitleLocate)
+		switch (TitleBaba::BabaTitleLocate_)
 		{
-		case BabaLocation::Start_the_Game:
+		case BabaLocation::Start_The_Game:
 			GameEngine::GlobalEngine().ChangeLevel("MainLevel");
 			break;
 		case BabaLocation::Settings:
@@ -89,7 +91,6 @@ void TitleLevel::Update()
 			MsgBoxAssert("BabaTitleLocate Error");
 			break;
 		}
-			
-
 	}
+
 }

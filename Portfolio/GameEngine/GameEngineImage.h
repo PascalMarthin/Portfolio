@@ -32,26 +32,6 @@ public:
 		return ImageDC_;
 	}
 
-	// BitBlt
-	void BitCopy(GameEngineImage* _Other);
-	void BitCopy(GameEngineImage* _Other, const float4& _CopyPos);
-	void BitCopyCenter(GameEngineImage* _Other, const float4& _CopyPos);
-	void BitCopyCenterPivot(GameEngineImage* _Other, const float4& _CopyPos, const float4& _CopyPivot);
-	void BitCopyBot(GameEngineImage* _Other, const float4& _CopyPos);
-	void BitCopyBotPivot(GameEngineImage* _Other, const float4& _CopyPos, const float4& _CopyPivot);
-	void BitCopy(GameEngineImage* _Other, const float4& _CopyPos,
-		const float4& _CopyScale,
-		const float4& _OtherPivot);
-
-	void TransCopy(GameEngineImage* _Other, const float4& _CopyPos, const float4& _RenderScale, unsigned int _TransColor);
-	void TransCopy(GameEngineImage* _Other, const float4& _CopyPos, unsigned int _TransColor);
-	void TransCopy(GameEngineImage* _Other, const float4& _CopyPos,
-		const float4& _CopyScale,
-		const float4& _OtherPivot, const float4& _OtherScale, unsigned int _TransColor);
-
-	void Cut(const float4& _CutSize);
-
-	void CutCount(int _x, int _y);
 
 	inline bool IsCut()
 	{
@@ -85,6 +65,27 @@ public:
 	}
 
 	int GetImagePixel(int _x, int _y);
+
+	// BitBlt
+	void BitCopy(GameEngineImage* _Other);
+	void BitCopy(GameEngineImage* _Other, const float4& _CopyPos);
+	void BitCopyCenter(GameEngineImage* _Other, const float4& _CopyPos);
+	void BitCopyCenterPivot(GameEngineImage* _Other, const float4& _CopyPos, const float4& _CopyPivot);
+	void BitCopyBot(GameEngineImage* _Other, const float4& _CopyPos);
+	void BitCopyBotPivot(GameEngineImage* _Other, const float4& _CopyPos, const float4& _CopyPivot);
+	void BitCopy(GameEngineImage* _Other, const float4& _CopyPos,
+		const float4& _CopyScale,
+		const float4& _OtherPivot);
+
+	void TransCopy(GameEngineImage* _Other, const float4& _CopyPos, const float4& _RenderScale, unsigned int _TransColor);
+	void TransCopy(GameEngineImage* _Other, const float4& _CopyPos, unsigned int _TransColor);
+	void TransCopy(GameEngineImage* _Other, const float4& _CopyPos,
+		const float4& _CopyScale,
+		const float4& _OtherPivot, const float4& _OtherScale, unsigned int _TransColor);
+
+	void Cut(const float4& _CutSize);
+
+	void CutCount(int _x, int _y);
 
 protected:
 

@@ -11,7 +11,7 @@ enum class ChangeLevel
 enum class BabaLocation
 {
 	Baba,
-	Start_the_Game,
+	Start_The_Game,
 	Settings,
 	Exit_The_Game
 };

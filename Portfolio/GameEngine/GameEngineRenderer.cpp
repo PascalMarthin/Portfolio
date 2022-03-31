@@ -182,7 +182,6 @@ void GameEngineRenderer::FrameAnimation::Update()
 		}
 	}
 
-
 	Renderer_->Image_ = Image_;
 	Renderer_->SetIndex(CurrentFrame_);
 }

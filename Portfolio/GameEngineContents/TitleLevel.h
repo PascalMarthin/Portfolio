@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
-
+#include "GamePlayEnum.h"
+#include <vector>
 
 
 
@@ -16,11 +17,13 @@ public:
 	TitleLevel& operator=(const TitleLevel& _Other) = delete;
 	TitleLevel& operator=(TitleLevel&& _Other) noexcept = delete;
 
+
 protected:
 	void Loading() override;
 	void Update() override;
 
 private:
+
 
 };
 

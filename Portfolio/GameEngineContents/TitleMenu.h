@@ -8,10 +8,8 @@
 
 
 // Ό³Έν :
-class TitleLevel;
 class TitleMenu : public GameEngineActor
 {
-	friend TitleLevel;
 public:
 	// constrcuter destructer
 	TitleMenu();
@@ -30,12 +28,10 @@ protected:
 	void Render() override;
 
 private:
-	static BabaLocation BabaTitleLocate;
 	std::map<BabaLocation, std::vector<GameEngineImage*>> TilteMenuImage;
+
 	float4 StartPos_;
 	float4 SettingPos_;
 	float4 ExitPos_;
-	float4 BabaPos_;
-	float4 BabaPosFF_;
 	
 };
