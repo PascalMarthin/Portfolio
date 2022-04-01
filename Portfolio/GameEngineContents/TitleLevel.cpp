@@ -77,7 +77,7 @@ void TitleLevel::Update()
 		switch (TitleBaba::BabaTitleLocate_)
 		{
 		case BabaLocation::Start_The_Game:
-			GameEngine::GlobalEngine().ChangeLevel("MainLevel");
+			GameEngine::GetInst().ChangeLevel("MainLevel");
 			break;
 		case BabaLocation::Settings:
 

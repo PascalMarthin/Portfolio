@@ -30,8 +30,8 @@ public:
 	}
 
 private:
-	std::map<int, std::map<int, std::map<int, ObjectName>>> StageData_;
-	std::map<int, float4> Scale_;
+	std::map<Stage, std::map<int, std::map<int, ObjectName>>> StageData_;
+	std::map<Stage, float4> Scale_;
 
 	void MainStage();
 	void Stage0();

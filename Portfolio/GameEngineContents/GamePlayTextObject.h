@@ -16,9 +16,9 @@ public:
 	virtual void SettingImg() {}
 	virtual void Destroy() {}
 
+	
 protected:
 
 
 private:
-	
 };

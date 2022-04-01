@@ -13,5 +13,8 @@ Defeat_Text::~Defeat_Text()
 void Defeat_Text::SettingImg()
 {
 	Name_ = ObjectName::Defeat_Text;
+	Type_ = ObjectType::Text;
+	TextType_ = TextType::Stat_Text;
+
 	Image_ = GameEngineImageManager::GetInst()->Find("text_defeat_sheet.bmp");
 }

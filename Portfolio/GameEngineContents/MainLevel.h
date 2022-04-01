@@ -18,18 +18,29 @@ public:
 	MainLevel& operator=(const MainLevel& _Other) = delete;
 	MainLevel& operator=(MainLevel&& _Other) noexcept = delete;
 
+	static inline Stage GetCurrentStage()
+	{
+		return CurrentStage_;
+	}
+
 protected:
 	void Loading() override;
 	void Update() override;
 	void LevelChangeStart() override;
 
 private:
+	static Stage CurrentStage_;
+	
 	std::map<int, std::map<int, Coordinate*>> MainMap_;
 
 	float4 MapScale_;
 	float4 BackGroundScale_;
 	float GameWindowPosX_;
 	float GameWindowPosY_;
+
+	GameEngineActor* MainCursor_;
+	float4 MainCursorPos_;
+
 
 	void CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage);
 };

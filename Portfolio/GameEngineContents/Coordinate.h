@@ -34,6 +34,12 @@ public:
 		StartFrame_ = _Start;
 		EndFrame_ = _End;
 	}
+	void SetPos(const float4& _Pos, const float4& _CPos)
+	{
+		Pos_ = _Pos;
+		LUPos_ = _CPos;
+		SetPosition({ LUPos_.x + (DotSizeX / 2), LUPos_.y + (DotSizeY / 2) });
+	}
 
 
 protected:
@@ -43,8 +49,8 @@ protected:
 
 private:
 	float4 Pos_;
-	float4 CPos_;
-	ObjectName Object_;
+	float4 LUPos_;
+	const GamePlayObject* Object_;
 
 	
 	// img

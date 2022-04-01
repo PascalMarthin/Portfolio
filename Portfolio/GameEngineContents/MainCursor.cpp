@@ -1,5 +1,7 @@
 #include "MainCursor.h"
 #include <GameEngineBase/GameEngineWindow.h>
+#include <GameEngine/GameEngineRenderer.h>
+#include "GamePlayEnum.h"
 
 MainCursor::MainCursor()
 {
@@ -11,9 +13,11 @@ MainCursor::~MainCursor()
 
 void MainCursor::Start()
 {
-	//SetPosition(GameEngineWindow::GetScale().Half());
+	SetPosition(GameEngineWindow::GetScale().Half());
 
-	//CreateRenderer("cursor_0_1.bmp");
+	GameEngineRenderer* RenderImg = CreateRenderer(RenderPivot::CENTER);
+	RenderImg->CreateAnimation("cursor_sheet.bmp", "Cursor", 0, 2, ImageSpeed, true);
+	RenderImg->ChangeAnimation("Cursor");
 }
 
 void MainCursor::Update()

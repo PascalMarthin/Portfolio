@@ -22,14 +22,23 @@ protected:
 	void Loading() override;
 	void Update() override;
 	void LevelChangeStart() override;
+	void LevelChangeEnd() override;
 
 private:
 	void CreatMap (std::map<int, std::map<int, ObjectName>>& _Stage);
+	void ScanMap();
+	bool KeyCheck();
+	void Move(Direction _Dir);
 
+	void EndStage();
+	void ReleaseActor();
+
+	Stage CurrentStage_;
 	float4 MapScale_;
 	float GameWindowPosX_;
 	float GameWindowPosY_;
 
 	std::map<int, std::map<int, std::vector<Coordinate*>>> CurrentMap_;
+	std::vector<std::pair<const GamePlayObject*, const GamePlayObject*>> ActiveFunction_;
 };
 

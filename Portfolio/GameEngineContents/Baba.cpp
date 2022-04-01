@@ -16,6 +16,8 @@ Baba_Unit::~Baba_Unit()
 void Baba_Unit::SettingImg()
 {
 	Name_ = ObjectName::Baba_Unit;
+	Type_ = ObjectType::Unit;
+
 	Image_ = GameEngineImageManager::GetInst()->Find("unit_baba_Sheet.bmp");
 }
 
@@ -30,6 +32,9 @@ Baba_Text::~Baba_Text()
 void Baba_Text::SettingImg()
 {
 	Name_ = ObjectName::Baba_Text;
+	Type_ = ObjectType::Text;
+	TextType_ = TextType::Unit_Text;
+
 	Image_ = GameEngineImageManager::GetInst()->Find("text_baba_Sheet.bmp");
 
 }

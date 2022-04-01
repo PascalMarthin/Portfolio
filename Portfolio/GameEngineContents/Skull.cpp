@@ -15,6 +15,8 @@ Skull_Unit::~Skull_Unit()
 void Skull_Unit::SettingImg()
 {
 	Name_ = ObjectName::Skull_Unit;
+	Type_ = ObjectType::Unit;
+
 	Image_ = GameEngineImageManager::GetInst()->Find("unit_skull_sheet.bmp");
 }
 
@@ -29,5 +31,8 @@ Skull_Text::~Skull_Text()
 void Skull_Text::SettingImg()
 {
 	Name_ = ObjectName::Skull_Text;
+	Type_ = ObjectType::Text;
+	TextType_ = TextType::Unit_Text;
+
 	Image_ = GameEngineImageManager::GetInst()->Find("text_skull_sheet.bmp");
 }

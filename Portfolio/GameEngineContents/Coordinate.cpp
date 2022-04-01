@@ -5,10 +5,10 @@
 Coordinate::Coordinate() 
 	: ObjectImage_(nullptr)
 	, Pos_({0, 0})
-	, CPos_({ 0, 0 })
+	, LUPos_({ 0, 0 })
 	, CurrentImgScale({0, 0})
 	, CurrentImgPivot({0, 0})
-	, Object_(ObjectName::Error)
+	, Object_(nullptr)
 	, UnitDirection_(Direction::Error)
 	, CurrentFrame_(0)
 	, StartFrame_(0)
@@ -32,7 +32,7 @@ void Coordinate::Update()
 
 void Coordinate::Render()
 {
-	GameEngine::BackBufferImage()->TransCopy(ObjectImage_, CPos_, CurrentImgScale, CurrentImgPivot, CurrentImgScale, RGB(255, 0, 255));
+	GameEngine::BackBufferImage()->TransCopy(ObjectImage_, LUPos_, CurrentImgScale, CurrentImgPivot, CurrentImgScale, RGB(255, 0, 255));
 }
 
 void Coordinate::FrameUpdate()

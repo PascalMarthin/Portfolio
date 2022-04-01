@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngine/GameEngine.h>
+#include "GamePlayEnum.h"
 
 
 // Ό³Έν :
@@ -18,10 +19,12 @@ public:
 	void GameLoop() override;
 	void GameEnd() override;
 
+
 protected:
 
 
 private:
 	void CreateKeyBaba();
+
 };
 

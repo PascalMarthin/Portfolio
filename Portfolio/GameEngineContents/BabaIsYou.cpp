@@ -8,6 +8,7 @@
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include "GamePlayGobal.h"
+#include "StageData.h"
 
 
 BabaIsYou::BabaIsYou() 
@@ -564,6 +565,7 @@ void BabaIsYou::GameLoop()
 void BabaIsYou::GameEnd()
 {
 	GamePlayGobal::GetInst()->Destroy();
+	StageData::Destroy();
 
 }
 
