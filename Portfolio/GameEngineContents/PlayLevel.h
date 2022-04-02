@@ -27,6 +27,8 @@ protected:
 private:
 	void CreatMap (std::map<int, std::map<int, ObjectName>>& _Stage);
 	void ScanMap();
+	void TranslateFunction(GamePlayObject* _LeftObject, GamePlayObject* _RightObject);
+	void SetObjectStat();
 	bool KeyCheck();
 	void Move(Direction _Dir);
 
@@ -35,10 +37,11 @@ private:
 
 	Stage CurrentStage_;
 	float4 MapScale_;
-	float GameWindowPosX_;
-	float GameWindowPosY_;
+	// ∞‘¿”
+	float GameWindowStartPosX_;
+	float GameWindowStartPosY_;
 
 	std::map<int, std::map<int, std::vector<Coordinate*>>> CurrentMap_;
-	std::vector<std::pair<const GamePlayObject*, const GamePlayObject*>> ActiveFunction_;
+	std::vector<std::pair<GamePlayObject*, GamePlayObject*>> ActiveFunction_;
 };
 

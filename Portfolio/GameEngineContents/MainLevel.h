@@ -35,8 +35,8 @@ private:
 
 	float4 MapScale_;
 	float4 BackGroundScale_;
-	float GameWindowPosX_;
-	float GameWindowPosY_;
+	float GameWindowStartPosX_;
+	float GameWindowStartPosY_;
 
 	GameEngineActor* MainCursor_;
 	float4 MainCursorPos_;

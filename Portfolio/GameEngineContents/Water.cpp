@@ -12,7 +12,7 @@ Water_Unit::~Water_Unit()
 {
 }
 
-void Water_Unit::SettingImg()
+void Water_Unit::SettingAbility()
 {
 	Name_ = ObjectName::Water_Unit;
 	Type_ = ObjectType::Unit;
@@ -27,7 +27,7 @@ Water_Text::~Water_Text()
 {
 }
 
-void Water_Text::SettingImg()
+void Water_Text::SettingAbility()
 {
 	Name_ = ObjectName::Water_Text;
 	Type_ = ObjectType::Text;

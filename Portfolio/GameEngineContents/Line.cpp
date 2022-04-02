@@ -10,7 +10,7 @@ Line::~Line()
 {
 }
 
-void Line::SettingImg()
+void Line::SettingAbility()
 {
 	Name_ = ObjectName::Line;
 	Image_ = GameEngineImageManager::GetInst()->Find("unit_line_sheet.bmp");

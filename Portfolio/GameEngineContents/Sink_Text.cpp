@@ -10,7 +10,7 @@ Sink_Text::~Sink_Text()
 {
 }
 
-void Sink_Text::SettingImg()
+void Sink_Text::SettingAbility()
 {
 	Name_ = ObjectName::Sink_Text;
 	Type_ = ObjectType::Text;

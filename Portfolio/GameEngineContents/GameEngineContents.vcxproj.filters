@@ -9,7 +9,7 @@
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
-      <Filter>Title</Filter>
+      <Filter>LevelClass\Title</Filter>
     </ClCompile>
     <ClCompile Include="Is_Text.cpp">
       <Filter>Object%28Game%29\Text\Verb</Filter>
@@ -72,16 +72,16 @@
       <Filter>Object%28Game%29</Filter>
     </ClCompile>
     <ClCompile Include="TitleMenu.cpp">
-      <Filter>Title</Filter>
+      <Filter>LevelClass\Title</Filter>
     </ClCompile>
     <ClCompile Include="MainLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="MainBackGround.cpp">
-      <Filter>Main</Filter>
+      <Filter>LevelClass\Main</Filter>
     </ClCompile>
     <ClCompile Include="MainCursor.cpp">
-      <Filter>Main</Filter>
+      <Filter>LevelClass\Main</Filter>
     </ClCompile>
     <ClCompile Include="ScreenFade.cpp">
       <Filter>Effect</Filter>
@@ -102,13 +102,16 @@
       <Filter>Stage</Filter>
     </ClCompile>
     <ClCompile Include="TitleBaba.cpp">
-      <Filter>Title</Filter>
+      <Filter>LevelClass\Title</Filter>
     </ClCompile>
     <ClCompile Include="Default.cpp">
       <Filter>Object%28Game%29\etc</Filter>
     </ClCompile>
     <ClCompile Include="Line.cpp">
       <Filter>Object%28Game%29\etc</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayBackGround.cpp">
+      <Filter>LevelClass\Play</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -120,7 +123,7 @@
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
-      <Filter>Title</Filter>
+      <Filter>LevelClass\Title</Filter>
     </ClInclude>
     <ClInclude Include="Is_Text.h">
       <Filter>Object%28Game%29\Text\Verb</Filter>
@@ -183,16 +186,16 @@
       <Filter>Object%28Game%29</Filter>
     </ClInclude>
     <ClInclude Include="TitleMenu.h">
-      <Filter>Title</Filter>
+      <Filter>LevelClass\Title</Filter>
     </ClInclude>
     <ClInclude Include="MainLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="MainBackGround.h">
-      <Filter>Main</Filter>
+      <Filter>LevelClass\Main</Filter>
     </ClInclude>
     <ClInclude Include="MainCursor.h">
-      <Filter>Main</Filter>
+      <Filter>LevelClass\Main</Filter>
     </ClInclude>
     <ClInclude Include="ScreenFade.h">
       <Filter>Effect</Filter>
@@ -216,7 +219,7 @@
       <Filter>Stage</Filter>
     </ClInclude>
     <ClInclude Include="TitleBaba.h">
-      <Filter>Title</Filter>
+      <Filter>LevelClass\Title</Filter>
     </ClInclude>
     <ClInclude Include="Default.h">
       <Filter>Object%28Game%29\etc</Filter>
@@ -224,13 +227,13 @@
     <ClInclude Include="Line.h">
       <Filter>Object%28Game%29\etc</Filter>
     </ClInclude>
+    <ClInclude Include="PlayBackGround.h">
+      <Filter>LevelClass\Play</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
       <UniqueIdentifier>{d1f818af-67fb-44eb-964d-dd05d92df1f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Title">
-      <UniqueIdentifier>{5dc912b5-29f8-4a4b-89ad-070ad17b9422}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object%28Game%29">
       <UniqueIdentifier>{2e263f15-58da-4cf5-825e-879407c43e2b}</UniqueIdentifier>
@@ -256,9 +259,6 @@
     <Filter Include="Stage">
       <UniqueIdentifier>{780305e2-33e6-4f4b-81c3-333ee6bb5b83}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Main">
-      <UniqueIdentifier>{48d600ad-b9e2-4d59-8d28-fa6996879e31}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Effect">
       <UniqueIdentifier>{97c90220-b1fd-4ce7-80fb-49cf61afea05}</UniqueIdentifier>
     </Filter>
@@ -273,6 +273,18 @@
     </Filter>
     <Filter Include="Object%28Game%29\etc">
       <UniqueIdentifier>{68815a7b-cc78-4088-8a40-8a652daf9e89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelClass">
+      <UniqueIdentifier>{97066821-1b4a-42db-9177-0deb3775393b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelClass\Main">
+      <UniqueIdentifier>{48d600ad-b9e2-4d59-8d28-fa6996879e31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelClass\Title">
+      <UniqueIdentifier>{5dc912b5-29f8-4a4b-89ad-070ad17b9422}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelClass\Play">
+      <UniqueIdentifier>{e9237d99-1e9c-4c61-8593-e6957c3bd04b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

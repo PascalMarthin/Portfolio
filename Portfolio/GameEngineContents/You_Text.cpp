@@ -10,7 +10,7 @@ You_Text::~You_Text()
 {
 }
 
-void You_Text::SettingImg()
+void You_Text::SettingAbility()
 {
 	Name_ = ObjectName::You_Text;
 	Type_ = ObjectType::Text;

@@ -12,7 +12,7 @@ Wall_Unit::~Wall_Unit()
 {
 }
 
-void Wall_Unit::SettingImg()
+void Wall_Unit::SettingAbility()
 {
 	Name_ = ObjectName::Wall_Unit;
 	Type_ = ObjectType::Unit;
@@ -29,7 +29,7 @@ Wall_Text::~Wall_Text()
 {
 }
 
-void Wall_Text::SettingImg()
+void Wall_Text::SettingAbility()
 {
 	Name_ = ObjectName::Wall_Text;
 	Type_ = ObjectType::Text;

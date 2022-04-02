@@ -12,7 +12,7 @@ Flag_Unit::~Flag_Unit()
 {
 }
 
-void Flag_Unit::SettingImg()
+void Flag_Unit::SettingAbility()
 {
 	Name_ = ObjectName::Flag_Unit;
 	Type_ = ObjectType::Unit;
@@ -28,7 +28,7 @@ Flag_Text::~Flag_Text()
 {
 }
 
-void Flag_Text::SettingImg()
+void Flag_Text::SettingAbility()
 {
 	Name_ = ObjectName::Flag_Text;
 	Type_ = ObjectType::Text;

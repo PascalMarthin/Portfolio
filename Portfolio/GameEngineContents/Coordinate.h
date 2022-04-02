@@ -50,7 +50,7 @@ protected:
 private:
 	float4 Pos_;
 	float4 LUPos_;
-	const GamePlayObject* Object_;
+	GamePlayObject* Object_;
 
 	
 	// img

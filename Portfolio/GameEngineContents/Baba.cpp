@@ -13,7 +13,7 @@ Baba_Unit::~Baba_Unit()
 {
 }
 
-void Baba_Unit::SettingImg()
+void Baba_Unit::SettingAbility()
 {
 	Name_ = ObjectName::Baba_Unit;
 	Type_ = ObjectType::Unit;
@@ -29,7 +29,7 @@ Baba_Text::~Baba_Text()
 {
 }
 
-void Baba_Text::SettingImg()
+void Baba_Text::SettingAbility()
 {
 	Name_ = ObjectName::Baba_Text;
 	Type_ = ObjectType::Text;

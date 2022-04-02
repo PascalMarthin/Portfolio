@@ -10,7 +10,7 @@ Melt_Text::~Melt_Text()
 {
 }
 
-void Melt_Text::SettingImg()
+void Melt_Text::SettingAbility()
 {
 	Name_ = ObjectName::Melt_Text;
 	Type_ = ObjectType::Text;

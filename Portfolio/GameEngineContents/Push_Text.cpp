@@ -10,7 +10,7 @@ Push_Text::~Push_Text()
 {
 }
 
-void Push_Text::SettingImg()
+void Push_Text::SettingAbility()
 {
 	Name_ = ObjectName::Push_Text;
 	Type_ = ObjectType::Text;

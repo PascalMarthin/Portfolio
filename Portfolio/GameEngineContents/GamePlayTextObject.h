@@ -13,12 +13,12 @@ public:
 	GamePlayTextObject& operator=(const GamePlayTextObject& _Other) = delete;
 	GamePlayTextObject& operator=(GamePlayTextObject&& _Other) noexcept = delete;
 
-	virtual void SettingImg() {}
+	virtual void SettingAbility() {}
 	virtual void Destroy() {}
 
 	
 protected:
-
+	virtual void StatEffect() {}
 
 private:
 };

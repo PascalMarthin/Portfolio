@@ -26,7 +26,7 @@ public:
 		delete Inst_;
 		Inst_ = nullptr;
 	}
-	void SettingImg() override;
+	void SettingAbility() override;
 
 private:
 	Water_Unit();
@@ -59,7 +59,7 @@ public:
 		delete Inst_;
 		Inst_ = nullptr;
 	}
-	void SettingImg() override;
+	void SettingAbility() override;
 
 private:
 	static Water_Text* Inst_;

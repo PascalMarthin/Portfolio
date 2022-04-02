@@ -23,7 +23,7 @@ public:
 		delete Inst_;
 		Inst_ = nullptr;
 	}
-	void SettingImg() override;
+	void SettingAbility() override;
 
 private:
 	Tile_Unit();

@@ -23,7 +23,7 @@ public:
 		delete Inst_;
 		Inst_ = nullptr;
 	}
-	void SettingImg() override;
+	void SettingAbility() override;
 
 private:
 	Flag_Unit();
@@ -56,7 +56,7 @@ public:
 		delete Inst_;
 		Inst_ = nullptr;
 	}
-	void SettingImg() override;
+	void SettingAbility() override;
 
 private:
 	static Flag_Text* Inst_;

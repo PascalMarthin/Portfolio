@@ -14,11 +14,11 @@ public:
 	GamePlayUnitObject& operator=(const GamePlayUnitObject& _Other) = delete;
 	GamePlayUnitObject& operator=(GamePlayUnitObject&& _Other) noexcept = delete;
 
-	virtual void SettingImg() {}
+	virtual void SettingAbility() {}
 	virtual void Destroy() {}
 
 protected:
-	GameEngineActor* Actor;
+	//GameEngineActor* Actor;
 
 private:
 

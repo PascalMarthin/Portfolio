@@ -10,7 +10,7 @@ Tile_Unit::~Tile_Unit()
 {
 }
 
-void Tile_Unit::SettingImg()
+void Tile_Unit::SettingAbility()
 {
 	Name_ = ObjectName::Tile_Unit;
 	Type_ = ObjectType::Unit;

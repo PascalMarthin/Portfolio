@@ -10,7 +10,7 @@ Win_Text::~Win_Text()
 {
 }
 
-void Win_Text::SettingImg()
+void Win_Text::SettingAbility()
 {
 	Name_ = ObjectName::Win_Text;
 	Type_ = ObjectType::Text;

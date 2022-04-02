@@ -12,7 +12,7 @@ Skull_Unit::~Skull_Unit()
 {
 }
 
-void Skull_Unit::SettingImg()
+void Skull_Unit::SettingAbility()
 {
 	Name_ = ObjectName::Skull_Unit;
 	Type_ = ObjectType::Unit;
@@ -28,7 +28,7 @@ Skull_Text::~Skull_Text()
 {
 }
 
-void Skull_Text::SettingImg()
+void Skull_Text::SettingAbility()
 {
 	Name_ = ObjectName::Skull_Text;
 	Type_ = ObjectType::Text;

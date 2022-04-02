@@ -10,7 +10,7 @@ Stop_Text::~Stop_Text()
 {
 }
 
-void Stop_Text::SettingImg()
+void Stop_Text::SettingAbility()
 {
 	Name_ = ObjectName::Stop_Text;
 	Type_ = ObjectType::Text;

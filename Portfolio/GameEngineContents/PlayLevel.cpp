@@ -2,14 +2,17 @@
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngine/GameEngineLevel.h>
 #include <GameEngineBase/GameEngineInput.h>
+
 #include "Coordinate.h"
 #include "BackGround.h"
 #include "MainLevel.h"
 #include "GamePlayTextObject.h"
+#include "PlayBackGround.h"
+
 
 PlayLevel::PlayLevel() 
-	:GameWindowPosX_(0),
-	GameWindowPosY_(0),
+	:GameWindowStartPosX_(0),
+	GameWindowStartPosY_(0),
 	MapScale_({ 0, 0 }),
 	CurrentStage_(Stage::MainStage)
 {
@@ -43,10 +46,11 @@ void PlayLevel::LevelChangeEnd()
 void PlayLevel::LevelChangeStart()
 {
 	CurrentStage_ = MainLevel::GetCurrentStage();
-	CreateActor<BackGround>(0);
 	MapScale_ = StageData::Inst_->Scale_[CurrentStage_];
-	GameWindowPosX_ = GameEngineWindow::GetScale().Half().x + 24 - MapScale_.x * 24;
-	GameWindowPosY_ = GameEngineWindow::GetScale().Half().y + 24 - MapScale_.y * 24;
+	CreateActor<BackGround>(0);
+	CreateActor<PlayBackGround>(1)->CreateRendererToScale("Stage0.bmp", { MapScale_.x * DotSizeX, MapScale_.y * DotSizeY });
+	GameWindowStartPosX_ = (GameEngineWindow::GetScale().x - MapScale_.x * DotSizeX) / 2;
+	GameWindowStartPosY_ = (GameEngineWindow::GetScale().y - MapScale_.y * DotSizeY) / 2;
 
 	CreatMap(StageData::Inst_->StageData_[CurrentStage_]);
 	ScanMap();
@@ -66,7 +70,7 @@ void PlayLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 				continue;
 			}
 			Coordinate* Coordi = CreateActor<Coordinate>(1);
-			Coordi->SetPos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowPosX_ + static_cast<float>(x * DotSizeX), GameWindowPosY_ + static_cast<float>(y * DotSizeY) });
+			Coordi->SetPos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) });
 			Coordi->Object_ = Idx;
 			Coordi->SetImg(Idx->GetImage());
 			CurrentMap_[y][x].push_back(Coordi);
@@ -138,7 +142,7 @@ void PlayLevel::ScanMap()
 								{
 									if ((CurrentMap_[Y][X + 1][k]->Object_)->GetTextType() == TextType::Stat_Text || (CurrentMap_[Y][X + 1][k]->Object_)->GetTextType() == TextType::Unit_Text)
 									{
-										// y 완성
+										// x 완성
 										ActiveFunction_.push_back(std::make_pair((CurrentMap_[Y][X - 1][j]->Object_), (CurrentMap_[Y][X + 1][k]->Object_)));
 										break;
 									}
@@ -151,6 +155,25 @@ void PlayLevel::ScanMap()
 			}
 		}
 	}
+	SetObjectStat();
+}
+
+
+void PlayLevel::SetObjectStat()
+{
+	std::vector<std::pair<GamePlayObject*, GamePlayObject*>>::iterator StartVector = ActiveFunction_.begin();
+	std::vector<std::pair<GamePlayObject*, GamePlayObject*>>::iterator EndVector = ActiveFunction_.end();
+	for (; StartVector != EndVector; ++StartVector)
+	{
+		TranslateFunction((*StartVector).first, (*StartVector).second);
+	}
+		
+}
+
+void PlayLevel::TranslateFunction(GamePlayObject* _LeftObject, GamePlayObject* _RightObject)
+{
+	
+	
 }
 
 bool PlayLevel::KeyCheck()

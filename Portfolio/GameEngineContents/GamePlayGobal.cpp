@@ -84,10 +84,10 @@ void  GamePlayGobal::SetName()
 		ObjectName_[ObjectName::Default]  =		Default::GetInst();
 		ObjectName_[ObjectName::Line] =			Line::GetInst();
 
-		SettingImg();
+		SettingAbility();
 }
 
-void GamePlayGobal::SettingImg()
+void GamePlayGobal::SettingAbility()
 {
 	std::map<ObjectName, GamePlayObject*>::iterator StartIter = ObjectName_.begin();
 	std::map<ObjectName, GamePlayObject*>::iterator EndIter = ObjectName_.end();
@@ -95,7 +95,7 @@ void GamePlayGobal::SettingImg()
 	{
 		if (StartIter->second != nullptr)
 		{
-			(StartIter->second)->SettingImg();
+			(StartIter->second)->SettingAbility();
 		}
 	}
 }

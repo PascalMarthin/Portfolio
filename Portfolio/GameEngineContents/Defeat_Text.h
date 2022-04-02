@@ -20,10 +20,14 @@ public:
 		delete Inst_;
 		Inst_ = nullptr;
 	}
-	void SettingImg() override;
+	void SettingAbility() override;
+
+protected:
+	void StatEffect() override;
 
 private:
 	static Defeat_Text* Inst_;
+	void StatDefeat();
 	Defeat_Text();
 	~Defeat_Text();
 

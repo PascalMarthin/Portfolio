@@ -47,9 +47,10 @@ public:
 		return IsActive_;
 	}
 
-	virtual void SettingImg(){}
+	virtual void SettingAbility(){}
 	virtual void Destroy() = 0;
 
+	virtual void StatEffect() {}
 protected:
 	GameEngineImage* Image_;
 
@@ -58,6 +59,7 @@ protected:
 
 	TextType TextType_;
 	bool IsActive_;
+
 
 private:
 

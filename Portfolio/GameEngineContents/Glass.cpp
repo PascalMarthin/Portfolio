@@ -10,7 +10,7 @@ Grass_Unit::~Grass_Unit()
 {
 }
 
-void Grass_Unit::SettingImg()
+void Grass_Unit::SettingAbility()
 {
 	Name_ = ObjectName::Grass_Unit;
 	Type_ = ObjectType::Unit;

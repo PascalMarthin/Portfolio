@@ -13,8 +13,8 @@
 Stage MainLevel::CurrentStage_ = Stage::MainStage;
 
 MainLevel::MainLevel()
-	:GameWindowPosX_(0),
-	GameWindowPosY_(0) ,
+	:GameWindowStartPosX_(0),
+	GameWindowStartPosY_(0) ,
 	MapScale_({0, 0}) ,
 	MainCursorPos_({0, 0})
 {
@@ -34,8 +34,8 @@ void MainLevel::Loading()
 	BackGroundScale_ = CreateActor<MainBackGround>(1, "MainBackGround")->GetScale();
 
 	{
-		GameWindowPosX_ = GameEngineWindow::GetScale().Half().x - BackGroundScale_.Half().x;
-		GameWindowPosY_ = GameEngineWindow::GetScale().Half().y - BackGroundScale_.Half().y;
+		GameWindowStartPosX_ = (GameEngineWindow::GetScale().x - BackGroundScale_.x) / 2;
+		GameWindowStartPosY_ = (GameEngineWindow::GetScale().y - BackGroundScale_.y) / 2;
 	}
 
 	CreatMap(StageData::Inst_->StageData_[Stage::MainStage]);
@@ -129,7 +129,7 @@ void MainLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 			else
 			{
 				Coordinate* Coordi = CreateActor<Coordinate>(1);
-				Coordi->SetPos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowPosX_ + static_cast<float>(x * DotSizeX), GameWindowPosY_ + static_cast<float>(y * DotSizeY)});
+				Coordi->SetPos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY)});
 				Coordi->SetImg(Idx->GetImage());
 				MainMap_[y][x] = Coordi;
 			}

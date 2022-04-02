@@ -13,7 +13,7 @@ Rock_Unit::~Rock_Unit()
 {
 }
 
-void Rock_Unit::SettingImg()
+void Rock_Unit::SettingAbility()
 {
 	Name_ = ObjectName::Rock_Unit;
 	Type_ = ObjectType::Unit;
@@ -29,7 +29,7 @@ Rock_Text::~Rock_Text()
 {
 }
 
-void Rock_Text::SettingImg()
+void Rock_Text::SettingAbility()
 {
 	Name_ = ObjectName::Rock_Text;
 	Type_ = ObjectType::Text;

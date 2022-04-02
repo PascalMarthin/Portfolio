@@ -23,7 +23,7 @@ class Baba_Unit : public GamePlayUnitObject
 		delete Inst_;
 		Inst_ = nullptr;
 	}
-	void SettingImg() override;
+	void SettingAbility() override;
 
 private:
 	Baba_Unit();
@@ -56,7 +56,7 @@ public:
 		delete Inst_;
 		Inst_ = nullptr;
 	}
-	void SettingImg() override;
+	void SettingAbility() override;
 
 private:
 	static Baba_Text* Inst_;

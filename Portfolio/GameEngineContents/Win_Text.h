@@ -19,7 +19,10 @@ public:
 		delete Inst_;
 		Inst_ = nullptr;
 	}
-	void SettingImg() override;
+	void SettingAbility() override;
+
+protected:
+	void StatEffect() override;
 
 private:
 	static Win_Text* Inst_;

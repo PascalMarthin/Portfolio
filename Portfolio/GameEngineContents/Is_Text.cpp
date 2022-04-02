@@ -10,7 +10,7 @@ Is_Text::~Is_Text()
 {
 }
 
-void Is_Text::SettingImg()
+void Is_Text::SettingAbility()
 {
 	Name_ = ObjectName::Is_Text;
 	Type_ = ObjectType::Text;
