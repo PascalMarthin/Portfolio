@@ -8,3 +8,7 @@ GamePlayUnitObject::~GamePlayUnitObject()
 {
 }
 
+void GamePlayUnitObject::UnitObjectFucntion()
+{
+
+}

@@ -1,7 +1,5 @@
 #pragma once
-#include "GamePlayUnitObject.h"
-#include "GamePlayTextObject.h"
-
+#include "GamePlayUnitText.h"
 // Ό³Έν :
 class Lava_Unit : public GamePlayUnitObject
 {
@@ -37,7 +35,7 @@ private:
 };
 
 
-class Lava_Text : public GamePlayTextObject
+class Lava_Text : public GamePlayUnitText
 {
 
 public:

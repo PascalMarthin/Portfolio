@@ -1,13 +1,12 @@
 #pragma once
-#include "GamePlayUnitObject.h"
-#include "GamePlayTextObject.h"
+#include "GamePlayUnitText.h"
 
 // Ό³Έν :
 class Baba_Unit : public GamePlayUnitObject
 {
 	static Baba_Unit* Inst_;
 
-	public:
+public:
 	static Baba_Unit* GetInst()
 		{
 			return Inst_;
@@ -37,7 +36,7 @@ private:
 };
 
 
-class Baba_Text : public GamePlayTextObject
+class Baba_Text : public GamePlayUnitText
 {
 
 public:

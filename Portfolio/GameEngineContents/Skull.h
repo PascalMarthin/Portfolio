@@ -1,6 +1,5 @@
 #pragma once
-#include "GamePlayUnitObject.h"
-#include "GamePlayTextObject.h"
+#include "GamePlayUnitText.h"
 
 // Ό³Έν :
 class Skull_Unit : public GamePlayUnitObject
@@ -37,7 +36,7 @@ private:
 };
 
 
-class Skull_Text : public GamePlayTextObject
+class Skull_Text : public GamePlayUnitText
 {
 
 public:

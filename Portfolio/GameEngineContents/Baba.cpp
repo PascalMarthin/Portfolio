@@ -21,6 +21,7 @@ void Baba_Unit::SettingAbility()
 	Image_ = GameEngineImageManager::GetInst()->Find("unit_baba_Sheet.bmp");
 }
 
+
 Baba_Text::Baba_Text() 
 {
 }

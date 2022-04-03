@@ -1,6 +1,5 @@
 #pragma once
-#include "GamePlayUnitObject.h"
-#include "GamePlayTextObject.h"
+#include "GamePlayUnitText.h"
 
 // Ό³Έν :
 class Wall_Unit : public GamePlayUnitObject
@@ -23,7 +22,7 @@ public:
 		delete Inst_;
 		Inst_ = nullptr;
 	}
-	void SettingAbility() override;
+	void SettingAbility() override;	
 
 private:
 	Wall_Unit();
@@ -37,7 +36,7 @@ private:
 };
 
 
-class Wall_Text : public GamePlayTextObject
+class Wall_Text : public GamePlayUnitText
 {
 
 public:

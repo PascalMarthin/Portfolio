@@ -13,6 +13,7 @@ Coordinate::Coordinate()
 	, StartFrame_(0)
 	, EndFrame_(2)
 	, CurrentInterTime_(0.1f)
+	, IsActive_(false)
 {
 }
 
@@ -36,30 +37,53 @@ void Coordinate::Render()
 
 void Coordinate::FrameUpdate()
 {
-	if (Object_->GetImage()->IsCut() == false)
+	if (Object_ != nullptr)
 	{
-		MsgBoxAssert("Coordinate 못자름");
-	}
-
-	if (Object_)
-	{
-
-	}
-	CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime();
-	if (0 >= CurrentInterTime_)
-	{
-		CurrentInterTime_ = ImageSpeed;
-		++CurrentFrame_;
-
-		if (EndFrame_ < CurrentFrame_)
+		if (Object_->GetImage()->IsCut() == false)
 		{
-			CurrentFrame_ = StartFrame_;
+			MsgBoxAssert("Coordinate 못자름");
 		}
+
+		CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime();
+		if (0 >= CurrentInterTime_)
+		{
+			CurrentInterTime_ = ImageSpeed;
+			++CurrentFrame_;
+
+			if (EndFrame_ < CurrentFrame_)
+			{
+				CurrentFrame_ = StartFrame_;
+			}
+		}
+
+
+		CurrentImgScale = Object_->GetImage()->GetCutScale(CurrentFrame_);
+		CurrentImgPivot = Object_->GetImage()->GetCutPivot(CurrentFrame_);
 	}
+}
 
-
-	CurrentImgScale = Object_->GetImage()->GetCutScale(CurrentFrame_);
-	CurrentImgPivot = Object_->GetImage()->GetCutPivot(CurrentFrame_);
+// 활성화시 true, 비활성화시 false
+bool Coordinate::ApplyActive()
+{
+	if (Object_->GetType() != ObjectType::Text)
+	{
+		MsgBoxAssert("Text가 아닙니다");
+	}
+	if (IsActive_ == true)
+	{
+		StartFrame_ = 3;
+		CurrentFrame_ = 3;
+		EndFrame_ = 5;
+		return true;
+	}
+	else if (IsActive_ == false)
+	{
+		StartFrame_ = 0;
+		CurrentFrame_ = 0;
+		EndFrame_ = 2;
+		return false;
+	}
+	return false;
 }
 
 void Coordinate::SetBaseValue(GamePlayObject* _Object, Direction _Dir, const float4& _Size)

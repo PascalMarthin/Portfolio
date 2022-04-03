@@ -10,6 +10,7 @@
 #include "PlayBackGround.h"
 
 
+
 PlayLevel::PlayLevel() 
 	:GameWindowStartPosX_(0),
 	GameWindowStartPosY_(0),
@@ -120,10 +121,7 @@ void PlayLevel::ScanMap()
 									if ((CurrentMap_[Y + 1][X][k]->GetObjectInst())->GetTextType() == TextType::Stat_Text || (CurrentMap_[Y + 1][X][k]->GetObjectInst())->GetTextType() == TextType::Unit_Text)
 									{
 										// y 완성
-										(CurrentMap_[Y - 1][X][j]->GetObjectInst())->SetON();
-										(Block[i]->GetObjectInst())->SetON();
-										(CurrentMap_[Y + 1][X][k]->GetObjectInst())->SetON();
-										ActiveFunction_.push_back(std::make_pair((CurrentMap_[Y - 1][X][j]->GetObjectInst())->GetTextUnit(), (CurrentMap_[Y + 1][X][k]->GetObjectInst())));
+										SetObjectStat(CurrentMap_[Y - 1][X][j], Block[i], CurrentMap_[Y + 1][X][k]);
 										break;
 									}
 								}
@@ -137,15 +135,14 @@ void PlayLevel::ScanMap()
 					{
 						for (int j = 0; j < CurrentMap_[Y][X - 1].size(); j++)
 						{
-
 							if ((CurrentMap_[Y][X - 1][j]->GetObjectInst())->GetTextType() == TextType::Unit_Text)
 							{
 								for (int k = 0; k < CurrentMap_[Y][X + 1].size(); k++)
 								{
 									if ((CurrentMap_[Y][X + 1][k]->GetObjectInst())->GetTextType() == TextType::Stat_Text || (CurrentMap_[Y][X + 1][k]->GetObjectInst())->GetTextType() == TextType::Unit_Text)
 									{
-										// x 완성
-										ActiveFunction_.push_back(std::make_pair((CurrentMap_[Y][X - 1][j]->GetObjectInst()), (CurrentMap_[Y][X + 1][k]->GetObjectInst())));
+										// x 완성 SetON()
+										SetObjectStat(CurrentMap_[Y][X - 1][j], Block[i], CurrentMap_[Y][X + 1][k]);
 										break;
 									}
 								}
@@ -157,25 +154,24 @@ void PlayLevel::ScanMap()
 			}
 		}
 	}
-	SetObjectStat();
 }
 
 
-void PlayLevel::SetObjectStat()
+void PlayLevel::SetObjectStat(Coordinate* _Unit, Coordinate* _Verb, Coordinate* _Stat)
 {
-	std::vector<std::pair<GamePlayObject*, GamePlayObject*>>::iterator StartVector = ActiveFunction_.begin();
-	std::vector<std::pair<GamePlayObject*, GamePlayObject*>>::iterator EndVector = ActiveFunction_.end();
-	for (; StartVector != EndVector; ++StartVector)
-	{
-		SetFunction((*StartVector).first, (*StartVector).second);
-	}
+	_Unit->SetON();
+	_Verb->SetON();
+	_Stat->SetON();
+	_Unit->GetObjectInst();
+
+	ActiveFunction_.push_back(std::make_pair(_Unit->GetObjectInst(), _Stat->GetObjectInst()));
 		
 }
 
-void PlayLevel::SetFunction(GamePlayObject* _LeftObject, GamePlayObject* _RightObject)
-{
-	(_LeftObject->GetApplyStat()).push_back(_RightObject->GetName());
-}
+//void PlayLevel::SetFunction(GamePlayObject* _LeftObject, GamePlayObject* _RightObject)
+//{
+//	(_LeftObject->GetApplyStat()).push_back(_RightObject->GetName());
+//}
 
 bool PlayLevel::KeyCheck()
 {

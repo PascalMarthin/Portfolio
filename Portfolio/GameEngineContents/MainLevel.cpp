@@ -16,7 +16,8 @@ MainLevel::MainLevel()
 	:GameWindowStartPosX_(0),
 	GameWindowStartPosY_(0) ,
 	MapScale_({0, 0}) ,
-	MainCursorPos_({0, 0})
+	MainCursorPos_({0, 0}),
+	MainCursor_(nullptr)
 {
 }
 

@@ -1,8 +1,8 @@
 #pragma once
-#include "GamePlayObject.h"
+#include "GamePlayText.h"
 
 // Ό³Έν :
-class GamePlayTextObject : public GamePlayObject
+class GamePlayTextObject : public GamePlayText
 {
 public:
 	GamePlayTextObject();

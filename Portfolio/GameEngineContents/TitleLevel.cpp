@@ -1,5 +1,6 @@
 #include "TitleLevel.h"
 #include "GameEngine/GameEngine.h"
+#include <GameEngineBase/GameEngineWindow.h>
 #include "TitleLogo.h"
 #include "BackGround.h"
 #include "TitleMenu.h"
@@ -86,10 +87,7 @@ void TitleLevel::Update()
 
 			break;
 		case BabaLocation::Exit_The_Game:
-
-
-
-
+			GameEngineWindow::GetInst().Off();
 			break;
 		default:
 			MsgBoxAssert("BabaTitleLocate Error");

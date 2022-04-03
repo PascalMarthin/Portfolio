@@ -201,11 +201,23 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GamePlayStatManager.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GamePlayText.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GamePlayTextObject.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="GamePlayUnitObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GamePlayUnitText.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -355,11 +367,23 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GamePlayStatManager.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GamePlayText.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GamePlayTextObject.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="GamePlayUnitObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GamePlayUnitText.cpp">
       <SubType>
       </SubType>
     </ClCompile>

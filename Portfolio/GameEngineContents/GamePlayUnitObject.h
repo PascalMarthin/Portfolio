@@ -1,9 +1,8 @@
 #pragma once
 #include "GamePlayObject.h"
-#include <GameEngine/GameEngineActor.h>
+#include "GamePlayStatManager.h"
 
-// Ό³Έν :
-class GamePlayUnitObject : public GamePlayObject
+class GamePlayUnitObject : public GamePlayObject, public GamePlayStatManager
 {
 public:
 	GamePlayUnitObject();
@@ -17,10 +16,17 @@ public:
 	virtual void SettingAbility() {}
 	virtual void Destroy() {}
 
+	inline std::vector<StatName>& GetApplyStat()
+	{
+		return ApplyStat_;
+	}
+
+	void UnitObjectFucntion() override;
+
 protected:
-	//GameEngineActor* Actor;
 
 private:
+	std::vector<StatName> ApplyStat_;
 
 };
 

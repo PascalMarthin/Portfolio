@@ -56,12 +56,6 @@
     <ClCompile Include="Water.cpp">
       <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
-    <ClCompile Include="GamePlayUnitObject.cpp">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="GamePlayTextObject.cpp">
-      <Filter>Object%28Game%29\Text</Filter>
-    </ClCompile>
     <ClCompile Include="Win_Text.cpp">
       <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClCompile>
@@ -112,6 +106,21 @@
     </ClCompile>
     <ClCompile Include="PlayBackGround.cpp">
       <Filter>LevelClass\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlayText.cpp">
+      <Filter>Object%28Game%29\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlayTextObject.cpp">
+      <Filter>Object%28Game%29\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlayUnitObject.cpp">
+      <Filter>Object%28Game%29\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlayUnitText.cpp">
+      <Filter>Object%28Game%29\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlayStatManager.cpp">
+      <Filter>Object%28Game%29</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -170,12 +179,6 @@
     <ClInclude Include="Water.h">
       <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClInclude>
-    <ClInclude Include="GamePlayUnitObject.h">
-      <Filter>Object%28Game%29\Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="GamePlayTextObject.h">
-      <Filter>Object%28Game%29\Text</Filter>
-    </ClInclude>
     <ClInclude Include="Win_Text.h">
       <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClInclude>
@@ -229,6 +232,21 @@
     </ClInclude>
     <ClInclude Include="PlayBackGround.h">
       <Filter>LevelClass\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayText.h">
+      <Filter>Object%28Game%29\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayTextObject.h">
+      <Filter>Object%28Game%29\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayUnitObject.h">
+      <Filter>Object%28Game%29\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayUnitText.h">
+      <Filter>Object%28Game%29\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayStatManager.h">
+      <Filter>Object%28Game%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -285,6 +303,9 @@
     </Filter>
     <Filter Include="LevelClass\Play">
       <UniqueIdentifier>{e9237d99-1e9c-4c61-8593-e6957c3bd04b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object%28Game%29\Manager">
+      <UniqueIdentifier>{801b94b5-e5d7-49fe-bda1-8bc510848be0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

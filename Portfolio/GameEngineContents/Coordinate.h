@@ -42,7 +42,23 @@ public:
 		SetPosition({ LUPos_.x + (DotSizeX / 2), LUPos_.y + (DotSizeY / 2) });
 	}
 
+	inline void SetOFF()
+	{
+		IsActive_ = false;
+	}
+	inline void SetON()
+	{
+		IsActive_ = true;
+	}
+	inline bool IsActive() const
+	{
+		return IsActive_;
+	}
+
+
 	void SetBaseValue(GamePlayObject* _Object, Direction _Dir = Direction::None, const float4& _Size = { DotSizeX, DotSizeY });
+
+	bool ApplyActive();
 
 protected:
 	void Start() override;
@@ -53,6 +69,9 @@ private:
 	float4 Pos_;
 	float4 LUPos_;
 	GamePlayObject* Object_;
+	bool IsActive_;
+
+
 
 	
 	// img

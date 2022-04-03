@@ -1,6 +1,5 @@
 #pragma once
 #include "GamePlayUnitObject.h"
-#include "GamePlayTextObject.h"
 
 // Ό³Έν :
 class Grass_Unit : public GamePlayUnitObject

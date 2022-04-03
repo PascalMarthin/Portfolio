@@ -26,7 +26,6 @@ protected:
 
 private:
 	static Defeat_Text* Inst_;
-	void StatDefeat();
 	Defeat_Text();
 	~Defeat_Text();
 

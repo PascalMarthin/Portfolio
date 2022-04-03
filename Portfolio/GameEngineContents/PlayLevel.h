@@ -3,6 +3,9 @@
 #include <GameEngineBase/GameEngineMath.h>
 #include "GamePlayGobal.h"
 #include "StageData.h"
+#include "GamePlayTextObject.h"
+#include "GamePlayUnitObject.h"
+#include "GamePlayUnitText.h"
 
 // 설명 : Stage 정보를 받아 화면에 출력해주는 Level
 class GamePlayObject;
@@ -28,7 +31,7 @@ private:
 	void CreatMap (std::map<int, std::map<int, ObjectName>>& _Stage);
 	void ScanMap();
 	void SetFunction(GamePlayObject* _LeftObject, GamePlayObject* _RightObject);
-	void SetObjectStat();
+	void SetObjectStat(Coordinate* _Unit, Coordinate* _Verb, Coordinate* _Stat);
 	bool KeyCheck();
 	void Move(Direction _Dir);
 

@@ -1,9 +1,5 @@
 #pragma once
-
-// 설명 :
-#pragma once
-#include "GamePlayUnitObject.h"
-#include "GamePlayTextObject.h"
+#include "GamePlayUnitText.h"
 
 // 설명 :
 class Water_Unit : public GamePlayUnitObject
@@ -40,7 +36,7 @@ private:
 };
 
 
-class Water_Text : public GamePlayTextObject
+class Water_Text : public GamePlayUnitText
 {
 
 public:

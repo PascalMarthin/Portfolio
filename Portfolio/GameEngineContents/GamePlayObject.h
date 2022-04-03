@@ -16,65 +16,37 @@ public:
 	GamePlayObject& operator=(const GamePlayObject& _Other) = delete;
 	GamePlayObject& operator=(GamePlayObject&& _Other) noexcept = delete;
 
-	inline GameEngineImage* GetImage()
+	inline GameEngineImage* GetImage() const
 	{
 		return Image_;
 	}
 
 	
-	inline ObjectName GetName() const
+	inline const ObjectName GetName() const
 	{
 		return Name_;
 	}
-	inline ObjectType GetType() const
+	inline const ObjectType GetType() const
 	{
 		return Type_;
 	}
 
-	inline TextType GetTextType() const
+	inline const TextType GetTextType() const
 	{
 		return TextType_;
 	}
-	inline void SetOFF()
-	{
-		IsActive_ = false;
-	}
-	inline void SetON()
-	{
-		IsActive_ = true;
-	}
-	inline bool IsActive() const
-	{
-		return IsActive_;
-	}
-
-	GamePlayObject* GetTextUnit()
-	{
-		if (TextType_ != TextType::Unit_Text)
-		{
-			MsgBoxAssert("Unit _ Text 형식이 아닌 GamePlayObject 입니다")
-		}
-		return TextUnit_;
-		
-	}
-
-	std::vector<ObjectName>& GetApplyStat()
-	{
-		if (Type_ != ObjectType::Unit)
-		{
-			MsgBoxAssert("Unit 형식이 아닌 GamePlayObject 입니다")
-		}
-		return ApplyStat_;
-	}
 
 	virtual void SettingAbility(){}
+
+	// 필요할때 사용
+	virtual void UnitObjectFucntion() 
+	{
+		MsgBoxAssert("오버라이드가 안되어있습니다(or 유닛오브젝트가 아닙니다)");
+	}
 	//virtual void Reset() {}
 	virtual void Destroy() = 0;
 
 protected:
-	// Only Text_Unit, OtherObject must be nullptr
-	GamePlayObject* TextUnit_;
-	//
 	GameEngineImage* Image_;
 
 	ObjectName Name_;
@@ -82,9 +54,6 @@ protected:
 	TextType TextType_;
 	StatName Stat_;
 
-	bool IsActive_;
-
-	std::vector<ObjectName> ApplyStat_;
 private:
 
 };
