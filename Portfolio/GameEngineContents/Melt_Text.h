@@ -22,7 +22,6 @@ public:
 	void SettingAbility() override;
 
 protected:
-	void StatEffect() override;
 
 private:
 	static Melt_Text* Inst_;

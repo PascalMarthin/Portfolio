@@ -27,7 +27,7 @@ protected:
 private:
 	void CreatMap (std::map<int, std::map<int, ObjectName>>& _Stage);
 	void ScanMap();
-	void TranslateFunction(GamePlayObject* _LeftObject, GamePlayObject* _RightObject);
+	void SetFunction(GamePlayObject* _LeftObject, GamePlayObject* _RightObject);
 	void SetObjectStat();
 	bool KeyCheck();
 	void Move(Direction _Dir);

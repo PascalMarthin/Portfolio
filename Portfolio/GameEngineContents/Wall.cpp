@@ -34,6 +34,7 @@ void Wall_Text::SettingAbility()
 	Name_ = ObjectName::Wall_Text;
 	Type_ = ObjectType::Text;
 	TextType_ = TextType::Unit_Text;
+	TextUnit_ = Wall_Unit::GetInst();
 
 	Image_ = GameEngineImageManager::GetInst()->Find("text_wall_sheet.bmp");
 

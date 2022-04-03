@@ -5,13 +5,9 @@
 #include "GamePlayObject.h"
 #include <vector>
 
-// Ό³Έν :
-class PlayLevel;
-class MainLevel;
+
 class Coordinate : public GameEngineActor
 {
-	friend PlayLevel;
-	friend MainLevel;
 public:
 	// constrcuter destructer
 	Coordinate();
@@ -28,6 +24,11 @@ public:
 	//	Pos_ = _Pos;
 	//}
 
+	inline GamePlayObject* GetObjectInst() const
+	{
+		return Object_;
+	}
+
 	void SetCFrame(int _Start, int _End)
 	{
 		CurrentFrame_ = _Start;
@@ -41,6 +42,7 @@ public:
 		SetPosition({ LUPos_.x + (DotSizeX / 2), LUPos_.y + (DotSizeY / 2) });
 	}
 
+	void SetBaseValue(GamePlayObject* _Object, Direction _Dir = Direction::None, const float4& _Size = { DotSizeX, DotSizeY });
 
 protected:
 	void Start() override;
@@ -63,9 +65,6 @@ private:
 	Direction UnitDirection_;
 
 	void FrameUpdate();
-	void SetImg(GameEngineImage* _Img, Direction _Dir = Direction::None, const float4& _Size = { DotSizeX, DotSizeY });
-
-	GameEngineImage* ObjectImage_;
 
 };
 

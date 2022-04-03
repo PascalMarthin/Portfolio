@@ -15,6 +15,7 @@ void Push_Text::SettingAbility()
 	Name_ = ObjectName::Push_Text;
 	Type_ = ObjectType::Text;
 	TextType_ = TextType::Stat_Text;
+	Stat_ = StatName::Defeat;
 
 	Image_ = GameEngineImageManager::GetInst()->Find("text_push_sheet.bmp");
 }

@@ -33,6 +33,7 @@ void Skull_Text::SettingAbility()
 	Name_ = ObjectName::Skull_Text;
 	Type_ = ObjectType::Text;
 	TextType_ = TextType::Unit_Text;
+	TextUnit_ = Skull_Unit::GetInst();
 
 	Image_ = GameEngineImageManager::GetInst()->Find("text_skull_sheet.bmp");
 }

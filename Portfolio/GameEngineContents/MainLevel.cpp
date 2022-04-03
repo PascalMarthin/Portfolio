@@ -130,7 +130,7 @@ void MainLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 			{
 				Coordinate* Coordi = CreateActor<Coordinate>(1);
 				Coordi->SetPos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY)});
-				Coordi->SetImg(Idx->GetImage());
+				Coordi->SetBaseValue(Idx);
 				MainMap_[y][x] = Coordi;
 			}
 		}

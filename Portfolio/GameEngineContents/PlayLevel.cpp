@@ -71,8 +71,7 @@ void PlayLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 			}
 			Coordinate* Coordi = CreateActor<Coordinate>(1);
 			Coordi->SetPos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) });
-			Coordi->Object_ = Idx;
-			Coordi->SetImg(Idx->GetImage());
+			Coordi->SetBaseValue(Idx);
 			CurrentMap_[y][x].push_back(Coordi);
 		}
 	}
@@ -107,21 +106,24 @@ void PlayLevel::ScanMap()
 					MsgBoxAssert("Block이 nullptr인데 왜 null이지?");
 				}
 
-				if ((Block[i]->Object_)->GetTextType() == TextType::Verb_Text)
+				if ((Block[i]->GetObjectInst())->GetTextType() == TextType::Verb_Text)
 				{
 					if (Y > 0 && Y < MapScale_.iy()-1)
 					{
 						for (int j = 0; j < CurrentMap_[Y - 1][X].size(); j++)
 						{
 
-							if ((CurrentMap_[Y - 1][X][j]->Object_)->GetTextType() == TextType::Unit_Text)
+							if ((CurrentMap_[Y - 1][X][j]->GetObjectInst())->GetTextType() == TextType::Unit_Text)
 							{
 								for (int k = 0; k < CurrentMap_[Y + 1][X].size(); k++)
 								{
-									if ((CurrentMap_[Y + 1][X][k]->Object_)->GetTextType() == TextType::Stat_Text || (CurrentMap_[Y + 1][X][k]->Object_)->GetTextType() == TextType::Unit_Text)
+									if ((CurrentMap_[Y + 1][X][k]->GetObjectInst())->GetTextType() == TextType::Stat_Text || (CurrentMap_[Y + 1][X][k]->GetObjectInst())->GetTextType() == TextType::Unit_Text)
 									{
 										// y 완성
-										ActiveFunction_.push_back(std::make_pair((CurrentMap_[Y - 1][X][j]->Object_), (CurrentMap_[Y + 1][X][k]->Object_)));
+										(CurrentMap_[Y - 1][X][j]->GetObjectInst())->SetON();
+										(Block[i]->GetObjectInst())->SetON();
+										(CurrentMap_[Y + 1][X][k]->GetObjectInst())->SetON();
+										ActiveFunction_.push_back(std::make_pair((CurrentMap_[Y - 1][X][j]->GetObjectInst())->GetTextUnit(), (CurrentMap_[Y + 1][X][k]->GetObjectInst())));
 										break;
 									}
 								}
@@ -136,14 +138,14 @@ void PlayLevel::ScanMap()
 						for (int j = 0; j < CurrentMap_[Y][X - 1].size(); j++)
 						{
 
-							if ((CurrentMap_[Y][X - 1][j]->Object_)->GetTextType() == TextType::Unit_Text)
+							if ((CurrentMap_[Y][X - 1][j]->GetObjectInst())->GetTextType() == TextType::Unit_Text)
 							{
 								for (int k = 0; k < CurrentMap_[Y][X + 1].size(); k++)
 								{
-									if ((CurrentMap_[Y][X + 1][k]->Object_)->GetTextType() == TextType::Stat_Text || (CurrentMap_[Y][X + 1][k]->Object_)->GetTextType() == TextType::Unit_Text)
+									if ((CurrentMap_[Y][X + 1][k]->GetObjectInst())->GetTextType() == TextType::Stat_Text || (CurrentMap_[Y][X + 1][k]->GetObjectInst())->GetTextType() == TextType::Unit_Text)
 									{
 										// x 완성
-										ActiveFunction_.push_back(std::make_pair((CurrentMap_[Y][X - 1][j]->Object_), (CurrentMap_[Y][X + 1][k]->Object_)));
+										ActiveFunction_.push_back(std::make_pair((CurrentMap_[Y][X - 1][j]->GetObjectInst()), (CurrentMap_[Y][X + 1][k]->GetObjectInst())));
 										break;
 									}
 								}
@@ -165,15 +167,14 @@ void PlayLevel::SetObjectStat()
 	std::vector<std::pair<GamePlayObject*, GamePlayObject*>>::iterator EndVector = ActiveFunction_.end();
 	for (; StartVector != EndVector; ++StartVector)
 	{
-		TranslateFunction((*StartVector).first, (*StartVector).second);
+		SetFunction((*StartVector).first, (*StartVector).second);
 	}
 		
 }
 
-void PlayLevel::TranslateFunction(GamePlayObject* _LeftObject, GamePlayObject* _RightObject)
+void PlayLevel::SetFunction(GamePlayObject* _LeftObject, GamePlayObject* _RightObject)
 {
-	
-	
+	(_LeftObject->GetApplyStat()).push_back(_RightObject->GetName());
 }
 
 bool PlayLevel::KeyCheck()

@@ -3,8 +3,7 @@
 #include <GameEngineBase/GameEngineWindow.h>
 
 Coordinate::Coordinate() 
-	: ObjectImage_(nullptr)
-	, Pos_({0, 0})
+	: Pos_({0, 0})
 	, LUPos_({ 0, 0 })
 	, CurrentImgScale({0, 0})
 	, CurrentImgPivot({0, 0})
@@ -32,14 +31,19 @@ void Coordinate::Update()
 
 void Coordinate::Render()
 {
-	GameEngine::BackBufferImage()->TransCopy(ObjectImage_, LUPos_, CurrentImgScale, CurrentImgPivot, CurrentImgScale, RGB(255, 0, 255));
+	GameEngine::BackBufferImage()->TransCopy(Object_->GetImage(), LUPos_, CurrentImgScale, CurrentImgPivot, CurrentImgScale, RGB(255, 0, 255));
 }
 
 void Coordinate::FrameUpdate()
 {
-	if (ObjectImage_->IsCut() == false)
+	if (Object_->GetImage()->IsCut() == false)
 	{
 		MsgBoxAssert("Coordinate ¸øÀÚ¸§");
+	}
+
+	if (Object_)
+	{
+
 	}
 	CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime();
 	if (0 >= CurrentInterTime_)
@@ -54,13 +58,13 @@ void Coordinate::FrameUpdate()
 	}
 
 
-	CurrentImgScale = ObjectImage_->GetCutScale(CurrentFrame_);
-	CurrentImgPivot = ObjectImage_->GetCutPivot(CurrentFrame_);
+	CurrentImgScale = Object_->GetImage()->GetCutScale(CurrentFrame_);
+	CurrentImgPivot = Object_->GetImage()->GetCutPivot(CurrentFrame_);
 }
 
-void Coordinate::SetImg(GameEngineImage* _Img, Direction _Dir, const float4& _Size)
+void Coordinate::SetBaseValue(GamePlayObject* _Object, Direction _Dir, const float4& _Size)
 {
-	ObjectImage_ = _Img;
+	Object_ = _Object;
 	UnitDirection_ = _Dir;
 	CurrentImgScale = _Size;
 }

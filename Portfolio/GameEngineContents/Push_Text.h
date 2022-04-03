@@ -22,7 +22,6 @@ public:
 	void SettingAbility() override;
 
 protected:
-	void StatEffect() override;
 
 private:
 	static Push_Text* Inst_;

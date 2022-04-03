@@ -33,6 +33,7 @@ void Flag_Text::SettingAbility()
 	Name_ = ObjectName::Flag_Text;
 	Type_ = ObjectType::Text;
 	TextType_ = TextType::Unit_Text;
+	TextUnit_ = Flag_Unit::GetInst();
 
 	Image_ = GameEngineImageManager::GetInst()->Find("text_flag_Sheet.bmp");
 }

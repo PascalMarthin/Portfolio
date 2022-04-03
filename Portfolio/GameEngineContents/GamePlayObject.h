@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineImage.h>
 #include <GameEngine/GameEngineImageManager.h>
+#include <GameEngineBase/GameEngineDebug.h>
 #include "GamePlayEnum.h"
 
 // 설명 :
@@ -15,7 +16,7 @@ public:
 	GamePlayObject& operator=(const GamePlayObject& _Other) = delete;
 	GamePlayObject& operator=(GamePlayObject&& _Other) noexcept = delete;
 
-	inline GameEngineImage* GetImage() const
+	inline GameEngineImage* GetImage()
 	{
 		return Image_;
 	}
@@ -47,20 +48,43 @@ public:
 		return IsActive_;
 	}
 
+	GamePlayObject* GetTextUnit()
+	{
+		if (TextType_ != TextType::Unit_Text)
+		{
+			MsgBoxAssert("Unit _ Text 형식이 아닌 GamePlayObject 입니다")
+		}
+		return TextUnit_;
+		
+	}
+
+	std::vector<ObjectName>& GetApplyStat()
+	{
+		if (Type_ != ObjectType::Unit)
+		{
+			MsgBoxAssert("Unit 형식이 아닌 GamePlayObject 입니다")
+		}
+		return ApplyStat_;
+	}
+
 	virtual void SettingAbility(){}
+	//virtual void Reset() {}
 	virtual void Destroy() = 0;
 
-	virtual void StatEffect() {}
 protected:
+	// Only Text_Unit, OtherObject must be nullptr
+	GamePlayObject* TextUnit_;
+	//
 	GameEngineImage* Image_;
 
 	ObjectName Name_;
 	ObjectType Type_;
-
 	TextType TextType_;
+	StatName Stat_;
+
 	bool IsActive_;
 
-
+	std::vector<ObjectName> ApplyStat_;
 private:
 
 };

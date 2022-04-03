@@ -23,7 +23,6 @@ public:
 	void SettingAbility() override;
 
 protected:
-	void StatEffect() override;
 
 private:
 	static Defeat_Text* Inst_;

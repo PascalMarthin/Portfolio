@@ -34,6 +34,7 @@ void Baba_Text::SettingAbility()
 	Name_ = ObjectName::Baba_Text;
 	Type_ = ObjectType::Text;
 	TextType_ = TextType::Unit_Text;
+	TextUnit_ = Baba_Unit::GetInst();
 
 	Image_ = GameEngineImageManager::GetInst()->Find("text_baba_Sheet.bmp");
 

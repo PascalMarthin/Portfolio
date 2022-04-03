@@ -32,6 +32,19 @@ enum class Stage
 	Stage7
 };
 
+enum class StatName
+{
+	Error,
+	Stop,
+	Defeat,
+	Hot,
+	Melt,
+	Push,
+	Sink,
+	Win,
+	You,
+};
+
 enum class ObjectName
 {
 	Error,

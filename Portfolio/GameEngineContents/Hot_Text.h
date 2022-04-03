@@ -22,11 +22,9 @@ public:
 	void SettingAbility() override;
 
 protected:
-	void StatEffect() override;
 
 private:
 	static Hot_Text* Inst_;
-	void StatHot();
 	Hot_Text();
 	~Hot_Text();
 

@@ -34,6 +34,7 @@ void Rock_Text::SettingAbility()
 	Name_ = ObjectName::Rock_Text;
 	Type_ = ObjectType::Text;
 	TextType_ = TextType::Unit_Text;
+	TextUnit_ = Rock_Unit::GetInst();
 
 	Image_ = GameEngineImageManager::GetInst()->Find("text_rock_sheet.bmp");
 }
