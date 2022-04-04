@@ -33,8 +33,8 @@ private:
 	//void SetFunction(GamePlayObject* _LeftObject, GamePlayObject* _RightObject);
 	void ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb, Coordinate* _Stat);
 	void ChangeUnit(const GamePlayObject* _Left, GamePlayObject* _Right);
-	void ApplyStat();
-	void CheckBit(const GamePlayStatManager* _Left, const GamePlayStatManager* _Right = nullptr);
+	void CheckStat();
+	void CheckBit (std::vector<Coordinate*>& _Value);
 	bool KeyCheck();
 	void Move(Direction _Dir);
 

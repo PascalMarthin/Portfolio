@@ -168,8 +168,8 @@ void PlayLevel::ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb, Coordin
 	if (_Stat->GetObjectInst()->GetType() == ObjectType::Text)
 	{
 		//다운캐스팅 및 업캐스팅
-		GamePlayStatManager* Value = ((GamePlayUnitObject*)(_Unit->GetObjectInst()));
-		Value->ApplyStat((GamePlayTextStat*)(_Stat->GetObjectInst()));
+		
+		((GamePlayUnitObject*)(_Unit->GetObjectInst()))->ApplyStat((GamePlayTextStat*)(_Stat->GetObjectInst()));
 	}
 
 	if (_Stat->GetObjectInst()->GetType() == ObjectType::Unit)
@@ -202,7 +202,7 @@ void PlayLevel::ChangeUnit(const GamePlayObject* _Left, GamePlayObject* _Right)
 }
 
 //you, stop push는 검사 X
-void PlayLevel::ApplyStat()
+void PlayLevel::CheckStat()
 {
 	std::map<int, std::map<int, std::vector<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();
 	std::map<int, std::map<int, std::vector<Coordinate*>>>::iterator EndIterY = CurrentMap_.end();
@@ -214,32 +214,74 @@ void PlayLevel::ApplyStat()
 		for (; StartIterX != EndIterX; ++StartIterX)
 		{
 
-			std::vector <Coordinate*>& Block = StartIterX->second;
-			GamePlayStatManager* BaseValue = (GamePlayUnitObject*)(Block[0]->GetObjectInst());
-			unsigned __int64 Idx = 0;
-
-			for (size_t i = 1; i < Block.size(); i++)
-			{
-				if (Block[i]->GetObjectInst()->GetType() == ObjectType::Text)
-				{
-					// 차후 제작
-					continue;
-				}
-				GamePlayStatManager* NextValue = (GamePlayUnitObject*)(Block[i]->GetObjectInst());
-				Idx += NextValue->GetAllStat();
-			}
-			if (BaseValue->GetAllStat() != Idx)
-			{
-
-			}
+			CheckBit(StartIterX->second);
 
 
 		}
 	}
 }
-
-void PlayLevel::CheckBit(const GamePlayStatManager* _Left, const GamePlayStatManager* _Right)
+Coordinate* PlayLevel::FindUnitByStat(std::vector<Coordinate*>& _Value, unsigned __int64 _Stat)
 {
+	for (auto iter : _Value)
+	{
+		if ((static_cast<GamePlayUnitObject*>((*iter).GetObjectInst())->GetAllStat() & _Stat) == _Stat)
+		{
+			if (/*iter death() */ )
+			{
+
+			}
+		}
+
+		
+		
+	}
+}
+
+void PlayLevel::CheckBit(std::vector<Coordinate*>& _Value)
+{
+	unsigned __int64 PastIdx = 0;
+	unsigned __int64 CurrentIdx = 0;
+	DWORD dwFlag = 0;
+	for (size_t i = 0; i < _Value.size(); i++)
+	{
+		dwFlag |= ((GamePlayUnitObject*)(_Value[i]->GetObjectInst()))->GetAllStat();
+		((GamePlayUnitObject*)(_Value[i]->GetObjectInst()))->Find(SHot);
+		//if (_Value[i]->GetObjectInst()->GetType() == ObjectType::Text)
+		//{
+		//	// 차후 제작
+		//	continue;
+		//}
+
+		//CurrentIdx += ((GamePlayUnitObject*)(_Value[i]->GetObjectInst()))->GetAllStat();
+		//{
+		//	// 우선 순위에 따른 배열
+		//	if ((CurrentIdx & (SDefeat+SYou)) == (SDefeat + SYou))
+		//	{
+		//		for (int j = 0; j < i; j++)
+		//		{
+		//			if (((GamePlayUnitObject*)(_Value[j]->GetObjectInst()))->Find(SYou) == true)
+		//			{
+
+		//			}
+		//			
+		//		}
+
+		//	}
+		//}
+
+
+
+		//PastIdx = CurrentIdx;
+	}
+	/*if (BaseValue->GetAllStat() != Idx)
+	{
+
+	}*/
+
+	if ((dwFlag & SHot) && (dwFlag & SMelt))
+	{
+
+	}
 
 }
 

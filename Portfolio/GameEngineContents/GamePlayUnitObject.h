@@ -1,8 +1,8 @@
 #pragma once
 #include "GamePlayObject.h"
-#include "GamePlayStatManager.h"
 
-class GamePlayUnitObject : public GamePlayObject, public GamePlayStatManager
+class GamePlayTextStat;
+class GamePlayUnitObject : public GamePlayObject
 {
 public:
 	GamePlayUnitObject();
@@ -16,17 +16,22 @@ public:
 	virtual void SettingAbility() {}
 	virtual void Destroy() {}
 
-	//inline std::vector<StatName>& GetApplyStat()
-	//{
-	//	return ApplyStat_;
-	//}
-
 	void UnitObjectFucntion() override;
 
+
+	void ApplyStat(const GamePlayTextStat* _Stat);
+	inline unsigned __int64& GetAllStat()
+	{
+		return AllStat_;
+	}
+
+	void Reset();
+	bool Find(unsigned __int64 _Idx);
+
 protected:
+	unsigned __int64 AllStat_;
 
 private:
-	//std::vector<StatName> ApplyStat_;
 
 };
 
