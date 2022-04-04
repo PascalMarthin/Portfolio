@@ -16,4 +16,6 @@ void Tile_Unit::SettingAbility()
 	Type_ = ObjectType::Unit;
 
 	Image_ = GameEngineImageManager::GetInst()->Find("unit_tile_sheet.bmp");
+	AnimationTake_["Tile_Unit"].push_back(std::make_pair(0, 2));
+
 }

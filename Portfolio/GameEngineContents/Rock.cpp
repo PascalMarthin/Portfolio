@@ -19,6 +19,7 @@ void Rock_Unit::SettingAbility()
 	Type_ = ObjectType::Unit;
 
 	Image_ = GameEngineImageManager::GetInst()->Find("unit_rock_sheet.bmp");
+	AnimationTake_["Rock_Unit"].push_back(std::make_pair(0, 2));
 }
 
 Rock_Text::Rock_Text()
@@ -37,4 +38,7 @@ void Rock_Text::SettingAbility()
 	TextUnit_ = Rock_Unit::GetInst();
 
 	Image_ = GameEngineImageManager::GetInst()->Find("text_rock_sheet.bmp");
+	AnimationTake_["Rock_Text_OFF"].push_back(std::make_pair(0, 2));
+	AnimationTake_["Rock_Text_ON"].push_back(std::make_pair(3, 5));
+
 }

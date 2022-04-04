@@ -1,8 +1,8 @@
 #pragma once
-#include "GamePlayTextObject.h"
+#include "GamePlayTextStat.h"
 
 // Ό³Έν :
-class Defeat_Text : public GamePlayTextObject
+class Defeat_Text : public GamePlayTextStat
 {
 public:
 	static Defeat_Text* GetInst()

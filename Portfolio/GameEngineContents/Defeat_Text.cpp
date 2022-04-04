@@ -19,6 +19,9 @@ void Defeat_Text::SettingAbility()
 	//StatFunction = StatDefeat;
 
 	Image_ = GameEngineImageManager::GetInst()->Find("text_defeat_sheet.bmp");
+	AnimationTake_["Defeat_Text_OFF"].push_back(std::make_pair(0, 2));
+	AnimationTake_["Defeat_Text_ON"].push_back(std::make_pair(3, 5));
+
 }
 
 

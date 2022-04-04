@@ -19,6 +19,22 @@ void Baba_Unit::SettingAbility()
 	Type_ = ObjectType::Unit;
 
 	Image_ = GameEngineImageManager::GetInst()->Find("unit_baba_Sheet.bmp");
+	AnimationTake_["Baba_Unit_Right"].push_back(std::make_pair(0, 2));
+	AnimationTake_["Baba_Unit_Right"].push_back(std::make_pair(3, 5));
+	AnimationTake_["Baba_Unit_Right"].push_back(std::make_pair(6, 8));
+	//AnimationTake_["Baba_Unit_Right"].push_back(std::make_pair(9, 11));
+	AnimationTake_["Baba_Unit_Up"].push_back(std::make_pair(12, 14));
+	AnimationTake_["Baba_Unit_Up"].push_back(std::make_pair(15, 17));
+	AnimationTake_["Baba_Unit_Up"].push_back(std::make_pair(18, 20));
+	//AnimationTake_["Baba_Unit_Up"].push_back(std::make_pair(21, 23));
+	AnimationTake_["Baba_Unit_Left"].push_back(std::make_pair(24, 26));
+	AnimationTake_["Baba_Unit_Left"].push_back(std::make_pair(27, 29));
+	AnimationTake_["Baba_Unit_Left"].push_back(std::make_pair(30, 32));
+	//AnimationTake_["Baba_Unit_Left"].push_back(std::make_pair(33, 35));
+	AnimationTake_["Baba_Unit_Down"].push_back(std::make_pair(36, 38));
+	AnimationTake_["Baba_Unit_Down"].push_back(std::make_pair(39, 41));
+	AnimationTake_["Baba_Unit_Down"].push_back(std::make_pair(42, 44));
+	//AnimationTake_["Baba_Unit_Down"].push_back(std::make_pair(45, 47));
 }
 
 
@@ -38,5 +54,8 @@ void Baba_Text::SettingAbility()
 	TextUnit_ = Baba_Unit::GetInst();
 
 	Image_ = GameEngineImageManager::GetInst()->Find("text_baba_Sheet.bmp");
+	AnimationTake_["Baba_Text_OFF"].push_back(std::make_pair(0, 2));
+	AnimationTake_["Baba_Text_ON"].push_back(std::make_pair(3, 5));
+
 
 }

@@ -18,4 +18,7 @@ void Melt_Text::SettingAbility()
 	Stat_ = StatName::Melt;
 
 	Image_ = GameEngineImageManager::GetInst()->Find("text_melt_sheet.bmp");
+	AnimationTake_["Melt_Text_OFF"].push_back(std::make_pair(0, 2));
+	AnimationTake_["Melt_Text_ON"].push_back(std::make_pair(3, 5));
+
 }

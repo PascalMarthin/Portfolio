@@ -8,7 +8,7 @@ Coordinate::Coordinate()
 	, CurrentImgScale({0, 0})
 	, CurrentImgPivot({0, 0})
 	, Object_(nullptr)
-	, UnitDirection_(Direction::Error)
+	, UnitDir_(Direction::Error)
 	, CurrentFrame_(0)
 	, StartFrame_(0)
 	, EndFrame_(2)
@@ -88,7 +88,10 @@ bool Coordinate::ApplyActive()
 
 void Coordinate::SetBaseValue(GamePlayObject* _Object, Direction _Dir, const float4& _Size)
 {
+	if (UnitDir_ == Direction::Error)
+	{
+		UnitDir_ = _Dir;
+	}
 	Object_ = _Object;
-	UnitDirection_ = _Dir;
 	CurrentImgScale = _Size;
 }

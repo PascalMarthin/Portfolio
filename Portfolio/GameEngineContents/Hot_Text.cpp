@@ -18,7 +18,7 @@ void Hot_Text::SettingAbility()
 	Stat_ = StatName::Hot;
 
 	Image_ = GameEngineImageManager::GetInst()->Find("text_hot_sheet.bmp");
+	AnimationTake_["Hot_Text_OFF"].push_back(std::make_pair(0, 2));
+	AnimationTake_["Hot_Text_ON"].push_back(std::make_pair(3, 5));
 }
 
-	//보글보글거리는 이펙트가 추가
-	//자신과 같은 칸에 존재하는 MELT 속성의 개체를 모두 파괴한다

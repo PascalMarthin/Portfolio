@@ -1,15 +1,9 @@
 #include "GamePlayStatManager.h"
 #include <GameEngineBase/GameEngineDebug.h>
 
+
 GamePlayStatManager::GamePlayStatManager() 
-	: Defeat_(false)
-    , Hot_(false)
-    , Melt_(false)
-    , Push_(false)
-    , Sink_(false)
-    , Stop_(false)
-    , Win_(false)
-    , You_(false)
+	: AllStat_(0)
 {
 
 }
@@ -18,100 +12,82 @@ GamePlayStatManager::~GamePlayStatManager()
 {
 }
 
-bool GamePlayStatManager::CheckStat(GamePlayUnitObject* _Unit)
+void GamePlayStatManager::Reset()
 {
-	std::vector<StatName>::iterator StartIter = _Unit->GetApplyStat().begin();
-	std::vector<StatName>::iterator EndIter = _Unit->GetApplyStat().end();
-	if (StartIter == EndIter)
+	AllStat_ = 0;
+}
+
+void GamePlayStatManager::ApplyStat(const GamePlayTextStat* _Stat)
+{
+	switch (_Stat->GetStat())
 	{
-		return false;
+	case StatName::Stop:
+		SetStop();
+		break;
+	case StatName::Defeat:
+		SetDefeat();
+		break;
+	case StatName::Hot:
+		SetHot();
+		break;
+	case StatName::Melt:
+		SetMelt();
+		break;
+	case StatName::Push:
+		SetPush();
+		break;
+	case StatName::Sink:
+		SetSink();
+		break;
+	case StatName::Win:
+		SetWin();
+		break;
+	case StatName::You:
+		SetYou();
+		break;
+	default:
+		MsgBoxAssert("CheckStat is Error");
+		break;
 	}
-	for (; StartIter != EndIter; ++StartIter)
-	{
-		switch (*StartIter)
-		{
-		case StatName::Error:
-			MsgBoxAssert("CheckStat is Error");
-			break;
-		case StatName::Stop:
-			SetStop(_Unit);
-			break;
-		case StatName::Defeat:
-			SetDefeat(_Unit);
-			break;
-		case StatName::Hot:
-			SetHot(_Unit);
-			break;
-		case StatName::Melt:
-			SetMelt(_Unit);
-			break;
-		case StatName::Push:
-			SetPush(_Unit);
-			break;
-		case StatName::Sink:
-			SetSink(_Unit);
-			break;
-		case StatName::Win:
-			SetWin(_Unit);
-			break;
-		case StatName::You:
-			SetYou(_Unit);
-			break;
-		default:
-			break;
-		}
-	}
-	return true;
 }
 
-void GamePlayStatManager::SetDefeat(GamePlayUnitObject* _Unit)
+void GamePlayStatManager::SetDefeat()
 {
-	if (_Unit->You_ == true)
-	{
-		_Unit->Kill();
-	}
-	Defeat_ = true;
+	AllStat_ += 1;
 }
 
-void GamePlayStatManager::SetHot(GamePlayUnitObject* _Unit)
+void GamePlayStatManager::SetHot()
 {
-	if (_Unit->Melt_ == true)
-	{
-		_Unit->Kill();
-	}
-	Hot_ = true;
+	AllStat_ += 2;
 }
 
-void GamePlayStatManager::SetMelt(GamePlayUnitObject* _Unit)
+
+void GamePlayStatManager::SetMelt()
 {
-	if (_Unit->Hot_ == true)
-	{
-		_Unit->Kill();
-	}
-	Melt_ = true;
+	AllStat_ += 4;
 }
 
-void GamePlayStatManager::SetPush(GamePlayUnitObject* _Unit)
+void GamePlayStatManager::SetPush()
 {
-	Push_ = true;
+	AllStat_ += 8;
 }
 
-void GamePlayStatManager::SetSink(GamePlayUnitObject* _Unit)
+void GamePlayStatManager::SetSink()
 {
-
+	AllStat_ += 16;
 }
 
-void GamePlayStatManager::SetStop(GamePlayUnitObject* _Unit)
+void GamePlayStatManager::SetStop()
 {
-
+	AllStat_ += 32;
 }
 
-void GamePlayStatManager::SetWin(GamePlayUnitObject* _Unit)
+void GamePlayStatManager::SetWin()
 {
-
+	AllStat_ += 64;
 }
 
-void GamePlayStatManager::SetYou(GamePlayUnitObject* _Unit)
+void GamePlayStatManager::SetYou()
 {
-
+	AllStat_ += 128;
 }

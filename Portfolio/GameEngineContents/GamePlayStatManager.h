@@ -1,5 +1,5 @@
 #pragma once
-#include "GamePlayUnitObject.h"
+#include "GamePlayTextStat.h"
 #include "GamePlayEnum.h"
 #include <vector>
 
@@ -17,38 +17,30 @@ public:
 	GamePlayStatManager& operator=(const GamePlayStatManager& _Other) = delete;
 	GamePlayStatManager& operator=(GamePlayStatManager&& _Other) noexcept = delete;
 
-	bool CheckStat(GamePlayUnitObject* _Unit);
+	void ApplyStat(const GamePlayTextStat* _Stat);
+	inline unsigned __int64& GetAllStat()
+	{
+		return AllStat_;
+	}
 
-	inline void Kill()
-	{
-		Death = true;
-	}
-	inline bool IsDeath()
-	{
-		return Death;
-	}
+	void Reset();
+
+	
 
 
 protected:
-	bool Defeat_;
-	bool Hot_;
-	bool Melt_;
-	bool Push_;
-	bool Sink_;
-	bool Stop_;
-	bool Win_;
-	bool You_;
+	unsigned __int64 AllStat_;
 
 private:
-	void SetDefeat(GamePlayUnitObject* _Unit);
-	void SetHot(GamePlayUnitObject* _Unit);
-	void SetMelt(GamePlayUnitObject* _Unit);
-	void SetPush(GamePlayUnitObject* _Unit);
-	void SetSink(GamePlayUnitObject* _Unit);
-	void SetStop(GamePlayUnitObject* _Unit);
-	void SetWin(GamePlayUnitObject* _Unit);
-	void SetYou(GamePlayUnitObject* _Unit);
+	void SetDefeat();
+	void SetHot();
+	void SetMelt();
+	void SetPush();
+	void SetSink();
+	void SetStop();
+	void SetWin();
+	void SetYou();
 
-	bool Death;
+
 };
 

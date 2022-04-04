@@ -18,6 +18,10 @@ void Skull_Unit::SettingAbility()
 	Type_ = ObjectType::Unit;
 
 	Image_ = GameEngineImageManager::GetInst()->Find("unit_skull_sheet.bmp");
+	AnimationTake_["Skull_Unit_Right"].push_back(std::make_pair(0, 2));
+	AnimationTake_["Skull_Unit_Up"].push_back(std::make_pair(3, 5));
+	AnimationTake_["Skull_Unit_Left"].push_back(std::make_pair(6, 8));
+	AnimationTake_["Skull_Unit_Down"].push_back(std::make_pair(9, 11));
 }
 
 Skull_Text::Skull_Text()
@@ -36,4 +40,7 @@ void Skull_Text::SettingAbility()
 	TextUnit_ = Skull_Unit::GetInst();
 
 	Image_ = GameEngineImageManager::GetInst()->Find("text_skull_sheet.bmp");
+	AnimationTake_["Skull_Text_OFF"].push_back(std::make_pair(0, 2));
+	AnimationTake_["Skull_Text_ON"].push_back(std::make_pair(3, 5));
+
 }

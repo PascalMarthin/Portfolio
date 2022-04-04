@@ -56,7 +56,7 @@ public:
 	}
 
 
-	void SetBaseValue(GamePlayObject* _Object, Direction _Dir = Direction::None, const float4& _Size = { DotSizeX, DotSizeY });
+	void SetBaseValue(GamePlayObject* _Object, Direction _Dir = Direction::Right, const float4& _Size = { DotSizeX, DotSizeY });
 
 	bool ApplyActive();
 
@@ -81,7 +81,7 @@ private:
 	float CurrentInterTime_;
 	float4 CurrentImgScale;
 	float4 CurrentImgPivot;
-	Direction UnitDirection_;
+	Direction UnitDir_;
 
 	void FrameUpdate();
 

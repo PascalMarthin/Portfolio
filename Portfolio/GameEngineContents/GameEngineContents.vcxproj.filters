@@ -110,7 +110,7 @@
     <ClCompile Include="GamePlayText.cpp">
       <Filter>Object%28Game%29\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="GamePlayTextObject.cpp">
+    <ClCompile Include="GamePlayTextStat.cpp">
       <Filter>Object%28Game%29\Manager</Filter>
     </ClCompile>
     <ClCompile Include="GamePlayUnitObject.cpp">
@@ -121,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="GamePlayStatManager.cpp">
       <Filter>Object%28Game%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -236,7 +239,7 @@
     <ClInclude Include="GamePlayText.h">
       <Filter>Object%28Game%29\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="GamePlayTextObject.h">
+    <ClInclude Include="GamePlayTextStat.h">
       <Filter>Object%28Game%29\Manager</Filter>
     </ClInclude>
     <ClInclude Include="GamePlayUnitObject.h">
@@ -247,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="GamePlayStatManager.h">
       <Filter>Object%28Game%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

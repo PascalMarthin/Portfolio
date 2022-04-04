@@ -209,7 +209,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="GamePlayTextObject.h">
+    <ClInclude Include="GamePlayTextStat.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -290,6 +290,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Stop_Text.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Text.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -375,7 +379,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="GamePlayTextObject.cpp">
+    <ClCompile Include="GamePlayTextStat.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -456,6 +460,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Stop_Text.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -16,17 +16,17 @@ public:
 	virtual void SettingAbility() {}
 	virtual void Destroy() {}
 
-	inline std::vector<StatName>& GetApplyStat()
-	{
-		return ApplyStat_;
-	}
+	//inline std::vector<StatName>& GetApplyStat()
+	//{
+	//	return ApplyStat_;
+	//}
 
 	void UnitObjectFucntion() override;
 
 protected:
 
 private:
-	std::vector<StatName> ApplyStat_;
+	//std::vector<StatName> ApplyStat_;
 
 };
 

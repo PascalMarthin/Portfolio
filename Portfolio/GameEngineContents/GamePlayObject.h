@@ -2,6 +2,10 @@
 #include <GameEngine/GameEngineImage.h>
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngineBase/GameEngineDebug.h>
+#include <utility>
+#include <map>
+#include <vector>
+#include <string>
 #include "GamePlayEnum.h"
 
 // Ό³Έν :
@@ -52,8 +56,9 @@ protected:
 	ObjectName Name_;
 	ObjectType Type_;
 	TextType TextType_;
-	StatName Stat_;
 
+
+	std::map<std::string, std::vector<std::pair<int, int>>> AnimationTake_;
 private:
 
 };

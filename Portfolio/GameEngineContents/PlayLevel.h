@@ -3,7 +3,7 @@
 #include <GameEngineBase/GameEngineMath.h>
 #include "GamePlayGobal.h"
 #include "StageData.h"
-#include "GamePlayTextObject.h"
+#include "GamePlayTextStat.h"
 #include "GamePlayUnitObject.h"
 #include "GamePlayUnitText.h"
 
@@ -29,9 +29,11 @@ protected:
 
 private:
 	void CreatMap (std::map<int, std::map<int, ObjectName>>& _Stage);
-	void ScanMap();
-	void SetFunction(GamePlayObject* _LeftObject, GamePlayObject* _RightObject);
-	void SetObjectStat(Coordinate* _Unit, Coordinate* _Verb, Coordinate* _Stat);
+	void ScanFucntion();
+	//void SetFunction(GamePlayObject* _LeftObject, GamePlayObject* _RightObject);
+	void ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb, Coordinate* _Stat);
+	void ChangeUnit(const GamePlayObject* _Left, GamePlayObject* _Right);
+	void ApplyStat();
 	bool KeyCheck();
 	void Move(Direction _Dir);
 

@@ -1,7 +1,8 @@
-#include "GamePlayTextObject.h"
+#pragma once
+#include "GamePlayTextStat.h"
 
 // Ό³Έν :
-class Hot_Text : public GamePlayTextObject
+class Hot_Text : public GamePlayTextStat
 {
 public:
 	static Hot_Text* GetInst()

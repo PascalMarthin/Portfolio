@@ -35,12 +35,12 @@ enum class Stage
 enum class StatName
 {
 	Error,
-	Stop,
 	Defeat,
 	Hot,
 	Melt,
 	Push,
 	Sink,
+	Stop,
 	Win,
 	You,
 };
@@ -75,7 +75,8 @@ enum class ObjectName
 	Win_Text,
 	You_Text,
 	Default,
-	Line
+	Line,
+	Text_Unit
 };
 enum class ObjectType
 {
@@ -93,7 +94,6 @@ enum class TextType
 enum class Direction
 {
 	Error,
-	None,
 	Right,
 	Up,
 	Left,

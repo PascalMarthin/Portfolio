@@ -1,7 +1,7 @@
-#include "GamePlayTextObject.h"
+#include "GamePlayTextStat.h"
 
 // Ό³Έν :
-class Stop_Text : public GamePlayTextObject
+class Stop_Text : public GamePlayTextStat
 {
 public:
 	static Stop_Text* GetInst()

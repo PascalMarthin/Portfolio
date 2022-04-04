@@ -17,4 +17,7 @@ void Is_Text::SettingAbility()
 	TextType_ = TextType::Verb_Text;
 
 	Image_ = GameEngineImageManager::GetInst()->Find("text_is_sheet.bmp");
+	AnimationTake_["Is_Text_OFF"].push_back(std::make_pair(0, 2));
+	AnimationTake_["Is_Text_ON"].push_back(std::make_pair(3, 5));
+
 }

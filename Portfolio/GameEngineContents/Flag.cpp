@@ -18,6 +18,7 @@ void Flag_Unit::SettingAbility()
 	Type_ = ObjectType::Unit;
 
 	Image_ = GameEngineImageManager::GetInst()->Find("unit_flag_Sheet.bmp");
+	AnimationTake_["Flag_Unit"].push_back(std::make_pair(0, 2));
 }
 
 Flag_Text::Flag_Text()
@@ -36,4 +37,7 @@ void Flag_Text::SettingAbility()
 	TextUnit_ = Flag_Unit::GetInst();
 
 	Image_ = GameEngineImageManager::GetInst()->Find("text_flag_Sheet.bmp");
+	AnimationTake_["Flag_Text_OFF"].push_back(std::make_pair(0, 2));
+	AnimationTake_["Flag_Text_ON"].push_back(std::make_pair(3, 5));
+
 }

@@ -1,8 +1,8 @@
 #pragma once
-#include "GamePlayTextObject.h"
+#include "GamePlayUnitObject.h"
 
 // Ό³Έν :
-class Default : public GamePlayTextObject
+class Default : public GamePlayUnitObject
 {
 public:
 	static Default* GetInst()
