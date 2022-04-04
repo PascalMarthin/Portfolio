@@ -3,6 +3,14 @@
 #define DotSizeX 48
 #define DotSizeY 48
 #define ImageSpeed 0.15f
+#define SDefeat 1
+#define SHot 2
+#define SMelt 4
+#define SPush 8
+#define SSink 16
+#define SStop 32
+#define SWin 64
+#define SYou 128
 enum class ChangeLevel
 {
 	Error,

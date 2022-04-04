@@ -70,6 +70,7 @@ private:
 	float4 LUPos_;
 	GamePlayObject* Object_;
 	bool IsActive_;
+	bool PastActive_;
 
 
 

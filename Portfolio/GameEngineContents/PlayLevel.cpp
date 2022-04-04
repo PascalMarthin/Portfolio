@@ -216,27 +216,31 @@ void PlayLevel::ApplyStat()
 
 			std::vector <Coordinate*>& Block = StartIterX->second;
 			GamePlayStatManager* BaseValue = (GamePlayUnitObject*)(Block[0]->GetObjectInst());
-			{
-				// Check BaseValue Bit
-				//if ((BaseValue->GetAllStat()) == )
-				//{
-
-				//}
-			}
+			unsigned __int64 Idx = 0;
 
 			for (size_t i = 1; i < Block.size(); i++)
 			{
-				GamePlayStatManager* NextValue = (GamePlayUnitObject*)(Block[i]->GetObjectInst());
 				if (Block[i]->GetObjectInst()->GetType() == ObjectType::Text)
 				{
 					// 차후 제작
 					continue;
 				}
-				//unsigned __int64 Idx = ((BaseValue->GetAllStat()) + Block[i]->);
+				GamePlayStatManager* NextValue = (GamePlayUnitObject*)(Block[i]->GetObjectInst());
+				Idx += NextValue->GetAllStat();
+			}
+			if (BaseValue->GetAllStat() != Idx)
+			{
 
 			}
+
+
 		}
 	}
+}
+
+void PlayLevel::CheckBit(const GamePlayStatManager* _Left, const GamePlayStatManager* _Right)
+{
+
 }
 
 bool PlayLevel::KeyCheck()

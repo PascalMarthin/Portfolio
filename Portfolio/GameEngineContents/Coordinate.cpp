@@ -14,6 +14,7 @@ Coordinate::Coordinate()
 	, EndFrame_(2)
 	, CurrentInterTime_(0.1f)
 	, IsActive_(false)
+	, PastActive_(false)
 {
 }
 
@@ -69,20 +70,24 @@ bool Coordinate::ApplyActive()
 	{
 		MsgBoxAssert("Text°¡ ¾Æ´Õ´Ï´Ù");
 	}
-	if (IsActive_ == true)
+	if (PastActive_ != IsActive_)
 	{
-		StartFrame_ = 3;
-		CurrentFrame_ = 3;
-		EndFrame_ = 5;
-		return true;
+		if (IsActive_ == true)
+		{
+			StartFrame_ = 3;
+			CurrentFrame_ = 3;
+			EndFrame_ = 5;
+			return true;
+		}
+		else if (IsActive_ == false)
+		{
+			StartFrame_ = 0;
+			CurrentFrame_ = 0;
+			EndFrame_ = 2;
+			return true;
+		}
 	}
-	else if (IsActive_ == false)
-	{
-		StartFrame_ = 0;
-		CurrentFrame_ = 0;
-		EndFrame_ = 2;
-		return false;
-	}
+
 	return false;
 }
 

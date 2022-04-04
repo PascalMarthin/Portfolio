@@ -34,6 +34,7 @@ private:
 	void ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb, Coordinate* _Stat);
 	void ChangeUnit(const GamePlayObject* _Left, GamePlayObject* _Right);
 	void ApplyStat();
+	void CheckBit(const GamePlayStatManager* _Left, const GamePlayStatManager* _Right = nullptr);
 	bool KeyCheck();
 	void Move(Direction _Dir);
 
