@@ -21,11 +21,6 @@ public:
 	Coordinate& operator=(const Coordinate& _Other) = delete;
 	Coordinate& operator=(Coordinate&& _Other) noexcept = delete;
 
-	//inline void SetPos(float4 _Pos)
-	//{
-	//	Pos_ = _Pos;
-	//}
-
 	inline GamePlayUnitObject* GetUnitObjectInst() const
 	{
 		return UnitObject_;
@@ -70,8 +65,6 @@ public:
 
 	void SetBaseValue(GamePlayObject* _Object, ObjectType _Type = ObjectType::Unit, Direction _Dir = Direction::Right, const float4& _Size = { DotSizeX, DotSizeY });
 
-	bool ApplyActive();
-
 protected:
 	void Start() override;
 	void Update() override;
@@ -87,7 +80,6 @@ private:
 
 	bool IsActive_;
 	bool PastActive_;
-
 
 
 	

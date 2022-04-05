@@ -30,15 +30,13 @@ protected:
 private:
 	void CreatMap (std::map<int, std::map<int, ObjectName>>& _Stage);
 	void ScanFucntion();
-	void ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb, Coordinate* _Stat);
+	bool CheckFunction(int _X, int _Y);
+	void ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Stat);
 	void ChangeUnit(const GamePlayObject* _Left, GamePlayObject* _Right);
 	void CheckMapAllStat();
-	void CheckBitStat(std::vector<Coordinate*>& _Value);
+	void CheckBitStat(std::list<Coordinate*>& _Value);
 	bool IsMapOut(int _X, int _Y);
-	void Move(int _X, int _Y);
-	bool CheckBitMove(std::vector<Coordinate*>& _Value, int _X, int _Y);
-	Coordinate* FindUnitByStat(std::vector<Coordinate*>& _Value, unsigned __int64 _Stat);
-	std::vector<Coordinate*>* FindUnitByStatVector(std::vector<Coordinate*>& _Value, unsigned __int64 _Stat);
+
 
 
 	bool KeyCheck();
@@ -52,8 +50,7 @@ private:
 	float GameWindowStartPosX_;
 	float GameWindowStartPosY_;
 
-	std::map<int, std::map<int, std::vector<Coordinate*>>> CurrentMap_;
+	std::map<int, std::map<int, std::list<Coordinate*>>> CurrentMap_;
 	std::vector<std::pair<GamePlayObject*, GamePlayObject*>> ActiveFunction_;
-	std::vector<std::vector<Coordinate*>*> AllUnitByStatFucnDummy_;
 };
 

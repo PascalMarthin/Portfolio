@@ -75,33 +75,6 @@ void Coordinate::FrameUpdate()
 	}
 }
 
-// 활성화시 true, 비활성화시 false
-bool Coordinate::ApplyActive()
-{
-	if (UnitObject_->GetType() != ObjectType::Text)
-	{
-		MsgBoxAssert("Text가 아닙니다");
-	}
-	if (PastActive_ != IsActive_)
-	{
-		if (IsActive_ == true)
-		{
-			StartFrame_ = 3;
-			CurrentFrame_ = 3;
-			EndFrame_ = 5;
-			return true;
-		}
-		else if (IsActive_ == false)
-		{
-			StartFrame_ = 0;
-			CurrentFrame_ = 0;
-			EndFrame_ = 2;
-			return true;
-		}
-	}
-
-	return false;
-}
 
 void Coordinate::SetBaseValue(GamePlayObject* _Object, ObjectType _Type, Direction _Dir, const float4& _Size)
 {
