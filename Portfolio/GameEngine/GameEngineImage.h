@@ -35,6 +35,7 @@ public:
 
 	inline bool IsCut()
 	{
+
 		return 0 != CutPivot_.size();
 	}
 

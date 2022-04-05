@@ -3,6 +3,8 @@
 #include <GameEngine/GameEngineActor.h>
 #include "GamePlayEnum.h"
 #include "GamePlayObject.h"
+#include "GamePlayUnitObject.h"
+#include "GamePlayUnitText.h"
 #include <vector>
 
 
@@ -24,9 +26,19 @@ public:
 	//	Pos_ = _Pos;
 	//}
 
-	inline GamePlayObject* GetObjectInst() const
+	inline GamePlayUnitObject* GetUnitObjectInst() const
 	{
-		return Object_;
+		return UnitObject_;
+	}
+
+	inline GamePlayText* GetTextObjectInst() const
+	{
+		return TextObject_;
+	}
+
+	inline ObjectType GetType() const
+	{
+		return Type_;
 	}
 
 	void SetCFrame(int _Start, int _End)
@@ -56,7 +68,7 @@ public:
 	}
 
 
-	void SetBaseValue(GamePlayObject* _Object, Direction _Dir = Direction::Right, const float4& _Size = { DotSizeX, DotSizeY });
+	void SetBaseValue(GamePlayObject* _Object, ObjectType _Type = ObjectType::Unit, Direction _Dir = Direction::Right, const float4& _Size = { DotSizeX, DotSizeY });
 
 	bool ApplyActive();
 
@@ -68,7 +80,11 @@ protected:
 private:
 	float4 Pos_;
 	float4 LUPos_;
-	GamePlayObject* Object_;
+
+	GamePlayUnitObject* UnitObject_;
+	GamePlayText* TextObject_;
+	ObjectType Type_;
+
 	bool IsActive_;
 	bool PastActive_;
 

@@ -1,13 +1,14 @@
 #include "Coordinate.h"
 #include <GameEngine/GameEngine.h>
 #include <GameEngineBase/GameEngineWindow.h>
+#include "Text.h"
 
 Coordinate::Coordinate() 
 	: Pos_({0, 0})
 	, LUPos_({ 0, 0 })
 	, CurrentImgScale({0, 0})
 	, CurrentImgPivot({0, 0})
-	, Object_(nullptr)
+	, UnitObject_(nullptr)
 	, UnitDir_(Direction::Error)
 	, CurrentFrame_(0)
 	, StartFrame_(0)
@@ -15,6 +16,8 @@ Coordinate::Coordinate()
 	, CurrentInterTime_(0.1f)
 	, IsActive_(false)
 	, PastActive_(false)
+	, Type_(ObjectType::Error)
+	, TextObject_(nullptr)
 {
 }
 
@@ -33,16 +36,25 @@ void Coordinate::Update()
 
 void Coordinate::Render()
 {
-	GameEngine::BackBufferImage()->TransCopy(Object_->GetImage(), LUPos_, CurrentImgScale, CurrentImgPivot, CurrentImgScale, RGB(255, 0, 255));
+	if (Type_ == ObjectType::Unit)
+	{
+		GameEngine::BackBufferImage()->TransCopy(UnitObject_->GetImage(), LUPos_, CurrentImgScale, CurrentImgPivot, CurrentImgScale, RGB(255, 0, 255));
+	}
+	else if (Type_ == ObjectType::Text)
+	{
+		GameEngine::BackBufferImage()->TransCopy(TextObject_->GetImage(), LUPos_, CurrentImgScale, CurrentImgPivot, CurrentImgScale, RGB(255, 0, 255));
+	}
+	
 }
 
 void Coordinate::FrameUpdate()
 {
-	if (Object_ != nullptr)
+	if (UnitObject_ != nullptr)
 	{
-		if (Object_->GetImage()->IsCut() == false)
+		GamePlayObject* Object = UnitObject_;
+		if (Type_ == ObjectType::Text)
 		{
-			MsgBoxAssert("Coordinate 못자름");
+			Object = TextObject_;
 		}
 
 		CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime();
@@ -58,15 +70,15 @@ void Coordinate::FrameUpdate()
 		}
 
 
-		CurrentImgScale = Object_->GetImage()->GetCutScale(CurrentFrame_);
-		CurrentImgPivot = Object_->GetImage()->GetCutPivot(CurrentFrame_);
+		CurrentImgScale = Object->GetImage()->GetCutScale(CurrentFrame_);
+		CurrentImgPivot = Object->GetImage()->GetCutPivot(CurrentFrame_);
 	}
 }
 
 // 활성화시 true, 비활성화시 false
 bool Coordinate::ApplyActive()
 {
-	if (Object_->GetType() != ObjectType::Text)
+	if (UnitObject_->GetType() != ObjectType::Text)
 	{
 		MsgBoxAssert("Text가 아닙니다");
 	}
@@ -91,12 +103,26 @@ bool Coordinate::ApplyActive()
 	return false;
 }
 
-void Coordinate::SetBaseValue(GamePlayObject* _Object, Direction _Dir, const float4& _Size)
+void Coordinate::SetBaseValue(GamePlayObject* _Object, ObjectType _Type, Direction _Dir, const float4& _Size)
 {
+	{
+		if (_Type == ObjectType::Text)
+		{
+			UnitObject_ = Text_Unit::GetInst();
+			TextObject_ = static_cast<GamePlayText*>(_Object);
+			Type_ = _Type;
+		}
+		else if (_Type == ObjectType::Unit)
+		{
+			UnitObject_ = static_cast<GamePlayUnitObject*>(_Object);
+			TextObject_ = nullptr;
+			Type_ = _Type;
+		}
+		CurrentImgScale = _Size;
+	}
+
 	if (UnitDir_ == Direction::Error)
 	{
 		UnitDir_ = _Dir;
 	}
-	Object_ = _Object;
-	CurrentImgScale = _Size;
 }

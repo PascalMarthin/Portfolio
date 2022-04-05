@@ -21,6 +21,7 @@
 #include "Tile.h"
 #include "Default.h"
 #include "Line.h"
+#include "Text.h"
 
 GamePlayGobal* GamePlayGobal::Inst_ = new GamePlayGobal();
 
@@ -83,6 +84,7 @@ void  GamePlayGobal::SetName()
 		ObjectName_[ObjectName::You_Text] =		You_Text::GetInst();
 		ObjectName_[ObjectName::Default]  =		Default::GetInst();
 		ObjectName_[ObjectName::Line] =			Line::GetInst();
+		ObjectName_[ObjectName::Text_Unit] = Text_Unit::GetInst();
 
 		SettingAbility();
 }
