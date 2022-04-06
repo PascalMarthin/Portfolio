@@ -76,7 +76,7 @@ public:
 		return IsMove_;
 	}
 
-	void ChangePos(const float4& _Pos, const float4& _CPos);
+	void ChangePos(const float4& _Pos, const float4& _CPos, Direction _Dir);
 	void SetValue(GamePlayObject* _Object, Direction _Dir = Direction::Right, const float4& _Size = { DotSizeX, DotSizeY });
 
 protected:

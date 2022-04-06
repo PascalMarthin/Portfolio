@@ -220,21 +220,22 @@ void PlayLevel::CheckMapAllStat(std::pair<int, int> _MoveDir)
 		for (; StartIterX != EndIterX; ++StartIterX)
 		{
 			X = StartIterX->first;
-			CheckBitStat(StartIterX->second);
-			
-			for (auto SecondIter : StartIterX->second)
+			std::list<Coordinate*>& Ref = StartIterX->second;
+			CheckBitStat(Ref);
+			std::list<Coordinate*>::iterator StartIterList = Ref.begin();
+			std::list<Coordinate*>::iterator EndIterList = Ref.end();
+			while (StartIterList != EndIterList)
 			{
-				if (SecondIter->GetUnitObjectInst()->FindStat(SYou) == true && SecondIter->IsDeath() == false)
+				if ((*StartIterList)->GetUnitObjectInst()->FindStat(SYou) == true && (*StartIterList)->IsDeath() == false)
 				{
-
-						if (SecondIter->IsMove() == false && CheckBitMove(X, Y, _MoveDir) == true)
-						{
-							Move(SecondIter, _MoveDir);
-						}
-
+					if ((*StartIterList)->IsMove() == false && CheckBitMove(X, Y, _MoveDir) == true)
+					{
+						StartIterList = Ref.erase(Move(StartIterList, _MoveDir));
+						continue;
+					}
 				}
+				++StartIterList;
 			}
-
 		}
 	}
 }
@@ -250,7 +251,7 @@ bool PlayLevel::CheckBitMove(int _x, int _y, std::pair<int, int> _MoveDir)
 
 	// Stop
 	{
-		for (auto iter : CurrentMap_[X][Y])
+		for (auto iter : CurrentMap_[Y][X])
 		{
 			if (iter->GetUnitObjectInst()->FindStat(SStop) == true)
 			{
@@ -265,9 +266,12 @@ bool PlayLevel::CheckBitMove(int _x, int _y, std::pair<int, int> _MoveDir)
 
 	// Push
 	{
-		for (auto iter : CurrentMap_[X][Y])
+		std::list<Coordinate*>& Ref = CurrentMap_[Y][X];
+		std::list<Coordinate*>::iterator StartIterList = Ref.begin();
+		std::list<Coordinate*>::iterator EndIterList = Ref.end();
+		while (StartIterList != EndIterList)
 		{
-			if (iter->GetUnitObjectInst()->FindStat(SPush) == true)
+			if ((*StartIterList)->GetUnitObjectInst()->FindStat(SPush) == true)
 			{
 				if (CheckBitMove(X, Y, _MoveDir) == false)
 				{
@@ -275,22 +279,42 @@ bool PlayLevel::CheckBitMove(int _x, int _y, std::pair<int, int> _MoveDir)
 				}
 				else
 				{
-					Move(iter, _MoveDir);
+					CurrentMap_[Y + _MoveDir.second][X + _MoveDir.first].push_back(*StartIterList);
+					StartIterList = Ref.erase(Move(StartIterList, _MoveDir));
+					continue;
 				}
 			}
+			++StartIterList;
 		}
 	}
 	return true;
 }
 
-void PlayLevel::Move(Coordinate* _NeedMove, std::pair<int, int> _MoveDir)
+std::list<Coordinate*>::iterator& PlayLevel::Move(std::list<Coordinate*>::iterator& _ListIter, std::pair<int, int> _MoveDir)
 {
-	int PastX = _NeedMove->GetPos().ix();
-	int PastY = _NeedMove->GetPos().iy();
+	int PastX = (*_ListIter)->GetPos().ix();
+	int PastY = (*_ListIter)->GetPos().iy();
 	int x = PastX + _MoveDir.first;
 	int y = PastY + _MoveDir.second;
-
-	_NeedMove->ChangePos({ static_cast<float>(x), static_cast<float>(y)}, {GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY)});
+	if (_MoveDir.first == 1)
+	{
+		(*_ListIter)->ChangePos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) }, Direction::Right);
+		
+	}
+	else if (_MoveDir.second == 1)
+	{
+		(*_ListIter)->ChangePos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) }, Direction::Down);
+	}
+	else if (_MoveDir.first == -1)
+	{
+		(*_ListIter)->ChangePos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) }, Direction::Left);
+	}
+	else if (_MoveDir.second == -1)
+	{
+		(*_ListIter)->ChangePos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) }, Direction::Up);
+	}
+	CurrentMap_[y][x].push_back(*_ListIter);
+	return _ListIter;
 }
 
 
@@ -348,13 +372,13 @@ bool PlayLevel::FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 
 }
 
 
-bool PlayLevel::IsMapOut(std::pair<int, int> _MoveDir)
+bool PlayLevel::IsMapOut(std::pair<int, int> _Pos)
 {
-	if (MapScale_.ix() <= _MoveDir.first || _MoveDir.first <= 0)
+	if (MapScale_.ix() <= _Pos.first || _Pos.first <= 0)
 	{
 		return true;
 	}
-	if (MapScale_.iy() <= _MoveDir.second || _MoveDir.second <= 0)
+	if (MapScale_.iy() <= _Pos.second || _Pos.second <= 0)
 	{
 		return true;
 	}

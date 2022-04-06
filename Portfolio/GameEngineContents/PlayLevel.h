@@ -38,7 +38,7 @@ private:
 	void CheckMapAllStat(std::pair<int, int> _MoveDir);
 	bool CheckBitMove(int _x, int _y, std::pair<int, int> _MoveDir);
 	void CheckBitStat(std::list<Coordinate*>& _Value);
-	void Move(Coordinate* _NeedMove, std::pair<int, int> _MoveDir);
+	std::list<Coordinate*>::iterator& Move(std::list<Coordinate*>::iterator& _ListIter, std::pair<int, int> _MoveDir);
 	bool IsMapOut(std::pair<int, int> _MoveDir);
 
 

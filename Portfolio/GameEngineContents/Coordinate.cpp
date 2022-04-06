@@ -34,24 +34,43 @@ void Coordinate::Start()
 }
 void Coordinate::Update()
 {
-	if (IsMove_ == true && IsDeath() != false)
+	if (IsMove_ == true && IsDeath() == false)
 	{
 		CurrentInterTimebyMove_ -= GameEngineTime::GetInst()->GetDeltaTime();
 
-		if (CurrentLUPos_ == PastLUPos_)
-		{
-			if (CurrentInterTime_ <= 0)
+			if (CurrentInterTimebyMove_ <= 0)
 			{
-				PastLUPos_ += (CurrentLUPos_ - PastLUPos_) * 0.25;
+				if (PastByCurrentRange_ > 0)
+				{
+					switch (UnitDir_)
+					{
+					case Direction::Right:
+						PastLUPos_.x += 8.0f;
+						break;
+					case Direction::Up:
+						PastLUPos_.y -= 8.0f;
+						break;
+					case Direction::Left:
+						PastLUPos_.x -= 8.0f;
+						break;
+					case Direction::Down:
+						PastLUPos_.y += 8.0f;
+						break;
+					default:
+						break;
+					}
+					PastByCurrentRange_ -= 8;
+				}
+				else
+				{
+					IsMove_ = false;
+				}
 			}
-		}
-
 	}
-	else
+	else 
 	{
-		
+		FrameUpdate();
 	}
-	FrameUpdate();
 }
 
 void Coordinate::Render()
@@ -120,7 +139,7 @@ void Coordinate::SetValue(GamePlayObject* _Object, Direction _Dir, const float4&
 	}
 }
 
-void Coordinate::ChangePos(const float4& _Pos, const float4& _CPos)
+void Coordinate::ChangePos(const float4& _Pos, const float4& _CPos, Direction _Dir)
 {
 	if (IsMove_ != true)
 	{
@@ -129,6 +148,8 @@ void Coordinate::ChangePos(const float4& _Pos, const float4& _CPos)
 		CurrentPos_ = _Pos;
 		CurrentLUPos_ = _CPos;
 		CurrentInterTimebyMove_ = 0.05f;
+		PastByCurrentRange_ = DotSizeX;
+		UnitDir_ = _Dir;
 		IsMove_ = true;
 	}
 }
