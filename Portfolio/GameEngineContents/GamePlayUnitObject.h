@@ -26,7 +26,7 @@ public:
 	}
 
 	void Reset();
-	bool Find(unsigned __int64 _Idx);
+	bool FindStat(unsigned __int64 _Idx);
 
 protected:
 	unsigned __int64 AllStat_;

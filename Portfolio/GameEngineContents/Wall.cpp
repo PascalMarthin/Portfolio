@@ -57,3 +57,22 @@ void Wall_Text::SettingAbility()
 
 
 }
+
+std::vector<std::pair<int, int>>* Wall_Text::GetAnimationTake(Direction _Dir)
+{
+	switch (_Dir)
+	{
+	case Direction::Right:
+	case Direction::Up:
+		return &AnimationTake_["Wall_Text_ON"];
+		break;
+	case Direction::Left:
+	case Direction::Down:
+		return &AnimationTake_["Wall_Text_OFF"];
+		break;
+	default:
+		MsgBoxAssert("Flagtext의 방향설정이 안되어있습니다");
+		return nullptr;
+		break;
+	}
+}

@@ -29,6 +29,9 @@
     <ClInclude Include="GameEngineCollision.h">
       <Filter>Object%28Engine%29\Actor\Sub</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineFolderImage.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngine.cpp" />
@@ -55,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="GameEngineCollision.cpp">
       <Filter>Object%28Engine%29\Actor\Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineFolderImage.cpp">
+      <Filter>Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

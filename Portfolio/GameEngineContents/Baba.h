@@ -24,6 +24,8 @@ public:
 	}
 	void SettingAbility() override;
 
+	std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir) override;
+
 private:
 	Baba_Unit();
 	~Baba_Unit();
@@ -56,6 +58,7 @@ public:
 		Inst_ = nullptr;
 	}
 	void SettingAbility() override;
+	std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir) override;
 
 private:
 	static Baba_Text* Inst_;

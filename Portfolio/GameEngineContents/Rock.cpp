@@ -22,6 +22,24 @@ void Rock_Unit::SettingAbility()
 	AnimationTake_["Rock_Unit"].push_back(std::make_pair(0, 2));
 }
 
+std::vector<std::pair<int, int>>* Rock_Unit::GetAnimationTake(Direction _Dir)
+{
+	switch (_Dir)
+	{
+	case Direction::Right:
+	case Direction::Up:
+	case Direction::Left:
+	case Direction::Down:
+		return &AnimationTake_["Rock_Unit"];
+		break;
+	default:
+		MsgBoxAssert("바바의 방향설정이 안되어있습니다");
+		return nullptr;
+		break;
+	}
+}
+
+
 Rock_Text::Rock_Text()
 {
 }
@@ -41,4 +59,23 @@ void Rock_Text::SettingAbility()
 	AnimationTake_["Rock_Text_OFF"].push_back(std::make_pair(0, 2));
 	AnimationTake_["Rock_Text_ON"].push_back(std::make_pair(3, 5));
 
+}
+
+std::vector<std::pair<int, int>>* Rock_Text::GetAnimationTake(Direction _Dir)
+{
+	switch (_Dir)
+	{
+	case Direction::Right:
+	case Direction::Up:
+		return &AnimationTake_["Rock_Text_ON"];
+		break;
+	case Direction::Left:
+	case Direction::Down:
+		return &AnimationTake_["Rock_Text_OFF"];
+		break;
+	default:
+		MsgBoxAssert("Flagtext의 방향설정이 안되어있습니다");
+		return nullptr;
+		break;
+	}
 }

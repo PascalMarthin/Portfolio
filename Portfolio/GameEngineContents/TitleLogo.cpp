@@ -23,7 +23,7 @@ void TitleLogo::Start()
 
 	//CreateRenderer("TitleLogo_1.bmp", RenderPivot::CENTER, { 0,-250 });
 
-	GameEngineRenderer* RenderImg = CreateRenderer(RenderPivot::CENTER, { 0,-150 });
+	GameEngineRenderer* RenderImg = CreateRenderer( 1, RenderPivot::CENTER, {0,-150});
 	RenderImg->CreateAnimation("TitleLogo_sheet.bmp", "Title_Logo", 0, 2, ImageSpeed, true);
 	RenderImg->ChangeAnimation("Title_Logo");
 }

@@ -50,6 +50,8 @@ public:
 	//virtual void Reset() {}
 	virtual void Destroy() = 0;
 
+	virtual std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir) { return nullptr; }
+
 protected:
 	GameEngineImage* Image_;
 

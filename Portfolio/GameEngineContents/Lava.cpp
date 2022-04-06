@@ -55,3 +55,22 @@ void Lava_Text::SettingAbility()
 	AnimationTake_["Lava_Text_ON"].push_back(std::make_pair(3, 5));
 
 }
+
+std::vector<std::pair<int, int>>* Lava_Text::GetAnimationTake(Direction _Dir)
+{
+	switch (_Dir)
+	{
+	case Direction::Right:
+	case Direction::Up:
+		return &AnimationTake_["Lava_Text_ON"];
+		break;
+	case Direction::Left:
+	case Direction::Down:
+		return &AnimationTake_["Lava_Text_OFF"];
+		break;
+	default:
+		MsgBoxAssert("Flagtext의 방향설정이 안되어있습니다");
+		return nullptr;
+		break;
+	}
+}

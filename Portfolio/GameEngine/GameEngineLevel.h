@@ -8,11 +8,13 @@
 class GameEngine;
 class GameEngineActor;
 class GameEngineCollision;
+class GameEngineRenderer;
 class GameEngineLevel : public GameEngineNameObject
 {
 	friend GameEngine;
 	friend GameEngineActor;
 	friend GameEngineCollision;
+	friend GameEngineRenderer;
 public:
 	GameEngineLevel();
 
@@ -34,7 +36,7 @@ public:
 		// 그러나 예외적으로 actor의 부모 클래스인 GameEngineActor는
 		// GameEngineLevel와 friend 선언 해놨기 때문에 접근이 가능한 것
 		GameEngineActor* StartActor = NewActor;
-
+		NewActor->SetOrder(_Order);
 		// GameEngineNameObject의 SetName
 		NewActor->SetName(_Name);
 		// GameEngineActor의 SetLevel
@@ -92,6 +94,14 @@ private :
 	void ActorRender();
 	void CollisionDebugRender();
 	void ActorRelease();
+
+private:
+	std::map<int, std::list<GameEngineRenderer*>> AllRenderer_;
+
+	void AddRenderer(GameEngineRenderer* _Renderer);
+
+	void ChangeRenderOrder(GameEngineRenderer* _Renderer, int _NewOrder);
+
 
 private:
 	// 삭제는 액터가 하지만 실제 사용은 Level

@@ -24,6 +24,29 @@ void Skull_Unit::SettingAbility()
 	AnimationTake_["Skull_Unit_Down"].push_back(std::make_pair(9, 11));
 }
 
+std::vector<std::pair<int, int>>* Skull_Unit::GetAnimationTake(Direction _Dir)
+{
+	switch (_Dir)
+	{
+	case Direction::Right:
+		return &AnimationTake_["Skull_Unit_Right"];
+		break;
+	case Direction::Up:
+		return &AnimationTake_["Skull_Unit_Up"];
+		break;
+	case Direction::Left:
+		return &AnimationTake_["Skull_Unit_Left"];
+		break;
+	case Direction::Down:
+		return &AnimationTake_["Skull_Unit_Down"];
+		break;
+	default:
+		MsgBoxAssert("바바의 방향설정이 안되어있습니다");
+		return nullptr;
+		break;
+	}
+}
+
 Skull_Text::Skull_Text()
 {
 }
@@ -43,4 +66,23 @@ void Skull_Text::SettingAbility()
 	AnimationTake_["Skull_Text_OFF"].push_back(std::make_pair(0, 2));
 	AnimationTake_["Skull_Text_ON"].push_back(std::make_pair(3, 5));
 
+}
+
+std::vector<std::pair<int, int>>* Skull_Text::GetAnimationTake(Direction _Dir)
+{
+	switch (_Dir)
+	{
+	case Direction::Right:
+	case Direction::Up:
+		return &AnimationTake_["Skull_Text_ON"];
+		break;
+	case Direction::Left:
+	case Direction::Down:
+		return &AnimationTake_["Skull_Text_OFF"];
+		break;
+	default:
+		MsgBoxAssert("Flagtext의 방향설정이 안되어있습니다");
+		return nullptr;
+		break;
+	}
 }

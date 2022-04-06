@@ -22,6 +22,7 @@
 #include "Default.h"
 #include "Line.h"
 #include "Text.h"
+#include "Dummy_Text.h"
 
 GamePlayGobal* GamePlayGobal::Inst_ = new GamePlayGobal();
 
@@ -85,7 +86,7 @@ void  GamePlayGobal::SetName()
 		ObjectName_[ObjectName::Default]  =		Default::GetInst();
 		ObjectName_[ObjectName::Line] =			Line::GetInst();
 		ObjectName_[ObjectName::Text_Unit] = Text_Unit::GetInst();
-
+		ObjectName_[ObjectName::Dummy_Text] = Dummy_Text::GetInst();
 		SettingAbility();
 }
 

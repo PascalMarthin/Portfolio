@@ -21,6 +21,7 @@ public:
 		Inst_ = nullptr;
 	}
 	void SettingAbility() override;
+	std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir) override;
 
 protected:
 

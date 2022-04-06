@@ -1,5 +1,6 @@
 #pragma once
 #include "GamePlayText.h"
+#include "GamePlayEnum.h"
 
 // Ό³Έν :
 class GamePlayTextStat : public GamePlayText

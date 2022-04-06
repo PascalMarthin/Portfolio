@@ -22,3 +22,22 @@ void Sink_Text::SettingAbility()
 	AnimationTake_["Sink_Text_ON"].push_back(std::make_pair(3, 5));
 
 }
+
+std::vector<std::pair<int, int>>* Sink_Text::GetAnimationTake(Direction _Dir)
+{
+	switch (_Dir)
+	{
+	case Direction::Right:
+	case Direction::Up:
+		return &AnimationTake_["Sink_Text_ON"];
+		break;
+	case Direction::Left:
+	case Direction::Down:
+		return &AnimationTake_["Sink_Text_OFF"];
+		break;
+	default:
+		MsgBoxAssert("Stop_Text의 방향설정이 안되어있습니다");
+		return nullptr;
+		break;
+	}
+}

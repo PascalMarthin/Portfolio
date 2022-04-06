@@ -23,6 +23,7 @@ public:
 		Inst_ = nullptr;
 	}
 	void SettingAbility() override;	
+	std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir) override { return nullptr; }
 
 private:
 	Wall_Unit();
@@ -56,6 +57,7 @@ public:
 		Inst_ = nullptr;
 	}
 	void SettingAbility() override;
+	std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir) override;
 
 private:
 	static Wall_Text* Inst_;

@@ -55,7 +55,7 @@ void GamePlayUnitObject::ApplyStat(const GamePlayTextStat* _Stat)
 
 }
 
-bool GamePlayUnitObject::Find(unsigned __int64 _Idx)
+bool GamePlayUnitObject::FindStat(unsigned __int64 _Idx)
 {
 	return (AllStat_ & _Idx) == _Idx;
 }

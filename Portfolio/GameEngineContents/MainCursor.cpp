@@ -15,7 +15,7 @@ void MainCursor::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
 
-	GameEngineRenderer* RenderImg = CreateRenderer(RenderPivot::CENTER);
+	GameEngineRenderer* RenderImg = CreateRenderer(2, RenderPivot::CENTER);
 	RenderImg->CreateAnimation("cursor_sheet.bmp", "Cursor", 0, 2, ImageSpeed, true);
 	RenderImg->ChangeAnimation("Cursor");
 }

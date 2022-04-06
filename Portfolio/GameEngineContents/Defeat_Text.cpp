@@ -24,5 +24,21 @@ void Defeat_Text::SettingAbility()
 
 }
 
-
-	//you와 같이 있을경우 you를 파괴
+std::vector<std::pair<int, int>>* Defeat_Text::GetAnimationTake(Direction _Dir)
+{
+	switch (_Dir)
+	{
+	case Direction::Right:
+	case Direction::Up:
+		return &AnimationTake_["Defeat_Text_ON"];
+		break;
+	case Direction::Left:
+	case Direction::Down:
+		return &AnimationTake_["Defeat_Text_OFF"];
+		break;
+	default:
+		MsgBoxAssert("Defeat_Text의 방향설정이 안되어있습니다");
+		return nullptr;
+		break;
+	}
+}

@@ -37,6 +37,29 @@ void Baba_Unit::SettingAbility()
 	//AnimationTake_["Baba_Unit_Down"].push_back(std::make_pair(45, 47));
 }
 
+std::vector<std::pair<int, int>>* Baba_Unit::GetAnimationTake(Direction _Dir)
+{
+	switch (_Dir)
+	{
+	case Direction::Right:
+		return &AnimationTake_["Baba_Unit_Right"];
+		break;
+	case Direction::Up:
+		return &AnimationTake_["Baba_Unit_Up"];
+		break;
+	case Direction::Left:
+		return &AnimationTake_["Baba_Unit_Left"];
+		break;
+	case Direction::Down:
+		return &AnimationTake_["Baba_Unit_Down"];
+		break;
+	default:
+		MsgBoxAssert("바바의 방향설정이 안되어있습니다");
+		return nullptr;
+		break;
+	}
+}
+
 
 Baba_Text::Baba_Text() 
 {
@@ -58,4 +81,23 @@ void Baba_Text::SettingAbility()
 	AnimationTake_["Baba_Text_ON"].push_back(std::make_pair(3, 5));
 
 
+}
+
+std::vector<std::pair<int, int>>* Baba_Text::GetAnimationTake(Direction _Dir)
+{
+	switch (_Dir)
+	{
+	case Direction::Right:
+	case Direction::Up:
+		return &AnimationTake_["Baba_Text_ON"];
+		break;
+	case Direction::Left:
+	case Direction::Down:
+		return &AnimationTake_["Baba_Text_OFF"];
+		break;
+	default:
+		MsgBoxAssert("바바text의 방향설정이 안되어있습니다");
+		return nullptr;
+		break;
+	}
 }

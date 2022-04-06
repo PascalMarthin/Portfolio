@@ -30,12 +30,16 @@ protected:
 private:
 	void CreatMap (std::map<int, std::map<int, ObjectName>>& _Stage);
 	void ScanFucntion();
-	bool CheckFunction(int _X, int _Y);
-	void ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Stat);
+	bool CheckFunction(int _X, int _Y, Coordinate* _Verb);
+	void ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb, Coordinate* _Stat);
 	void ChangeUnit(const GamePlayObject* _Left, GamePlayObject* _Right);
+	bool FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat);
 	void CheckMapAllStat();
+	void CheckMapAllStat(std::pair<int, int> _MoveDir);
+	bool CheckBitMove(int _x, int _y, std::pair<int, int> _MoveDir);
 	void CheckBitStat(std::list<Coordinate*>& _Value);
-	bool IsMapOut(int _X, int _Y);
+	void Move(Coordinate* _NeedMove, std::pair<int, int> _MoveDir);
+	bool IsMapOut(std::pair<int, int> _MoveDir);
 
 
 

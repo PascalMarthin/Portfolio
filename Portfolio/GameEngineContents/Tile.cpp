@@ -19,3 +19,19 @@ void Tile_Unit::SettingAbility()
 	AnimationTake_["Tile_Unit"].push_back(std::make_pair(0, 2));
 
 }
+std::vector<std::pair<int, int>>* Tile_Unit::GetAnimationTake(Direction _Dir)
+{
+	switch (_Dir)
+	{
+	case Direction::Right:
+	case Direction::Up:
+	case Direction::Left:
+	case Direction::Down:
+		return &AnimationTake_["Tile_Unit"];
+		break;
+	default:
+		MsgBoxAssert("바바의 방향설정이 안되어있습니다");
+		return nullptr;
+		break;
+	}
+}

@@ -84,7 +84,8 @@ enum class ObjectName
 	You_Text,
 	Default,
 	Line,
-	Text_Unit
+	Text_Unit,
+	Dummy_Text,
 };
 enum class ObjectType
 {

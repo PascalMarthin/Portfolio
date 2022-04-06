@@ -11,11 +11,10 @@
 class Coordinate : public GameEngineActor
 {
 public:
-	// constrcuter destructer
 	Coordinate();
 	~Coordinate();
 
-	// delete Function
+
 	Coordinate(const Coordinate& _Other) = delete;
 	Coordinate(Coordinate&& _Other) noexcept = delete;
 	Coordinate& operator=(const Coordinate& _Other) = delete;
@@ -31,7 +30,7 @@ public:
 		return TextObject_;
 	}
 
-	inline ObjectType GetType() const
+	inline ObjectType GetObjectType() const
 	{
 		return Type_;
 	}
@@ -44,9 +43,15 @@ public:
 	}
 	void SetPos(const float4& _Pos, const float4& _CPos)
 	{
-		Pos_ = _Pos;
-		LUPos_ = _CPos;
-		SetPosition({ LUPos_.x + (DotSizeX / 2), LUPos_.y + (DotSizeY / 2) });
+		CurrentPos_ = _Pos;
+		CurrentLUPos_ = _CPos;
+		PastPos_ = CurrentPos_;
+		PastLUPos_ = CurrentLUPos_;
+		SetPosition({ CurrentLUPos_.x + (DotSizeX / 2), CurrentLUPos_.y + (DotSizeY / 2) });
+	}
+	inline const float4& GetPos() const
+	{
+		return CurrentPos_;
 	}
 
 	inline void SetOFF()
@@ -62,8 +67,17 @@ public:
 		return IsActive_;
 	}
 
+	inline void SetMove(bool _Bool)
+	{
+		IsMove_ = _Bool;
+	}
+	inline const bool IsMove() const
+	{
+		return IsMove_;
+	}
 
-	void SetBaseValue(GamePlayObject* _Object, ObjectType _Type = ObjectType::Unit, Direction _Dir = Direction::Right, const float4& _Size = { DotSizeX, DotSizeY });
+	void ChangePos(const float4& _Pos, const float4& _CPos);
+	void SetValue(GamePlayObject* _Object, Direction _Dir = Direction::Right, const float4& _Size = { DotSizeX, DotSizeY });
 
 protected:
 	void Start() override;
@@ -71,15 +85,18 @@ protected:
 	void Render() override;
 
 private:
-	float4 Pos_;
-	float4 LUPos_;
+	float4 PastPos_;
+	float4 PastLUPos_;
+	float4 CurrentPos_;
+	float4 CurrentLUPos_;
+	int PastByCurrentRange_;
 
 	GamePlayUnitObject* UnitObject_;
 	GamePlayText* TextObject_;
 	ObjectType Type_;
 
 	bool IsActive_;
-	bool PastActive_;
+	bool IsMove_;
 
 
 	
@@ -94,5 +111,6 @@ private:
 
 	void FrameUpdate();
 
+	float CurrentInterTimebyMove_;
 };
 

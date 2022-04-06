@@ -22,3 +22,22 @@ void Push_Text::SettingAbility()
 	AnimationTake_["Push_Text_ON"].push_back(std::make_pair(3, 5));
 
 }
+
+std::vector<std::pair<int, int>>* Push_Text::GetAnimationTake(Direction _Dir)
+{
+	switch (_Dir)
+	{
+	case Direction::Right:
+	case Direction::Up:
+		return &AnimationTake_["Push_Text_ON"];
+		break;
+	case Direction::Left:
+	case Direction::Down:
+		return &AnimationTake_["Push_Text_OFF"];
+		break;
+	default:
+		MsgBoxAssert("Stop_Text의 방향설정이 안되어있습니다");
+		return nullptr;
+		break;
+	}
+}

@@ -21,7 +21,7 @@ void TitleBaba::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
 
-	Render_ = CreateRenderer(RenderPivot::CENTER, BabaPos_);
+	Render_ = CreateRenderer(3 ,RenderPivot::CENTER, BabaPos_);
 	Render_->CreateAnimation("unit_baba_Sheet.bmp", "Baba", 0, 2, ImageSpeed, true);
 	Render_->ChangeAnimation("Baba");
 }

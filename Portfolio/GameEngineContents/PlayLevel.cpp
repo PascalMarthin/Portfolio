@@ -72,7 +72,7 @@ void PlayLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 			}
 			Coordinate* Coordi = CreateActor<Coordinate>(1);
 			Coordi->SetPos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) });
-			Coordi->SetBaseValue(Value, (Value->GetType()));
+			Coordi->SetValue(Value);
 			CurrentMap_[y][x].push_back(Coordi);
 		}
 	}
@@ -99,54 +99,67 @@ void PlayLevel::ScanFucntion()
 
 			for (auto iter : Block)
 			{
-				if (iter->GetUnitObjectInst()->GetTextType() == TextType::Verb_Text)
+				if (iter->GetTextObjectInst()->GetTextType() == TextType::Verb_Text)
 				{
-					if (CheckFunction(X, Y) == true)
-					{
-						iter->SetON();
-					}
+					CheckFunction(X, Y, iter);
 				}	
 			}
 		}
 	}
 }
 
-bool PlayLevel::CheckFunction(int _X, int _Y)
+bool PlayLevel::CheckFunction(int _X, int _Y, Coordinate* _Verb)
 {
 	if (_X > 0 && _X < MapScale_.ix()-1)
 	{
-		for (auto iterMinus : CurrentMap_[_X - 1][_Y])
+		for (auto iterMinus : CurrentMap_[_Y][_X - 1])
 		{
-			if (iterMinus->GetUnitObjectInst()->GetTextType() == TextType::Unit_Text)
+			if (iterMinus->GetTextObjectInst()->GetTextType() == TextType::Unit_Text)
 			{
-				for (auto iterPlus : CurrentMap_[_X + 1][_Y])
+				for (auto iterPlus : CurrentMap_[_Y][_X + 1])
 				{
-					if (iterPlus->GetUnitObjectInst()->GetTextType() == TextType::Unit_Text || iterPlus->GetUnitObjectInst()->GetTextType() == TextType::Stat_Text)
+					if (iterPlus->GetTextObjectInst()->GetTextType() == TextType::Unit_Text || iterPlus->GetTextObjectInst()->GetTextType() == TextType::Stat_Text)
 					{
-						ApplyObjectFuction(iterMinus, iterPlus);
-
+						ApplyObjectFuction(iterMinus, _Verb, iterPlus);
 					}
+					return true;
 				}
-
 			}
 		}
 	}
-	
+	if (_Y > 0 && _Y < MapScale_.iy() - 1)
+	{
+		for (auto iterMinus : CurrentMap_[_Y - 1][_X])
+		{
+			if (iterMinus->GetTextObjectInst()->GetTextType() == TextType::Unit_Text)
+			{
+				for (auto iterPlus : CurrentMap_[_Y + 1][_X])
+				{
+					if (iterPlus->GetTextObjectInst()->GetTextType() == TextType::Unit_Text || iterPlus->GetTextObjectInst()->GetTextType() == TextType::Stat_Text)
+					{
+						ApplyObjectFuction(iterMinus, _Verb, iterPlus);
+					}
+					return true;
+				}
+			}
+		}
+	}
+	return false;
 }
 
 
-void PlayLevel::ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Stat)
+void PlayLevel::ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb,   Coordinate* _Stat)
 {
 	_Unit->SetON();
+	_Verb->SetON();
 	_Stat->SetON();
 
-	if (_Stat->GetType() == ObjectType::Text)
+	if (_Stat->GetTextObjectInst()->GetTextType() == TextType::Stat_Text)
 	{
-		//다운캐스팅
-		static_cast<GamePlayUnitObject*>(_Unit->GetUnitObjectInst())->ApplyStat(static_cast<GamePlayTextStat*>(_Stat->GetUnitObjectInst()));
+		(static_cast<GamePlayUnitText*>(_Unit->GetTextObjectInst()))->GetTextUnit()->ApplyStat(static_cast<GamePlayTextStat*>(_Stat->GetTextObjectInst()));
 	}
 
-	if (_Stat->GetType() == ObjectType::Unit)
+	if (_Stat->GetTextObjectInst()->GetTextType() == TextType::Unit_Text)
 	{
 		ChangeUnit((_Unit->GetUnitObjectInst()), (_Stat->GetUnitObjectInst()));
 	}
@@ -168,7 +181,7 @@ void PlayLevel::ChangeUnit(const GamePlayObject* _Left, GamePlayObject* _Right)
 			{
 				if (iter->GetUnitObjectInst() == _Left)
 				{
-					iter->SetBaseValue(_Right);
+					iter->SetValue(_Right);
 				}
 			}
 		}
@@ -191,27 +204,114 @@ void PlayLevel::CheckMapAllStat()
 	}
 }
 
+void PlayLevel::CheckMapAllStat(std::pair<int, int> _MoveDir)
+{
+	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();
+	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator EndIterY = CurrentMap_.end();
+
+	int X = 0;
+	int Y = 0;
+
+	for (; StartIterY != EndIterY; ++StartIterY)
+	{
+		Y = StartIterY->first;
+		std::map<int, std::list<Coordinate*>>::iterator StartIterX = StartIterY->second.begin();
+		std::map<int, std::list<Coordinate*>>::iterator EndIterX = StartIterY->second.end();
+		for (; StartIterX != EndIterX; ++StartIterX)
+		{
+			X = StartIterX->first;
+			CheckBitStat(StartIterX->second);
+			
+			for (auto SecondIter : StartIterX->second)
+			{
+				if (SecondIter->GetUnitObjectInst()->FindStat(SYou) == true && SecondIter->IsDeath() == false)
+				{
+
+						if (SecondIter->IsMove() == false && CheckBitMove(X, Y, _MoveDir) == true)
+						{
+							Move(SecondIter, _MoveDir);
+						}
+
+				}
+			}
+
+		}
+	}
+}
+
+bool PlayLevel::CheckBitMove(int _x, int _y, std::pair<int, int> _MoveDir)
+{
+	int X = _x + _MoveDir.first;
+	int Y = _y + _MoveDir.second;
+	if (IsMapOut(std::make_pair(X, Y)) == true)
+	{
+		return false;
+	}
+
+	// Stop
+	{
+		for (auto iter : CurrentMap_[X][Y])
+		{
+			if (iter->GetUnitObjectInst()->FindStat(SStop) == true)
+			{
+				if (iter->GetUnitObjectInst()->FindStat(SPush) == true)
+				{
+					continue;
+				}
+				return false;
+			}
+		}
+	}
+
+	// Push
+	{
+		for (auto iter : CurrentMap_[X][Y])
+		{
+			if (iter->GetUnitObjectInst()->FindStat(SPush) == true)
+			{
+				if (CheckBitMove(X, Y, _MoveDir) == false)
+				{
+					return false;
+				}
+				else
+				{
+					Move(iter, _MoveDir);
+				}
+			}
+		}
+	}
+	return true;
+}
+
+void PlayLevel::Move(Coordinate* _NeedMove, std::pair<int, int> _MoveDir)
+{
+	int PastX = _NeedMove->GetPos().ix();
+	int PastY = _NeedMove->GetPos().iy();
+	int x = PastX + _MoveDir.first;
+	int y = PastY + _MoveDir.second;
+
+	_NeedMove->ChangePos({ static_cast<float>(x), static_cast<float>(y)}, {GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY)});
+}
+
+
 void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 {
-	std::vector<Coordinate*>* KillUnitList = nullptr;
 	// Defeat
 	{
-		Coordinate* UnitStatDefeat = FindUnitByStat(_Value, SDefeat);
-		if (UnitStatDefeat != nullptr)
+		if (FindUnitByStat(_Value, SDefeat) == true && FindUnitByStat(_Value, SYou) == true)
 		{
-			KillUnitList = FindUnitByStatVector(_Value, SYou);
-			for (auto iter : *KillUnitList)
+			for (auto iter : _Value)
 			{
-				iter->Death();
+				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsDeath() == false)
+				{
+					iter->Death();
+				}
 			}
-			delete KillUnitList;
-			KillUnitList = nullptr;
 		}
 	}
 	// Sink
 	{
-		Coordinate* UnitYou = FindUnitByStat(_Value, SSink);
-		if (UnitYou != nullptr)
+		if (FindUnitByStat(_Value, SSink) == true)
 		{
 			for (auto iter : _Value)
 			{
@@ -222,36 +322,39 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 
 	// Hot, Melt
 	{
-		Coordinate* UnitYou = FindUnitByStat(_Value, SHot);
-		if (UnitYou != nullptr)
+		if (FindUnitByStat(_Value, SHot) == true && FindUnitByStat(_Value, SMelt))
 		{
-			KillUnitList = FindUnitByStatVector(_Value, SMelt);
-			for (auto iter : *KillUnitList)
+			for (auto iter : _Value)
 			{
-				iter->Death();
+				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsDeath() == false)
+				{
+					iter->Death();
+				}
 			}
-			delete KillUnitList;
-			KillUnitList = nullptr;
 		}
 	}
 }
 
-bool PlayLevel::FindUnitByStat(std::list<Coordinate*>& _Value)
+bool PlayLevel::FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat)
 {
 	for (auto iter : _Value)
 	{
-		
+		if ((iter->GetUnitObjectInst()->GetAllStat() & _Stat) == _Stat)
+		{
+			return true;
+		}
 	}
+	return false;
 }
 
 
-bool PlayLevel::IsMapOut(int _X, int _Y)
+bool PlayLevel::IsMapOut(std::pair<int, int> _MoveDir)
 {
-	if (MapScale_.ix() <= _X || _X <= 0)
+	if (MapScale_.ix() <= _MoveDir.first || _MoveDir.first <= 0)
 	{
 		return true;
 	}
-	if (MapScale_.iy() <= _Y || _Y <= 0)
+	if (MapScale_.iy() <= _MoveDir.second || _MoveDir.second <= 0)
 	{
 		return true;
 	}
@@ -263,23 +366,23 @@ bool PlayLevel::KeyCheck()
 {
 	if (GameEngineInput::GetInst()->IsDown("Down"))
 	{
-		Move(Direction::Down);
+		CheckMapAllStat(std::make_pair(0, 1));
 		return true;
 	}
 	if (GameEngineInput::GetInst()->IsDown("Up"))
 	{
-		Move(Direction::Up);
+		CheckMapAllStat(std::make_pair(0, -1));
 		return true;
 	}
 
 	if (GameEngineInput::GetInst()->IsDown("Right"))
 	{
-		Move(Direction::Right);
+		CheckMapAllStat(std::make_pair(1, 0));
 		return true;
 	}
 	if (GameEngineInput::GetInst()->IsDown("Left"))
 	{
-		Move(Direction::Left);
+		CheckMapAllStat(std::make_pair(-1, 0));
 		return true;
 	}
 
@@ -309,17 +412,17 @@ void PlayLevel::EndStage()
 
 void PlayLevel::ReleaseActor()
 {
-	std::map<int, std::map<int, std::vector<Coordinate*>>>::iterator StartIter = CurrentMap_.begin();
-	std::map<int, std::map<int, std::vector<Coordinate*>>>::iterator EndIter = CurrentMap_.end();
+	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIter = CurrentMap_.begin();
+	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator EndIter = CurrentMap_.end();
 
 	for (; StartIter != EndIter; ++StartIter)
 	{
-		std::map<int, std::vector<Coordinate*>>::iterator StartCoord = (StartIter->second).begin();
-		std::map<int, std::vector<Coordinate*>>::iterator EndCoord = (StartIter->second).end();
+		std::map<int, std::list<Coordinate*>>::iterator StartCoord = (StartIter->second).begin();
+		std::map<int, std::list<Coordinate*>>::iterator EndCoord = (StartIter->second).end();
 		for (; StartCoord != EndCoord; ++StartCoord)
 		{
-			std::vector<Coordinate*>::iterator StartVector = (StartCoord->second).begin();
-			std::vector<Coordinate*>::iterator EndVector = (StartCoord->second).end();
+			std::list<Coordinate*>::iterator StartVector = (StartCoord->second).begin();
+			std::list<Coordinate*>::iterator EndVector = (StartCoord->second).end();
 			for (; StartVector != EndVector; ++StartVector)
 			{
 				if ((*StartVector) != nullptr)

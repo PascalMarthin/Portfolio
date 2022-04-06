@@ -1,6 +1,7 @@
 #include "GameEngineLevel.h"
 #include "GameEngineActor.h"
 #include "GameEngineCollision.h"
+#include "GameEngineRenderer.h"
 
 
 GameEngineLevel::GameEngineLevel()
@@ -67,6 +68,31 @@ void GameEngineLevel::ActorUpdate()
 
 void GameEngineLevel::ActorRender()
 {
+	// 랜더러 랜더
+	{
+		std::map<int, std::list<GameEngineRenderer*>>::iterator GroupStart = AllRenderer_.begin();
+		std::map<int, std::list<GameEngineRenderer*>>::iterator GroupEnd = AllRenderer_.end();
+
+		std::list<GameEngineRenderer*>::iterator StartRenderer;
+		std::list<GameEngineRenderer*>::iterator EndRenderer;
+
+		for (; GroupStart != GroupEnd; ++GroupStart)
+		{
+			std::list<GameEngineRenderer*>& Group = GroupStart->second;
+			StartRenderer = Group.begin();
+			EndRenderer = Group.end();
+			for (; StartRenderer != EndRenderer; ++StartRenderer)
+			{
+				if (false == (*StartRenderer)->IsUpdate())
+				{
+					continue;
+				}
+				(*StartRenderer)->Render();
+			}
+		}
+	}
+
+	
 	std::map<int, std::list<GameEngineActor*>>::iterator GroupStart;
 	std::map<int, std::list<GameEngineActor*>>::iterator GroupEnd;
 
@@ -80,19 +106,6 @@ void GameEngineLevel::ActorRender()
 	for (; GroupStart != GroupEnd; ++GroupStart)
 	{
 		std::list<GameEngineActor*>& Group = GroupStart->second;
-
-		StartActor = Group.begin();
-		EndActor = Group.end();
-
-		for (; StartActor != EndActor; ++StartActor)
-		{
-			if (false == (*StartActor)->IsUpdate())
-			{
-				continue;
-			}
-			(*StartActor)->Renderering();
-		}
-
 
 		StartActor = Group.begin();
 		EndActor = Group.end();
@@ -138,6 +151,31 @@ void GameEngineLevel::CollisionDebugRender()
 void GameEngineLevel::ActorRelease()
 {
 	// 콜리전은 레벨도 관리하고 있으므로
+	{
+		std::map<int, std::list<GameEngineRenderer*>>::iterator GroupStart = AllRenderer_.begin();
+		std::map<int, std::list<GameEngineRenderer*>>::iterator GroupEnd = AllRenderer_.end();
+
+		std::list<GameEngineRenderer*>::iterator StartRenderer;
+		std::list<GameEngineRenderer*>::iterator EndRenderer;
+
+
+		for (; GroupStart != GroupEnd; ++GroupStart)
+		{
+			std::list<GameEngineRenderer*>& Group = GroupStart->second;
+			StartRenderer = Group.begin();
+			EndRenderer = Group.end();
+			for (; StartRenderer != EndRenderer; )
+			{
+				if (false == (*StartRenderer)->IsDeath())
+				{
+					++StartRenderer;
+					continue;
+				}
+
+				StartRenderer = Group.erase(StartRenderer);
+			}
+		}
+	}
 	{
 		std::map<std::string, std::list<GameEngineCollision*>>::iterator GroupStart = AllCollision_.begin();
 		std::map<std::string, std::list<GameEngineCollision*>>::iterator GroupEnd = AllCollision_.end();
@@ -200,6 +238,23 @@ void GameEngineLevel::ActorRelease()
 	}
 
 }
+void GameEngineLevel::AddRenderer(GameEngineRenderer* _Renderer)
+{
+	// 찾아서 없으면 만드는 것까지.
+ 	AllRenderer_[_Renderer->GetOrder()].push_back(_Renderer);
+}
+
+
+void GameEngineLevel::ChangeRenderOrder(GameEngineRenderer* _Renderer, int _NewOrder)
+{
+	AllRenderer_[_Renderer->GetOrder()].remove(_Renderer);
+
+	_Renderer->GameEngineUpdateObject::SetOrder(_NewOrder);
+
+	AllRenderer_[_Renderer->GetOrder()].push_back(_Renderer);
+
+}
+
 
 void GameEngineLevel::AddCollision(const std::string& _GroupName
 	, GameEngineCollision* _Collision)

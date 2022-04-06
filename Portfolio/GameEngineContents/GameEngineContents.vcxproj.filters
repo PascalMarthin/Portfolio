@@ -122,6 +122,9 @@
     <ClCompile Include="Text.cpp">
       <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Dummy_Text.cpp">
+      <Filter>Object%28Game%29\Text\Stat</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -247,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="Text.h">
       <Filter>Object%28Game%29\Unit\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Dummy_Text.h">
+      <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

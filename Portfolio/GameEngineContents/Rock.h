@@ -23,6 +23,7 @@ public:
 		Inst_ = nullptr;
 	}
 	void SettingAbility() override;
+	std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir) override;
 
 private:
 	Rock_Unit();
@@ -56,6 +57,7 @@ public:
 		Inst_ = nullptr;
 	}
 	void SettingAbility() override;
+	std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir) override;
 
 private:
 	static Rock_Text* Inst_;
