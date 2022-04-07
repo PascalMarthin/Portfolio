@@ -372,11 +372,11 @@ bool PlayLevel::FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 
 
 bool PlayLevel::IsMapOut(std::pair<int, int> _Pos)
 {
-	if (MapScale_.ix() <= _Pos.first || _Pos.first <= 0)
+	if (MapScale_.ix() <= _Pos.first || _Pos.first < 0)
 	{
 		return true;
 	}
-	if (MapScale_.iy() <= _Pos.second || _Pos.second <= 0)
+	if (MapScale_.iy() <= _Pos.second || _Pos.second < 0)
 	{
 		return true;
 	}
