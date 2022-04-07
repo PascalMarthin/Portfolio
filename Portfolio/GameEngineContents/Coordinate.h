@@ -118,8 +118,5 @@ private:
 
 	void FrameUpdate();
 	void SetCurrentImage();
-	void SetFrameInt(int _SceneFrame);
-
-	float CurrentInterTimebyMove_;
 };
 

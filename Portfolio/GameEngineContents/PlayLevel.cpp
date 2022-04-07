@@ -357,6 +357,7 @@ void PlayLevel::CheckMapAllStat(std::pair<int, int> _MoveDir)
 			std::list<Coordinate*>::iterator EndIterList = Ref.end();
 			while (StartIterList != EndIterList)
 			{
+				(*StartIterList)->KeyIsPushOn();
 				if ((*StartIterList)->GetUnitObjectInst()->FindStat(SYou) == true && (*StartIterList)->IsDeath() == false)
 				{
 					if ((*StartIterList)->IsMove() == false && CheckBitMove(X, Y, _MoveDir) == true)

@@ -19,7 +19,6 @@ Coordinate::Coordinate()
 	, Type_(ObjectType::Error)
 	, TextObject_(nullptr)
 	, IsMove_(false)
-	, CurrentInterTimebyMove_(0.05f)
 	, PastByCurrentRange_(0)
 	, IsKeyPush_(false)
 	, CurrentImageIndex_(nullptr)
@@ -43,66 +42,72 @@ void Coordinate::SetCurrentImage()
 	}
 	else if (Type_ == ObjectType::Text)
 	{
-		CurrentImageIndex_ = TextObject_->GetAnimationTake(UnitDir_);
+		if (IsActive_ == true)
+		{
+			CurrentImageIndex_ = TextObject_->GetAnimationTake(Direction::Up);
+			
+		}
+		else if (IsActive_ == false)
+		{
+			CurrentImageIndex_ = TextObject_->GetAnimationTake(Direction::Down);
+		}
+		SceneFrame_ = 0;
+		
+	}
+	// 지금 wall, water, lava는 이미지 정리중
+	if (CurrentImageIndex_ == nullptr)
+	{
+		return;
+	}
+	StartFrame_ = (*CurrentImageIndex_)[SceneFrame_].first;
+	EndFrame_ = (*CurrentImageIndex_)[SceneFrame_].second;
+	CurrentFrame_ = (*CurrentImageIndex_)[SceneFrame_].first + (CurrentFrame_ % 3);
+	++SceneFrame_;
+	if ((*CurrentImageIndex_).size() <= SceneFrame_)
+	{
+		SceneFrame_ = 0;
 	}
 }
-void Coordinate::SetFrameInt(int _FrameIndex)
-{
-	CurrentFrame_ = (*CurrentImageIndex_)[_FrameIndex].first;
-	StartFrame_ = CurrentFrame_;
-	EndFrame_ = (*CurrentImageIndex_)[_FrameIndex].second;
-}
+
 void Coordinate::Update()
 {
 	if (IsKeyPush_ == true)
 	{
-		++SceneFrame_;
-		if (CurrentImageIndex_->size() == 0)
+		if (UnitObject_->GetName() == ObjectName::Baba_Unit)
 		{
-			MsgBoxAssert("여기서 오류");
-		}
-		else if (CurrentImageIndex_->size() <= SceneFrame_)
-		{
-			SceneFrame_ = 0;
-			
+			int a = 0;
 		}
 		SetCurrentImage();
-		SetFrameInt(SceneFrame_);
-
+		IsKeyPush_ = false;
 	}
 	if (IsDeath() == false)
 	{
 		if (IsMove_ == true)
 		{
-			CurrentInterTimebyMove_ -= GameEngineTime::GetInst()->GetDeltaTime();
-
-			if (CurrentInterTimebyMove_ <= 0)
+			if (PastByCurrentRange_ > 0)
 			{
-				if (PastByCurrentRange_ > 0)
+				switch (UnitDir_)
 				{
-					switch (UnitDir_)
-					{
-					case Direction::Right:
-						PastLUPos_.x += 8.0f;
-						break;
-					case Direction::Up:
-						PastLUPos_.y -= 8.0f;
-						break;
-					case Direction::Left:
-						PastLUPos_.x -= 8.0f;
-						break;
-					case Direction::Down:
-						PastLUPos_.y += 8.0f;
-						break;
-					default:
-						break;
-					}
-					PastByCurrentRange_ -= 8;
+				case Direction::Right:
+					PastLUPos_.x += 8.0f;
+					break;
+				case Direction::Up:
+					PastLUPos_.y -= 8.0f;
+					break;
+				case Direction::Left:
+					PastLUPos_.x -= 8.0f;
+					break;
+				case Direction::Down:
+					PastLUPos_.y += 8.0f;
+					break;
+				default:
+					break;
 				}
-				else
-				{
-					IsMove_ = false;
-				}
+				PastByCurrentRange_ -= 8;
+			}
+			else
+			{
+				IsMove_ = false;
 			}
 		}
 		else
@@ -187,9 +192,9 @@ void Coordinate::ChangePos(const float4& _Pos, const float4& _CPos, Direction _D
 		PastLUPos_ = CurrentLUPos_;
 		CurrentPos_ = _Pos;
 		CurrentLUPos_ = _CPos;
-		CurrentInterTimebyMove_ = 0.1f;
 		PastByCurrentRange_ = DotSizeX;
 		UnitDir_ = _Dir;
+		//SceneFrame_ = 0;
 		IsMove_ = true;
 	}
 }
