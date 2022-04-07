@@ -279,7 +279,6 @@ bool PlayLevel::CheckBitMove(int _x, int _y, std::pair<int, int> _MoveDir)
 				}
 				else
 				{
-					CurrentMap_[Y + _MoveDir.second][X + _MoveDir.first].push_back(*StartIterList);
 					StartIterList = Ref.erase(Move(StartIterList, _MoveDir));
 					continue;
 				}
@@ -298,8 +297,7 @@ std::list<Coordinate*>::iterator& PlayLevel::Move(std::list<Coordinate*>::iterat
 	int y = PastY + _MoveDir.second;
 	if (_MoveDir.first == 1)
 	{
-		(*_ListIter)->ChangePos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) }, Direction::Right);
-		
+		(*_ListIter)->ChangePos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) }, Direction::Right);		
 	}
 	else if (_MoveDir.second == 1)
 	{
