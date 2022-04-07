@@ -80,6 +80,7 @@ void PlayLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 
 void PlayLevel::ScanFucntion()
 {
+	GamePlayGobal::GetInst()->ReSetStat();
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator EndIterY = CurrentMap_.end();
 
@@ -148,7 +149,7 @@ bool PlayLevel::CheckFunction(int _X, int _Y, Coordinate* _Verb)
 }
 
 
-void PlayLevel::ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb,   Coordinate* _Stat)
+void PlayLevel::ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb,  Coordinate* _Stat)
 {
 	_Unit->SetON();
 	_Verb->SetON();
@@ -388,22 +389,26 @@ bool PlayLevel::KeyCheck()
 {
 	if (GameEngineInput::GetInst()->IsDown("Down"))
 	{
+		ScanFucntion();
 		CheckMapAllStat(std::make_pair(0, 1));
 		return true;
 	}
 	if (GameEngineInput::GetInst()->IsDown("Up"))
 	{
+		ScanFucntion();
 		CheckMapAllStat(std::make_pair(0, -1));
 		return true;
 	}
 
 	if (GameEngineInput::GetInst()->IsDown("Right"))
 	{
+		ScanFucntion();
 		CheckMapAllStat(std::make_pair(1, 0));
 		return true;
 	}
 	if (GameEngineInput::GetInst()->IsDown("Left"))
 	{
+		ScanFucntion();
 		CheckMapAllStat(std::make_pair(-1, 0));
 		return true;
 	}

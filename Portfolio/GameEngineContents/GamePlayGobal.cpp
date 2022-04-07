@@ -90,6 +90,30 @@ void  GamePlayGobal::SetName()
 		SettingAbility();
 }
 
+void GamePlayGobal::ReSetStat()
+{
+	std::map<ObjectName, GamePlayObject*>::iterator StartIter = ObjectName_.begin();
+	std::map<ObjectName, GamePlayObject*>::iterator EndIter = ObjectName_.end();
+	for (; StartIter != EndIter; ++StartIter)
+	{
+		GamePlayObject* SecondInst = StartIter->second;
+		if (SecondInst != nullptr && 
+			StartIter->first != ObjectName::Line &&
+			StartIter->first != ObjectName::Default &&
+			SecondInst->GetType() != ObjectType::Text)
+		{
+			static_cast<GamePlayUnitObject*>(SecondInst)->Reset();
+			continue;
+		}
+
+		//if (SecondInst != nullptr && SecondInst->GetName() == ObjectName::Text_Unit)
+		//{
+		//	static_cast<GamePlayUnitObject*>(SecondInst)->Reset();
+		//}
+	}
+	static_cast<GamePlayUnitObject*>(ObjectName_[ObjectName::Text_Unit])->Reset();
+}
+
 void GamePlayGobal::SettingAbility()
 {
 	std::map<ObjectName, GamePlayObject*>::iterator StartIter = ObjectName_.begin();

@@ -32,6 +32,7 @@ public:
 	GamePlayObject* Find(ObjectName _Name);
 	void SetName();
 	void SettingAbility();
+	void ReSetStat();
 	void DestroyName();
 protected:
 

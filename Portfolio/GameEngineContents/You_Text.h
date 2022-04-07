@@ -22,6 +22,7 @@ public:
 	void SettingAbility() override;
 	const std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir) override;
 
+
 protected:
 
 private:

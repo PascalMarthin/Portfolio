@@ -24,9 +24,9 @@ public:
 		Inst_ = nullptr;
 	}
 	void SettingAbility() override;
-	virtual void Reset() override
+	void Reset() override
 	{
-		AllStat_ += SPush;
+		AllStat_ = SPush;
 	}
 
 protected:
