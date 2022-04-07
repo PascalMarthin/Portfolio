@@ -54,7 +54,6 @@ public:
 		//Group.push_back(NewActor);
 		AllActor_[_Order].push_back(NewActor);
 
-
 		return NewActor;
 	}
 	inline float4 GetCameraPos()

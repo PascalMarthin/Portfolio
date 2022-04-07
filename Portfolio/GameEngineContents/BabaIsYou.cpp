@@ -82,6 +82,21 @@ void BabaIsYou::GameInit()
 		Image->Cut({ DotSizeX , DotSizeY });
 	}
 
+	// Clear
+	ResourcesDir.MoveParent("Ui");
+	ResourcesDir.Move("Clear");
+	AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+	for (size_t i = 0; i < AllImageFileList.size(); i++)
+	{
+		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Clear_make_sheet.bmp");
+		Image->Cut({ 820 , 270 });
+		Image = GameEngineImageManager::GetInst()->Find("Clear_Stay_sheet.bmp");
+		Image->Cut({ 820 , 270 });
+	}
+
 	// 메인메뉴
 	ResourcesDir.MoveParent("Ui");
 	ResourcesDir.Move("MainMenu");

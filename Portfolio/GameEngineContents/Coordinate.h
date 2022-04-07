@@ -112,8 +112,8 @@ private:
 	int EndFrame_;
 	int SceneFrame_;
 	float CurrentInterTime_;
-	float4 CurrentImgScale;
-	float4 CurrentImgPivot;
+	float4 CurrentImgScale_;
+	float4 CurrentImgPivot_;
 	Direction UnitDir_;
 
 	void FrameUpdate();

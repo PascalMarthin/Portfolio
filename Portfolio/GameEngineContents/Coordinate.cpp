@@ -153,8 +153,8 @@ void Coordinate::FrameUpdate()
 			}
 		}
 
-		CurrentImgScale = Image->GetImage()->GetCutScale(CurrentFrame_);
-		CurrentImgPivot = Image->GetImage()->GetCutPivot(CurrentFrame_);
+		CurrentImgScale_ = Image->GetImage()->GetCutScale(CurrentFrame_);
+		CurrentImgPivot_ = Image->GetImage()->GetCutPivot(CurrentFrame_);
 	}
 }
 
@@ -174,7 +174,7 @@ void Coordinate::SetValue(GamePlayObject* _Object, Direction _Dir, const float4&
 			TextObject_ = Dummy_Text::GetInst();
 			Type_ = _Object->GetType();
 		}
-		CurrentImgScale = _Size;
+		CurrentImgScale_ = _Size;
 	}
 	IsMove_ = false;
 	IsActive_ = false;

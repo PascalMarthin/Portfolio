@@ -52,7 +52,7 @@ void PlayLevel::LevelChangeStart()
 	MapScale_ = StageData::Inst_->Scale_[CurrentStage_];
 	CreateActor<BackGround>(0);
 	CreateActor<PlayBackGround>(1)->CreateRendererToScale("Stage0.bmp", { MapScale_.x * DotSizeX, MapScale_.y * DotSizeY });
-	CreateActor<ClearScene>(5)
+	CreateActor<ClearScene>(5);
 	GameWindowStartPosX_ = (GameEngineWindow::GetScale().x - MapScale_.x * DotSizeX) / 2;
 	GameWindowStartPosY_ = (GameEngineWindow::GetScale().y - MapScale_.y * DotSizeY) / 2;
 

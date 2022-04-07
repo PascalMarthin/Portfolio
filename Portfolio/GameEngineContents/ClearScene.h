@@ -1,7 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
-
-// 설명 :
+#include <GameEngine/GameEngineImage.h>
+#include <GameEngineBase/GameEngineMath.h>
 
 // 설명 :
 class ClearScene : public GameEngineActor
@@ -21,6 +21,14 @@ protected:
 	void Render() override;
 
 private:
+	GameEngineImage* MakeImage_;
+	GameEngineImage* StayImage_;
+	float CurrentInterTime_;
+	int CurrentFrame_;
+	int EndFrame_;
+	float4 CurrentImgScale_;
+	float4 CurrentImgPivot_;
 
+	bool StayOn_;
 };
 
