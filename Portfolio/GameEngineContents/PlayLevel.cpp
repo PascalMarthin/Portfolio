@@ -28,6 +28,8 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Loading()
 {
+	CreateActor<BackGround>(0);
+	ClearScene_ = CreateActor<ClearScene>(5);
 
 }
 
@@ -50,9 +52,7 @@ void PlayLevel::LevelChangeStart()
 {
 	CurrentStage_ = MainLevel::GetCurrentStage();
 	MapScale_ = StageData::Inst_->Scale_[CurrentStage_];
-	CreateActor<BackGround>(0);
 	CreateActor<PlayBackGround>(1)->CreateRendererToScale("Stage0.bmp", { MapScale_.x * DotSizeX, MapScale_.y * DotSizeY });
-	CreateActor<ClearScene>(5);
 	GameWindowStartPosX_ = (GameEngineWindow::GetScale().x - MapScale_.x * DotSizeX) / 2;
 	GameWindowStartPosY_ = (GameEngineWindow::GetScale().y - MapScale_.y * DotSizeY) / 2;
 
@@ -451,7 +451,7 @@ std::list<Coordinate*>::iterator& PlayLevel::Move(std::list<Coordinate*>::iterat
 
 void PlayLevel::ClearStage()
 {
-
+	ClearScene_->On();
 }
 
 

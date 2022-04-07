@@ -9,9 +9,9 @@
 ClearScene::ClearScene()
 	: MakeImage_(nullptr)
 	, StayImage_(nullptr)
-	, CurrentInterTime_(ImageSpeed)
+	, CurrentInterTime_(0.05f)
 	, CurrentFrame_(0)
-	, EndFrame_(0)
+	, EndFrame_(26)
 	, StayOn_(false)
 {
 }
@@ -44,17 +44,26 @@ void ClearScene::Update()
 		CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime();
 		if (0 >= CurrentInterTime_)
 		{
-			CurrentInterTime_ = ImageSpeed;
+			if (CurrentFrame_ < 10)
+			{
+				CurrentInterTime_ = 0.05f;
+			}
+			else
+			{
+				CurrentInterTime_ = 0.08f;
+			}
+
 			++CurrentFrame_;
 			if (EndFrame_ < CurrentFrame_)
 			{
 				StayOn_ = true;
-				CurrentFrame_ = 0;
+				CurrentFrame_ = 1;
 				EndFrame_ = 2;
+				CurrentInterTime_ = ImageSpeed;
 			}
 		}
-		CurrentImgScale_ = MakeImage_->GetImage()->GetCutScale(CurrentFrame_);
-		CurrentImgPivot_ = MakeImage_->GetImage()->GetCutPivot(CurrentFrame_);
+		CurrentImgScale_ = MakeImage_->GetCutScale(CurrentFrame_);
+		CurrentImgPivot_ = MakeImage_->GetCutPivot(CurrentFrame_);
 	}
 	if (StayOn_ == true)
 	{
@@ -68,10 +77,9 @@ void ClearScene::Update()
 				CurrentFrame_ = 0;
 			}
 		}
-		CurrentImgScale_ = StayImage_->GetImage()->GetCutScale(CurrentFrame_);
-		CurrentImgPivot_ = StayImage_->GetImage()->GetCutPivot(CurrentFrame_);
+		CurrentImgScale_ = StayImage_->GetCutScale(CurrentFrame_);
+		CurrentImgPivot_ = StayImage_->GetCutPivot(CurrentFrame_);
 	}
-
 
 }
 
@@ -79,10 +87,10 @@ void ClearScene::Render()
 {
 	if (StayOn_ != true)
 	{
-		GameEngine::BackBufferImage()->TransCopy(MakeImage_, GetPosition(), CurrentImgScale, CurrentImgPivot, CurrentImgScale, RGB(255, 0, 255));
+		GameEngine::BackBufferImage()->TransCopy(MakeImage_, GetPosition() - CurrentImgScale_.Half(), CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
 	}
 	else
 	{
-		GameEngine::BackBufferImage()->TransCopy(StayImage_, GetPosition(), CurrentImgScale, CurrentImgPivot, CurrentImgScale, RGB(255, 0, 255));
+		GameEngine::BackBufferImage()->TransCopy(StayImage_, GetPosition() - CurrentImgScale_.Half(), CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
 	}
 }

@@ -7,8 +7,8 @@
 Coordinate::Coordinate() 
 	: CurrentPos_({0, 0})
 	, CurrentLUPos_({ 0, 0 })
-	, CurrentImgScale({0, 0})
-	, CurrentImgPivot({0, 0})
+	, CurrentImgScale_({0, 0})
+	, CurrentImgPivot_({0, 0})
 	, UnitObject_(nullptr)
 	, UnitDir_(Direction::Error)
 	, CurrentFrame_(0)
@@ -122,11 +122,11 @@ void Coordinate::Render()
 {
 	if (Type_ == ObjectType::Unit)
 	{
-		GameEngine::BackBufferImage()->TransCopy(UnitObject_->GetImage(), PastLUPos_, CurrentImgScale, CurrentImgPivot, CurrentImgScale, RGB(255, 0, 255));
+		GameEngine::BackBufferImage()->TransCopy(UnitObject_->GetImage(), PastLUPos_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
 	}
 	else if (Type_ == ObjectType::Text)
 	{
-		GameEngine::BackBufferImage()->TransCopy(TextObject_->GetImage(), PastLUPos_, CurrentImgScale, CurrentImgPivot, CurrentImgScale, RGB(255, 0, 255));
+		GameEngine::BackBufferImage()->TransCopy(TextObject_->GetImage(), PastLUPos_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
 	}
 	
 }

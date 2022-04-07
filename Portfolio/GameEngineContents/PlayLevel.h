@@ -49,6 +49,7 @@ private:
 	void EndStage();
 	void ReleaseActor();
 
+	GameEngineActor* ClearScene_;
 	Stage CurrentStage_;
 	float4 MapScale_;
 	// ∞‘¿”
