@@ -1,5 +1,4 @@
 #include "TitleLogo.h"
-#include <Windows.h>
 #include <GameEngine/GameEngine.h>
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngine/GameEngineImageManager.h>

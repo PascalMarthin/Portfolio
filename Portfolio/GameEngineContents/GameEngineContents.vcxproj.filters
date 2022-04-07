@@ -125,6 +125,9 @@
     <ClCompile Include="Dummy_Text.cpp">
       <Filter>Object%28Game%29\Text\Stat</Filter>
     </ClCompile>
+    <ClCompile Include="ClearScene.cpp">
+      <Filter>LevelClass\Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -253,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="Dummy_Text.h">
       <Filter>Object%28Game%29\Text\Stat</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearScene.h">
+      <Filter>LevelClass\Play</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
