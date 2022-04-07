@@ -162,11 +162,11 @@ void PlayLevel::ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb,  Coordi
 
 	if (_Stat->GetTextObjectInst()->GetTextType() == TextType::Unit_Text)
 	{
-		ChangeUnit((_Unit->GetUnitObjectInst()), (_Stat->GetUnitObjectInst()));
+		ChangeUnit(static_cast<GamePlayUnitText*>(_Unit->GetTextObjectInst())->GetTextUnit(), static_cast<GamePlayUnitText*>(_Stat->GetTextObjectInst())->GetTextUnit());
 	}
 }
 
-void PlayLevel::ChangeUnit(const GamePlayObject* _Left, GamePlayObject* _Right)
+void PlayLevel::ChangeUnit(const GamePlayUnitObject* _Left, GamePlayUnitObject* _Right)
 {
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator EndIterY = CurrentMap_.end();

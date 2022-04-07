@@ -32,7 +32,7 @@ private:
 	void ScanFucntion();
 	bool CheckFunction(int _X, int _Y, Coordinate* _Verb);
 	void ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb, Coordinate* _Stat);
-	void ChangeUnit(const GamePlayObject* _Left, GamePlayObject* _Right);
+	void ChangeUnit(const GamePlayUnitObject* _Left, GamePlayUnitObject* _Right);
 	bool FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat);
 	void CheckMapAllStat();
 	void CheckMapAllStat(std::pair<int, int> _MoveDir);

@@ -21,6 +21,9 @@ Coordinate::Coordinate()
 	, IsMove_(false)
 	, CurrentInterTimebyMove_(0.05f)
 	, PastByCurrentRange_(0)
+	, IsKeyPush_(false)
+	, CurrentImageIndex_(nullptr)
+	, SceneFrame_(0)
 {
 }
 
@@ -32,8 +35,41 @@ void Coordinate::Start()
 {
 
 }
+void Coordinate::SetCurrentImage()
+{
+	if (Type_ == ObjectType::Unit)
+	{
+		CurrentImageIndex_ = UnitObject_->GetAnimationTake(UnitDir_);
+	}
+	else if (Type_ == ObjectType::Text)
+	{
+		CurrentImageIndex_ = TextObject_->GetAnimationTake(UnitDir_);
+	}
+}
+void Coordinate::SetFrameInt(int _FrameIndex)
+{
+	CurrentFrame_ = (*CurrentImageIndex_)[_FrameIndex].first;
+	StartFrame_ = CurrentFrame_;
+	EndFrame_ = (*CurrentImageIndex_)[_FrameIndex].second;
+}
 void Coordinate::Update()
 {
+	if (IsKeyPush_ == true)
+	{
+		++SceneFrame_;
+		if (CurrentImageIndex_->size() == 0)
+		{
+			MsgBoxAssert("여기서 오류");
+		}
+		else if (CurrentImageIndex_->size() <= SceneFrame_)
+		{
+			SceneFrame_ = 0;
+			
+		}
+		SetCurrentImage();
+		SetFrameInt(SceneFrame_);
+
+	}
 	if (IsDeath() == false)
 	{
 		if (IsMove_ == true)

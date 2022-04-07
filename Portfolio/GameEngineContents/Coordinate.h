@@ -76,6 +76,11 @@ public:
 		return IsMove_;
 	}
 
+	inline void KeyIsPushOn()
+	{
+		IsKeyPush_ = true;
+	}
+
 	void ChangePos(const float4& _Pos, const float4& _CPos, Direction _Dir);
 	void SetValue(GamePlayObject* _Object, Direction _Dir = Direction::Right, const float4& _Size = { DotSizeX, DotSizeY });
 
@@ -97,19 +102,23 @@ private:
 
 	bool IsActive_;
 	bool IsMove_;
-
+	bool IsKeyPush_;
 
 	
 	// img
+	const std::vector<std::pair<int, int>>* CurrentImageIndex_;
 	int CurrentFrame_;
 	int StartFrame_;
 	int EndFrame_;
+	int SceneFrame_;
 	float CurrentInterTime_;
 	float4 CurrentImgScale;
 	float4 CurrentImgPivot;
 	Direction UnitDir_;
 
 	void FrameUpdate();
+	void SetCurrentImage();
+	void SetFrameInt(int _SceneFrame);
 
 	float CurrentInterTimebyMove_;
 };
