@@ -19,7 +19,7 @@ void Tile_Unit::SettingAbility()
 	AnimationTake_["Tile_Unit"].push_back(std::make_pair(0, 2));
 
 }
-std::vector<std::pair<int, int>>* Tile_Unit::GetAnimationTake(Direction _Dir)
+const std::vector<std::pair<int, int>>* Tile_Unit::GetAnimationTake(Direction _Dir)
 {
 	switch (_Dir)
 	{

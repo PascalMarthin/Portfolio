@@ -23,7 +23,7 @@ public:
 		Inst_ = nullptr;
 	}
 	void SettingAbility() override;
-	std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir) override { return nullptr; }
+	const std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir) override { return nullptr; }
 
 private:
 	Water_Unit();
@@ -57,7 +57,7 @@ public:
 		Inst_ = nullptr;
 	}
 	void SettingAbility() override;
-	std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir) override;
+	const std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir) override;
 
 private:
 	static Water_Text* Inst_;

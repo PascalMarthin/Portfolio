@@ -21,6 +21,7 @@ public:
 		Inst_ = nullptr;
 	}
 	void SettingAbility() override;
+	const std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir);
 
 public:
 	static Default* Inst_;

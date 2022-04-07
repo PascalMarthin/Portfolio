@@ -24,6 +24,10 @@ public:
 		Inst_ = nullptr;
 	}
 	void SettingAbility() override;
+	virtual void Reset() override
+	{
+		AllStat_ += SPush;
+	}
 
 protected:
 

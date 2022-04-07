@@ -56,7 +56,7 @@ void Lava_Text::SettingAbility()
 
 }
 
-std::vector<std::pair<int, int>>* Lava_Text::GetAnimationTake(Direction _Dir)
+const std::vector<std::pair<int, int>>* Lava_Text::GetAnimationTake(Direction _Dir)
 {
 	switch (_Dir)
 	{

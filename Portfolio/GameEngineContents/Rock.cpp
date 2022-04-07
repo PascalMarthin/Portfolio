@@ -22,7 +22,7 @@ void Rock_Unit::SettingAbility()
 	AnimationTake_["Rock_Unit"].push_back(std::make_pair(0, 2));
 }
 
-std::vector<std::pair<int, int>>* Rock_Unit::GetAnimationTake(Direction _Dir)
+const std::vector<std::pair<int, int>>* Rock_Unit::GetAnimationTake(Direction _Dir)
 {
 	switch (_Dir)
 	{
@@ -61,7 +61,7 @@ void Rock_Text::SettingAbility()
 
 }
 
-std::vector<std::pair<int, int>>* Rock_Text::GetAnimationTake(Direction _Dir)
+const std::vector<std::pair<int, int>>* Rock_Text::GetAnimationTake(Direction _Dir)
 {
 	switch (_Dir)
 	{

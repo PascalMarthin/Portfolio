@@ -23,7 +23,7 @@ void Stop_Text::SettingAbility()
 
 }
 
-std::vector<std::pair<int, int>>* Stop_Text::GetAnimationTake(Direction _Dir)
+const std::vector<std::pair<int, int>>* Stop_Text::GetAnimationTake(Direction _Dir)
 {
 	switch (_Dir)
 	{

@@ -15,10 +15,6 @@ void GamePlayUnitObject::UnitObjectFucntion()
 
 }
 
-void GamePlayUnitObject::Reset()
-{
-	AllStat_ = 0;
-}
 
 void GamePlayUnitObject::ApplyStat(const GamePlayTextStat* _Stat)
 {
@@ -52,9 +48,43 @@ void GamePlayUnitObject::ApplyStat(const GamePlayTextStat* _Stat)
 		MsgBoxAssert("CheckStat is Error");
 		break;
 	}
-
 }
 
+void GamePlayUnitObject::ApplyStat(int _idx)
+{
+	switch (_idx)
+	{
+	case SDefeat:
+		AllStat_ += SDefeat;
+		break;
+	case SHot:
+		AllStat_ += SHot;
+		break;
+	case SMelt:
+		AllStat_ += SMelt;
+		break;
+	case SPush:
+		AllStat_ += SPush;
+		break;
+	case SSink:
+		AllStat_ += SSink;
+		break;
+	case SStop:
+		AllStat_ += SStop;
+		break;
+	case SWin:
+		AllStat_ += SWin;
+		break;
+	case SYou:
+		AllStat_ += SYou;
+		break;
+	default:
+		MsgBoxAssert("CheckStat is Error");
+		break;
+	}
+
+
+}
 bool GamePlayUnitObject::FindStat(unsigned __int64 _Idx)
 {
 	return (AllStat_ & _Idx) == _Idx;

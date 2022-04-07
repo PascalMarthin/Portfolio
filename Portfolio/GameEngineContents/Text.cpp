@@ -14,6 +14,4 @@ void Text_Unit::SettingAbility()
 {
 	Name_ = ObjectName::Text_Unit;
 	Type_ = ObjectType::Text;
-
-
 }

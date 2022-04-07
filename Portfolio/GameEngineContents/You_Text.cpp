@@ -23,7 +23,7 @@ void You_Text::SettingAbility()
 
 }
 
-std::vector<std::pair<int, int>>* You_Text::GetAnimationTake(Direction _Dir)
+const std::vector<std::pair<int, int>>* You_Text::GetAnimationTake(Direction _Dir)
 {
 	switch (_Dir)
 	{

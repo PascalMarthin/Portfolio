@@ -20,12 +20,16 @@ public:
 
 
 	void ApplyStat(const GamePlayTextStat* _Stat);
+	void ApplyStat(int _idx);
 	inline unsigned __int64& GetAllStat()
 	{
 		return AllStat_;
 	}
 
-	void Reset();
+	virtual void Reset()
+	{
+		AllStat_ = 0;
+	}
 	bool FindStat(unsigned __int64 _Idx);
 
 protected:

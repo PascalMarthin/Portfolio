@@ -24,7 +24,7 @@ void Skull_Unit::SettingAbility()
 	AnimationTake_["Skull_Unit_Down"].push_back(std::make_pair(9, 11));
 }
 
-std::vector<std::pair<int, int>>* Skull_Unit::GetAnimationTake(Direction _Dir)
+const std::vector<std::pair<int, int>>* Skull_Unit::GetAnimationTake(Direction _Dir)
 {
 	switch (_Dir)
 	{
@@ -68,7 +68,7 @@ void Skull_Text::SettingAbility()
 
 }
 
-std::vector<std::pair<int, int>>* Skull_Text::GetAnimationTake(Direction _Dir)
+const std::vector<std::pair<int, int>>* Skull_Text::GetAnimationTake(Direction _Dir)
 {
 	switch (_Dir)
 	{

@@ -37,7 +37,7 @@ void Baba_Unit::SettingAbility()
 	//AnimationTake_["Baba_Unit_Down"].push_back(std::make_pair(45, 47));
 }
 
-std::vector<std::pair<int, int>>* Baba_Unit::GetAnimationTake(Direction _Dir)
+const std::vector<std::pair<int, int>>* Baba_Unit::GetAnimationTake(Direction _Dir)
 {
 	switch (_Dir)
 	{
@@ -83,7 +83,7 @@ void Baba_Text::SettingAbility()
 
 }
 
-std::vector<std::pair<int, int>>* Baba_Text::GetAnimationTake(Direction _Dir)
+const std::vector<std::pair<int, int>>* Baba_Text::GetAnimationTake(Direction _Dir)
 {
 	switch (_Dir)
 	{

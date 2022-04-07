@@ -22,7 +22,7 @@ void Hot_Text::SettingAbility()
 	AnimationTake_["Hot_Text_ON"].push_back(std::make_pair(3, 5));
 }
 
-std::vector<std::pair<int, int>>* Hot_Text::GetAnimationTake(Direction _Dir)
+const std::vector<std::pair<int, int>>* Hot_Text::GetAnimationTake(Direction _Dir)
 {
 	switch (_Dir)
 	{

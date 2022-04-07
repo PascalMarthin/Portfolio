@@ -23,7 +23,7 @@ void Sink_Text::SettingAbility()
 
 }
 
-std::vector<std::pair<int, int>>* Sink_Text::GetAnimationTake(Direction _Dir)
+const std::vector<std::pair<int, int>>* Sink_Text::GetAnimationTake(Direction _Dir)
 {
 	switch (_Dir)
 	{

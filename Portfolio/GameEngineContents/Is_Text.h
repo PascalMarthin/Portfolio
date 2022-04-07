@@ -22,7 +22,7 @@ public:
 		Inst_ = nullptr;
 	}
 	void SettingAbility() override;
-	std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir) override;
+	const std::vector<std::pair<int, int>>* GetAnimationTake(Direction _Dir) override;
 
 private:
 	static Is_Text* Inst_;

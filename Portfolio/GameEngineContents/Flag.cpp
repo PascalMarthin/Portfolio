@@ -22,7 +22,7 @@ void Flag_Unit::SettingAbility()
 }
 
 
-std::vector<std::pair<int, int>>* Flag_Unit::GetAnimationTake(Direction _Dir)
+const std::vector<std::pair<int, int>>* Flag_Unit::GetAnimationTake(Direction _Dir)
 {
 	switch (_Dir)
 	{
@@ -61,7 +61,7 @@ void Flag_Text::SettingAbility()
 
 }
 
-std::vector<std::pair<int, int>>* Flag_Text::GetAnimationTake(Direction _Dir)
+const std::vector<std::pair<int, int>>* Flag_Text::GetAnimationTake(Direction _Dir)
 {
 	switch (_Dir)
 	{
