@@ -34,9 +34,11 @@ void Coordinate::Start()
 }
 void Coordinate::Update()
 {
-	if (IsMove_ == true && IsDeath() == false)
+	if (IsDeath() == false)
 	{
-		CurrentInterTimebyMove_ -= GameEngineTime::GetInst()->GetDeltaTime();
+		if (IsMove_ == true)
+		{
+			CurrentInterTimebyMove_ -= GameEngineTime::GetInst()->GetDeltaTime();
 
 			if (CurrentInterTimebyMove_ <= 0)
 			{
@@ -66,10 +68,12 @@ void Coordinate::Update()
 					IsMove_ = false;
 				}
 			}
-	}
-	else 
-	{
-		FrameUpdate();
+		}
+		else
+		{
+			FrameUpdate();
+		}
+
 	}
 }
 
@@ -147,7 +151,7 @@ void Coordinate::ChangePos(const float4& _Pos, const float4& _CPos, Direction _D
 		PastLUPos_ = CurrentLUPos_;
 		CurrentPos_ = _Pos;
 		CurrentLUPos_ = _CPos;
-		CurrentInterTimebyMove_ = 0.05f;
+		CurrentInterTimebyMove_ = 0.1f;
 		PastByCurrentRange_ = DotSizeX;
 		UnitDir_ = _Dir;
 		IsMove_ = true;
