@@ -32,6 +32,9 @@
     <ClInclude Include="GameEngineFolderImage.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineRendererTileMap.h">
+      <Filter>Object%28Engine%29</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngine.cpp" />
@@ -61,6 +64,9 @@
     </ClCompile>
     <ClCompile Include="GameEngineFolderImage.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineRendererTileMap.cpp">
+      <Filter>Object%28Engine%29</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

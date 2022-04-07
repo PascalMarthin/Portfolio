@@ -246,6 +246,7 @@ void GameEngineRenderer::SetOrder(int _Order)
 
 	GetActor()->GetLevel()->ChangeRenderOrder(this, _Order);
 }
+
 bool GameEngineRenderer::IsEndAnimation()
 {
 	return CurrentAnimation_->IsEnd;

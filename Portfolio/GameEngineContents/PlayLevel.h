@@ -45,6 +45,7 @@ private:
 
 	bool KeyCheck();
 
+	void ClearStage();
 	void EndStage();
 	void ReleaseActor();
 

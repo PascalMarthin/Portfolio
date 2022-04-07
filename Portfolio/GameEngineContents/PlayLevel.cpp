@@ -34,7 +34,8 @@ void PlayLevel::Update()
 {
 	if (true == KeyCheck())
 	{
-
+		ScanFucntion();
+		CheckMapAllStat();
 	}
 
 }
@@ -111,6 +112,7 @@ void PlayLevel::ScanFucntion()
 
 bool PlayLevel::CheckFunction(int _X, int _Y, Coordinate* _Verb)
 {
+	bool CheckFucn = false;
 	if (_X > 0 && _X < MapScale_.ix()-1)
 	{
 		for (auto iterMinus : CurrentMap_[_Y][_X - 1])
@@ -122,8 +124,8 @@ bool PlayLevel::CheckFunction(int _X, int _Y, Coordinate* _Verb)
 					if (iterPlus->GetTextObjectInst()->GetTextType() == TextType::Unit_Text || iterPlus->GetTextObjectInst()->GetTextType() == TextType::Stat_Text)
 					{
 						ApplyObjectFuction(iterMinus, _Verb, iterPlus);
+						CheckFucn = true;
 					}
-					return true;
 				}
 			}
 		}
@@ -139,13 +141,13 @@ bool PlayLevel::CheckFunction(int _X, int _Y, Coordinate* _Verb)
 					if (iterPlus->GetTextObjectInst()->GetTextType() == TextType::Unit_Text || iterPlus->GetTextObjectInst()->GetTextType() == TextType::Stat_Text)
 					{
 						ApplyObjectFuction(iterMinus, _Verb, iterPlus);
+						CheckFucn = true;
 					}
-					return true;
 				}
 			}
 		}
 	}
-	return false;
+	return CheckFucn;
 }
 
 
@@ -203,6 +205,134 @@ void PlayLevel::CheckMapAllStat()
 			CheckBitStat(StartIterX->second);
 		}
 	}
+}
+
+
+void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
+{
+	// Defeat
+	{
+		if (FindUnitByStat(_Value, SDefeat) == true && FindUnitByStat(_Value, SYou) == true)
+		{
+			for (auto iter : _Value)
+			{
+				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsDeath() == false)
+				{
+					iter->Death();
+				}
+			}
+		}
+	}
+	// Sink
+	{
+		if (FindUnitByStat(_Value, SSink) == true)
+		{
+			for (auto iter : _Value)
+			{
+				iter->Death();
+			}
+		}
+	}
+
+	// Hot, Melt
+	{
+		if (FindUnitByStat(_Value, SHot) == true && FindUnitByStat(_Value, SMelt))
+		{
+			for (auto iter : _Value)
+			{
+				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsDeath() == false)
+				{
+					iter->Death();
+				}
+			}
+		}
+	}
+	// Win
+	{
+		if (FindUnitByStat(_Value, SWin) == true && 
+			FindUnitByStat(_Value, SYou) == true)
+		{
+			for (auto iter : _Value)
+			{
+				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsDeath() == false)
+				{
+					ClearStage();
+				}
+			}
+		}
+	}
+}
+
+bool PlayLevel::FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat)
+{
+	for (auto iter : _Value)
+	{
+		if ((iter->GetUnitObjectInst()->GetAllStat() & _Stat) == _Stat)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+
+bool PlayLevel::IsMapOut(std::pair<int, int> _Pos)
+{
+	if (MapScale_.ix() <= _Pos.first || _Pos.first < 0)
+	{
+		return true;
+	}
+	if (MapScale_.iy() <= _Pos.second || _Pos.second < 0)
+	{
+		return true;
+	}
+	return false;
+}
+
+
+bool PlayLevel::KeyCheck()
+{
+	if (GameEngineInput::GetInst()->IsDown("Down"))
+	{
+		ScanFucntion();
+		CheckMapAllStat(std::make_pair(0, 1));
+		return true;
+	}
+	if (GameEngineInput::GetInst()->IsDown("Up"))
+	{
+		ScanFucntion();
+		CheckMapAllStat(std::make_pair(0, -1));
+		return true;
+	}
+
+	if (GameEngineInput::GetInst()->IsDown("Right"))
+	{
+		ScanFucntion();
+		CheckMapAllStat(std::make_pair(1, 0));
+		return true;
+	}
+	if (GameEngineInput::GetInst()->IsDown("Left"))
+	{
+		ScanFucntion();
+		CheckMapAllStat(std::make_pair(-1, 0));
+		return true;
+	}
+
+
+	if (GameEngineInput::GetInst()->IsDown("Space"))
+	{
+
+	}
+	if (GameEngineInput::GetInst()->IsDown("R"))
+	{
+
+	}
+	if (GameEngineInput::GetInst()->IsDown("Space"))
+	{
+
+	}
+
+	return false;
 }
 
 void PlayLevel::CheckMapAllStat(std::pair<int, int> _MoveDir)
@@ -316,118 +446,9 @@ std::list<Coordinate*>::iterator& PlayLevel::Move(std::list<Coordinate*>::iterat
 	return _ListIter;
 }
 
-
-void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
+void PlayLevel::ClearStage()
 {
-	// Defeat
-	{
-		if (FindUnitByStat(_Value, SDefeat) == true && FindUnitByStat(_Value, SYou) == true)
-		{
-			for (auto iter : _Value)
-			{
-				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsDeath() == false)
-				{
-					iter->Death();
-				}
-			}
-		}
-	}
-	// Sink
-	{
-		if (FindUnitByStat(_Value, SSink) == true)
-		{
-			for (auto iter : _Value)
-			{
-				iter->Death();
-			}
-		}
-	}
 
-	// Hot, Melt
-	{
-		if (FindUnitByStat(_Value, SHot) == true && FindUnitByStat(_Value, SMelt))
-		{
-			for (auto iter : _Value)
-			{
-				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsDeath() == false)
-				{
-					iter->Death();
-				}
-			}
-		}
-	}
-}
-
-bool PlayLevel::FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat)
-{
-	for (auto iter : _Value)
-	{
-		if ((iter->GetUnitObjectInst()->GetAllStat() & _Stat) == _Stat)
-		{
-			return true;
-		}
-	}
-	return false;
-}
-
-
-bool PlayLevel::IsMapOut(std::pair<int, int> _Pos)
-{
-	if (MapScale_.ix() <= _Pos.first || _Pos.first < 0)
-	{
-		return true;
-	}
-	if (MapScale_.iy() <= _Pos.second || _Pos.second < 0)
-	{
-		return true;
-	}
-	return false;
-}
-
-
-bool PlayLevel::KeyCheck()
-{
-	if (GameEngineInput::GetInst()->IsDown("Down"))
-	{
-		ScanFucntion();
-		CheckMapAllStat(std::make_pair(0, 1));
-		return true;
-	}
-	if (GameEngineInput::GetInst()->IsDown("Up"))
-	{
-		ScanFucntion();
-		CheckMapAllStat(std::make_pair(0, -1));
-		return true;
-	}
-
-	if (GameEngineInput::GetInst()->IsDown("Right"))
-	{
-		ScanFucntion();
-		CheckMapAllStat(std::make_pair(1, 0));
-		return true;
-	}
-	if (GameEngineInput::GetInst()->IsDown("Left"))
-	{
-		ScanFucntion();
-		CheckMapAllStat(std::make_pair(-1, 0));
-		return true;
-	}
-
-
-	if (GameEngineInput::GetInst()->IsDown("Space"))
-	{
-
-	}
-	if (GameEngineInput::GetInst()->IsDown("R"))
-	{
-
-	}
-	if (GameEngineInput::GetInst()->IsDown("Space"))
-	{
-
-	}
-
-	return false;
 }
 
 
