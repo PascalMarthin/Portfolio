@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
 #include <GameEngineBase/GameEngineMath.h>
+#include "Coordinate.h"
 #include "GamePlayGobal.h"
 #include "StageData.h"
 #include "GamePlayTextStat.h"
@@ -8,8 +9,9 @@
 #include "GamePlayUnitText.h"
 
 // 설명 : Stage 정보를 받아 화면에 출력해주는 Level
+class CooridnateHistoryData;
 class GamePlayObject;
-class Coordinate;
+class AA;
 class PlayLevel : public GameEngineLevel
 {
 public:
@@ -29,6 +31,8 @@ protected:
 
 private:
 	void CreatMap (std::map<int, std::map<int, ObjectName>>& _Stage);
+	void StageFucntionReset();
+	void StageSave();
 	void ScanFucntion();
 	bool CheckFunction(int _X, int _Y, Coordinate* _Verb);
 	void ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb, Coordinate* _Stat);
@@ -37,17 +41,20 @@ private:
 	void CheckMapAllStat();
 	void CheckMapAllStat(std::pair<int, int> _MoveDir);
 	bool CheckBitMove(int _x, int _y, std::pair<int, int> _MoveDir);
+	bool PushKey(Direction _Dir);
 	void CheckBitStat(std::list<Coordinate*>& _Value);
 	std::list<Coordinate*>::iterator& Move(std::list<Coordinate*>::iterator& _ListIter, std::pair<int, int> _MoveDir);
 	bool IsMapOut(std::pair<int, int> _MoveDir);
 
+
+	void BackTothePast();
 
 
 	bool KeyCheck();
 
 	void ClearStage();
 	void EndStage();
-	void ReleaseActor();
+	void AllReleaseInStage();
 
 	GameEngineActor* ClearScene_;
 	Stage CurrentStage_;
@@ -58,5 +65,44 @@ private:
 
 	std::map<int, std::map<int, std::list<Coordinate*>>> CurrentMap_;
 	std::vector<std::pair<GamePlayObject*, GamePlayObject*>> ActiveFunction_;
+	std::list<Coordinate*> AllCoordinate_;
+	std::vector<std::map< Coordinate* , const CooridnateHistoryData*>*> AllMoveHistory_;
+
+private:
+
+};
+class CooridnateHistoryData
+{
+public:
+	CooridnateHistoryData(Coordinate* _Coordinate)
+		: Pos_(_Coordinate->GetPos())
+		, Direction_(_Coordinate->GetDir())
+		, IsUpdate_(_Coordinate->IsUpdate())
+		, ObjectName_(ObjectName::Error)
+	{
+		if (_Coordinate->GetObjectType() == ObjectType::Text)
+		{
+			ObjectName_ = _Coordinate->GetTextObjectInst()->GetName();
+		}
+		if (_Coordinate->GetObjectType() == ObjectType::Unit)
+		{
+			ObjectName_ = _Coordinate->GetUnitObjectInst()->GetName();
+		}
+	}
+
+	~CooridnateHistoryData()
+	{
+
+	}
+
+	CooridnateHistoryData(const CooridnateHistoryData& _Other) = delete;
+	CooridnateHistoryData(CooridnateHistoryData&& _Other) noexcept = delete;
+	CooridnateHistoryData& operator=(const CooridnateHistoryData& _Other) = delete;
+	CooridnateHistoryData& operator=(CooridnateHistoryData&& _Other) noexcept = delete;
+	
+	float4 Pos_;
+	Direction Direction_;
+	ObjectName ObjectName_;
+	bool IsUpdate_;
 };
 

@@ -53,6 +53,10 @@ public:
 	{
 		return CurrentPos_;
 	}
+	inline Direction GetDir() const
+	{
+		return UnitDir_;
+	}
 
 	inline void SetOFF()
 	{

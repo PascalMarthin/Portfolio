@@ -169,6 +169,13 @@ public:
 		return *this;
 	}
 
+	//
+	bool operator==(const float4& _Other) const
+	{
+		return x == _Other.x && y == _Other.y && z == _Other.z;
+	}
+
+	//
 public:
 	float4()
 		: x(0.0f), y(0.0f), z(0.0f), w(1.0f)

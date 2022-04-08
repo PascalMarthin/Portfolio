@@ -175,7 +175,7 @@ void GameEngineActor::Release()
 
 		for (; StartIter != EndIter;)
 		{
-			if (false == (*StartIter)->IsDeath())
+			if (false == (*StartIter)->IsUpdate())
 			{
 				++StartIter;
 				continue;

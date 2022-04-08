@@ -73,14 +73,15 @@ void Coordinate::Update()
 {
 	if (IsKeyPush_ == true)
 	{
-		if (UnitObject_->GetName() == ObjectName::Baba_Unit)
+		// µð¹ö±ë¿ë
+		if (UnitObject_->GetName() == ObjectName::Rock_Unit)
 		{
 			int a = 0;
 		}
 		SetCurrentImage();
 		IsKeyPush_ = false;
 	}
-	if (IsDeath() == false)
+	if (IsUpdate() == true)
 	{
 		if (IsMove_ == true)
 		{
@@ -89,31 +90,29 @@ void Coordinate::Update()
 				switch (UnitDir_)
 				{
 				case Direction::Right:
-					PastLUPos_.x += 8.0f;
+					PastLUPos_.x += 4.0f;
 					break;
 				case Direction::Up:
-					PastLUPos_.y -= 8.0f;
+					PastLUPos_.y -= 4.0f;
 					break;
 				case Direction::Left:
-					PastLUPos_.x -= 8.0f;
+					PastLUPos_.x -= 4.0f;
 					break;
 				case Direction::Down:
-					PastLUPos_.y += 8.0f;
+					PastLUPos_.y += 4.0f;
 					break;
 				default:
 					break;
 				}
-				PastByCurrentRange_ -= 8;
+				PastByCurrentRange_ -= 4;
 			}
 			else
 			{
 				IsMove_ = false;
 			}
 		}
-		else
-		{
-			FrameUpdate();
-		}
+
+		FrameUpdate();
 
 	}
 }

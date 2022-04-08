@@ -22,7 +22,7 @@ PlayLevel::PlayLevel()
 
 PlayLevel::~PlayLevel() 
 {
-
+	EndStage();
 }
 
 
@@ -30,6 +30,7 @@ void PlayLevel::Loading()
 {
 	CreateActor<BackGround>(0);
 	ClearScene_ = CreateActor<ClearScene>(5);
+	AllMoveHistory_.reserve(10000);
 
 }
 
@@ -37,6 +38,7 @@ void PlayLevel::Update()
 {
 	if (true == KeyCheck())
 	{
+		StageFucntionReset();
 		ScanFucntion();
 		CheckMapAllStat();
 	}
@@ -57,6 +59,7 @@ void PlayLevel::LevelChangeStart()
 	GameWindowStartPosY_ = (GameEngineWindow::GetScale().y - MapScale_.y * DotSizeY) / 2;
 
 	CreatMap(StageData::Inst_->StageData_[CurrentStage_]);
+	StageFucntionReset();
 	ScanFucntion();
 	CheckMapAllStat();
 }
@@ -77,13 +80,100 @@ void PlayLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 			Coordi->SetPos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) });
 			Coordi->SetValue(Value);
 			CurrentMap_[y][x].push_back(Coordi);
+			AllCoordinate_.push_back(Coordi);
 		}
 	}
 }
 
-void PlayLevel::ScanFucntion()
+void PlayLevel::StageFucntionReset()
 {
 	GamePlayGobal::GetInst()->ReSetStat();
+	for (auto Iter : AllCoordinate_)
+	{
+		Iter->SetOFF();
+	}
+}
+
+void PlayLevel::StageSave()
+{
+	//AllCoordinate를 사용안하는 이유는 실수로 놓친 메모리까지 Coordinate를 해제할수있게 모아두기 때문
+	// 나중에 테스트에 걸쳐서 변경 예정
+
+	std::map<Coordinate*, const CooridnateHistoryData*>* History = new std::map<Coordinate*, const CooridnateHistoryData*>;
+	{
+		std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();
+		std::map<int, std::map<int, std::list<Coordinate*>>>::iterator EndIterY = CurrentMap_.end();
+		for (; StartIterY != EndIterY; ++StartIterY)
+		{
+			std::map<int, std::list<Coordinate*>>::iterator StartIterX = StartIterY->second.begin();
+			std::map<int, std::list<Coordinate*>>::iterator EndIterX = StartIterY->second.end();
+			for (; StartIterX != EndIterX; ++StartIterX)
+			{
+				std::list<Coordinate*>& Block = StartIterX->second;
+				for (auto iter : Block)
+				{
+					CooridnateHistoryData* Data = new CooridnateHistoryData(iter);
+					(*History)[iter] = Data;
+				}
+			}
+		}
+	}
+	AllMoveHistory_.push_back(History);
+
+}
+
+void PlayLevel::BackTothePast()
+{
+	std::vector<std::map< Coordinate*, const CooridnateHistoryData*>*>::iterator StartIterVector = AllMoveHistory_.begin();
+	std::vector<std::map< Coordinate*, const CooridnateHistoryData*>*>::iterator EndIterVector = AllMoveHistory_.end();
+	for (; StartIterVector != EndIterVector; ++StartIterVector)
+	{
+		std::map< Coordinate*, const CooridnateHistoryData*>::iterator StartIterMap = (*StartIterVector)->begin();
+		std::map< Coordinate*, const CooridnateHistoryData*>::iterator EndIterMap = (*StartIterVector)->end();
+		for (; StartIterMap != EndIterMap; ++StartIterMap)
+		{
+			// 업데이트가 실행될때
+			if ((*StartIterMap).second->IsUpdate_ == true)
+			{
+				if ((*StartIterMap).first->GetObjectType() == ObjectType::Text)
+				{
+					if ((*StartIterMap).first->GetTextObjectInst()->GetName() != (*StartIterMap).second->ObjectName_)
+					{
+						// 아직 사용하지 않는 함수
+					}
+					
+				}
+				else if ((*StartIterMap).first->GetObjectType() == ObjectType::Unit)
+				{
+					if ((*StartIterMap).first->GetUnitObjectInst()->GetName() != (*StartIterMap).second->ObjectName_)
+					{
+						(*StartIterMap).first->SetValue(GamePlayGobal::GetInst()->Find((*StartIterMap).second->ObjectName_), (*StartIterMap).second->Direction_);
+						//ChangeUnit(static_cast<GamePlayUnitObject*>((*StartIterMap).first->GetUnitObjectInst()), 
+						//	static_cast<GamePlayUnitObject*>(GamePlayGobal::GetInst()->Find((*StartIterMap).second->ObjectName_)));
+					}
+				}
+			
+				// 같은 위치가 아닐때
+				if (!((*StartIterMap).first->GetPos() == (*StartIterMap).second->Pos_))
+				{
+					(*StartIterMap).first->ChangePos((*StartIterMap).second->Pos_, 
+					{ GameWindowStartPosX_ + static_cast<float>((*StartIterMap).second->Pos_.ix() * DotSizeX), GameWindowStartPosY_ + static_cast<float>((*StartIterMap).second->Pos_.iy() * DotSizeY)}, 
+					(*StartIterMap).second->Direction_);
+				}
+				if ((*StartIterMap).first->IsUpdate() != (*StartIterMap).second->IsUpdate_)
+				{
+					(*StartIterMap).first->On();
+				}
+
+			}
+			
+		}
+	}
+
+}
+
+void PlayLevel::ScanFucntion()
+{
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator EndIterY = CurrentMap_.end();
 
@@ -100,7 +190,7 @@ void PlayLevel::ScanFucntion()
 		{
 			X = StartIterX->first;
 			std::list<Coordinate*>& Block = StartIterX->second;
-
+			
 			for (auto iter : Block)
 			{
 				if (iter->GetTextObjectInst()->GetTextType() == TextType::Verb_Text)
@@ -218,9 +308,9 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 		{
 			for (auto iter : _Value)
 			{
-				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsDeath() == false)
+				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsUpdate() == true)
 				{
-					iter->Death();
+					iter->Off();
 				}
 			}
 		}
@@ -231,7 +321,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 		{
 			for (auto iter : _Value)
 			{
-				iter->Death();
+				iter->Off();
 			}
 		}
 	}
@@ -242,9 +332,9 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 		{
 			for (auto iter : _Value)
 			{
-				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsDeath() == false)
+				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsUpdate() == true)
 				{
-					iter->Death();
+					iter->Off();
 				}
 			}
 		}
@@ -256,7 +346,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 		{
 			for (auto iter : _Value)
 			{
-				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsDeath() == false)
+				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsUpdate() == true)
 				{
 					ClearStage();
 				}
@@ -296,45 +386,66 @@ bool PlayLevel::KeyCheck()
 {
 	if (GameEngineInput::GetInst()->IsDown("Down"))
 	{
-		ScanFucntion();
-		CheckMapAllStat(std::make_pair(0, 1));
-		return true;
+		return PushKey(Direction::Down);
 	}
 	if (GameEngineInput::GetInst()->IsDown("Up"))
 	{
-		ScanFucntion();
-		CheckMapAllStat(std::make_pair(0, -1));
-		return true;
+		return PushKey(Direction::Up);
 	}
-
 	if (GameEngineInput::GetInst()->IsDown("Right"))
 	{
-		ScanFucntion();
-		CheckMapAllStat(std::make_pair(1, 0));
-		return true;
+		return PushKey(Direction::Right);
 	}
 	if (GameEngineInput::GetInst()->IsDown("Left"))
 	{
-		ScanFucntion();
-		CheckMapAllStat(std::make_pair(-1, 0));
-		return true;
+		return PushKey(Direction::Left);
 	}
 
 
 	if (GameEngineInput::GetInst()->IsDown("Space"))
 	{
-
+		return true;
 	}
 	if (GameEngineInput::GetInst()->IsDown("R"))
 	{
-
+		return true;
 	}
 	if (GameEngineInput::GetInst()->IsDown("Space"))
 	{
-
+		return true;
 	}
-
+	if (GameEngineInput::GetInst()->IsDown("Z"))
+	{
+		BackTothePast();
+		return true;
+	}
 	return false;
+}
+
+
+bool PlayLevel::PushKey(Direction _Dir)
+{
+	StageSave();
+	StageFucntionReset();
+	ScanFucntion();
+	switch (_Dir)
+	{
+	case Direction::Right:
+		CheckMapAllStat(std::make_pair(1, 0));
+		break;
+	case Direction::Up:
+		CheckMapAllStat(std::make_pair(0, -1));
+		break;
+	case Direction::Left:
+		CheckMapAllStat(std::make_pair(-1, 0));
+		break;
+	case Direction::Down:
+		CheckMapAllStat(std::make_pair(0, 1));
+		break;
+	default:
+		break;
+	}
+	return true;
 }
 
 void PlayLevel::CheckMapAllStat(std::pair<int, int> _MoveDir)
@@ -360,7 +471,7 @@ void PlayLevel::CheckMapAllStat(std::pair<int, int> _MoveDir)
 			while (StartIterList != EndIterList)
 			{
 				(*StartIterList)->KeyIsPushOn();
-				if ((*StartIterList)->GetUnitObjectInst()->FindStat(SYou) == true && (*StartIterList)->IsDeath() == false)
+				if ((*StartIterList)->GetUnitObjectInst()->FindStat(SYou) == true && (*StartIterList)->IsUpdate() == true)
 				{
 					if ((*StartIterList)->IsMove() == false && CheckBitMove(X, Y, _MoveDir) == true)
 					{
@@ -457,30 +568,42 @@ void PlayLevel::ClearStage()
 
 void PlayLevel::EndStage()
 {
-	ReleaseActor();
+	AllReleaseInStage();
 
 }
 
-void PlayLevel::ReleaseActor()
+void PlayLevel::AllReleaseInStage()
 {
-	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIter = CurrentMap_.begin();
-	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator EndIter = CurrentMap_.end();
+	std::list<Coordinate*>::iterator StartIter = AllCoordinate_.begin();
+	std::list<Coordinate*>::iterator EndIter = AllCoordinate_.end();
 
 	for (; StartIter != EndIter; ++StartIter)
 	{
-		std::map<int, std::list<Coordinate*>>::iterator StartCoord = (StartIter->second).begin();
-		std::map<int, std::list<Coordinate*>>::iterator EndCoord = (StartIter->second).end();
-		for (; StartCoord != EndCoord; ++StartCoord)
+		if ((*StartIter) != nullptr)
 		{
-			std::list<Coordinate*>::iterator StartVector = (StartCoord->second).begin();
-			std::list<Coordinate*>::iterator EndVector = (StartCoord->second).end();
-			for (; StartVector != EndVector; ++StartVector)
-			{
-				if ((*StartVector) != nullptr)
-				{
-					(*StartVector)->Death();
-				}
-			}
+			(*StartIter)->Death();
+			(*StartIter) = nullptr;
 		}
 	}
+	AllCoordinate_.clear();
+
+	std::vector<std::map< Coordinate*, const CooridnateHistoryData*>*>::iterator StartIterVector = AllMoveHistory_.begin();
+	std::vector<std::map< Coordinate*, const CooridnateHistoryData*>*>::iterator EndIterVector = AllMoveHistory_.end();
+	for (; StartIterVector != EndIterVector; ++StartIterVector)
+	{
+		std::map< Coordinate*, const CooridnateHistoryData*>::iterator StartIterMap = (*StartIterVector)->begin();
+		std::map< Coordinate*, const CooridnateHistoryData*>::iterator EndIterMap = (*StartIterVector)->end();
+		for (; StartIterMap != EndIterMap; ++StartIterMap)
+		{
+			if (StartIterMap->second != nullptr)
+			{
+				delete StartIterMap->second;
+				StartIterMap->second = nullptr;
+			}
+		}
+		(*StartIterVector)->clear();
+		delete (*StartIterVector);
+		(*StartIterVector) = nullptr;
+	}
+
 }

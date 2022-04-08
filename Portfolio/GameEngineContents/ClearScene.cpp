@@ -11,7 +11,7 @@ ClearScene::ClearScene()
 	, StayImage_(nullptr)
 	, CurrentInterTime_(0.05f)
 	, CurrentFrame_(0)
-	, EndFrame_(26)
+	, EndFrame_(27)
 	, StayOn_(false)
 {
 }
