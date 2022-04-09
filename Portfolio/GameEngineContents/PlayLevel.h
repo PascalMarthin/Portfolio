@@ -39,8 +39,8 @@ private:
 	void ChangeUnit(const GamePlayUnitObject* _Left, GamePlayUnitObject* _Right);
 	bool FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat);
 	void CheckMapAllStat();
-	bool CheckMapAllStat(std::pair<int, int> _MoveDir);
-	bool CheckBitMove(int _x, int _y, std::pair<int, int> _MoveDir);
+	bool CheckMapAllStat(const std::pair<int, int>& _MoveDir);
+	bool CheckBitMove(const int _x, const int _y, const std::pair<int, int>& _MoveDir);
 	bool PushKey(Direction _Dir);
 	void CheckBitStat(std::list<Coordinate*>& _Value);
 	std::list<Coordinate*>::iterator& Move(std::list<Coordinate*>::iterator& _ListIter, std::pair<int, int> _MoveDir);

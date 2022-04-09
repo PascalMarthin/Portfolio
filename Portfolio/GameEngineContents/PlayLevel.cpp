@@ -486,7 +486,7 @@ void PlayLevel::StageSavePopBack()
 	delete AllMoveHistory_.back();
 	AllMoveHistory_.pop_back();
 }
-bool PlayLevel::CheckMapAllStat(std::pair<int, int> _MoveDir)
+bool PlayLevel::CheckMapAllStat(const std::pair<int, int>& _MoveDir)
 {
 	bool IsMove = false;
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();
@@ -527,7 +527,7 @@ bool PlayLevel::CheckMapAllStat(std::pair<int, int> _MoveDir)
 	return IsMove;
 }
 
-bool PlayLevel::CheckBitMove(int _x, int _y, std::pair<int, int> _MoveDir)
+bool PlayLevel::CheckBitMove(const int _x, const int _y, const std::pair<int, int>& _MoveDir)
 {
 	int X = _x + _MoveDir.first;
 	int Y = _y + _MoveDir.second;
