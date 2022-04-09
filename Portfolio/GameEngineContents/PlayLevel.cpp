@@ -2,6 +2,7 @@
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngine/GameEngineLevel.h>
 #include <GameEngineBase/GameEngineInput.h>
+#include <GameEngine/GameEngine.h>
 
 #include "Coordinate.h"
 #include "BackGround.h"
@@ -18,7 +19,8 @@ PlayLevel::PlayLevel()
 	MapScale_({ 0, 0 }),
 	CurrentStage_(Stage::MainStage),
 	ClearScene_(nullptr),
-	NobadyMove_(false)
+	IsClear_(false),
+	ClearWait(0.0f)
 {
 }
 
@@ -38,22 +40,36 @@ void PlayLevel::Loading()
 
 void PlayLevel::Update()
 {
+
 	if (true == KeyCheck())
 	{
 		StageFucntionReset();
-		ScanFucntion();
+		ScanFucntionAndBridgeUnit();
 		CheckMapAllStat();
+	}
+
+	if (IsClear_ == true)
+	{
+		ClearWait -= GameEngineTime::GetDeltaTime();
+		if (ClearWait < 0)
+		{
+			GameEngine::GetInst().ChangeLevel("MainLevel");
+
+		}
 	}
 
 }
 
 void PlayLevel::LevelChangeEnd()
 {
-	//EndStage();
+	EndStage();
+	ReSetLevel();
+
 }
 
 void PlayLevel::LevelChangeStart()
 {
+
 	CurrentStage_ = MainLevel::GetCurrentStage();
 	MapScale_ = StageData::Inst_->Scale_[CurrentStage_];
 	CreateActor<PlayBackGround>(1)->CreateRendererToScale("Stage0.bmp", { MapScale_.x * DotSizeX, MapScale_.y * DotSizeY });
@@ -62,10 +78,82 @@ void PlayLevel::LevelChangeStart()
 
 	CreatMap(StageData::Inst_->StageData_[CurrentStage_]);
 	StageFucntionReset();
-	ScanFucntion();
+	ScanFucntionAndBridgeUnit();
 	CheckMapAllStat();
+
+}
+void PlayLevel::ReSetLevel()
+{
+	GameWindowStartPosX_ = 0;
+	GameWindowStartPosY_ = 0;
+	CurrentStage_ =Stage::MainStage;
+	IsClear_ = (false);
+	ClearWait = (0.0f);
+	IsClear_ = false;
+	AllCoordinate_.clear();
+	AllMoveHistory_.clear();
+	CurrentMap_.clear();
+	ClearScene_->Off();
 }
 
+unsigned int PlayLevel::CheckUnitBridge(int _X, int _Y, const GamePlayUnitObject* _Unit)
+{
+	if (_Unit->GetName() != ObjectName::Grass_Unit &&
+		_Unit->GetName() != ObjectName::Lava_Unit &&
+		_Unit->GetName() != ObjectName::Water_Unit &&
+		_Unit->GetName() != ObjectName::Wall_Unit)
+	{
+		return -1;
+	}
+
+	int X = _X;
+	int Y = _Y;
+	unsigned int Idx = 0;
+
+	if (IsMapOut(std::make_pair(_X, _Y + 1)) == true)
+	{
+		if (CurrentMap_[_Y + 1][_X].)
+		{
+
+		}
+		Idx += 1;
+	}
+
+	if (IsMapOut(std::make_pair(_X - 1, _Y)) == true)
+	{
+		Idx += 2;
+	}
+
+
+	if (IsMapOut(std::make_pair(_X + 1, _Y)) == true)
+	{
+		Idx += 4;
+	}
+
+	if (IsMapOut(std::make_pair(_X, _Y - 1)) == true)
+	{
+		Idx += 8;
+	}
+
+}
+
+Coordinate* PlayLevel::FindUnitObject(std::list<Coordinate*>& _UnitList, const ObjectName _Unit)
+{
+	std::list<Coordinate*>::iterator StartIter = _UnitList.begin();
+	std::list<Coordinate*>::iterator EndIter = _UnitList.end();
+	for (; StartIter != EndIter; ++StartIter)
+	{
+		if ((*StartIter)->GetUnitObjectInst()->GetName() == _Unit)
+		{
+			return (*StartIter);
+		}
+		else if ((*StartIter)->GetTextObjectInst()->GetName() == _Unit)
+		{
+			return (*StartIter);
+		}
+	}
+	return nullptr;
+}
 
 void PlayLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 {
@@ -184,7 +272,7 @@ void PlayLevel::BackTothePast()
 	AllMoveHistory_.pop_back();
 }
 
-void PlayLevel::ScanFucntion()
+void PlayLevel::ScanFucntionAndBridgeUnit()
 {
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator EndIterY = CurrentMap_.end();
@@ -208,11 +296,15 @@ void PlayLevel::ScanFucntion()
 				if (iter->GetTextObjectInst()->GetTextType() == TextType::Verb_Text)
 				{
 					CheckFunction(X, Y, iter);
+					continue;
 				}	
+
 			}
 		}
 	}
 }
+
+
 
 bool PlayLevel::CheckFunction(int _X, int _Y, Coordinate* _Verb)
 {
@@ -377,7 +469,7 @@ bool PlayLevel::FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 
 	return false;
 }
 
-bool PlayLevel::IsMapOut(std::pair<int, int> _Pos)
+bool PlayLevel::IsMapOut(const std::pair<int, int>& _Pos)
 {
 	if (MapScale_.ix() <= _Pos.first || _Pos.first < 0)
 	{
@@ -413,13 +505,16 @@ bool PlayLevel::KeyCheck()
 
 	if (GameEngineInput::GetInst()->IsDown("Space"))
 	{
+		if (IsClear_ == true)
+		{
+			if (ClearWait < 4.0f)
+			{
+				GameEngine::GetInst().ChangeLevel("MainLevel");
+			}
+		}
 		return true;
 	}
 	if (GameEngineInput::GetInst()->IsDown("R"))
-	{
-		return true;
-	}
-	if (GameEngineInput::GetInst()->IsDown("Space"))
 	{
 		return true;
 	}
@@ -437,7 +532,7 @@ bool PlayLevel::PushKey(Direction _Dir)
 
 	StageSave();
 	StageFucntionReset();
-	ScanFucntion();
+	ScanFucntionAndBridgeUnit();
 	switch (_Dir)
 	{
 	case Direction::Right:
@@ -619,6 +714,8 @@ std::list<Coordinate*>::iterator& PlayLevel::MoveBack(std::list<Coordinate*>::it
 
 void PlayLevel::ClearStage()
 {
+	IsClear_ = true;
+	ClearWait = 5.0f;
 	ClearScene_->On();
 }
 
@@ -662,5 +759,7 @@ void PlayLevel::AllReleaseInStage()
 		delete (*StartIterVector);
 		(*StartIterVector) = nullptr;
 	}
+	AllMoveHistory_.clear();
+	CurrentMap_.clear();
 
 }

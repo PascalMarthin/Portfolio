@@ -30,10 +30,12 @@ protected:
 	void LevelChangeEnd() override;
 
 private:
+	void ReSetLevel();
+
 	void CreatMap (std::map<int, std::map<int, ObjectName>>& _Stage);
 	void StageFucntionReset();
 	void StageSave();
-	void ScanFucntion();
+	void ScanFucntionAndBridgeUnit();
 	bool CheckFunction(int _X, int _Y, Coordinate* _Verb);
 	void ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb, Coordinate* _Stat);
 	void ChangeUnit(const GamePlayUnitObject* _Left, GamePlayUnitObject* _Right);
@@ -45,16 +47,18 @@ private:
 	void CheckBitStat(std::list<Coordinate*>& _Value);
 	std::list<Coordinate*>::iterator& Move(std::list<Coordinate*>::iterator& _ListIter, std::pair<int, int> _MoveDir);
 	std::list<Coordinate*>::iterator& MoveBack(std::list<Coordinate*>::iterator& _ListIter, const float4& _MovePos, Direction _Dir);
-	bool IsMapOut(std::pair<int, int> _MoveDir);
+	bool IsMapOut(const std::pair<int, int>& _Pos);
 
-	bool NobadyMove_;
 	void BackTothePast();
 	void StageSavePopBack();
 
-
+	unsigned int CheckUnitBridge(int _X, int _Y, const GamePlayUnitObject* _Unit);
+	Coordinate* FindUnitObject(std::list<Coordinate*>& _UnitList, const ObjectName _Unit);
 	bool KeyCheck();
 
 	void ClearStage();
+	bool IsClear_;
+	float ClearWait;
 	void EndStage();
 	void AllReleaseInStage();
 
@@ -66,7 +70,7 @@ private:
 	float GameWindowStartPosY_;
 
 	std::map<int, std::map<int, std::list<Coordinate*>>> CurrentMap_;
-	std::vector<std::pair<GamePlayObject*, GamePlayObject*>> ActiveFunction_;
+	//std::vector<std::pair<GamePlayObject*, GamePlayObject*>> ActiveFunction_;
 	std::list<Coordinate*> AllCoordinate_;
 	std::vector<std::map< Coordinate* , const CooridnateHistoryData*>*> AllMoveHistory_;
 

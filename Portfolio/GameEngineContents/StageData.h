@@ -35,7 +35,13 @@ private:
 
 	void MainStage();
 	void Stage0();
-	
+	void Stage1();
+	void Stage2();
+	void Stage3();
+	void Stage4();
+	void Stage5();
+	void Stage6();
+	void Stage7();
 
 
 	StageData();

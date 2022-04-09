@@ -24,6 +24,7 @@ Coordinate::Coordinate()
 	, IsBackTothePast_(false)
 	, CurrentImageIndex_(nullptr)
 	, SceneFrame_(0)
+	, IsBack_(false)
 {
 }
 
@@ -33,6 +34,10 @@ Coordinate::~Coordinate()
 
 void Coordinate::Start()
 {
+	if (GetLevel()->GetNameConstRef() == "PlayLevel")
+	{
+		IsKeyPush_ = true;
+	}
 
 }
 void Coordinate::SetCurrentImage()
@@ -56,10 +61,6 @@ void Coordinate::SetCurrentImage()
 		
 	}
 
-	//디버깅용
-
-
-
 
 	// 지금 wall, water, lava는 이미지 정리중
 	if (CurrentImageIndex_ == nullptr)
@@ -67,7 +68,7 @@ void Coordinate::SetCurrentImage()
 		return;
 	}
 
-	if (UnitObject_->FindStat(SYou) == true && IsMove_ == true)
+	if (UnitObject_->FindStat(SYou) == true && (IsMove_ == true || IsBack_ == true))
 	{
 		{
 			if (IsBackTothePast_ == true)
@@ -87,7 +88,6 @@ void Coordinate::SetCurrentImage()
 				SceneFrame_ = static_cast<int>((*CurrentImageIndex_).size()) - 1;
 			}
 		}
-
 	}
 	StartFrame_ = (*CurrentImageIndex_)[SceneFrame_].first;
 	EndFrame_ = (*CurrentImageIndex_)[SceneFrame_].second;
@@ -102,9 +102,9 @@ void Coordinate::Update()
 	}
 	if (IsKeyPush_ == true && IsUpdate() == true)
 	{
-		// 디버깅용
 		SetCurrentImage();
 		IsKeyPush_ = false;
+		IsBack_ = false;
 	}
 	if (IsUpdate() == true)
 	{
@@ -270,5 +270,6 @@ void Coordinate::ChangeBackPos(const float4& _Pos, const float4& _CPos, Directio
 		//SceneFrame_ = 0;
 		IsBackTothePast_ = true;
 		IsKeyPush_ = true;
+		IsBack_ = true;
 	}
 }

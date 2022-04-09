@@ -6,6 +6,7 @@ StageData::StageData()
 {
 	MainStage();
 	Stage0();
+	Stage1();
 }
 
 StageData::~StageData() 
@@ -99,4 +100,9 @@ void StageData::Stage0()
 	StageData_[Stage::Stage0][14][19] = ObjectName::Rock_Text;
 	StageData_[Stage::Stage0][14][20] = ObjectName::Is_Text;
 	StageData_[Stage::Stage0][14][21] = ObjectName::Push_Text;
+}
+
+void StageData::Stage1()
+{
+	Scale_[Stage::Stage0] = { 24, 18 };
 }
