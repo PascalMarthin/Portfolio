@@ -44,6 +44,7 @@ private:
 	bool PushKey(Direction _Dir);
 	void CheckBitStat(std::list<Coordinate*>& _Value);
 	std::list<Coordinate*>::iterator& Move(std::list<Coordinate*>::iterator& _ListIter, std::pair<int, int> _MoveDir);
+	std::list<Coordinate*>::iterator& MoveBack(std::list<Coordinate*>::iterator& _ListIter, const float4& _MovePos, Direction _Dir);
 	bool IsMapOut(std::pair<int, int> _MoveDir);
 
 

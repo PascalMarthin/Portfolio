@@ -86,6 +86,7 @@ public:
 	}
 
 	void ChangePos(const float4& _Pos, const float4& _CPos, Direction _Dir);
+	void ChangeBackPos(const float4& _Pos, const float4& _CPos, Direction _Dir);
 	void SetValue(GamePlayObject* _Object, Direction _Dir = Direction::Right, const float4& _Size = { DotSizeX, DotSizeY });
 
 protected:
@@ -100,6 +101,9 @@ private:
 	float4 CurrentLUPos_;
 	int PastByCurrentRange_;
 
+	
+
+
 	GamePlayUnitObject* UnitObject_;
 	GamePlayText* TextObject_;
 	ObjectType Type_;
@@ -107,6 +111,7 @@ private:
 	bool IsActive_;
 	bool IsMove_;
 	bool IsKeyPush_;
+	bool IsBackTothePast_;
 
 	
 	// img

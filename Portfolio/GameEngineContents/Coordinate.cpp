@@ -21,6 +21,7 @@ Coordinate::Coordinate()
 	, IsMove_(false)
 	, PastByCurrentRange_(0)
 	, IsKeyPush_(false)
+	, IsBackTothePast_(false)
 	, CurrentImageIndex_(nullptr)
 	, SceneFrame_(0)
 {
@@ -112,6 +113,38 @@ void Coordinate::Update()
 			}
 		}
 
+		else if (IsBackTothePast_ = true)
+		{
+			if (PastByCurrentRange_ > 0)
+			{
+				// 우측이동
+				if (PastLUPos_.ix() - CurrentLUPos_.ix() < 0)
+				{
+					PastLUPos_.x += 4.0f;
+				}
+				// 좌측이동
+				else if (PastLUPos_.ix() - CurrentLUPos_.ix() > 0)
+				{
+					PastLUPos_.x -= 4.0f;
+				}
+				//아래
+				if (PastLUPos_.iy() - CurrentLUPos_.iy() < 0)
+				{
+					PastLUPos_.y += 4.0f;
+				}
+				//위
+				else if(PastLUPos_.iy() - CurrentLUPos_.iy() > 0)
+				{
+					PastLUPos_.y -= 4.0f;
+				}
+				PastByCurrentRange_ -= 4;
+			}
+			else
+			{
+				IsBackTothePast_ = false;
+			}
+		}
+
 		FrameUpdate();
 
 	}
@@ -195,5 +228,21 @@ void Coordinate::ChangePos(const float4& _Pos, const float4& _CPos, Direction _D
 		UnitDir_ = _Dir;
 		//SceneFrame_ = 0;
 		IsMove_ = true;
+	}
+}
+
+void Coordinate::ChangeBackPos(const float4& _Pos, const float4& _CPos, Direction _Dir)
+{
+	if (IsMove_ != true)
+	{
+		PastPos_ = CurrentPos_;
+		PastLUPos_ = CurrentLUPos_;
+		CurrentPos_ = _Pos;
+		CurrentLUPos_ = _CPos;
+		PastByCurrentRange_ = DotSizeX;
+		UnitDir_ = _Dir;
+		//SceneFrame_ = 0;
+		IsBackTothePast_ = true;
+		IsKeyPush_ = true;
 	}
 }

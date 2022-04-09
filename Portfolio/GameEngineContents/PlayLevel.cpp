@@ -124,52 +124,62 @@ void PlayLevel::StageSave()
 
 void PlayLevel::BackTothePast()
 {
-	std::vector<std::map< Coordinate*, const CooridnateHistoryData*>*>::iterator StartIterVector = AllMoveHistory_.begin();
-	std::vector<std::map< Coordinate*, const CooridnateHistoryData*>*>::iterator EndIterVector = AllMoveHistory_.end();
-	for (; StartIterVector != EndIterVector; ++StartIterVector)
+	if (AllMoveHistory_.size() <= 0 )
 	{
-		std::map< Coordinate*, const CooridnateHistoryData*>::iterator StartIterMap = (*StartIterVector)->begin();
-		std::map< Coordinate*, const CooridnateHistoryData*>::iterator EndIterMap = (*StartIterVector)->end();
-		for (; StartIterMap != EndIterMap; ++StartIterMap)
+		return;
+	}
+	std::map< Coordinate*, const CooridnateHistoryData*>::iterator StartIterMap = AllMoveHistory_.back()->begin();
+	std::map< Coordinate*, const CooridnateHistoryData*>::iterator EndIterMap = AllMoveHistory_.back()->end();
+	while (StartIterMap != EndIterMap)
+	{
+		// 업데이트가 실행될때
+		if ((*StartIterMap).second->IsUpdate_ == true)
 		{
-			// 업데이트가 실행될때
-			if ((*StartIterMap).second->IsUpdate_ == true)
+			if ((*StartIterMap).first->GetObjectType() == ObjectType::Text)
 			{
-				if ((*StartIterMap).first->GetObjectType() == ObjectType::Text)
+				if ((*StartIterMap).first->GetTextObjectInst()->GetName() != (*StartIterMap).second->ObjectName_)
 				{
-					if ((*StartIterMap).first->GetTextObjectInst()->GetName() != (*StartIterMap).second->ObjectName_)
-					{
-						// 아직 사용하지 않는 함수
-					}
+					// 아직 사용하지 않는 함수
+				}
 					
-				}
-				else if ((*StartIterMap).first->GetObjectType() == ObjectType::Unit)
+			}
+			else if ((*StartIterMap).first->GetObjectType() == ObjectType::Unit)
+			{
+				if ((*StartIterMap).first->GetUnitObjectInst()->GetName() != (*StartIterMap).second->ObjectName_)
 				{
-					if ((*StartIterMap).first->GetUnitObjectInst()->GetName() != (*StartIterMap).second->ObjectName_)
-					{
-						(*StartIterMap).first->SetValue(GamePlayGobal::GetInst()->Find((*StartIterMap).second->ObjectName_), (*StartIterMap).second->Direction_);
-						//ChangeUnit(static_cast<GamePlayUnitObject*>((*StartIterMap).first->GetUnitObjectInst()), 
-						//	static_cast<GamePlayUnitObject*>(GamePlayGobal::GetInst()->Find((*StartIterMap).second->ObjectName_)));
-					}
+					(*StartIterMap).first->SetValue(GamePlayGobal::GetInst()->Find((*StartIterMap).second->ObjectName_), (*StartIterMap).second->Direction_);
+					//ChangeUnit(static_cast<GamePlayUnitObject*>((*StartIterMap).first->GetUnitObjectInst()), 
+					//	static_cast<GamePlayUnitObject*>(GamePlayGobal::GetInst()->Find((*StartIterMap).second->ObjectName_)));
 				}
-			
-				// 같은 위치가 아닐때
-				if (!((*StartIterMap).first->GetPos() == (*StartIterMap).second->Pos_))
-				{
-					(*StartIterMap).first->ChangePos((*StartIterMap).second->Pos_, 
-					{ GameWindowStartPosX_ + static_cast<float>((*StartIterMap).second->Pos_.ix() * DotSizeX), GameWindowStartPosY_ + static_cast<float>((*StartIterMap).second->Pos_.iy() * DotSizeY)}, 
-					(*StartIterMap).second->Direction_);
-				}
-				if ((*StartIterMap).first->IsUpdate() != (*StartIterMap).second->IsUpdate_)
-				{
-					(*StartIterMap).first->On();
-				}
-
 			}
 			
+			// 같은 위치가 아닐때
+			if (!((*StartIterMap).first->GetPos() == (*StartIterMap).second->Pos_))
+			{
+				std::list<Coordinate*>::iterator StartIter = CurrentMap_[(*StartIterMap).first->GetPos().iy()][(*StartIterMap).first->GetPos().ix()].begin();
+				std::list<Coordinate*>::iterator EndIter = CurrentMap_[(*StartIterMap).first->GetPos().iy()][(*StartIterMap).first->GetPos().ix()].end();
+				while (StartIter != EndIter)
+				{
+					if ((*StartIter) == (*StartIterMap).first)
+					{
+						CurrentMap_[(*StartIterMap).first->GetPos().iy()][(*StartIterMap).first->GetPos().ix()].erase(MoveBack(StartIter, (*StartIterMap).second->Pos_, (*StartIterMap).second->Direction_));
+						break;
+					}
+					++StartIter;
+				}	
+			}
+			if ((*StartIterMap).first->IsUpdate() != (*StartIterMap).second->IsUpdate_)
+			{
+				(*StartIterMap).first->On();
+			}
+			int a = 0;
 		}
+		delete StartIterMap->second;
+		++StartIterMap;
 	}
 
+	delete AllMoveHistory_.back();
+	AllMoveHistory_.pop_back();
 }
 
 void PlayLevel::ScanFucntion()
@@ -242,7 +252,6 @@ bool PlayLevel::CheckFunction(int _X, int _Y, Coordinate* _Verb)
 	return CheckFucn;
 }
 
-
 void PlayLevel::ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb,  Coordinate* _Stat)
 {
 	_Unit->SetON();
@@ -298,7 +307,6 @@ void PlayLevel::CheckMapAllStat()
 		}
 	}
 }
-
 
 void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 {
@@ -366,7 +374,6 @@ bool PlayLevel::FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 
 	}
 	return false;
 }
-
 
 bool PlayLevel::IsMapOut(std::pair<int, int> _Pos)
 {
@@ -534,6 +541,7 @@ bool PlayLevel::CheckBitMove(int _x, int _y, std::pair<int, int> _MoveDir)
 	return true;
 }
 
+// 일반적인 Move
 std::list<Coordinate*>::iterator& PlayLevel::Move(std::list<Coordinate*>::iterator& _ListIter, std::pair<int, int> _MoveDir)
 {
 	int PastX = (*_ListIter)->GetPos().ix();
@@ -557,6 +565,20 @@ std::list<Coordinate*>::iterator& PlayLevel::Move(std::list<Coordinate*>::iterat
 		(*_ListIter)->ChangePos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) }, Direction::Up);
 	}
 	CurrentMap_[y][x].push_back(*_ListIter);
+	return _ListIter;
+}
+
+std::list<Coordinate*>::iterator& PlayLevel::MoveBack(std::list<Coordinate*>::iterator& _ListIter, const float4& _MovePos, Direction _Dir)
+{
+	int X = _MovePos.ix();
+	int Y = _MovePos.iy();
+
+	(*_ListIter)->ChangeBackPos({ static_cast<float>(X), static_cast<float>(Y) },
+	{ GameWindowStartPosX_ + static_cast<float>(X * DotSizeX), GameWindowStartPosY_ + static_cast<float>(Y * DotSizeY) },
+	_Dir);
+
+	CurrentMap_[Y][X].push_back(*_ListIter);
+
 	return _ListIter;
 }
 
