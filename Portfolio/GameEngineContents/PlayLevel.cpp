@@ -16,7 +16,9 @@ PlayLevel::PlayLevel()
 	:GameWindowStartPosX_(0),
 	GameWindowStartPosY_(0),
 	MapScale_({ 0, 0 }),
-	CurrentStage_(Stage::MainStage)
+	CurrentStage_(Stage::MainStage),
+	ClearScene_(nullptr),
+	NobadyMove_(false)
 {
 }
 
@@ -133,6 +135,7 @@ void PlayLevel::BackTothePast()
 	while (StartIterMap != EndIterMap)
 	{
 		// 업데이트가 실행될때
+		(*StartIterMap).first->KeyIsPushOn();
 		if ((*StartIterMap).second->IsUpdate_ == true)
 		{
 			if ((*StartIterMap).first->GetObjectType() == ObjectType::Text)
@@ -172,7 +175,6 @@ void PlayLevel::BackTothePast()
 			{
 				(*StartIterMap).first->On();
 			}
-			int a = 0;
 		}
 		delete StartIterMap->second;
 		++StartIterMap;
@@ -432,22 +434,35 @@ bool PlayLevel::KeyCheck()
 
 bool PlayLevel::PushKey(Direction _Dir)
 {
+
 	StageSave();
 	StageFucntionReset();
 	ScanFucntion();
 	switch (_Dir)
 	{
 	case Direction::Right:
-		CheckMapAllStat(std::make_pair(1, 0));
+		if (!(CheckMapAllStat(std::make_pair(1, 0))))
+		{
+			StageSavePopBack();
+		}
 		break;
 	case Direction::Up:
-		CheckMapAllStat(std::make_pair(0, -1));
+		if (!(CheckMapAllStat(std::make_pair(0, -1))))
+		{
+			StageSavePopBack();
+		}
 		break;
 	case Direction::Left:
-		CheckMapAllStat(std::make_pair(-1, 0));
+		if (!(CheckMapAllStat(std::make_pair(-1, 0))))
+		{
+			StageSavePopBack();
+		}
 		break;
 	case Direction::Down:
-		CheckMapAllStat(std::make_pair(0, 1));
+		if (!(CheckMapAllStat(std::make_pair(0, 1))))
+		{
+			StageSavePopBack();
+		}
 		break;
 	default:
 		break;
@@ -455,8 +470,25 @@ bool PlayLevel::PushKey(Direction _Dir)
 	return true;
 }
 
-void PlayLevel::CheckMapAllStat(std::pair<int, int> _MoveDir)
+void PlayLevel::StageSavePopBack()
 {
+	if (AllMoveHistory_.size() <= 0)
+	{
+		return;
+	}
+	std::map< Coordinate*, const CooridnateHistoryData*>::iterator StartIterMap = AllMoveHistory_.back()->begin();
+	std::map< Coordinate*, const CooridnateHistoryData*>::iterator EndIterMap = AllMoveHistory_.back()->end();
+	while (StartIterMap != EndIterMap)
+	{
+		delete StartIterMap->second;
+		++StartIterMap;
+	}
+	delete AllMoveHistory_.back();
+	AllMoveHistory_.pop_back();
+}
+bool PlayLevel::CheckMapAllStat(std::pair<int, int> _MoveDir)
+{
+	bool IsMove = false;
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator EndIterY = CurrentMap_.end();
 
@@ -482,6 +514,7 @@ void PlayLevel::CheckMapAllStat(std::pair<int, int> _MoveDir)
 				{
 					if ((*StartIterList)->IsMove() == false && CheckBitMove(X, Y, _MoveDir) == true)
 					{
+						IsMove = true;
 						StartIterList = Ref.erase(Move(StartIterList, _MoveDir));
 						continue;
 					}
@@ -490,6 +523,8 @@ void PlayLevel::CheckMapAllStat(std::pair<int, int> _MoveDir)
 			}
 		}
 	}
+
+	return IsMove;
 }
 
 bool PlayLevel::CheckBitMove(int _x, int _y, std::pair<int, int> _MoveDir)

@@ -39,7 +39,7 @@ private:
 	void ChangeUnit(const GamePlayUnitObject* _Left, GamePlayUnitObject* _Right);
 	bool FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat);
 	void CheckMapAllStat();
-	void CheckMapAllStat(std::pair<int, int> _MoveDir);
+	bool CheckMapAllStat(std::pair<int, int> _MoveDir);
 	bool CheckBitMove(int _x, int _y, std::pair<int, int> _MoveDir);
 	bool PushKey(Direction _Dir);
 	void CheckBitStat(std::list<Coordinate*>& _Value);
@@ -47,8 +47,9 @@ private:
 	std::list<Coordinate*>::iterator& MoveBack(std::list<Coordinate*>::iterator& _ListIter, const float4& _MovePos, Direction _Dir);
 	bool IsMapOut(std::pair<int, int> _MoveDir);
 
-
+	bool NobadyMove_;
 	void BackTothePast();
+	void StageSavePopBack();
 
 
 	bool KeyCheck();

@@ -55,30 +55,54 @@ void Coordinate::SetCurrentImage()
 		SceneFrame_ = 0;
 		
 	}
+
+	//디버깅용
+
+
+
+
 	// 지금 wall, water, lava는 이미지 정리중
 	if (CurrentImageIndex_ == nullptr)
 	{
 		return;
 	}
+
+	if (UnitObject_->FindStat(SYou) == true && IsMove_ == true)
+	{
+		{
+			if (IsBackTothePast_ == true)
+			{
+				--SceneFrame_;
+			}
+			else
+			{
+				++SceneFrame_;
+			}
+			if (static_cast<int>((*CurrentImageIndex_).size()) <= SceneFrame_)
+			{
+				SceneFrame_ = 0;
+			}
+			else if (SceneFrame_ < 0)
+			{
+				SceneFrame_ = static_cast<int>((*CurrentImageIndex_).size()) - 1;
+			}
+		}
+
+	}
 	StartFrame_ = (*CurrentImageIndex_)[SceneFrame_].first;
 	EndFrame_ = (*CurrentImageIndex_)[SceneFrame_].second;
 	CurrentFrame_ = (*CurrentImageIndex_)[SceneFrame_].first + (CurrentFrame_ % 3);
-	++SceneFrame_;
-	if ((*CurrentImageIndex_).size() <= SceneFrame_)
-	{
-		SceneFrame_ = 0;
-	}
 }
 
 void Coordinate::Update()
 {
-	if (IsKeyPush_ == true)
+	if (TextObject_->GetName() == ObjectName::Baba_Text)
+	{
+		int a = 0;
+	}
+	if (IsKeyPush_ == true && IsUpdate() == true)
 	{
 		// 디버깅용
-		if (UnitObject_->GetName() == ObjectName::Rock_Unit)
-		{
-			int a = 0;
-		}
 		SetCurrentImage();
 		IsKeyPush_ = false;
 	}
@@ -144,7 +168,6 @@ void Coordinate::Update()
 				IsBackTothePast_ = false;
 			}
 		}
-
 		FrameUpdate();
 
 	}
@@ -208,8 +231,8 @@ void Coordinate::SetValue(GamePlayObject* _Object, Direction _Dir, const float4&
 		}
 		CurrentImgScale_ = _Size;
 	}
-	IsMove_ = false;
-	IsActive_ = false;
+	//IsMove_ = false;
+	//IsActive_ = false;
 	if (UnitDir_ == Direction::Error)
 	{
 		UnitDir_ = _Dir;
@@ -227,7 +250,10 @@ void Coordinate::ChangePos(const float4& _Pos, const float4& _CPos, Direction _D
 		PastByCurrentRange_ = DotSizeX;
 		UnitDir_ = _Dir;
 		//SceneFrame_ = 0;
-		IsMove_ = true;
+		if (!(PastPos_ == CurrentPos_))
+		{
+			IsMove_ = true;
+		}
 	}
 }
 
