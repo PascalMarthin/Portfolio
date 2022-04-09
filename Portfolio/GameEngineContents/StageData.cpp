@@ -104,5 +104,5 @@ void StageData::Stage0()
 
 void StageData::Stage1()
 {
-	Scale_[Stage::Stage0] = { 24, 18 };
+	//Scale_[Stage::Stage0] = { 24, 18 };
 }

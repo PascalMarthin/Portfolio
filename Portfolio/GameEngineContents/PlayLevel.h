@@ -52,7 +52,7 @@ private:
 	void BackTothePast();
 	void StageSavePopBack();
 
-	unsigned int CheckUnitBridge(int _X, int _Y, const GamePlayUnitObject* _Unit);
+	unsigned int CheckUnitBridge(const Coordinate* _Unit);
 	Coordinate* FindUnitObject(std::list<Coordinate*>& _UnitList, const ObjectName _Unit);
 	bool KeyCheck();
 

@@ -25,6 +25,7 @@ Coordinate::Coordinate()
 	, CurrentImageIndex_(nullptr)
 	, SceneFrame_(0)
 	, IsBack_(false)
+	, BridgeUnit_(0)
 {
 }
 
@@ -89,6 +90,7 @@ void Coordinate::SetCurrentImage()
 			}
 		}
 	}
+	BridgeUnitCheck();
 	StartFrame_ = (*CurrentImageIndex_)[SceneFrame_].first;
 	EndFrame_ = (*CurrentImageIndex_)[SceneFrame_].second;
 	CurrentFrame_ = (*CurrentImageIndex_)[SceneFrame_].first + (CurrentFrame_ % 3);
@@ -173,6 +175,72 @@ void Coordinate::Update()
 	}
 }
 
+void Coordinate::BridgeUnitCheck()
+{
+	if (!(UnitObject_->GetName() == ObjectName::Wall_Unit ||
+		UnitObject_->GetName() == ObjectName::Water_Unit ||
+		UnitObject_->GetName() == ObjectName::Lava_Unit ||
+		UnitObject_->GetName() == ObjectName::Grass_Unit)
+		)
+	{
+		return;
+	}
+	switch (BridgeUnit_)
+	{
+		case -1:
+		default:
+			break;
+		case 0b00000000:
+			SceneFrame_ = 0;
+			break;
+		case 0b00000100:
+			SceneFrame_ = 1;
+			break;
+		case 0b00001000:
+			SceneFrame_ = 2;
+			break;
+		case 0b00001100:
+			SceneFrame_ = 3;
+			break;
+		case 0b00000010:
+			SceneFrame_ = 4;
+			break;
+		case 0b00000110:
+			SceneFrame_ = 5;
+			break;
+		case 0b00001010:
+			SceneFrame_ = 6;
+			break;
+		case 0b00001110:
+			SceneFrame_ = 7;
+			break;
+		case 0b00000001:
+			SceneFrame_ = 8;
+			break;
+		case 0b00000101:
+			SceneFrame_ = 9;
+			break;
+		case 0b00001001:
+			SceneFrame_ = 10;
+			break;
+		case 0b00000011:
+			SceneFrame_ = 12;
+			break;
+		case 0b00001101:
+			SceneFrame_ = 11;
+			break;
+		case 0b00000111:
+			SceneFrame_ = 13;
+			break;
+		case 0b00001011:
+			SceneFrame_ = 14;
+			break;
+		case 0b00001111:
+			SceneFrame_ = 15;
+			break;
+	}
+}
+
 void Coordinate::Render()
 {
 	if (Type_ == ObjectType::Unit)
@@ -231,6 +299,7 @@ void Coordinate::SetValue(GamePlayObject* _Object, Direction _Dir, const float4&
 		}
 		CurrentImgScale_ = _Size;
 	}
+	BridgeUnit_ = 0;
 	//IsMove_ = false;
 	//IsActive_ = false;
 	if (UnitDir_ == Direction::Error)

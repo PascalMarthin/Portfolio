@@ -96,45 +96,53 @@ void PlayLevel::ReSetLevel()
 	ClearScene_->Off();
 }
 
-unsigned int PlayLevel::CheckUnitBridge(int _X, int _Y, const GamePlayUnitObject* _Unit)
+unsigned int PlayLevel::CheckUnitBridge(const Coordinate* _Unit)
 {
-	if (_Unit->GetName() != ObjectName::Grass_Unit &&
-		_Unit->GetName() != ObjectName::Lava_Unit &&
-		_Unit->GetName() != ObjectName::Water_Unit &&
-		_Unit->GetName() != ObjectName::Wall_Unit)
+	if (!(_Unit->GetUnitObjectInst()->GetName() == ObjectName::Grass_Unit ||
+		_Unit->GetUnitObjectInst()->GetName() == ObjectName::Lava_Unit ||
+		_Unit->GetUnitObjectInst()->GetName() == ObjectName::Water_Unit ||
+		_Unit->GetUnitObjectInst()->GetName() == ObjectName::Wall_Unit))
 	{
 		return -1;
 	}
 
-	int X = _X;
-	int Y = _Y;
+	int X = _Unit->GetPos().ix();
+	int Y = _Unit->GetPos().iy();
 	unsigned int Idx = 0;
 
-	if (IsMapOut(std::make_pair(_X, _Y + 1)) == true)
+	if (IsMapOut(std::make_pair(X, Y + 1)) == false)
 	{
-		if (CurrentMap_[_Y + 1][_X].)
+		if (FindUnitObject(CurrentMap_[Y + 1][X], _Unit->GetUnitObjectInst()->GetName()) != nullptr)
 		{
-
+			Idx += 1;
 		}
-		Idx += 1;
 	}
 
-	if (IsMapOut(std::make_pair(_X - 1, _Y)) == true)
+	if (IsMapOut(std::make_pair(X - 1, Y)) == false)
 	{
-		Idx += 2;
+		if (FindUnitObject(CurrentMap_[Y][X  - 1], _Unit->GetUnitObjectInst()->GetName()) != nullptr)
+		{
+			Idx += 2;
+		}
 	}
 
 
-	if (IsMapOut(std::make_pair(_X + 1, _Y)) == true)
+	if (IsMapOut(std::make_pair(X + 1, Y)) == false)
 	{
-		Idx += 4;
+		if (FindUnitObject(CurrentMap_[Y][X + 1], _Unit->GetUnitObjectInst()->GetName()) != nullptr)
+		{
+			Idx += 4;
+		}
 	}
 
-	if (IsMapOut(std::make_pair(_X, _Y - 1)) == true)
+	if (IsMapOut(std::make_pair(X, Y - 1)) == false)
 	{
-		Idx += 8;
+		if (FindUnitObject(CurrentMap_[Y - 1][X], _Unit->GetUnitObjectInst()->GetName()) != nullptr)
+		{
+			Idx += 8;
+		}
 	}
-
+	return Idx;
 }
 
 Coordinate* PlayLevel::FindUnitObject(std::list<Coordinate*>& _UnitList, const ObjectName _Unit)
@@ -298,6 +306,13 @@ void PlayLevel::ScanFucntionAndBridgeUnit()
 					CheckFunction(X, Y, iter);
 					continue;
 				}	
+				else if (iter->GetUnitObjectInst()->GetName() == ObjectName::Wall_Unit ||
+						 iter->GetUnitObjectInst()->GetName() == ObjectName::Water_Unit ||
+						 iter->GetUnitObjectInst()->GetName() == ObjectName::Lava_Unit  ||
+						 iter->GetUnitObjectInst()->GetName() == ObjectName::Grass_Unit)
+				{
+					iter->SetBridgeUnit(CheckUnitBridge(iter));
+				}
 
 			}
 		}
