@@ -97,18 +97,22 @@ void Coordinate::SetCurrentImage()
 
 void Coordinate::Update()
 {
-	if (TextObject_->GetName() == ObjectName::Baba_Text)
+	if (UnitObject_->GetName() == ObjectName::Baba_Unit)
 	{
 		int a = 0;
 	}
 	if (IsKeyPush_ == true && IsUpdate() == true)
 	{
+	if (UnitObject_->GetName() == ObjectName::Water_Unit)
+	{
+		int a = 0;
+	}
 		SetCurrentImage();
 		IsKeyPush_ = false;
 	}
 	if (IsUpdate() == true)
 	{
-		if (IsMove_ == true)
+		if (IsMove_ == true && IsBackTothePast_ == false)
 		{
 			if (PastByCurrentRange_ > 0)
 			{
@@ -166,11 +170,13 @@ void Coordinate::Update()
 			else
 			{
 				IsBackTothePast_ = false;
+				IsMove_ = false;
 			}
 		}
 		FrameUpdate();
 
 	}
+
 }
 
 void Coordinate::BridgeUnitCheck()
@@ -326,16 +332,13 @@ void Coordinate::ChangePos(const float4& _Pos, const float4& _CPos, Direction _D
 
 void Coordinate::ChangeBackPos(const float4& _Pos, const float4& _CPos, Direction _Dir)
 {
-	if (IsMove_ != true)
-	{
-		PastPos_ = CurrentPos_;
-		PastLUPos_ = CurrentLUPos_;
-		CurrentPos_ = _Pos;
-		CurrentLUPos_ = _CPos;
-		PastByCurrentRange_ = DotSizeX;
-		UnitDir_ = _Dir;
-		//SceneFrame_ = 0;
-		IsBackTothePast_ = true;
-		IsKeyPush_ = true;
-	}
+	PastPos_ = CurrentPos_;
+	PastLUPos_ = CurrentLUPos_;
+	CurrentPos_ = _Pos;
+	CurrentLUPos_ = _CPos;
+	PastByCurrentRange_ = DotSizeX;
+	UnitDir_ = _Dir;
+	//SceneFrame_ = 0;
+	IsBackTothePast_ = true;
+	IsKeyPush_ = true;
 }

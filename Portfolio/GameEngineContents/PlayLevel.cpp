@@ -157,13 +157,17 @@ Coordinate* PlayLevel::FindUnitObject(std::list<Coordinate*>& _UnitList, const O
 	std::list<Coordinate*>::iterator EndIter = _UnitList.end();
 	for (; StartIter != EndIter; ++StartIter)
 	{
-		if ((*StartIter)->GetUnitObjectInst()->GetName() == _Unit)
+		if ((*StartIter)->IsUpdate() == true)
 		{
-			return (*StartIter);
-		}
-		else if ((*StartIter)->GetTextObjectInst()->GetName() == _Unit)
-		{
-			return (*StartIter);
+			if ((*StartIter)->GetUnitObjectInst()->GetName() == _Unit)
+			{
+				return (*StartIter);
+			}
+			else if ((*StartIter)->GetTextObjectInst()->GetName() == _Unit)
+			{
+				return (*StartIter);
+			}
+
 		}
 	}
 	return nullptr;
@@ -307,17 +311,21 @@ void PlayLevel::ScanFucntionAndBridgeUnit()
 			
 			for (auto iter : Block)
 			{
-				if (iter->GetTextObjectInst()->GetTextType() == TextType::Verb_Text)
+				if (iter->IsUpdate() == true)
 				{
-					CheckFunction(X, Y, iter);
-					continue;
-				}	
-				else if (iter->GetUnitObjectInst()->GetName() == ObjectName::Wall_Unit ||
-						 iter->GetUnitObjectInst()->GetName() == ObjectName::Water_Unit ||
-						 iter->GetUnitObjectInst()->GetName() == ObjectName::Lava_Unit  ||
-						 iter->GetUnitObjectInst()->GetName() == ObjectName::Grass_Unit)
-				{
-					iter->SetBridgeUnit(CheckUnitBridge(iter));
+
+					if (iter->GetTextObjectInst()->GetTextType() == TextType::Verb_Text)
+					{
+						CheckFunction(X, Y, iter);
+						continue;
+					}	
+					else if (iter->GetUnitObjectInst()->GetName() == ObjectName::Wall_Unit ||
+							 iter->GetUnitObjectInst()->GetName() == ObjectName::Water_Unit ||
+							 iter->GetUnitObjectInst()->GetName() == ObjectName::Lava_Unit  ||
+							 iter->GetUnitObjectInst()->GetName() == ObjectName::Grass_Unit)
+					{
+						iter->SetBridgeUnit(CheckUnitBridge(iter));
+					}
 				}
 
 			}
@@ -440,11 +448,17 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 	}
 	// Sink
 	{
-		if (FindUnitByStat(_Value, SSink) == true)
+		if (_Value.size() > 1)
 		{
-			for (auto iter : _Value)
+			if (FindUnitByStat(_Value, SSink) == true)
 			{
-				iter->Off();
+				for (auto iter : _Value)
+				{
+					if (iter->IsUpdate() == true)
+					{
+						iter->Off();
+					}
+				}
 			}
 		}
 	}
@@ -484,6 +498,10 @@ bool PlayLevel::FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 
 	{
 		if ((iter->GetUnitObjectInst()->GetAllStat() & _Stat) == _Stat)
 		{
+			if (iter->IsUpdate() == false)
+			{
+				continue;
+			}
 			return true;
 		}
 	}
@@ -661,7 +679,7 @@ bool PlayLevel::CheckBitMove(const int _x, const int _y, const std::pair<int, in
 	{
 		for (auto iter : CurrentMap_[Y][X])
 		{
-			if (iter->GetUnitObjectInst()->FindStat(SStop) == true)
+			if (iter->GetUnitObjectInst()->FindStat(SStop) == true && iter->IsUpdate() == true)
 			{
 				if (iter->GetUnitObjectInst()->FindStat(SPush) == true)
 				{
@@ -679,7 +697,7 @@ bool PlayLevel::CheckBitMove(const int _x, const int _y, const std::pair<int, in
 		std::list<Coordinate*>::iterator EndIterList = Ref.end();
 		while (StartIterList != EndIterList)
 		{
-			if ((*StartIterList)->GetUnitObjectInst()->FindStat(SPush) == true)
+			if ((*StartIterList)->GetUnitObjectInst()->FindStat(SPush) == true && (*StartIterList)->IsUpdate() == true)
 			{
 				if (CheckBitMove(X, Y, _MoveDir) == false)
 				{

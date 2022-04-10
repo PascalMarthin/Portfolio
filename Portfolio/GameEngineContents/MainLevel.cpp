@@ -99,16 +99,39 @@ void MainLevel::Update()
 			CurrentStage_ = Stage::Stage0;
 			GameEngine::GetInst().ChangeLevel("PlayLevel");
 		}
-
-		if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 13)
+		else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 13)
 		{
 			CurrentStage_ = Stage::Stage1;
 			GameEngine::GetInst().ChangeLevel("PlayLevel");
 		}
-
-		if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 12)
+		else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 12)
 		{
 			CurrentStage_ = Stage::Stage2;
+			GameEngine::GetInst().ChangeLevel("PlayLevel");
+		}
+		else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 13)
+		{
+			CurrentStage_ = Stage::Stage3;
+			GameEngine::GetInst().ChangeLevel("PlayLevel");
+		}
+		else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 12)
+		{
+			CurrentStage_ = Stage::Stage4;
+			GameEngine::GetInst().ChangeLevel("PlayLevel");
+		}
+		else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 11)
+		{
+			CurrentStage_ = Stage::Stage5;
+			GameEngine::GetInst().ChangeLevel("PlayLevel");
+		}
+		else if (MainCursorPos_.ix() == 12 && MainCursorPos_.iy() == 12)
+		{
+			CurrentStage_ = Stage::Stage6;
+			GameEngine::GetInst().ChangeLevel("PlayLevel");
+		}
+		else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 12)
+		{
+			CurrentStage_ = Stage::Stage7;
 			GameEngine::GetInst().ChangeLevel("PlayLevel");
 		}
 	}
