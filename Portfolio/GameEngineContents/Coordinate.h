@@ -115,7 +115,6 @@ private:
 
 	bool IsActive_;
 	bool IsMove_;
-	bool IsBack_;
 	bool IsKeyPush_;
 	bool IsBackTothePast_;
 

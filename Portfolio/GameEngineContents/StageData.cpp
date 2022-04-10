@@ -7,6 +7,7 @@ StageData::StageData()
 	MainStage();
 	Stage0();
 	Stage1();
+	Stage2();
 }
 
 StageData::~StageData() 
@@ -207,4 +208,142 @@ void StageData::Stage1()
 	StageData_[Stage::Stage1][16][16] = ObjectName::Wall_Unit;
 	StageData_[Stage::Stage1][16][19] = ObjectName::Grass_Unit;
 
+}
+
+
+void StageData::Stage2()
+{
+	Scale_[Stage::Stage2] = { 24, 18 };
+	StageData_[Stage::Stage2][1][7] = ObjectName::Tile_Unit;
+
+	StageData_[Stage::Stage2][2][2] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage2][2][9] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][2][10] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][2][11] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][2][12] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][2][13] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][2][14] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][2][15] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][2][16] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][2][22] = ObjectName::Tile_Unit;
+
+	StageData_[Stage::Stage2][3][5] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage2][3][9] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][3][16] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][3][17] = ObjectName::Tile_Unit;
+
+	StageData_[Stage::Stage2][4][5] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage2][4][9] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][4][11] = ObjectName::Is_Text;
+	StageData_[Stage::Stage2][4][16] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][4][18] = ObjectName::Tile_Unit	;
+
+	StageData_[Stage::Stage2][5][9] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][5][16] = ObjectName::Flag_Unit;
+
+	StageData_[Stage::Stage2][6][5] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][6][6] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][6][7] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][6][8] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][6][9] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][6][14] = ObjectName::Win_Text;
+	StageData_[Stage::Stage2][6][16] = ObjectName::Flag_Unit;
+
+	StageData_[Stage::Stage2][7][5] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][7][7] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage2][7][8] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage2][7][9] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage2][7][6] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage2][7][16] = ObjectName::Flag_Unit;
+
+	StageData_[Stage::Stage2][8][2] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage2][8][5] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][8][6] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage2][8][7] = ObjectName::Baba_Text;
+	StageData_[Stage::Stage2][8][8] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage2][8][9] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage2][8][16] = ObjectName::Flag_Unit;
+
+	StageData_[Stage::Stage2][9][1] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage2][9][5] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][9][7] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage2][9][8] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage2][9][9] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage2][9][6] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage2][9][16] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][9][20] = ObjectName::Tile_Unit;
+
+	StageData_[Stage::Stage2][10][5] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][10][6] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][10][7] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][10][8] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][10][9] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][10][10] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][10][11] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][10][12] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][10][13] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][10][14] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][10][15] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][10][16] = ObjectName::Flag_Unit;
+
+	StageData_[Stage::Stage2][11][9] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][11][16] = ObjectName::Flag_Unit;
+
+	StageData_[Stage::Stage2][12][6] = ObjectName::Wall_Text;
+	StageData_[Stage::Stage2][12][9] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][12][11] = ObjectName::Flag_Text;
+	StageData_[Stage::Stage2][12][16] = ObjectName::Flag_Unit;
+
+
+	StageData_[Stage::Stage2][13][6] = ObjectName::Is_Text;
+	StageData_[Stage::Stage2][13][9] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][13][11] = ObjectName::Is_Text;
+	StageData_[Stage::Stage2][13][14] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage2][13][16] = ObjectName::Flag_Unit;
+
+
+	StageData_[Stage::Stage2][14][4] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage2][14][6] = ObjectName::You_Text;
+	StageData_[Stage::Stage2][14][9] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][14][11] = ObjectName::Stop_Text;
+	StageData_[Stage::Stage2][14][16] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][14][18] = ObjectName::Tile_Unit;
+
+	StageData_[Stage::Stage2][15][2] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage2][15][9] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][15][13] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][15][14] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][15][15] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][15][16] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][15][17] = ObjectName::Tile_Unit;
+
+	StageData_[Stage::Stage2][16][4] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage2][16][9] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][16][10] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][16][11] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][16][12] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][16][13] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage2][16][17] = ObjectName::Tile_Unit;
+
+
+}
+void StageData::Stage3()
+{
+	Scale_[Stage::Stage3] = { 24, 18 };
+}
+void StageData::Stage4()
+{
+	Scale_[Stage::Stage4] = { 24, 18 };
+}
+void StageData::Stage5()
+{
+	Scale_[Stage::Stage5] = { 24, 18 };
+}
+void StageData::Stage6()
+{
+	Scale_[Stage::Stage6] = { 24, 18 };
+}
+void StageData::Stage7()
+{
+	Scale_[Stage::Stage7] = { 24, 18 };
 }

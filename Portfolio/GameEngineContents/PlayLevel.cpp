@@ -20,7 +20,8 @@ PlayLevel::PlayLevel()
 	CurrentStage_(Stage::MainStage),
 	ClearScene_(nullptr),
 	IsClear_(false),
-	ClearWait(0.0f)
+	ClearWait(0.0f),
+	BackGround_(nullptr)
 {
 }
 
@@ -66,6 +67,7 @@ void PlayLevel::LevelChangeEnd()
 	ReSetLevel();
 	ClearScene_->SetStayOFF();
 
+
 }
 
 void PlayLevel::LevelChangeStart()
@@ -73,7 +75,8 @@ void PlayLevel::LevelChangeStart()
 
 	CurrentStage_ = MainLevel::GetCurrentStage();
 	MapScale_ = StageData::Inst_->Scale_[CurrentStage_];
-	CreateActor<PlayBackGround>(1)->CreateRendererToScale("Stage0.bmp", { MapScale_.x * DotSizeX, MapScale_.y * DotSizeY });
+	BackGround_ = CreateActor<PlayBackGround>(1);
+	BackGround_->CreateRendererToScale("Stage0.bmp", { MapScale_.x * DotSizeX, MapScale_.y * DotSizeY });
 	GameWindowStartPosX_ = (GameEngineWindow::GetScale().x - MapScale_.x * DotSizeX) / 2;
 	GameWindowStartPosY_ = (GameEngineWindow::GetScale().y - MapScale_.y * DotSizeY) / 2;
 
@@ -95,6 +98,8 @@ void PlayLevel::ReSetLevel()
 	AllMoveHistory_.clear();
 	CurrentMap_.clear();
 	ClearScene_->Off();
+	BackGround_->Death();
+	BackGround_ = nullptr;
 }
 
 unsigned int PlayLevel::CheckUnitBridge(const Coordinate* _Unit)

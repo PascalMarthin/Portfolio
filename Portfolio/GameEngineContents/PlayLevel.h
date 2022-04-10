@@ -64,6 +64,7 @@ private:
 	void EndStage();
 	void AllReleaseInStage();
 
+	GameEngineActor* BackGround_;
 	ClearScene* ClearScene_;
 	Stage CurrentStage_;
 	float4 MapScale_;
@@ -72,7 +73,6 @@ private:
 	float GameWindowStartPosY_;
 
 	std::map<int, std::map<int, std::list<Coordinate*>>> CurrentMap_;
-	//std::vector<std::pair<GamePlayObject*, GamePlayObject*>> ActiveFunction_;
 	std::list<Coordinate*> AllCoordinate_;
 	std::vector<std::map< Coordinate* , const CooridnateHistoryData*>*> AllMoveHistory_;
 

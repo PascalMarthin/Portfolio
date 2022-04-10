@@ -24,7 +24,6 @@ Coordinate::Coordinate()
 	, IsBackTothePast_(false)
 	, CurrentImageIndex_(nullptr)
 	, SceneFrame_(0)
-	, IsBack_(false)
 	, BridgeUnit_(0)
 {
 }
@@ -69,7 +68,7 @@ void Coordinate::SetCurrentImage()
 		return;
 	}
 
-	if (UnitObject_->FindStat(SYou) == true && (IsMove_ == true || IsBack_ == true))
+	if (UnitObject_->FindStat(SYou) == true && (IsMove_ == true || IsBackTothePast_ == true))
 	{
 		{
 			if (IsBackTothePast_ == true)
@@ -106,7 +105,6 @@ void Coordinate::Update()
 	{
 		SetCurrentImage();
 		IsKeyPush_ = false;
-		IsBack_ = false;
 	}
 	if (IsUpdate() == true)
 	{
@@ -339,6 +337,5 @@ void Coordinate::ChangeBackPos(const float4& _Pos, const float4& _CPos, Directio
 		//SceneFrame_ = 0;
 		IsBackTothePast_ = true;
 		IsKeyPush_ = true;
-		IsBack_ = true;
 	}
 }
