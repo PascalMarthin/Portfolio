@@ -7,6 +7,7 @@
 #include "GamePlayTextStat.h"
 #include "GamePlayUnitObject.h"
 #include "GamePlayUnitText.h"
+#include "ClearScene.h"
 
 // 설명 : Stage 정보를 받아 화면에 출력해주는 Level
 class CooridnateHistoryData;
@@ -40,6 +41,7 @@ private:
 	void ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb, Coordinate* _Stat);
 	void ChangeUnit(const GamePlayUnitObject* _Left, GamePlayUnitObject* _Right);
 	bool FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat);
+
 	void CheckMapAllStat();
 	bool CheckMapAllStat(const std::pair<int, int>& _MoveDir);
 	bool CheckBitMove(const int _x, const int _y, const std::pair<int, int>& _MoveDir);
@@ -62,7 +64,7 @@ private:
 	void EndStage();
 	void AllReleaseInStage();
 
-	GameEngineActor* ClearScene_;
+	ClearScene* ClearScene_;
 	Stage CurrentStage_;
 	float4 MapScale_;
 	// 게임

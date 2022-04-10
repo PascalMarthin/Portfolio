@@ -100,6 +100,12 @@ void MainLevel::Update()
 			GameEngine::GetInst().ChangeLevel("PlayLevel");
 		}
 
+		if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 13)
+		{
+			CurrentStage_ = Stage::Stage1;
+			GameEngine::GetInst().ChangeLevel("PlayLevel");
+		}
+
 	}
 	if (GameEngineInput::GetInst()->IsDown("R"))
 	{

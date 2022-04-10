@@ -64,6 +64,7 @@ void PlayLevel::LevelChangeEnd()
 {
 	EndStage();
 	ReSetLevel();
+	ClearScene_->SetStayOFF();
 
 }
 
@@ -500,6 +501,11 @@ bool PlayLevel::IsMapOut(const std::pair<int, int>& _Pos)
 
 bool PlayLevel::KeyCheck()
 {
+	if (IsClear_ == true)
+	{
+		return false;
+	}
+
 	if (GameEngineInput::GetInst()->IsDown("Down"))
 	{
 		return PushKey(Direction::Down);

@@ -15,6 +15,15 @@ public:
 	ClearScene& operator=(const ClearScene& _Other) = delete;
 	ClearScene& operator=(ClearScene&& _Other) noexcept = delete;
 
+	void SetStayOFF()
+	{
+		StayOn_ = false;
+		Off();
+		CurrentInterTime_ = 0.05f;
+		CurrentFrame_ = 0;
+		EndFrame_ = 27;
+	}
+
 protected:
 	void Start() override;
 	void Update() override;
