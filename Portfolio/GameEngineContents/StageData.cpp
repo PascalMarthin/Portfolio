@@ -470,7 +470,7 @@ void StageData::Stage3()
 	StageData_[Stage::Stage3][13][1] = ObjectName::Grass_Unit;
 	StageData_[Stage::Stage3][13][2] = ObjectName::Grass_Unit;
 	StageData_[Stage::Stage3][13][4] = ObjectName::Wall_Unit;
-	StageData_[Stage::Stage3][13][5] = ObjectName::Win_Text;
+	StageData_[Stage::Stage3][13][5] = ObjectName::Flag_Unit;
 	StageData_[Stage::Stage3][13][6] = ObjectName::Water_Unit;
 	StageData_[Stage::Stage3][13][7] = ObjectName::Water_Unit;
 	StageData_[Stage::Stage3][13][11] = ObjectName::Wall_Unit;
@@ -497,7 +497,88 @@ void StageData::Stage3()
 }
 void StageData::Stage4()
 {
-	Scale_[Stage::Stage4] = { 24, 18 };
+	Scale_[Stage::Stage4] = { 24, 14 };
+
+	StageData_[Stage::Stage4][0][0] = ObjectName::Flag_Text;
+	StageData_[Stage::Stage4][0][1] = ObjectName::Is_Text;
+	StageData_[Stage::Stage4][0][2] = ObjectName::Win_Text;
+
+	StageData_[Stage::Stage4][1][0] = ObjectName::Baba_Text;
+	StageData_[Stage::Stage4][1][1] = ObjectName::Is_Text;
+	StageData_[Stage::Stage4][1][2] = ObjectName::You_Text;
+
+	StageData_[Stage::Stage4][3][13] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][3][14] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][3][15] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][3][16] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][3][17] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][3][18] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][3][19] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][3][20] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][3][21] = ObjectName::Skull_Unit;
+
+	StageData_[Stage::Stage4][4][13] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][4][21] = ObjectName::Skull_Unit;
+
+	StageData_[Stage::Stage4][5][2] = ObjectName::Rock_Text;
+	StageData_[Stage::Stage4][5][3] = ObjectName::Is_Text;
+	StageData_[Stage::Stage4][5][4] = ObjectName::Push_Text;
+	StageData_[Stage::Stage4][5][13] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][5][15] = ObjectName::Skull_Text;
+	StageData_[Stage::Stage4][5][21] = ObjectName::Skull_Unit;
+
+	StageData_[Stage::Stage4][6][13] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][6][15] = ObjectName::Is_Text;
+	StageData_[Stage::Stage4][6][21] = ObjectName::Skull_Unit;
+
+	StageData_[Stage::Stage4][7][5] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][7][7] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][7][13] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][7][15] = ObjectName::Defeat_Text;
+	StageData_[Stage::Stage4][7][21] = ObjectName::Skull_Unit;
+
+	StageData_[Stage::Stage4][8][5] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][8][6] = ObjectName::Rock_Unit;
+	StageData_[Stage::Stage4][8][7] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][8][13] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][8][21] = ObjectName::Skull_Unit;
+
+	StageData_[Stage::Stage4][9][3] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][9][4] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][9][5] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][9][6] = ObjectName::Rock_Unit;
+	StageData_[Stage::Stage4][9][7] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][9][8] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][9][9] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][9][13] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][9][18] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage4][9][21] = ObjectName::Skull_Unit;
+
+	StageData_[Stage::Stage4][10][3] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][10][6] = ObjectName::Rock_Unit;
+	StageData_[Stage::Stage4][10][9] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][10][13] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][10][21] = ObjectName::Skull_Unit;
+
+
+	StageData_[Stage::Stage4][11][3] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][11][9] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][11][13] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][11][14] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][11][15] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][11][16] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][11][17] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][11][18] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][11][19] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][11][20] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][11][21] = ObjectName::Skull_Unit;
+
+	StageData_[Stage::Stage4][12][3] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][12][6] = ObjectName::Baba_Unit;
+	StageData_[Stage::Stage4][12][9] = ObjectName::Skull_Unit;
+
+	StageData_[Stage::Stage4][13][3] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage4][13][9] = ObjectName::Skull_Unit;
 }
 void StageData::Stage5()
 {

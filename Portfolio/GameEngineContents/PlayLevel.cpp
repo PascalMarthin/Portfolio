@@ -573,38 +573,14 @@ bool PlayLevel::KeyCheck()
 
 bool PlayLevel::PushKey(Direction _Dir)
 {
-
 	StageSave();
 	StageFucntionReset();
 	ScanFucntionAndBridgeUnit();
-	switch (_Dir)
+
+	if (CheckMapAllStat(_Dir) == false)
 	{
-	case Direction::Right:
-		if (!(CheckMapAllStat(std::make_pair(1, 0))))
-		{
-			StageSavePopBack();
-		}
-		break;
-	case Direction::Up:
-		if (!(CheckMapAllStat(std::make_pair(0, -1))))
-		{
-			StageSavePopBack();
-		}
-		break;
-	case Direction::Left:
-		if (!(CheckMapAllStat(std::make_pair(-1, 0))))
-		{
-			StageSavePopBack();
-		}
-		break;
-	case Direction::Down:
-		if (!(CheckMapAllStat(std::make_pair(0, 1))))
-		{
-			StageSavePopBack();
-		}
-		break;
-	default:
-		break;
+		StageSavePopBack();
+		return false;
 	}
 	return true;
 }
@@ -625,8 +601,24 @@ void PlayLevel::StageSavePopBack()
 	delete AllMoveHistory_.back();
 	AllMoveHistory_.pop_back();
 }
-bool PlayLevel::CheckMapAllStat(const std::pair<int, int>& _MoveDir)
+bool PlayLevel::CheckMapAllStat(Direction _MoveDir)
 {
+	std::pair<int, int> DirInt;
+	switch (_MoveDir)
+	{
+	case Direction::Right:
+		DirInt = std::make_pair(1, 0);
+		break;
+	case Direction::Up:
+		DirInt = std::make_pair(0, -1);
+		break;
+	case Direction::Left:
+		DirInt = std::make_pair(-1, 0);
+		break;
+	case Direction::Down:
+		DirInt = std::make_pair(0, 1);
+		break;
+	}
 	bool IsMove = false;
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator EndIterY = CurrentMap_.end();
@@ -651,10 +643,10 @@ bool PlayLevel::CheckMapAllStat(const std::pair<int, int>& _MoveDir)
 				(*StartIterList)->KeyIsPushOn();
 				if ((*StartIterList)->GetUnitObjectInst()->FindStat(SYou) == true && (*StartIterList)->IsUpdate() == true)
 				{
-					if ((*StartIterList)->IsMove() == false && CheckBitMove(X, Y, _MoveDir) == true)
+					if ((*StartIterList)->IsMove() == false && CheckBitMove(X, Y, DirInt) == true)
 					{
 						IsMove = true;
-						StartIterList = Ref.erase(Move(StartIterList, _MoveDir));
+						StartIterList = Ref.erase(Move(StartIterList, DirInt));
 						continue;
 					}
 				}

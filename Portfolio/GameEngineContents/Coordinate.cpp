@@ -25,6 +25,7 @@ Coordinate::Coordinate()
 	, CurrentImageIndex_(nullptr)
 	, SceneFrame_(0)
 	, BridgeUnit_(0)
+	, UnitDeath_(false)
 {
 }
 
@@ -305,7 +306,14 @@ void Coordinate::SetValue(GamePlayObject* _Object, Direction _Dir, const float4&
 	//IsActive_ = false;
 	if (UnitDir_ == Direction::Error)
 	{
-		UnitDir_ = _Dir;
+		if (UnitObject_->GetName() == ObjectName::Skull_Unit)
+		{
+			UnitDir_ = Direction::Down;
+		}
+		else 
+		{
+			UnitDir_ = _Dir;
+		}
 	}
 }
 

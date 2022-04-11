@@ -44,7 +44,7 @@ private:
 	bool FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat);
 
 	void CheckMapAllStat();
-	bool CheckMapAllStat(const std::pair<int, int>& _MoveDir);
+	bool CheckMapAllStat(Direction _MoveDir);
 	bool CheckBitMove(const int _x, const int _y, const std::pair<int, int>& _MoveDir);
 	bool PushKey(Direction _Dir);
 	void CheckBitStat(std::list<Coordinate*>& _Value);
