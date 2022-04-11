@@ -45,11 +45,12 @@ public:
 		// 그러나 예외적으로 actor의 부모 클래스인 GameEngineActor는
 		// GameEngineLevel와 friend 선언 해놨기 때문에 접근이 가능한 것
 		GameEngineActor* StartActor = NewActor;
-		NewActor->SetOrder(_Order);
 		// GameEngineNameObject의 SetName
+		NewActor->GameEngineUpdateObject::SetOrder(_Order);
 		NewActor->SetName(_Name);
 		// GameEngineActor의 SetLevel
 		NewActor->SetLevel(this);
+
 
 		// 업캐스팅에 의해 Start() 함수가 실행이 되며 
 		// 이 때 가상함수로 인해 자식쪽 Start() 함수가 실행

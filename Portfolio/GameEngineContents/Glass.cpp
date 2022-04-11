@@ -1,6 +1,7 @@
 #include "Glass.h"
 
 Grass_Unit* Grass_Unit::Inst_ = new Grass_Unit();
+Grass_Text* Grass_Text::Inst_ = new Grass_Text();
 
 Grass_Unit::Grass_Unit()
 {
@@ -37,4 +38,44 @@ void Grass_Unit::SettingAbility()
 const std::vector<std::pair<int, int>>* Grass_Unit::GetAnimationTake(Direction _Dir)
 {
 	return &AnimationTake_["Grass_Unit"];
+}
+
+Grass_Text::Grass_Text()
+{
+}
+
+Grass_Text::~Grass_Text()
+{
+}
+
+void Grass_Text::SettingAbility()
+{
+	Name_ = ObjectName::Grass_Text;
+	Type_ = ObjectType::Text;
+	TextType_ = TextType::Unit_Text;
+	TextUnit_ = Grass_Unit::GetInst();
+
+	Image_ = GameEngineImageManager::GetInst()->Find("text_Grass_Sheet.bmp");
+	AnimationTake_["Grass_Text_OFF"].push_back(std::make_pair(0, 2));
+	AnimationTake_["Grass_Text_ON"].push_back(std::make_pair(3, 5));
+
+}
+
+const std::vector<std::pair<int, int>>* Grass_Text::GetAnimationTake(Direction _Dir)
+{
+	switch (_Dir)
+	{
+	case Direction::Right:
+	case Direction::Up:
+		return &AnimationTake_["Grass_Text_ON"];
+		break;
+	case Direction::Left:
+	case Direction::Down:
+		return &AnimationTake_["Grass_Text_OFF"];
+		break;
+	default:
+		MsgBoxAssert("Grasstext의 방향설정이 안되어있습니다");
+		return nullptr;
+		break;
+	}
 }

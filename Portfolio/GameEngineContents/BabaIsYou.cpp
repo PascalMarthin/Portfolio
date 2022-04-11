@@ -21,6 +21,7 @@ BabaIsYou::~BabaIsYou()
 
 void BabaIsYou::GameInit()
 {
+	//GameEngineTime::GetInst()->SetTimeScale(0, 1.0f);
 	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, { 1700, 880 });
 	CreateKeyBaba();
 
@@ -137,6 +138,23 @@ void BabaIsYou::GameInit()
 			ResourcesDir.Move("Object");
 			ResourcesDir.Move("it");
 			ResourcesDir.Move("baba");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				(GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath()))->Cut({ DotSizeX , DotSizeY });
+			}
+
+		}
+		//brick
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("it");
+			ResourcesDir.Move("brick");
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
@@ -298,6 +316,22 @@ void BabaIsYou::GameInit()
 				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
+		//brick
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("brick");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
+			}
+		}
 
 		// defeat
 		{
@@ -334,6 +368,21 @@ void BabaIsYou::GameInit()
 		}
 
 		// grass
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Text");
+			ResourcesDir.Move("grass");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
+			}
+		}
 
 		// hot
 		{

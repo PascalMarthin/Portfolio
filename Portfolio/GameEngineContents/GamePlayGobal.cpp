@@ -23,6 +23,7 @@
 #include "Line.h"
 #include "Text.h"
 #include "Dummy_Text.h"
+#include "Brick.h"
 
 GamePlayGobal* GamePlayGobal::Inst_ = new GamePlayGobal();
 
@@ -60,9 +61,12 @@ void  GamePlayGobal::SetName()
 	}
 		ObjectName_[ObjectName::Baba_Unit] =  Baba_Unit::GetInst();
 		ObjectName_[ObjectName::Baba_Text] =	Baba_Text::GetInst();
+		ObjectName_[ObjectName::Brick_Unit] = Brick_Unit::GetInst();
+		ObjectName_[ObjectName::Brick_Text] = Brick_Text::GetInst();
 		ObjectName_[ObjectName::Flag_Unit] =  Flag_Unit::GetInst();
 		ObjectName_[ObjectName::Flag_Text] =	Flag_Text::GetInst();
 		ObjectName_[ObjectName::Grass_Unit] = Grass_Unit::GetInst();
+		ObjectName_[ObjectName::Grass_Text] = Grass_Text::GetInst();
 		ObjectName_[ObjectName::Lava_Unit] =  Lava_Unit::GetInst();
 		ObjectName_[ObjectName::Lava_Text] =	Lava_Text::GetInst();
 		ObjectName_[ObjectName::Rock_Unit] =  Rock_Unit::GetInst();

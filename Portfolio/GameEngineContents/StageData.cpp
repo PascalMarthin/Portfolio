@@ -582,7 +582,218 @@ void StageData::Stage4()
 }
 void StageData::Stage5()
 {
-	Scale_[Stage::Stage5] = { 24, 18 };
+	Scale_[Stage::Stage5] = { 33, 18 };
+
+	StageData_[Stage::Stage5][0][0] = ObjectName::Wall_Text;
+	StageData_[Stage::Stage5][0][1] = ObjectName::Is_Text;
+	StageData_[Stage::Stage5][0][2] = ObjectName::Stop_Text;
+	StageData_[Stage::Stage5][0][3] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][0][4] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][0][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][0][12] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][0][16] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][0][20] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][0][21] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][0][22] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][0][23] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][0][24] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][0][25] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][0][26] = ObjectName::Lava_Unit;
+
+	StageData_[Stage::Stage5][1][0] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][1][1] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][1][2] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][1][3] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][1][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][1][14] = ObjectName::Baba_Unit;
+	StageData_[Stage::Stage5][1][16] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][1][19] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][1][20] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][1][21] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][1][22] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][1][23] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][1][24] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][1][25] = ObjectName::Lava_Unit;
+
+	StageData_[Stage::Stage5][2][0] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][2][1] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][2][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][2][12] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][2][16] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][2][19] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][2][20] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][2][21] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][2][22] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][2][23] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][2][24] = ObjectName::Lava_Unit;
+
+	StageData_[Stage::Stage5][3][0] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][3][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][3][8] = ObjectName::Baba_Text;
+	StageData_[Stage::Stage5][3][9] = ObjectName::Is_Text;
+	StageData_[Stage::Stage5][3][10] = ObjectName::You_Text;
+	StageData_[Stage::Stage5][3][12] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][3][13] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][3][14] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][3][15] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][3][16] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][3][18] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][3][19] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][3][20] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][3][21] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][3][22] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][3][23] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][3][24] = ObjectName::Lava_Unit;
+
+	StageData_[Stage::Stage5][4][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][4][7] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][4][11] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][4][12] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][4][18] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][4][19] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][4][20] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][4][21] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][4][22] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][4][23] = ObjectName::Lava_Unit;
+
+	StageData_[Stage::Stage5][5][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][5][12] = ObjectName::Rock_Unit;
+	StageData_[Stage::Stage5][5][18] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][5][19] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][5][20] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][5][21] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][5][22] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][5][23] = ObjectName::Lava_Unit;
+
+	StageData_[Stage::Stage5][6][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][6][7] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][6][8] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][6][9] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][6][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][6][11] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][6][12] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][6][17] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][6][18] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][6][19] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][6][20] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][6][21] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][6][22] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][6][23] = ObjectName::Lava_Unit;
+
+	StageData_[Stage::Stage5][7][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][7][7] = ObjectName::Rock_Text;
+	StageData_[Stage::Stage5][7][8] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][7][17] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][7][18] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][7][19] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][7][20] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][7][21] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][7][22] = ObjectName::Lava_Unit;
+
+	StageData_[Stage::Stage5][8][7] = ObjectName::Is_Text;
+	StageData_[Stage::Stage5][8][17] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][8][18] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][8][19] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][8][20] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][8][21] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][8][22] = ObjectName::Lava_Unit;
+
+	StageData_[Stage::Stage5][9][7] = ObjectName::Push_Text;
+	StageData_[Stage::Stage5][9][16] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][9][17] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][9][18] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][9][19] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][9][20] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][9][21] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][9][22] = ObjectName::Lava_Unit;
+
+	StageData_[Stage::Stage5][10][12] = ObjectName::Lava_Text;
+	StageData_[Stage::Stage5][10][16] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][10][17] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][10][18] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][10][19] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][10][20] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][10][21] = ObjectName::Lava_Unit;
+
+	StageData_[Stage::Stage5][11][15] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][11][16] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][11][17] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][11][18] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][11][19] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][11][20] = ObjectName::Lava_Unit;
+
+	StageData_[Stage::Stage5][12][7] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][12][8] = ObjectName::Baba_Text;
+	StageData_[Stage::Stage5][12][9] = ObjectName::Is_Text;
+	StageData_[Stage::Stage5][12][10] = ObjectName::Melt_Text;
+	StageData_[Stage::Stage5][12][11] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][12][15] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][12][16] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][12][17] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][12][18] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][12][19] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][12][20] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][12][26] = ObjectName::Flag_Unit;
+
+	StageData_[Stage::Stage5][13][7] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][13][8] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][13][9] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][13][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][13][11] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][13][14] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][13][15] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][13][16] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][13][17] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][13][18] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][13][19] = ObjectName::Lava_Unit;
+
+	StageData_[Stage::Stage5][14][7] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][14][8] = ObjectName::Lava_Text;
+	StageData_[Stage::Stage5][14][9] = ObjectName::Is_Text;
+	StageData_[Stage::Stage5][14][10] = ObjectName::Hot_Text;
+	StageData_[Stage::Stage5][14][11] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][14][14] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][14][15] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][14][16] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][14][17] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][14][18] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][14][25] = ObjectName::Flag_Text;
+	StageData_[Stage::Stage5][14][26] = ObjectName::Is_Text;
+	StageData_[Stage::Stage5][14][27] = ObjectName::Win_Text;
+
+	StageData_[Stage::Stage5][15][7] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][15][8] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][15][9] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][15][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][15][11] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage5][15][13] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][15][14] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][15][15] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][15][16] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][15][17] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][15][18] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][15][32] = ObjectName::Lava_Unit;
+
+	StageData_[Stage::Stage5][16][12] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][16][13] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][16][14] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][16][15] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][16][16] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][16][17] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][16][31] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][16][32] = ObjectName::Lava_Unit;
+
+	StageData_[Stage::Stage5][17][12] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][17][13] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][17][14] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][17][15] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][17][16] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][17][17] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][17][30] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][17][31] = ObjectName::Lava_Unit;
+	StageData_[Stage::Stage5][17][32] = ObjectName::Lava_Unit;
+
+
 }
 void StageData::Stage6()
 {

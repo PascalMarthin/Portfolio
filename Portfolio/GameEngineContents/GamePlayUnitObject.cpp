@@ -21,28 +21,52 @@ void GamePlayUnitObject::ApplyStat(const GamePlayTextStat* _Stat)
 	switch (_Stat->GetStat())
 	{
 	case StatName::Defeat:
-		AllStat_ += SDefeat;
+		if ((AllStat_ & SDefeat) != SDefeat)
+		{
+			AllStat_ += SDefeat;
+		}
 		break;
 	case StatName::Hot:
-		AllStat_ += SHot;
+		if ((AllStat_ & SHot) != SHot)
+		{
+			AllStat_ += SHot;
+		}
 		break;
 	case StatName::Melt:
-		AllStat_ += SMelt;
+		if ((AllStat_ & SMelt) != SMelt)
+		{
+			AllStat_ += SMelt;
+		}
 		break;
 	case StatName::Push:
-		AllStat_ += SPush;
+		if ((AllStat_ & SPush) != SPush)
+		{
+			AllStat_ += SPush;
+		}
 		break;
 	case StatName::Sink:
-		AllStat_ += SSink;
+		if ((AllStat_ & SSink) != SSink)
+		{
+			AllStat_ += SSink;
+		}
 		break;
 	case StatName::Stop:
-		AllStat_ += SStop;
+		if ((AllStat_ & SStop) != SStop)
+		{
+			AllStat_ += SStop;
+		}
 		break;
 	case StatName::Win:
-		AllStat_ += SWin;
+		if ((AllStat_ & SWin) != SWin)
+		{
+			AllStat_ += SWin;
+		}
 		break;
 	case StatName::You:
-		AllStat_ += SYou;
+		if ((AllStat_ & SYou) != SYou)
+		{
+			AllStat_ += SYou;
+		}
 		break;
 	default:
 		MsgBoxAssert("CheckStat is Error");

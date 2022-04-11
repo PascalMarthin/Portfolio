@@ -69,13 +69,10 @@ void Coordinate::SetCurrentImage()
 		return;
 	}
 
+
 	if (UnitObject_->FindStat(SYou) == true)
 	{
 		{
-			if (UnitObject_->GetName() == ObjectName::Baba_Unit)
-			{
-				int a = 0;
-			}
 			if (IsMove_ == true)
 			{
 				++SceneFrame_;
@@ -94,10 +91,42 @@ void Coordinate::SetCurrentImage()
 			}
 		}
 	}
+
 	BridgeUnitCheck();
 	StartFrame_ = (*CurrentImageIndex_)[SceneFrame_].first;
 	EndFrame_ = (*CurrentImageIndex_)[SceneFrame_].second;
 	CurrentFrame_ = (*CurrentImageIndex_)[SceneFrame_].first + (CurrentFrame_ % 3);
+}
+
+void Coordinate::ActorOrderCheck()
+{
+
+	if (UnitObject_->GetName() == ObjectName::Text_Unit)
+	{
+		GameEngineActor::SetOrder(4);
+		return;
+	}
+	if (UnitObject_->GetAllStat() == 0)
+	{
+		GameEngineActor::SetOrder(0);
+		return;
+	}
+	else if (UnitObject_->FindStat(SWin) == true)
+	{
+		GameEngineActor::SetOrder(3);
+		return;
+	}
+	else if (UnitObject_->FindStat(SYou) == true)
+	{
+		GameEngineActor::SetOrder(5);
+		return;
+	}
+	else if (UnitObject_->FindStat(SPush) == true || UnitObject_->FindStat(SStop) == true)
+	{
+		GameEngineActor::SetOrder(2);
+		return;
+	}
+
 }
 
 void Coordinate::Update()
@@ -105,6 +134,11 @@ void Coordinate::Update()
 
 	if (IsKeyPush_ == true && IsUnitUpdate() == true)
 	{
+		if (UnitObject_->GetName() == ObjectName::Baba_Unit)
+		{
+			int a = 0;
+		}
+		ActorOrderCheck();
 		SetCurrentImage();
 		IsKeyPush_ = false;
 	}
@@ -185,6 +219,7 @@ void Coordinate::BridgeUnitCheck()
 		UnitObject_->GetName() == ObjectName::Grass_Unit)
 		)
 	{
+		BridgeUnit_ = 0;
 		return;
 	}
 	switch (BridgeUnit_)
@@ -270,7 +305,7 @@ void Coordinate::FrameUpdate()
 			Image = TextObject_;
 		}
 
-		CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime();
+		CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime(0);
 		if (0 >= CurrentInterTime_)
 		{
 			CurrentInterTime_ = ImageSpeed;
@@ -290,7 +325,8 @@ void Coordinate::FrameUpdate()
 
 void Coordinate::SetValue(GamePlayObject* _Object, Direction _Dir, const float4& _Size)
 {
-	{
+	{	
+
 		if (_Object->GetType() == ObjectType::Text)
 		{
 			UnitObject_ = Text_Unit::GetInst();
@@ -305,7 +341,8 @@ void Coordinate::SetValue(GamePlayObject* _Object, Direction _Dir, const float4&
 		}
 		CurrentImgScale_ = _Size;
 	}
-	BridgeUnit_ = 0;
+	//BridgeUnit_ = 0;
+	SceneFrame_ = 0;
 	//IsMove_ = false;
 	//IsActive_ = false;
 	if (UnitDir_ == Direction::Error)
@@ -319,6 +356,7 @@ void Coordinate::SetValue(GamePlayObject* _Object, Direction _Dir, const float4&
 			UnitDir_ = _Dir;
 		}
 	}
+
 }
 
 void Coordinate::ChangePos(const float4& _Pos, const float4& _CPos, Direction _Dir)

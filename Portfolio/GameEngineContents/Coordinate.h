@@ -135,6 +135,7 @@ private:
 
 	unsigned int BridgeUnit_;
 	void BridgeUnitCheck();
+	void ActorOrderCheck();
 	
 	// img
 	const std::vector<std::pair<int, int>>* CurrentImageIndex_;

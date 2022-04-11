@@ -54,6 +54,7 @@ void Lava_Text::SettingAbility()
 	Name_ = ObjectName::Lava_Text;
 	Type_ = ObjectType::Text;
 	TextType_ = TextType::Unit_Text;
+	TextUnit_ = Lava_Unit::GetInst();
 
 	Image_ = GameEngineImageManager::GetInst()->Find("text_lava_sheet.bmp");
 	AnimationTake_["Lava_Text_OFF"].push_back(std::make_pair(0, 2));

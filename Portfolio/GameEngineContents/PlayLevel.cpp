@@ -45,8 +45,9 @@ void PlayLevel::Update()
 	if (true == KeyCheck())
 	{
 		StageFucntionReset();
-		ScanFucntionAndBridgeUnit();
+		ScanFucntion();
 		CheckMapAllStat();
+		ScanFucntion();
 	}
 
 	if (IsClear_ == true)
@@ -70,6 +71,11 @@ void PlayLevel::LevelChangeEnd()
 
 }
 
+void PlayLevel::ScanBridgeUnit()
+{
+
+}
+
 void PlayLevel::LevelChangeStart()
 {
 
@@ -82,7 +88,7 @@ void PlayLevel::LevelChangeStart()
 
 	CreatMap(StageData::Inst_->StageData_[CurrentStage_]);
 	StageFucntionReset();
-	ScanFucntionAndBridgeUnit();
+	ScanFucntion();
 	CheckMapAllStat();
 
 }
@@ -90,7 +96,7 @@ void PlayLevel::ReSetLevel()
 {
 	GameWindowStartPosX_ = 0;
 	GameWindowStartPosY_ = 0;
-	CurrentStage_ =Stage::MainStage;
+	CurrentStage_ = Stage::MainStage;
 	IsClear_ = (false);
 	ClearWait = (0.0f);
 	IsClear_ = false;
@@ -104,46 +110,33 @@ void PlayLevel::ReSetLevel()
 
 unsigned int PlayLevel::CheckUnitBridge(const Coordinate* _Unit)
 {
-	if (!(_Unit->GetUnitObjectInst()->GetName() == ObjectName::Grass_Unit ||
-		_Unit->GetUnitObjectInst()->GetName() == ObjectName::Lava_Unit ||
-		_Unit->GetUnitObjectInst()->GetName() == ObjectName::Water_Unit ||
-		_Unit->GetUnitObjectInst()->GetName() == ObjectName::Wall_Unit))
-	{
-		return -1;
-	}
-
 	int X = _Unit->GetPos().ix();
 	int Y = _Unit->GetPos().iy();
 	unsigned int Idx = 0;
 
-	if (IsMapOut(std::make_pair(X, Y + 1)) == false)
 	{
-		if (FindUnitObject(CurrentMap_[Y + 1][X], _Unit->GetUnitObjectInst()->GetName()) != nullptr)
+		if (FindUnitObject(CurrentMap_[Y + 1][X], _Unit->GetUnitObjectInst()->GetName()) != nullptr || IsMapOut(std::make_pair(X, Y + 1)) == true)
 		{
 			Idx += 1;
 		}
 	}
 
-	if (IsMapOut(std::make_pair(X - 1, Y)) == false)
 	{
-		if (FindUnitObject(CurrentMap_[Y][X  - 1], _Unit->GetUnitObjectInst()->GetName()) != nullptr)
+		if (FindUnitObject(CurrentMap_[Y][X  - 1], _Unit->GetUnitObjectInst()->GetName()) != nullptr || IsMapOut(std::make_pair(X - 1, Y)) == true)
 		{
 			Idx += 2;
 		}
 	}
-
-
-	if (IsMapOut(std::make_pair(X + 1, Y)) == false)
+	
 	{
-		if (FindUnitObject(CurrentMap_[Y][X + 1], _Unit->GetUnitObjectInst()->GetName()) != nullptr)
+		if (FindUnitObject(CurrentMap_[Y][X + 1], _Unit->GetUnitObjectInst()->GetName()) != nullptr || IsMapOut(std::make_pair(X + 1, Y)) == true)
 		{
 			Idx += 4;
 		}
 	}
 
-	if (IsMapOut(std::make_pair(X, Y - 1)) == false)
 	{
-		if (FindUnitObject(CurrentMap_[Y - 1][X], _Unit->GetUnitObjectInst()->GetName()) != nullptr)
+		if (FindUnitObject(CurrentMap_[Y - 1][X], _Unit->GetUnitObjectInst()->GetName()) != nullptr || IsMapOut(std::make_pair(X, Y - 1)) == true)
 		{
 			Idx += 8;
 		}
@@ -290,8 +283,9 @@ void PlayLevel::BackTothePast()
 	AllMoveHistory_.pop_back();
 }
 
-void PlayLevel::ScanFucntionAndBridgeUnit()
+void PlayLevel::ScanFucntion()
 {
+	// 비트 체크할때 하나의 비트 변수를 만들어서 삽입해야하는데 좀 부족했음
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator EndIterY = CurrentMap_.end();
 
@@ -575,7 +569,7 @@ bool PlayLevel::PushKey(Direction _Dir)
 {
 	StageSave();
 	StageFucntionReset();
-	ScanFucntionAndBridgeUnit();
+	ScanFucntion();
 
 	if (CheckMapAllStat(_Dir) == false)
 	{

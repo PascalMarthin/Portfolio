@@ -37,7 +37,8 @@ private:
 	void CreatMap (std::map<int, std::map<int, ObjectName>>& _Stage);
 	void StageFucntionReset();
 	void StageSave();
-	void ScanFucntionAndBridgeUnit();
+	void ScanFucntion();
+	void ScanBridgeUnit();
 	bool CheckFunction(int _X, int _Y, Coordinate* _Verb);
 	void ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb, Coordinate* _Stat);
 	void ChangeUnit(const GamePlayUnitObject* _Left, GamePlayUnitObject* _Right);

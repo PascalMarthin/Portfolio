@@ -128,6 +128,9 @@
     <ClCompile Include="ClearScene.cpp">
       <Filter>LevelClass\Play</Filter>
     </ClCompile>
+    <ClCompile Include="Brick.cpp">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -259,6 +262,9 @@
     </ClInclude>
     <ClInclude Include="ClearScene.h">
       <Filter>LevelClass\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick.h">
+      <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
