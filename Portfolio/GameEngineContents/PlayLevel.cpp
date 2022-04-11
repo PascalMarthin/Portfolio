@@ -316,7 +316,8 @@ void PlayLevel::ScanFucntion()
 					else if (iter->GetUnitObjectInst()->GetName() == ObjectName::Wall_Unit ||
 							 iter->GetUnitObjectInst()->GetName() == ObjectName::Water_Unit ||
 							 iter->GetUnitObjectInst()->GetName() == ObjectName::Lava_Unit  ||
-							 iter->GetUnitObjectInst()->GetName() == ObjectName::Grass_Unit)
+							 iter->GetUnitObjectInst()->GetName() == ObjectName::Grass_Unit ||
+							iter->GetUnitObjectInst()->GetName() == ObjectName::Brick_Unit)
 					{
 						iter->SetBridgeUnit(CheckUnitBridge(iter));
 					}

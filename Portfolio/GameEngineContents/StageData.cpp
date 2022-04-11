@@ -797,7 +797,30 @@ void StageData::Stage5()
 }
 void StageData::Stage6()
 {
-	Scale_[Stage::Stage6] = { 24, 18 };
+	Scale_[Stage::Stage6] = { 24, 14 };
+
+	StageData_[Stage::Stage6][0][0] = ObjectName::Rock_Text;
+	StageData_[Stage::Stage6][0][1] = ObjectName::Is_Text;
+	StageData_[Stage::Stage6][0][2] = ObjectName::Push_Text;
+	StageData_[Stage::Stage6][0][4] = ObjectName::Rock_Unit;
+	StageData_[Stage::Stage6][0][5] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][0][6] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][0][7] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][0][8] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][0][9] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][0][12] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][0][21] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][0][22] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][0][23] = ObjectName::Grass_Unit;
+
+	StageData_[Stage::Stage6][1][4] = ObjectName::Rock_Unit;
+	StageData_[Stage::Stage6][1][6] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][1][7] = ObjectName::Grass_Unit;
+
+	StageData_[Stage::Stage6][2][0] = ObjectName::Skull_Text;
+	StageData_[Stage::Stage6][2][1] = ObjectName::Is_Text;
+	StageData_[Stage::Stage6][2][2] = ObjectName::Defeat_Text;
+
 }
 void StageData::Stage7()
 {

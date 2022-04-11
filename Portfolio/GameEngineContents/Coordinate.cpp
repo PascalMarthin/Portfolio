@@ -216,7 +216,8 @@ void Coordinate::BridgeUnitCheck()
 	if (!(UnitObject_->GetName() == ObjectName::Wall_Unit ||
 		UnitObject_->GetName() == ObjectName::Water_Unit ||
 		UnitObject_->GetName() == ObjectName::Lava_Unit ||
-		UnitObject_->GetName() == ObjectName::Grass_Unit)
+		UnitObject_->GetName() == ObjectName::Grass_Unit ||
+		UnitObject_->GetName() == ObjectName::Brick_Unit)
 		)
 	{
 		BridgeUnit_ = 0;

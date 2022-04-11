@@ -179,6 +179,25 @@ void BabaIsYou::GameInit()
 			}
 		}
 
+		//flower
+		
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("it");
+			ResourcesDir.Move("flower");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				(GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath()))->Cut({ DotSizeX , DotSizeY });
+			}
+		}
+		
+
 		// grass
 		{
 			GameEngineDirectory ResourcesDir;

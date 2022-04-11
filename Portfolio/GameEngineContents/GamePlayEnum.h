@@ -63,6 +63,7 @@ enum class ObjectName
 	Brick_Text,
 	Flag_Unit,
 	Flag_Text,
+	Flower_Unit,
 	Grass_Unit,
 	Grass_Text,
 	Lava_Unit,
