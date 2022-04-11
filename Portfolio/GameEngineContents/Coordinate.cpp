@@ -25,7 +25,7 @@ Coordinate::Coordinate()
 	, CurrentImageIndex_(nullptr)
 	, SceneFrame_(0)
 	, BridgeUnit_(0)
-	, UnitDeath_(false)
+	, UnitUpdate_(true)
 {
 }
 
@@ -103,12 +103,12 @@ void Coordinate::SetCurrentImage()
 void Coordinate::Update()
 {
 
-	if (IsKeyPush_ == true && IsUpdate() == true)
+	if (IsKeyPush_ == true && IsUnitUpdate() == true)
 	{
 		SetCurrentImage();
 		IsKeyPush_ = false;
 	}
-	if (IsUpdate() == true)
+	if (IsUnitUpdate() == true)
 	{
 		if (IsMove_ == true && IsBackTothePast_ == false)
 		{
@@ -245,14 +245,18 @@ void Coordinate::BridgeUnitCheck()
 
 void Coordinate::Render()
 {
-	if (Type_ == ObjectType::Unit)
+	if (UnitUpdate_ == true)
 	{
-		GameEngine::BackBufferImage()->TransCopy(UnitObject_->GetImage(), PastLUPos_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
+		if (Type_ == ObjectType::Unit)
+		{
+			GameEngine::BackBufferImage()->TransCopy(UnitObject_->GetImage(), PastLUPos_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
+		}
+		else if (Type_ == ObjectType::Text)
+		{
+			GameEngine::BackBufferImage()->TransCopy(TextObject_->GetImage(), PastLUPos_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
+		}
 	}
-	else if (Type_ == ObjectType::Text)
-	{
-		GameEngine::BackBufferImage()->TransCopy(TextObject_->GetImage(), PastLUPos_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
-	}
+
 	
 }
 
@@ -349,4 +353,8 @@ void Coordinate::ChangeBackPos(const float4& _Pos, const float4& _CPos, Directio
 	//SceneFrame_ = 0;
 	IsBackTothePast_ = true;
 	IsKeyPush_ = true;
+	if (UnitUpdate_ == false)
+	{
+		++SceneFrame_;
+	}
 }

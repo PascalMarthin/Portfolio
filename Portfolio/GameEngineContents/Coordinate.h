@@ -85,10 +85,20 @@ public:
 		IsKeyPush_ = true;
 	}
 
-	inline bool IsUnitDead()
+	inline bool IsUnitUpdate()
 	{
-		return UnitDeath_;
+		return UnitUpdate_;
 	}
+
+	inline void UpdateON()
+	{
+		UnitUpdate_ = true;
+	}
+	inline void UpdateOFF()
+	{
+		UnitUpdate_ = false;
+	}
+
 	inline void SetBridgeUnit(unsigned int _idx)
 	{
 		BridgeUnit_ = _idx;
@@ -121,7 +131,7 @@ private:
 	bool IsMove_;
 	bool IsKeyPush_;
 	bool IsBackTothePast_;
-	bool UnitDeath_;
+	bool UnitUpdate_;
 
 	unsigned int BridgeUnit_;
 	void BridgeUnitCheck();

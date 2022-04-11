@@ -2,7 +2,16 @@
 #include <GameEngineBase/GameEngineNameObject.h>
 #include <GameEngineBase/GameEngineMath.h>
 #include <list>
+#include <vector>
 #include <map>
+
+class GameEngineActor;
+struct ChangeOrderItem
+{
+	GameEngineActor* TargetObject; // 이녀석을
+	int ChangeOrder; // 이렇게 바꿔라.
+};
+
 
 // 설명 : 각 Level을 관리 하며 Actor를 생성
 class GameEngine;
@@ -87,6 +96,8 @@ protected:
 private :
 	std::map<int, std::list<GameEngineActor*>> AllActor_;
 
+	std::vector<ChangeOrderItem> ChangeOrderList;
+
 	float4 CameraPos_;
 
 	void ActorUpdate();
@@ -98,6 +109,8 @@ private:
 	std::map<int, std::list<GameEngineRenderer*>> AllRenderer_;
 
 	void AddRenderer(GameEngineRenderer* _Renderer);
+
+	void ChangeUpdateOrder(GameEngineActor* _Actor, int _Oreder);
 
 	void ChangeRenderOrder(GameEngineRenderer* _Renderer, int _NewOrder);
 
