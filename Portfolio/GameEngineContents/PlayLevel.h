@@ -8,6 +8,7 @@
 #include "GamePlayUnitObject.h"
 #include "GamePlayUnitText.h"
 #include "ClearScene.h"
+#include <queue>
 
 // 설명 : Stage 정보를 받아 화면에 출력해주는 Level
 class CooridnateHistoryData;
@@ -75,6 +76,7 @@ private:
 	std::map<int, std::map<int, std::list<Coordinate*>>> CurrentMap_;
 	std::list<Coordinate*> AllCoordinate_;
 	std::vector<std::map< Coordinate* , const CooridnateHistoryData*>*> AllMoveHistory_;
+	std::queue<Direction> QueueMove_;
 
 private:
 

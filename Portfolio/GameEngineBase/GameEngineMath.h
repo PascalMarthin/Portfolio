@@ -169,13 +169,18 @@ public:
 		return *this;
 	}
 
-	//
-	bool operator==(const float4& _Other) const
+	bool CompareInt2D(const float4& _Value)
 	{
-		return x == _Other.x && y == _Other.y && z == _Other.z;
+		return ix() == _Value.ix() && iy() == _Value.iy();
 	}
 
-	//
+	bool CompareInt3D(const float4& _Value)
+	{
+		return ix() == _Value.ix() &&
+			iy() == _Value.iy() &&
+			iz() == _Value.iz();
+	}
+
 public:
 	float4()
 		: x(0.0f), y(0.0f), z(0.0f), w(1.0f)

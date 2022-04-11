@@ -263,7 +263,7 @@ void PlayLevel::BackTothePast()
 			}
 			
 			// 같은 위치가 아닐때
-			if (!((*StartIterMap).first->GetPos() == (*StartIterMap).second->Pos_))
+			if (!(const_cast<float4&>((*StartIterMap).first->GetPos()).CompareInt2D((*StartIterMap).second->Pos_)))
 			{
 				std::list<Coordinate*>::iterator StartIter = CurrentMap_[(*StartIterMap).first->GetPos().iy()][(*StartIterMap).first->GetPos().ix()].begin();
 				std::list<Coordinate*>::iterator EndIter = CurrentMap_[(*StartIterMap).first->GetPos().iy()][(*StartIterMap).first->GetPos().ix()].end();
@@ -805,5 +805,6 @@ void PlayLevel::AllReleaseInStage()
 	}
 	AllMoveHistory_.clear();
 	CurrentMap_.clear();
-
+	// 재선언으로 비우기
+	QueueMove_ = std::queue<Direction>();
 }

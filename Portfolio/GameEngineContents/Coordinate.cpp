@@ -68,24 +68,28 @@ void Coordinate::SetCurrentImage()
 		return;
 	}
 
-	if (UnitObject_->FindStat(SYou) == true && (IsMove_ == true || IsBackTothePast_ == true))
+	if (UnitObject_->FindStat(SYou) == true)
 	{
 		{
-			if (IsBackTothePast_ == true)
+			if (UnitObject_->GetName() == ObjectName::Baba_Unit)
 			{
-				--SceneFrame_;
+				int a = 0;
 			}
-			else
+			if (IsMove_ == true)
 			{
 				++SceneFrame_;
+				if (static_cast<int>((*CurrentImageIndex_).size()) <= SceneFrame_)
+				{
+					SceneFrame_ = 0;
+				}
 			}
-			if (static_cast<int>((*CurrentImageIndex_).size()) <= SceneFrame_)
+			else if (IsBackTothePast_ == true)
 			{
-				SceneFrame_ = 0;
-			}
-			else if (SceneFrame_ < 0)
-			{
-				SceneFrame_ = static_cast<int>((*CurrentImageIndex_).size()) - 1;
+				--SceneFrame_;
+				if (SceneFrame_ < 0)
+				{
+					SceneFrame_ = static_cast<int>((*CurrentImageIndex_).size()) - 1;
+				}
 			}
 		}
 	}
@@ -97,16 +101,9 @@ void Coordinate::SetCurrentImage()
 
 void Coordinate::Update()
 {
-	if (UnitObject_->GetName() == ObjectName::Baba_Unit)
-	{
-		int a = 0;
-	}
+
 	if (IsKeyPush_ == true && IsUpdate() == true)
 	{
-	if (UnitObject_->GetName() == ObjectName::Water_Unit)
-	{
-		int a = 0;
-	}
 		SetCurrentImage();
 		IsKeyPush_ = false;
 	}
@@ -322,10 +319,13 @@ void Coordinate::ChangePos(const float4& _Pos, const float4& _CPos, Direction _D
 		CurrentLUPos_ = _CPos;
 		PastByCurrentRange_ = DotSizeX;
 		UnitDir_ = _Dir;
-		//SceneFrame_ = 0;
-		if (!(PastPos_ == CurrentPos_))
+		IsMove_ = true;
+
+		// 
+		//µð¹ö±ë¿ë
+		if (PastPos_.CompareInt2D(CurrentPos_))
 		{
-			IsMove_ = true;
+			IsMove_ = false;
 		}
 	}
 }
