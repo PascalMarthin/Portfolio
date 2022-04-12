@@ -22,11 +22,11 @@
     <Filter Include="ThirdParty">
       <UniqueIdentifier>{f8a63a35-ed13-464e-8b3d-41868464f489}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty\bin">
-      <UniqueIdentifier>{79857c31-1f18-4a51-94c5-7fd33201dbe4}</UniqueIdentifier>
+    <Filter Include="ThirdParty\Bin">
+      <UniqueIdentifier>{cbb3b468-57bb-4569-b1dc-c40601d121ed}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty\inc">
-      <UniqueIdentifier>{f34a7e75-3e13-4688-88a3-49a517aca730}</UniqueIdentifier>
+    <Filter Include="ThirdParty\Inc">
+      <UniqueIdentifier>{a75e5ec0-ebcd-448f-832b-7559df8c77ed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -103,24 +103,24 @@
     </ClInclude>
     <ClInclude Include="GameEngineSound.h" />
     <ClInclude Include="ThirdParty\inc\fmod.h">
-      <Filter>ThirdParty\inc</Filter>
+      <Filter>ThirdParty\Inc</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\inc\fmod.hpp">
-      <Filter>ThirdParty\inc</Filter>
+      <Filter>ThirdParty\Inc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <CopyFileToFolders Include="ThirdParty\bin\fmodL_vc.lib">
+      <Filter>ThirdParty\Bin</Filter>
+    </CopyFileToFolders>
     <CopyFileToFolders Include="ThirdParty\bin\fmod.dll">
-      <Filter>ThirdParty\bin</Filter>
+      <Filter>ThirdParty\Bin</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="ThirdParty\bin\fmod_vc.lib">
-      <Filter>ThirdParty\bin</Filter>
+      <Filter>ThirdParty\Bin</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="ThirdParty\bin\fmodL.dll">
-      <Filter>ThirdParty\bin</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\bin\fmodL_vc.lib">
-      <Filter>ThirdParty\bin</Filter>
+      <Filter>ThirdParty\Bin</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>

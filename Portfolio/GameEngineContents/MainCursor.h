@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include <GameEngine/GameEngineImage.h>
 
 // Ό³Έν :
 class MainCursor : public GameEngineActor
@@ -19,6 +20,11 @@ protected:
 	void Render() override;
 
 private:
+	int CurrentFrame_;
+	float CurrentInterTime_;
+	float4 CurrentImgScale_;
+	float4 CurrentImgPivot_;
 
+	GameEngineImage* Image_;
 };
 

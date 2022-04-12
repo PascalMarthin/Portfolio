@@ -4,6 +4,7 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngine.h>
 
+
 #include "Coordinate.h"
 #include "BackGround.h"
 #include "MainLevel.h"
@@ -21,7 +22,8 @@ PlayLevel::PlayLevel()
 	ClearScene_(nullptr),
 	IsClear_(false),
 	ClearWait(0.0f),
-	BackGround_(nullptr)
+	BackGround_(nullptr),
+	Random_(nullptr)
 {
 }
 
@@ -47,7 +49,7 @@ void PlayLevel::Update()
 		StageFucntionReset();
 		ScanFucntion();
 		CheckMapAllStat();
-		ScanFucntion();
+		ScanBridgeUnit();
 	}
 
 	if (IsClear_ == true)
@@ -64,8 +66,15 @@ void PlayLevel::Update()
 
 void PlayLevel::LevelChangeEnd()
 {
+	if (nullptr != Random_)
+	{
+		delete Random_;
+		Random_ = nullptr;
+	}
+	Random_ = new GameEngineRandom();
 	EndStage();
-	ReSetLevel();
+	ReSetStage();
+	CurrentStage_ = Stage::MainStage;
 	ClearScene_->SetStayOFF();
 
 
@@ -73,26 +82,67 @@ void PlayLevel::LevelChangeEnd()
 
 void PlayLevel::ScanBridgeUnit()
 {
+	// 비트 체크할때 하나의 비트 변수를 만들어서 삽입해야하는데 좀 부족했음
+	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();
+	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator EndIterY = CurrentMap_.end();
 
+
+	int X = 0;
+	int Y = 0;
+
+	for (; StartIterY != EndIterY; ++StartIterY)
+	{
+		Y = StartIterY->first;
+		std::map<int, std::list<Coordinate*>>::iterator StartIterX = StartIterY->second.begin();
+		std::map<int, std::list<Coordinate*>>::iterator EndIterX = StartIterY->second.end();
+		for (; StartIterX != EndIterX; ++StartIterX)
+		{
+			X = StartIterX->first;
+			std::list<Coordinate*>& Block = StartIterX->second;
+
+			for (auto iter : Block)
+			{
+				if (iter->IsUnitUpdate() == true)
+				{
+					if (iter->GetUnitObjectInst()->GetName() == ObjectName::Wall_Unit ||
+						iter->GetUnitObjectInst()->GetName() == ObjectName::Water_Unit ||
+						iter->GetUnitObjectInst()->GetName() == ObjectName::Lava_Unit ||
+						iter->GetUnitObjectInst()->GetName() == ObjectName::Grass_Unit ||
+						iter->GetUnitObjectInst()->GetName() == ObjectName::Brick_Unit)
+					{
+						iter->SetBridgeUnit(CheckUnitBridge(iter));
+					}
+				}
+
+			}
+		}
+	}
 }
 
 void PlayLevel::LevelChangeStart()
 {
+	SetStage();
+	StageFucntionReset();
 
+	ScanFucntion();
+	CheckMapAllStat();
+	ScanBridgeUnit();
+
+}
+
+void PlayLevel::SetStage()
+{
+	Random_ = new GameEngineRandom();
 	CurrentStage_ = MainLevel::GetCurrentStage();
 	MapScale_ = StageData::Inst_->Scale_[CurrentStage_];
 	BackGround_ = CreateActor<PlayBackGround>(1);
 	BackGround_->CreateRendererToScale("Stage0.bmp", { MapScale_.x * DotSizeX, MapScale_.y * DotSizeY });
 	GameWindowStartPosX_ = (GameEngineWindow::GetScale().x - MapScale_.x * DotSizeX) / 2;
 	GameWindowStartPosY_ = (GameEngineWindow::GetScale().y - MapScale_.y * DotSizeY) / 2;
-
 	CreatMap(StageData::Inst_->StageData_[CurrentStage_]);
-	StageFucntionReset();
-	ScanFucntion();
-	CheckMapAllStat();
-
 }
-void PlayLevel::ReSetLevel()
+
+void PlayLevel::ReSetStage()
 {
 	GameWindowStartPosX_ = 0;
 	GameWindowStartPosY_ = 0;
@@ -103,6 +153,9 @@ void PlayLevel::ReSetLevel()
 	AllCoordinate_.clear();
 	AllMoveHistory_.clear();
 	CurrentMap_.clear();
+	// 재선언으로 비우기
+	QueueMove_ = std::queue<Direction>();
+
 	ClearScene_->Off();
 	BackGround_->Death();
 	BackGround_ = nullptr;
@@ -285,7 +338,6 @@ void PlayLevel::BackTothePast()
 
 void PlayLevel::ScanFucntion()
 {
-	// 비트 체크할때 하나의 비트 변수를 만들어서 삽입해야하는데 좀 부족했음
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator EndIterY = CurrentMap_.end();
 
@@ -313,14 +365,6 @@ void PlayLevel::ScanFucntion()
 						CheckFunction(X, Y, iter);
 						continue;
 					}	
-					else if (iter->GetUnitObjectInst()->GetName() == ObjectName::Wall_Unit ||
-							 iter->GetUnitObjectInst()->GetName() == ObjectName::Water_Unit ||
-							 iter->GetUnitObjectInst()->GetName() == ObjectName::Lava_Unit  ||
-							 iter->GetUnitObjectInst()->GetName() == ObjectName::Grass_Unit ||
-							iter->GetUnitObjectInst()->GetName() == ObjectName::Brick_Unit)
-					{
-						iter->SetBridgeUnit(CheckUnitBridge(iter));
-					}
 				}
 
 			}
@@ -555,6 +599,11 @@ bool PlayLevel::KeyCheck()
 	}
 	if (GameEngineInput::GetInst()->IsDown("R"))
 	{
+		{
+			AllReleaseInStage();
+			ReSetStage();
+			SetStage();
+		}
 		return true;
 	}
 	if (GameEngineInput::GetInst()->IsDown("Z"))
@@ -571,11 +620,58 @@ bool PlayLevel::PushKey(Direction _Dir)
 	StageSave();
 	StageFucntionReset();
 	ScanFucntion();
+	ScanBridgeUnit();
 
 	if (CheckMapAllStat(_Dir) == false)
 	{
 		StageSavePopBack();
 		return false;
+	}
+	else
+	{
+		
+		switch (Random_->RandomInt(0, 11))
+		{
+		case 0:
+			GameEngineSound::SoundPlayOneShot("move1.ogg");
+			break;
+		case 1:
+			GameEngineSound::SoundPlayOneShot("move2.ogg");
+			break;
+		case 2:
+			GameEngineSound::SoundPlayOneShot("move3.ogg");
+			break;
+		case 3:
+			GameEngineSound::SoundPlayOneShot("move4.ogg");
+			break;
+		case 4:
+			GameEngineSound::SoundPlayOneShot("move5.ogg");
+			break;
+		case 5:
+			GameEngineSound::SoundPlayOneShot("move6.ogg");
+			break;
+		case 6:
+			GameEngineSound::SoundPlayOneShot("move7.ogg");
+			break;
+		case 7:
+			GameEngineSound::SoundPlayOneShot("move8.ogg");
+			break;
+		case 8:
+			GameEngineSound::SoundPlayOneShot("move9.ogg");
+			break;
+		case 9:
+			GameEngineSound::SoundPlayOneShot("move10.ogg");
+			break;
+		case 10:
+			GameEngineSound::SoundPlayOneShot("move11.ogg");
+			break;
+		case 11:
+			GameEngineSound::SoundPlayOneShot("move12.ogg");
+			break;
+		default:
+			break;
+		}
+		GameEngineSound::SoundPlayOneShot("move1.ogg");
 	}
 	return true;
 }

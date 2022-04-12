@@ -51,7 +51,7 @@ void MainLevel::Loading()
 		MainMap_[11][11]->SetCFrame(21, 23);
 		MainMap_[11][12]->SetCFrame(6, 8);
 	}
-	MainCursor_ = CreateActor<MainCursor>(2, "MainCursor");
+	MainCursor_ = CreateActor<MainCursor>(3, "MainCursor");
 	MainCursor_->SetPosition(MainMap_[15][9]->GetPosition());
 	MainCursorPos_ = { 9, 15 };
 }

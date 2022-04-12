@@ -7,6 +7,7 @@
 #include <GameEngineBase/GameEngineFile.h>
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngineBase/GameEngineInput.h>
+#include <GameEngineBase/GameEngineSound.h>
 #include "GamePlayGobal.h"
 #include "StageData.h"
 
@@ -26,6 +27,32 @@ void BabaIsYou::GameInit()
 	CreateKeyBaba();
 
 	// 리소스 파일 위치 적용
+
+	{
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("Portfolio");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Sound");
+		ResourcesDir.Move("Music");
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile();
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineSound::LoadRes(AllImageFileList[i].GetFullPath());
+		}
+	}
+	{
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("Portfolio");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Sound"); 
+		ResourcesDir.Move("Soundeffect");
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile();
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineSound::LoadRes(AllImageFileList[i].GetFullPath());
+		}
+	}
+
 	GameEngineDirectory ResourcesDir;
 	ResourcesDir.MoveParent("Portfolio");
 	ResourcesDir.Move("Resources");

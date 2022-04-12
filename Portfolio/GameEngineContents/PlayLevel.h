@@ -9,6 +9,8 @@
 #include "GamePlayUnitText.h"
 #include "ClearScene.h"
 #include <queue>
+#include <GameEngineBase/GameEngineSound.h>
+#include <GameEngineBase/GameEngineRandom.h>
 
 // 설명 : Stage 정보를 받아 화면에 출력해주는 Level
 class CooridnateHistoryData;
@@ -32,9 +34,10 @@ protected:
 	void LevelChangeEnd() override;
 
 private:
-	void ReSetLevel();
-
+	void SetStage();
+	void ReSetStage();
 	void CreatMap (std::map<int, std::map<int, ObjectName>>& _Stage);
+	
 	void StageFucntionReset();
 	void StageSave();
 	void ScanFucntion();
@@ -66,6 +69,7 @@ private:
 	void EndStage();
 	void AllReleaseInStage();
 
+	GameEngineRandom* Random_;
 	GameEngineActor* BackGround_;
 	ClearScene* ClearScene_;
 	Stage CurrentStage_;
@@ -82,6 +86,7 @@ private:
 private:
 
 };
+
 class CooridnateHistoryData
 {
 public:
