@@ -45,10 +45,10 @@ void MainLevel::Loading()
 		MainMap_[13][10]->SetCFrame(3, 5);
 		MainMap_[12][10]->SetCFrame(6, 8);
 		MainMap_[11][10]->SetCFrame(15, 17);
-		MainMap_[11][11]->SetCFrame(18, 20);
+		MainMap_[12][12]->SetCFrame(18, 20);
 		MainMap_[12][11]->SetCFrame(12, 14);
 		MainMap_[13][11]->SetCFrame(9, 11);
-		MainMap_[12][12]->SetCFrame(21, 23);
+		MainMap_[11][11]->SetCFrame(21, 23);
 		MainMap_[11][12]->SetCFrame(6, 8);
 	}
 	MainCursor_ = CreateActor<MainCursor>(2, "MainCursor");
@@ -129,7 +129,7 @@ void MainLevel::Update()
 			CurrentStage_ = Stage::Stage6;
 			GameEngine::GetInst().ChangeLevel("PlayLevel");
 		}
-		else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 12)
+		else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 11)
 		{
 			CurrentStage_ = Stage::Stage7;
 			GameEngine::GetInst().ChangeLevel("PlayLevel");

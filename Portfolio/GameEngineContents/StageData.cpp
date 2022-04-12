@@ -816,13 +816,236 @@ void StageData::Stage6()
 	StageData_[Stage::Stage6][1][4] = ObjectName::Rock_Unit;
 	StageData_[Stage::Stage6][1][6] = ObjectName::Grass_Unit;
 	StageData_[Stage::Stage6][1][7] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][1][8] = ObjectName::Flower_Unit;
+	StageData_[Stage::Stage6][1][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][1][11] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][1][12] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][1][13] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][1][14] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][1][15] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][1][16] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][1][17] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][1][18] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][1][19] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][1][22] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][1][23] = ObjectName::Grass_Unit;
 
 	StageData_[Stage::Stage6][2][0] = ObjectName::Skull_Text;
 	StageData_[Stage::Stage6][2][1] = ObjectName::Is_Text;
 	StageData_[Stage::Stage6][2][2] = ObjectName::Defeat_Text;
+	StageData_[Stage::Stage6][2][4] = ObjectName::Rock_Unit;
+	StageData_[Stage::Stage6][2][9] = ObjectName::Brick_Unit;
+	StageData_[Stage::Stage6][2][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][2][12] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][2][15] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][2][16] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][2][17] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][2][18] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][2][19] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][2][23] = ObjectName::Grass_Unit;
 
+	StageData_[Stage::Stage6][3][4] = ObjectName::Rock_Unit;
+	StageData_[Stage::Stage6][3][8] = ObjectName::Brick_Unit;
+	StageData_[Stage::Stage6][3][9] = ObjectName::Brick_Unit;
+	StageData_[Stage::Stage6][3][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][3][12] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][3][16] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][3][17] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage6][3][18] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][3][19] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::Stage6][4][0] = ObjectName::Flag_Text;
+	StageData_[Stage::Stage6][4][1] = ObjectName::Is_Text;
+	StageData_[Stage::Stage6][4][2] = ObjectName::Win_Text;
+	StageData_[Stage::Stage6][4][4] = ObjectName::Rock_Unit;
+	StageData_[Stage::Stage6][4][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][4][7] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][4][8] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][4][9] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][4][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][4][12] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][4][15] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][4][16] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][4][17] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][4][18] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][4][19] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::Stage6][5][4] = ObjectName::Rock_Unit;
+	StageData_[Stage::Stage6][5][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][5][7] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][5][8] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][5][9] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][5][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][5][12] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][5][15] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][5][16] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][5][17] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][5][18] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][5][19] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][5][19] = ObjectName::Flower_Unit;
+
+	StageData_[Stage::Stage6][6][0] = ObjectName::Rock_Unit;
+	StageData_[Stage::Stage6][6][1] = ObjectName::Rock_Unit;
+	StageData_[Stage::Stage6][6][2] = ObjectName::Rock_Unit;
+	StageData_[Stage::Stage6][6][3] = ObjectName::Rock_Unit;
+	StageData_[Stage::Stage6][6][4] = ObjectName::Rock_Unit;
+	StageData_[Stage::Stage6][6][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][6][7] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][6][8] = ObjectName::Baba_Unit;
+	StageData_[Stage::Stage6][6][9] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][6][12] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][6][13] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][6][14] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][6][15] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][6][16] = ObjectName::Brick_Unit;
+	StageData_[Stage::Stage6][6][17] = ObjectName::Brick_Unit;
+
+	StageData_[Stage::Stage6][7][3] = ObjectName::Flower_Unit;
+	StageData_[Stage::Stage6][7][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][7][7] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][7][8] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][7][9] = ObjectName::Tile_Unit;
+	StageData_[Stage::Stage6][7][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][7][12] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][7][13] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][7][14] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][7][15] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][7][16] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][7][17] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][7][18] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][7][19] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][7][20] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][7][21] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][7][22] = ObjectName::Skull_Unit;
+	StageData_[Stage::Stage6][7][23] = ObjectName::Skull_Unit;
+
+	StageData_[Stage::Stage6][8][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][8][7] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][8][8] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][8][9] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][8][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][8][15] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][8][16] = ObjectName::Brick_Unit;
+	StageData_[Stage::Stage6][8][17] = ObjectName::Brick_Unit;
+
+	StageData_[Stage::Stage6][9][2] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][9][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][9][12] = ObjectName::Wall_Text;
+	StageData_[Stage::Stage6][9][13] = ObjectName::Is_Text;
+	StageData_[Stage::Stage6][9][14] = ObjectName::Stop_Text;
+	StageData_[Stage::Stage6][9][15] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][9][16] = ObjectName::Brick_Unit;
+	StageData_[Stage::Stage6][9][21] = ObjectName::Flower_Unit;
+
+	StageData_[Stage::Stage6][10][1] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][10][2] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][10][3] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][10][8] = ObjectName::Baba_Text;
+	StageData_[Stage::Stage6][10][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][10][15] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][10][19] = ObjectName::Flower_Unit;
+
+	StageData_[Stage::Stage6][11][2] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][11][3] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][11][8] = ObjectName::Is_Text;
+	StageData_[Stage::Stage6][11][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][11][11] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][11][12] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][11][13] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][11][14] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage6][11][15] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::Stage6][12][8] = ObjectName::You_Text;
+	StageData_[Stage::Stage6][12][17] = ObjectName::Flower_Unit;
+	StageData_[Stage::Stage6][12][21] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][12][22] = ObjectName::Grass_Unit;
+
+	StageData_[Stage::Stage6][12][18] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][12][19] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][12][20] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][12][21] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][12][22] = ObjectName::Grass_Unit;
 }
 void StageData::Stage7()
 {
-	Scale_[Stage::Stage7] = { 24, 18 };
+	Scale_[Stage::Stage7] = { 24, 14 };
+
+	StageData_[Stage::Stage7][2][5] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][2][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][2][7] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][2][8] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][2][9] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][2][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][2][11] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][2][12] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][2][13] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][2][14] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][2][15] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][2][16] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][2][17] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][2][18] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::Stage7][3][5] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][3][10] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage7][3][18] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::Stage7][4][5] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][4][7] = ObjectName::Baba_Text;
+	StageData_[Stage::Stage7][4][8] = ObjectName::Is_Text;
+	StageData_[Stage::Stage7][4][9] = ObjectName::You_Text;
+	StageData_[Stage::Stage7][4][16] = ObjectName::Flag_Unit;
+	StageData_[Stage::Stage7][4][18] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::Stage7][5][5] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][5][6] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage7][5][13] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage7][5][18] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::Stage7][6][5] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][6][14] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage7][6][16] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage7][6][18] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][6][23] = ObjectName::Grass_Text;
+
+	StageData_[Stage::Stage7][7][5] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][7][9] = ObjectName::Baba_Unit;
+	StageData_[Stage::Stage7][7][12] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage7][7][15] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage7][7][17] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage7][7][18] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][7][23] = ObjectName::Is_Text;
+
+	StageData_[Stage::Stage7][8][5] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][8][6] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage7][8][12] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage7][8][14] = ObjectName::Flag_Text;
+	StageData_[Stage::Stage7][8][16] = ObjectName::Win_Text;
+	StageData_[Stage::Stage7][8][18] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][8][23] = ObjectName::Stop_Text;
+
+	StageData_[Stage::Stage7][9][5] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][9][7] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage7][9][12] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage7][9][15] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage7][9][18] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::Stage7][10][5] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][10][10] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage7][10][13] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage7][10][18] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::Stage7][11][5] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][11][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][11][7] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][11][8] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][11][9] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][11][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][11][11] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][11][12] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][11][13] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][11][14] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][11][15] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][11][16] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][11][17] = ObjectName::Wall_Unit;
+	StageData_[Stage::Stage7][11][18] = ObjectName::Wall_Unit;
 }

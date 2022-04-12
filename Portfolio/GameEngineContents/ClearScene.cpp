@@ -29,6 +29,7 @@ void ClearScene::Start()
 
 	MakeImage_ = GameEngineImageManager::GetInst()->Find("Clear_make_sheet.bmp");
 	StayImage_ = GameEngineImageManager::GetInst()->Find("Clear_Stay_sheet.bmp");
+	GameEngineActor::SetOrder(10);
 	Off();
 	//RenderImg->CreateAnimation("Clear_make_sheet.bmp", "Clear", 0, 2, ImageSpeed, true);
 	//RenderImg->ChangeAnimation("Clear");
