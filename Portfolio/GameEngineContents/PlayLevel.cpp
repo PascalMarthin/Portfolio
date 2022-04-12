@@ -66,18 +66,10 @@ void PlayLevel::Update()
 
 void PlayLevel::LevelChangeEnd()
 {
-	if (nullptr != Random_)
-	{
-		delete Random_;
-		Random_ = nullptr;
-	}
-	Random_ = new GameEngineRandom();
 	EndStage();
 	ReSetStage();
 	CurrentStage_ = Stage::MainStage;
 	ClearScene_->SetStayOFF();
-
-
 }
 
 void PlayLevel::ScanBridgeUnit()
@@ -334,6 +326,31 @@ void PlayLevel::BackTothePast()
 
 	delete AllMoveHistory_.back();
 	AllMoveHistory_.pop_back();
+	PlaySoundBack();
+}
+
+void PlayLevel::PlaySoundBack()
+{
+	switch (Random_->RandomInt(0, 4))
+	{
+	case 0:
+		GameEngineSound::SoundPlayOneShot("Back1.ogg");
+		break;
+	case 1:
+		GameEngineSound::SoundPlayOneShot("Back2.ogg");
+		break;
+	case 2:
+		GameEngineSound::SoundPlayOneShot("Back3.ogg");
+		break;
+	case 3:
+		GameEngineSound::SoundPlayOneShot("Back4.ogg");
+		break;
+	case 4:
+		GameEngineSound::SoundPlayOneShot("Back5.ogg");
+		break;
+	default:
+		break;
+	}
 }
 
 void PlayLevel::ScanFucntion()
@@ -371,7 +388,6 @@ void PlayLevel::ScanFucntion()
 		}
 	}
 }
-
 
 
 bool PlayLevel::CheckFunction(int _X, int _Y, Coordinate* _Verb)
@@ -629,51 +645,55 @@ bool PlayLevel::PushKey(Direction _Dir)
 	}
 	else
 	{
-		
-		switch (Random_->RandomInt(0, 11))
-		{
-		case 0:
-			GameEngineSound::SoundPlayOneShot("move1.ogg");
-			break;
-		case 1:
-			GameEngineSound::SoundPlayOneShot("move2.ogg");
-			break;
-		case 2:
-			GameEngineSound::SoundPlayOneShot("move3.ogg");
-			break;
-		case 3:
-			GameEngineSound::SoundPlayOneShot("move4.ogg");
-			break;
-		case 4:
-			GameEngineSound::SoundPlayOneShot("move5.ogg");
-			break;
-		case 5:
-			GameEngineSound::SoundPlayOneShot("move6.ogg");
-			break;
-		case 6:
-			GameEngineSound::SoundPlayOneShot("move7.ogg");
-			break;
-		case 7:
-			GameEngineSound::SoundPlayOneShot("move8.ogg");
-			break;
-		case 8:
-			GameEngineSound::SoundPlayOneShot("move9.ogg");
-			break;
-		case 9:
-			GameEngineSound::SoundPlayOneShot("move10.ogg");
-			break;
-		case 10:
-			GameEngineSound::SoundPlayOneShot("move11.ogg");
-			break;
-		case 11:
-			GameEngineSound::SoundPlayOneShot("move12.ogg");
-			break;
-		default:
-			break;
-		}
-		GameEngineSound::SoundPlayOneShot("move1.ogg");
+		PlaySoundMove();
+		return true;
 	}
-	return true;
+}
+
+void PlayLevel::PlaySoundMove()
+{
+	switch (Random_->RandomInt(0, 11))
+	{
+	case 0:
+		GameEngineSound::SoundPlayOneShot("move1.ogg");
+		break;
+	case 1:
+		GameEngineSound::SoundPlayOneShot("move2.ogg");
+		break;
+	case 2:
+		GameEngineSound::SoundPlayOneShot("move3.ogg");
+		break;
+	case 3:
+		GameEngineSound::SoundPlayOneShot("move4.ogg");
+		break;
+	case 4:
+		GameEngineSound::SoundPlayOneShot("move5.ogg");
+		break;
+	case 5:
+		GameEngineSound::SoundPlayOneShot("move6.ogg");
+		break;
+	case 6:
+		GameEngineSound::SoundPlayOneShot("move7.ogg");
+		break;
+	case 7:
+		GameEngineSound::SoundPlayOneShot("move8.ogg");
+		break;
+	case 8:
+		GameEngineSound::SoundPlayOneShot("move9.ogg");
+		break;
+	case 9:
+		GameEngineSound::SoundPlayOneShot("move10.ogg");
+		break;
+	case 10:
+		GameEngineSound::SoundPlayOneShot("move11.ogg");
+		break;
+	case 11:
+		GameEngineSound::SoundPlayOneShot("move12.ogg");
+		break;
+	default:
+		break;
+	}
+
 }
 
 void PlayLevel::StageSavePopBack()
@@ -855,6 +875,12 @@ void PlayLevel::EndStage()
 
 void PlayLevel::AllReleaseInStage()
 {
+	if (nullptr != Random_)
+	{
+		delete Random_;
+		Random_ = nullptr;
+	}
+
 	std::list<Coordinate*>::iterator StartIter = AllCoordinate_.begin();
 	std::list<Coordinate*>::iterator EndIter = AllCoordinate_.end();
 
