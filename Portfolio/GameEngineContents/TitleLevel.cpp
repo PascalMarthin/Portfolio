@@ -25,18 +25,27 @@ void TitleLevel::LevelChangeStart()
 void TitleLevel::Loading()
 {
 	CreateActor<BackGround>(0);
-	Fade_ = CreateActor<Fade_InAndOut>(10);
+	{
+		Fade_ = CreateActor<Fade_InAndOut>(10);
+		Fade_->Reset();
+	}
 	CreateActor<TitleLogo>(1, "TitleLogo");
 	CreateActor<TitleMenu>(1, "TitleMenu");
 	CreateActor<TitleBaba>(2, "TitleBaba");
 	TitleBaba::BabaTitleLocate_ = BabaLocation::Start_The_Game;
-	Fade_->Off();
 }
 
 void TitleLevel::Update()
 {
-	if (Fade_->IsChangeScreen() == false)
+	if (Fade_->IsFadeOut() == true && Fade_->IsChangeScreen() == false)
 	{
+		GameEngine::GetInst().ChangeLevel("MainLevel");
+		return;
+	}
+	if (Fade_->IsChangeScreen() == true)
+	{
+		return;
+	}
 		if (GameEngineInput::GetInst()->IsDown("Up"))
 		{
 			if (TitleBaba::BabaTitleLocate_ == BabaLocation::Start_The_Game)
@@ -99,13 +108,11 @@ void TitleLevel::Update()
 				break;
 			}
 		}
-	}
-
-	if (Fade_->IsChangeScreen() == false && Fade_->IsFadeOut() == true)
-	{
-		GameEngine::GetInst().ChangeLevel("MainLevel");
-	}
-	
 
 
+
+}
+void TitleLevel::LevelChangeEnd()
+{
+	Fade_->Reset();
 }

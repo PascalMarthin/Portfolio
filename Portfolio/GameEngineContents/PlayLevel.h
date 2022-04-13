@@ -1,6 +1,10 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
 #include <GameEngineBase/GameEngineMath.h>
+#include <GameEngineBase/GameEngineSound.h>
+#include <GameEngineBase/GameEngineRandom.h>
+#include <queue>
+
 #include "Coordinate.h"
 #include "GamePlayGobal.h"
 #include "StageData.h"
@@ -8,9 +12,7 @@
 #include "GamePlayUnitObject.h"
 #include "GamePlayUnitText.h"
 #include "ClearScene.h"
-#include <queue>
-#include <GameEngineBase/GameEngineSound.h>
-#include <GameEngineBase/GameEngineRandom.h>
+#include "Fade_InAndOut.h"
 
 // 설명 : Stage 정보를 받아 화면에 출력해주는 Level
 class CooridnateHistoryData;
@@ -71,6 +73,8 @@ private:
 	void EndStage();
 	void AllReleaseInStage();
 
+
+	Fade_InAndOut* Fade_;
 	GameEngineRandom* Random_;
 	GameEngineActor* BackGround_;
 	ClearScene* ClearScene_;

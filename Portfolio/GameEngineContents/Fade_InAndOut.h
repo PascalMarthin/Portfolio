@@ -16,6 +16,7 @@ public:
 
 	void ShowFadeIn();
 	void ShowFadeOut();
+	void Reset();
 
 	inline bool IsChangeScreen() const
 	{
@@ -42,6 +43,7 @@ private:
 	int CurrentFrame_;
 	int EndFrame_;
 	float CurrentInterTime_;
+	float WattingTime_;
 	float4 ImageScale_;
 
 	bool FadeIn_;

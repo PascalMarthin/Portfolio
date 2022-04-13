@@ -14,6 +14,7 @@ Fade_InAndOut::Fade_InAndOut()
 	, FadeImage_(nullptr)
 	, ImageScale_(float4::ZERO)
 	, ChangeScreen_(false)
+	, WattingTime_(1.0f)
 {
 }
 
@@ -33,12 +34,21 @@ void Fade_InAndOut::Start()
 
 }
 
+void Fade_InAndOut::Reset()
+{
+	FadeOut_ = false;
+	FadeIn_ = false;
+	ChangeScreen_ = false;
+	Off();
+}
+
 void Fade_InAndOut::ShowFadeIn()
 {
 	On();
 	FadeIn_ = true;
 	FadeOut_ = false;
 	CurrentInterTime_ = AnimationSpeed;
+	WattingTime_ = 1.0f;
 	ChangeScreen_ = true;
 	CurrentFrame_ = 21;
 	EndFrame_ = 0;
@@ -49,6 +59,7 @@ void Fade_InAndOut::ShowFadeOut()
 	FadeIn_ = false;
 	FadeOut_ = true;
 	CurrentInterTime_ = AnimationSpeed;
+	WattingTime_ = 1.0f;
 	ChangeScreen_ = true;
 	CurrentFrame_ = 0;
 	EndFrame_ = 21;
@@ -66,23 +77,37 @@ void Fade_InAndOut::Update()
 			if (EndFrame_ < CurrentFrame_)
 			{
 				CurrentFrame_ = EndFrame_;
+			}
+		}
+		else if (EndFrame_ == CurrentFrame_)
+		{
+			WattingTime_ -= GameEngineTime::GetDeltaTime();
+			if (WattingTime_ < 0)
+			{
 				ChangeScreen_ = false;
 			}
 		}
 	}
 	else if (FadeIn_ == true)
 	{
-		CurrentInterTime_ -= GameEngineTime::GetDeltaTime();
-		if (CurrentInterTime_ < 0)
+		if (WattingTime_ < 0)
 		{
-			CurrentInterTime_ = AnimationSpeed;
-			--CurrentFrame_;
-			if (0 > CurrentFrame_)
+			CurrentInterTime_ -= GameEngineTime::GetDeltaTime();
+			if (CurrentInterTime_ < 0)
 			{
-				FadeIn_ = false;
-				ChangeScreen_ = false;
-				Off();
+				CurrentInterTime_ = AnimationSpeed;
+				--CurrentFrame_;
+				if (0 > CurrentFrame_)
+				{
+					FadeIn_ = false;
+					ChangeScreen_ = false;
+					Off();
+				}
 			}
+		}
+		else
+		{
+			WattingTime_ -= GameEngineTime::GetDeltaTime();
 		}
 	}
 }

@@ -23,6 +23,7 @@ protected:
 	void Loading() override;
 	void Update() override;
 	void LevelChangeStart() override;
+	void LevelChangeEnd() override;
 
 private:
 	Fade_InAndOut* Fade_;

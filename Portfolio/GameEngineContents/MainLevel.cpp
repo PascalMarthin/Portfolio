@@ -17,7 +17,8 @@ MainLevel::MainLevel()
 	GameWindowStartPosY_(0) ,
 	MapScale_({0, 0}) ,
 	MainCursorPos_({0, 0}),
-	MainCursor_(nullptr)
+	MainCursor_(nullptr),
+	Fade_(nullptr)
 {
 }
 
@@ -28,7 +29,8 @@ MainLevel::~MainLevel()
 
 void MainLevel::Loading()
 {
-
+	Fade_ = CreateActor<Fade_InAndOut>(10);
+	Fade_->Reset();
 	MapScale_ = StageData::Inst_->Scale_[Stage::MainStage];
 
 	CreateActor<BackGround>(0);
@@ -58,6 +60,15 @@ void MainLevel::Loading()
 
 void MainLevel::Update()
 {
+	if (Fade_->IsFadeOut() == true && Fade_->IsChangeScreen() == false)
+	{
+		GameEngine::GetInst().ChangeLevel("PlayLevel");
+		return;
+	}
+	if (Fade_->IsChangeScreen() == true)
+	{
+		return;
+	}
 	if (GameEngineInput::GetInst()->IsDown("Down"))
 	{
 		if (MainMap_[MainCursorPos_.iy()+1][MainCursorPos_.ix()] != nullptr)
@@ -97,43 +108,36 @@ void MainLevel::Update()
 		if (MainCursorPos_.ix() == 9 && MainCursorPos_.iy() == 15)
 		{
 			CurrentStage_ = Stage::Stage0;
-			GameEngine::GetInst().ChangeLevel("PlayLevel");
 		}
 		else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 13)
 		{
 			CurrentStage_ = Stage::Stage1;
-			GameEngine::GetInst().ChangeLevel("PlayLevel");
 		}
 		else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 12)
 		{
 			CurrentStage_ = Stage::Stage2;
-			GameEngine::GetInst().ChangeLevel("PlayLevel");
 		}
 		else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 13)
 		{
 			CurrentStage_ = Stage::Stage3;
-			GameEngine::GetInst().ChangeLevel("PlayLevel");
 		}
 		else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 12)
 		{
 			CurrentStage_ = Stage::Stage4;
-			GameEngine::GetInst().ChangeLevel("PlayLevel");
 		}
 		else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 11)
 		{
 			CurrentStage_ = Stage::Stage5;
-			GameEngine::GetInst().ChangeLevel("PlayLevel");
 		}
 		else if (MainCursorPos_.ix() == 12 && MainCursorPos_.iy() == 12)
 		{
 			CurrentStage_ = Stage::Stage6;
-			GameEngine::GetInst().ChangeLevel("PlayLevel");
 		}
 		else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 11)
 		{
 			CurrentStage_ = Stage::Stage7;
-			GameEngine::GetInst().ChangeLevel("PlayLevel");
 		}
+		Fade_->ShowFadeOut();
 	}
 	if (GameEngineInput::GetInst()->IsDown("R"))
 	{
@@ -148,6 +152,7 @@ void MainLevel::Update()
 
 void MainLevel::LevelChangeStart()
 {
+	Fade_->ShowFadeIn();
 }
 
 void MainLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
@@ -172,21 +177,7 @@ void MainLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 	}
 }
 
-//if (Idx == nullptr)
-//{
-//	Coordinate* Coordi = CreateActor<Coordinate>(1);
-//	CPos = { GameWindowPosX_ + static_cast<float>(x * DotSizeX), GameWindowPosY_ + static_cast<float>(y * DotSizeY) };
-//	Coordi->Pos_ = { static_cast<float>(x), static_cast<float>(y) };
-//	Coordi->CPos_ = CPos;
-//	Coordi->Object_ = ObjectName::Baba_Unit;
-//	Coordi->SetImg(GamePlayGobal::GetInst()->Find(ObjectName::Baba_Unit)->GetImage());
-//}
-//else {
-//	Coordinate* Coordi = CreateActor<Coordinate>(1);
-//	CPos = { GameWindowPosX_ + static_cast<float>(x * DotSizeX), GameWindowPosY_ + static_cast<float>(y * DotSizeY) };
-//	Coordi->Pos_ = { static_cast<float>(x), static_cast<float>(y) };
-//	Coordi->CPos_ = CPos;
-//	Coordi->Object_ = _Stage[y][x];
-//	Coordi->SetImg(Idx->GetImage());
-//	MainMap_[y][x] = Coordi;
-//}
+void MainLevel::LevelChangeEnd()
+{
+	Fade_->Reset();
+}

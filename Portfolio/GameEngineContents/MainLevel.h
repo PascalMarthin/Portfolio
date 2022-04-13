@@ -2,6 +2,7 @@
 #include <GameEngine/GameEngineLevel.h>
 #include <map>
 #include "GamePlayEnum.h"
+#include "Fade_InAndOut.h"
 
 // Ό³Έν :
 class Coordinate;
@@ -27,6 +28,7 @@ protected:
 	void Loading() override;
 	void Update() override;
 	void LevelChangeStart() override;
+	void LevelChangeEnd() override;
 
 private:
 	static Stage CurrentStage_;
@@ -43,5 +45,6 @@ private:
 
 
 	void CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage);
+	Fade_InAndOut* Fade_;
 };
 

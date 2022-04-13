@@ -23,7 +23,8 @@ PlayLevel::PlayLevel()
 	IsClear_(false),
 	ClearWait(0.0f),
 	BackGround_(nullptr),
-	Random_(nullptr)
+	Random_(nullptr),
+	Fade_(nullptr)
 {
 }
 
@@ -35,6 +36,11 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Loading()
 {
+	{
+		Fade_ = CreateActor<Fade_InAndOut>(10);
+		Fade_->Reset();
+	}
+
 	CreateActor<BackGround>(0);
 	ClearScene_ = CreateActor<ClearScene>(5);
 	AllMoveHistory_.reserve(10000);
@@ -43,7 +49,15 @@ void PlayLevel::Loading()
 
 void PlayLevel::Update()
 {
-
+	if (Fade_->IsFadeOut() == true && Fade_->IsChangeScreen() == false && IsClear_ == true)
+	{
+		GameEngine::GetInst().ChangeLevel("MainLevel");
+		return;
+	}
+	if (Fade_->IsChangeScreen() == true)
+	{
+		return;
+	}
 	if (true == KeyCheck())
 	{
 		StageFucntionReset();
@@ -57,8 +71,7 @@ void PlayLevel::Update()
 		ClearWait -= GameEngineTime::GetDeltaTime();
 		if (ClearWait < 0)
 		{
-			GameEngine::GetInst().ChangeLevel("MainLevel");
-
+			Fade_->ShowFadeOut();
 		}
 	}
 
@@ -66,6 +79,7 @@ void PlayLevel::Update()
 
 void PlayLevel::LevelChangeEnd()
 {
+	Fade_->Reset();
 	EndStage();
 	ReSetStage();
 	CurrentStage_ = Stage::MainStage;
@@ -113,6 +127,7 @@ void PlayLevel::ScanBridgeUnit()
 
 void PlayLevel::LevelChangeStart()
 {
+	Fade_->ShowFadeIn();
 	SetStage();
 	StageFucntionReset();
 
@@ -604,13 +619,13 @@ bool PlayLevel::KeyCheck()
 
 	if (GameEngineInput::GetInst()->IsDown("Space"))
 	{
-		if (IsClear_ == true)
-		{
-			if (ClearWait < 4.0f)
-			{
-				GameEngine::GetInst().ChangeLevel("MainLevel");
-			}
-		}
+		//if (IsClear_ == true)
+		//{
+		//	if (ClearWait < 1.0f)
+		//	{
+		//		GameEngine::GetInst().ChangeLevel("MainLevel");
+		//	}
+		//}
 		return true;
 	}
 	if (GameEngineInput::GetInst()->IsDown("R"))
@@ -862,7 +877,7 @@ std::list<Coordinate*>::iterator& PlayLevel::MoveBack(std::list<Coordinate*>::it
 void PlayLevel::ClearStage()
 {
 	IsClear_ = true;
-	ClearWait = 5.0f;
+	ClearWait = 3.0f;
 	ClearScene_->On();
 }
 

@@ -29,7 +29,7 @@ void ClearScene::Start()
 
 	MakeImage_ = GameEngineImageManager::GetInst()->Find("Clear_make_sheet.bmp");
 	StayImage_ = GameEngineImageManager::GetInst()->Find("Clear_Stay_sheet.bmp");
-	GameEngineActor::SetOrder(10);
+	GameEngineActor::SetOrder(9);
 	Off();
 	//RenderImg->CreateAnimation("Clear_make_sheet.bmp", "Clear", 0, 2, ImageSpeed, true);
 	//RenderImg->ChangeAnimation("Clear");
@@ -47,11 +47,11 @@ void ClearScene::Update()
 		{
 			if (CurrentFrame_ < 10)
 			{
-				CurrentInterTime_ = 0.05f;
+				CurrentInterTime_ = 0.04f;
 			}
 			else
 			{
-				CurrentInterTime_ = 0.08f;
+				CurrentInterTime_ = 0.07f;
 			}
 
 			++CurrentFrame_;
