@@ -33,6 +33,12 @@ public:
 		RenderPivot_ = _Pos;
 	}
 
+	inline float4 GetPivot()
+	{
+		return RenderPivot_;
+	}
+
+
 	inline void SetPivotType(const RenderPivot& _Type)
 	{
 		PivotType_ = _Type;
@@ -57,6 +63,16 @@ public:
 		return Image_;
 	}
 
+	inline void SetAlpha(unsigned int _Alpha)
+	{
+		Alpha_ = _Alpha;
+
+		if (Alpha_ >= 255)
+		{
+			Alpha_ = 255;
+		}
+	}
+
 	void SetImage(const std::string& _Name);
 
 	void SetIndex(size_t _Index, float4 _Scale = { -1.0f, -1.0f });
@@ -70,6 +86,27 @@ public:
 	{
 		IsCameraEffect_ = true;
 	}
+
+	void SetPause(bool _Value)
+	{
+		Pause_ = _Value;
+	}
+
+	void PauseOn()
+	{
+		Pause_ = true;
+	}
+
+	void PauseOff()
+	{
+		Pause_ = false;
+	}
+
+	void PauseSwitch()
+	{
+		Pause_ = !Pause_;
+	}
+
 
 	void SetOrder(int _Order) override;
 
@@ -93,8 +130,11 @@ private:
 	float4 RenderImageScale_;	// 복사받으려는 이미지 한칸의 크기
 
 	unsigned int TransColor_;	// TransParents 에서 쓸 제외할 RGB 값
+	unsigned int Alpha_;        // 알파값
 
 	bool IsCameraEffect_;		// 해당 렌더러가 카메라의 영향을 받는가 안받는가, EX) UI 는 카메라의 영향을 안받는다.
+	bool Pause_;
+
 
 	//////////////////////////////////////////////////
 	//// Animation
@@ -102,7 +142,11 @@ private:
 private:
 	class FrameAnimation : public GameEngineNameObject
 	{
-	public:
+	private:
+		friend GameEngineRenderer;
+		//friend std::map<std::string, FrameAnimation>;
+		//friend std::pair<std::string, FrameAnimation>;
+
 		GameEngineRenderer* Renderer_;
 		GameEngineImage* Image_;
 		GameEngineFolderImage* FolderImage_;
@@ -117,15 +161,40 @@ private:
 		bool IsEnd;
 
 	public:
+		inline int WorldCurrentFrame() const
+		{
+			return CurrentFrame_;
+		}
+
+		inline int WorldStartFrame() const
+		{
+			return StartFrame_;
+		}
+
+		inline int WorldEndFrame() const
+		{
+			return EndFrame_;
+		}
+
+		inline int LocalCurrentFrame() const
+		{
+			return StartFrame_ - CurrentFrame_;
+		}
+
+
+	public:
 		FrameAnimation()
 			: Image_(nullptr),
+			Renderer_(nullptr),
+			FolderImage_(nullptr),
+			TimeKey(0),
 			CurrentFrame_(-1),
 			StartFrame_(-1),
 			EndFrame_(-1),
 			CurrentInterTime_(0.1f),
 			InterTime_(0.1f),
 			Loop_(true),
-			TimeKey(0)
+			IsEnd(false)
 		{
 		}
 
@@ -149,13 +218,7 @@ public:
 
 	void CreateFolderAnimation(const std::string& _Image, const std::string& _Name, int _StartIndex, int _EndIndex, float _InterTime, bool _Loop = true);
 
-	void CreateFolderAnimationTimeKey(const std::string& _Image, 
-		const std::string& _Name, 
-		int _TimeScaleKey, 
-		int _StartIndex, 
-		int _EndIndex, 
-		float _InterTime, 
-		bool _Loop = true);
+	void CreateFolderAnimationTimeKey(const std::string& _Image, const std::string& _Name, int _TimeScaleKey, int _StartIndex, int _EndIndex, float _InterTime, bool _Loop = true);
 
 	// 애니메이션을 재생한다.
 	void ChangeAnimation(const std::string& _Name);
@@ -164,10 +227,17 @@ public:
 
 	bool IsAnimationName(const std::string& _Name);
 
+	const FrameAnimation* FindAnimation(const std::string& _Name);
+
+	inline const FrameAnimation* CurrentAnimation()
+	{
+		return CurrentAnimation_;
+	}
+
+
 private:
 	std::map<std::string, FrameAnimation> Animations_;
 	FrameAnimation* CurrentAnimation_;
 
 };
-
 

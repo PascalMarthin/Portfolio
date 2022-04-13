@@ -17,6 +17,7 @@ GameEngineRenderer::GameEngineRenderer()
 	, TransColor_(RGB(255, 0, 255))
 	, RenderImagePivot_({ 0,0 })
 	, IsCameraEffect_(true)
+	, Alpha_(255)
 {
 }
 
@@ -77,13 +78,28 @@ void GameEngineRenderer::Render()
 	switch (PivotType_)
 	{
 	case RenderPivot::CENTER:
-		GameEngine::BackBufferImage()->TransCopy(Image_, RenderPos - RenderScale_.Half(), RenderScale_, RenderImagePivot_, RenderImageScale_, TransColor_);
+		if (Alpha_ == 255)
+		{
+			GameEngine::BackBufferImage()->TransCopy(Image_, RenderPos - RenderScale_.Half(), RenderScale_, RenderImagePivot_, RenderImageScale_, TransColor_);
+		}
+		else {
+			GameEngine::BackBufferImage()->AlphaCopy(Image_, RenderPos - RenderScale_.Half(), RenderScale_, RenderImagePivot_, RenderImageScale_, Alpha_);
+		}
 		break;
 	case RenderPivot::BOT:
 	{
 		float4 Scale = RenderScale_.Half();
 		Scale.y *= 2;
-		GameEngine::BackBufferImage()->TransCopy(Image_, RenderPos - Scale, RenderScale_, RenderImagePivot_, RenderImageScale_, TransColor_);
+
+		if (Alpha_ == 255)
+		{
+			GameEngine::BackBufferImage()->TransCopy(Image_, RenderPos - Scale, RenderScale_, RenderImagePivot_, RenderImageScale_, TransColor_);
+		}
+		else {
+			GameEngine::BackBufferImage()->AlphaCopy(Image_, RenderPos - Scale, RenderScale_, RenderImagePivot_, RenderImageScale_, Alpha_);
+		}
+
+
 		break;
 	}
 	default:
@@ -231,23 +247,26 @@ void GameEngineRenderer::ChangeAnimation(const std::string& _Name)
 void GameEngineRenderer::FrameAnimation::Update()
 {
 	IsEnd = false;
-	CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime(TimeKey);
-	if (0 >= CurrentInterTime_)
+	if (false == Renderer_->Pause_)
 	{
-		CurrentInterTime_ = InterTime_;
-		++CurrentFrame_;
-
-		if (EndFrame_ < CurrentFrame_)
+		CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime(TimeKey);
+		if (0 >= CurrentInterTime_)
 		{
-			if (true == Loop_)
+			CurrentInterTime_ = InterTime_;
+			++CurrentFrame_;
+
+			if (EndFrame_ < CurrentFrame_)
 			{
-				IsEnd = true;
-				CurrentFrame_ = StartFrame_;	// Loop가 True라면 이미지를 반복시킨다.
-			}
-			else
-			{
-				IsEnd = true;
-				CurrentFrame_ = EndFrame_;		// Loop가 false라면 애니메이션 진행후 EndFrame으로 고정시킨다.
+				if (true == Loop_)
+				{
+					IsEnd = true;
+					CurrentFrame_ = StartFrame_;	// Loop가 True라면 이미지를 반복시킨다.
+				}
+				else
+				{
+					IsEnd = true;
+					CurrentFrame_ = EndFrame_;		// Loop가 false라면 애니메이션 진행후 EndFrame으로 고정시킨다.
+				}
 			}
 		}
 	}
@@ -262,6 +281,7 @@ void GameEngineRenderer::FrameAnimation::Update()
 		Renderer_->Image_ = FolderImage_->GetImage(CurrentFrame_);		// 렌더러에게 이 애니메이션 만들때 세팅했떤 이미지를 세팅해준다.
 		Renderer_->SetImageScale();	// 렌더러에게 인덱스도 세팅해준다. 즉, 해당 애니메이션 이미지의 몇번째 칸(Index) 세팅해주면 렌더러는 알아서 출력한다.
 	}
+
 }
 
 
@@ -293,4 +313,16 @@ bool GameEngineRenderer::IsEndAnimation()
 bool GameEngineRenderer::IsAnimationName(const std::string& _Name)
 {
 	return CurrentAnimation_->GetNameConstRef() == _Name;
+}
+
+const GameEngineRenderer::FrameAnimation* GameEngineRenderer::FindAnimation(const std::string& _Name)
+{
+	std::map<std::string, FrameAnimation>::iterator FindIter = Animations_.find(_Name);
+
+	if (Animations_.end() == FindIter)
+	{
+		return nullptr;
+	}
+
+	return &FindIter->second;
 }

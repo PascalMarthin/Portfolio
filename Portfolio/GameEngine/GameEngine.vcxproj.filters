@@ -30,7 +30,7 @@
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineRendererTileMap.h">
-      <Filter>Object%28Engine%29</Filter>
+      <Filter>Object%28Engine%29\Actor\Sub</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -60,7 +60,7 @@
       <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineRendererTileMap.cpp">
-      <Filter>Object%28Engine%29</Filter>
+      <Filter>Object%28Engine%29\Actor\Sub</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -154,6 +154,10 @@ void BabaIsYou::GameInit()
 		Image = GameEngineImageManager::GetInst()->Find("default_sheet.bmp");
 		Image->Cut({ 48 , 48 });
 	}
+	// Fade
+	ResourcesDir.MoveParent("Ui");
+	ResourcesDir.Move("Fade");
+	GameEngineImageManager::GetInst()->FolderImageLoad(ResourcesDir.GetFullPath());
 	{
 	// BABA OBJECT
 		{

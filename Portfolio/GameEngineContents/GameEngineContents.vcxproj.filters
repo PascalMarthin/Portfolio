@@ -134,6 +134,9 @@
     <ClCompile Include="Flower.cpp">
       <Filter>Object%28Game%29\Unit\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Fade_InAndOut.cpp">
+      <Filter>Gobal</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -271,6 +274,9 @@
     </ClInclude>
     <ClInclude Include="Flower.h">
       <Filter>Object%28Game%29\Unit\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Fade_InAndOut.h">
+      <Filter>Gobal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

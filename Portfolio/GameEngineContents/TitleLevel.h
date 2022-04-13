@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
 #include "GamePlayEnum.h"
+#include "Fade_InAndOut.h"
 #include <vector>
 
 
@@ -24,7 +25,7 @@ protected:
 	void LevelChangeStart() override;
 
 private:
-
+	Fade_InAndOut* Fade_;
 
 };
 
