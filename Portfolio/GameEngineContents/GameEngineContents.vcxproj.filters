@@ -138,7 +138,7 @@
       <Filter>Gobal</Filter>
     </ClCompile>
     <ClCompile Include="EffectManager.cpp">
-      <Filter>LevelClass\Play</Filter>
+      <Filter>Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -282,7 +282,7 @@
       <Filter>Gobal</Filter>
     </ClInclude>
     <ClInclude Include="EffectManager.h">
-      <Filter>LevelClass\Play</Filter>
+      <Filter>Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

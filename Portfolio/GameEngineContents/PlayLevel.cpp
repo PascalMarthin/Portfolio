@@ -296,6 +296,11 @@ void PlayLevel::StageSave()
 				std::list<Coordinate*>& Block = StartIterX->second;
 				for (auto iter : Block)
 				{
+					if (iter->GetUnitObjectInst()->GetName() == ObjectName::Rock_Unit)
+					{
+						int a = 0;
+					}
+					
 					CooridnateHistoryData* Data = new CooridnateHistoryData(iter);
 					(*History)[iter] = Data;
 				}
@@ -481,12 +486,17 @@ void PlayLevel::ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb,  Coordi
 
 	if (_Stat->GetTextObjectInst()->GetTextType() == TextType::Unit_Text)
 	{
-		ChangeUnit(static_cast<GamePlayUnitText*>(_Unit->GetTextObjectInst())->GetTextUnit(), static_cast<GamePlayUnitText*>(_Stat->GetTextObjectInst())->GetTextUnit());
+		if (ChangeUnit(static_cast<GamePlayUnitText*>(_Unit->GetTextObjectInst())->GetTextUnit(), static_cast<GamePlayUnitText*>(_Stat->GetTextObjectInst())->GetTextUnit()) == true)
+		{
+			PlaySoundChange();
+		}
+	
 	}
 }
 
-void PlayLevel::ChangeUnit(const GamePlayUnitObject* _Left, GamePlayUnitObject* _Right)
+bool PlayLevel::ChangeUnit(const GamePlayUnitObject* _Left, GamePlayUnitObject* _Right)
 {
+	bool IsChange = false;
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator EndIterY = CurrentMap_.end();
 
@@ -502,10 +512,12 @@ void PlayLevel::ChangeUnit(const GamePlayUnitObject* _Left, GamePlayUnitObject* 
 				if (iter->GetUnitObjectInst() == _Left)
 				{
 					iter->SetValue(_Right);
+					IsChange = true;
 				}
 			}
 		}
 	}
+	return IsChange;
 }
 
 void PlayLevel::CheckMapAllStat()
@@ -531,7 +543,8 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 	bool IsMelt = false;
 	// Defeat
 	{
-		if (FindUnitByStat(_Value, SDefeat) == true && FindUnitByStat(_Value, SYou) == true)
+
+		if (FindUnitByStat(_Value, SDefeat) != nullptr && FindUnitByStat(_Value, SDefeat) != nullptr)
 		{
 			for (auto iter : _Value)
 			{
@@ -539,6 +552,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 				{
 					iter->UpdateOFF();
 					IsDefeat = true;
+					PlayLevelEffectManager_->ShowEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Defeat_Effect_sheet.bmp"), Random_, 4, 7);
 				}
 			}
 		}
@@ -547,7 +561,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 	{
 		if (_Value.size() > 1)
 		{
-			if (FindUnitByStat(_Value, SSink) == true)
+			if (FindUnitByStat(_Value, SSink) != nullptr)
 			{
 				for (auto iter : _Value)
 				{
@@ -564,7 +578,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 
 	// Hot, Melt
 	{
-		if (FindUnitByStat(_Value, SHot) == true && FindUnitByStat(_Value, SMelt))
+		if (FindUnitByStat(_Value, SHot) != nullptr && FindUnitByStat(_Value, SMelt) != nullptr)
 		{
 			for (auto iter : _Value)
 			{
@@ -572,20 +586,24 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 				{
 					iter->UpdateOFF();
 					IsMelt = true;
+					PlayLevelEffectManager_->ShowEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Hot_Effect_sheet.bmp"), Random_, 3, 5);
 				}
 			}
 		}
 	}
 	// Win
 	{
-		if (FindUnitByStat(_Value, SWin) == true && 
-			FindUnitByStat(_Value, SYou) == true)
+		Coordinate* WinObject = FindUnitByStat(_Value, SWin);
+		if (WinObject != nullptr)
 		{
-			for (auto iter : _Value)
+			if (FindUnitByStat(_Value, SYou) != nullptr)
 			{
-				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsUnitUpdate() == true)
+				for (auto iter : _Value)
 				{
-					ClearStage();
+					if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsUnitUpdate() == true)
+					{
+						ClearStage();
+					}
 				}
 			}
 		}
@@ -611,7 +629,7 @@ void PlayLevel::ShowCrashEffect(const float4 _LUPos, const unsigned __int64& _St
 
 }
 
-bool PlayLevel::FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat)
+Coordinate* PlayLevel::FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat)
 {
 	for (auto iter : _Value)
 	{
@@ -621,12 +639,12 @@ bool PlayLevel::FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 
 			{
 				continue;
 			}
-			return true;
+			return iter;
 		}
 	}
-	return false;
+	return nullptr;
 }
-
+	
 bool PlayLevel::IsMapOut(const std::pair<int, int>& _Pos)
 {
 	if (MapScale_.ix() <= _Pos.first || _Pos.first < 0)
@@ -798,7 +816,7 @@ void PlayLevel::PlaySoundDefeat()
 }
 void PlayLevel::PlaySoundMelt()
 {
-	switch (Random_->RandomInt(0, 5))
+	switch (Random_->RandomInt(0, 1))
 	{
 	case 0:
 		GameEngineSound::SoundPlayOneShot("melt1.ogg");
@@ -806,23 +824,34 @@ void PlayLevel::PlaySoundMelt()
 	case 1:
 		GameEngineSound::SoundPlayOneShot("melt2.ogg");
 		break;
-	case 2:
-		GameEngineSound::SoundPlayOneShot("melt3.ogg");
-		break;
-	case 3:
-		GameEngineSound::SoundPlayOneShot("melt4.ogg");
-		break;
-	case 4:
-		GameEngineSound::SoundPlayOneShot("melt5.ogg");
-		break;
-	case 5:
-		GameEngineSound::SoundPlayOneShot("melt6.ogg");
-		break;
-
 	default:
 		break;
 	}
 }
+void PlayLevel::PlaySoundChange()
+{
+	switch (Random_->RandomInt(0, 5))
+	{
+	case 0:
+		GameEngineSound::SoundPlayOneShot("change1.ogg");
+		break;
+	case 1:
+		GameEngineSound::SoundPlayOneShot("change2.ogg");
+		break;
+	case 2:
+		GameEngineSound::SoundPlayOneShot("change3.ogg");
+		break;
+	case 3:
+		GameEngineSound::SoundPlayOneShot("change4.ogg");
+		break;
+	case 4:
+		GameEngineSound::SoundPlayOneShot("change5.ogg");
+		break;
+	default:
+		break;
+	}
+}
+
 
 void PlayLevel::StageSavePopBack()
 {

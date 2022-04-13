@@ -9,19 +9,22 @@ EffectManager::~EffectManager()
 {
 }
 
-void EffectManager::ShowEffect(const float4& _LUPos, GameEngineImage* _EffectImage, GameEngineRandom* _Random ,int _Min, int _Max)
+void EffectManager::ShowEffect(const float4& _LUPos, GameEngineImage* _EffectImage, GameEngineRandom* _Random, int _Min, int _Max, float _InterTime)
 {
-	QueueEffect* Group = new QueueEffect();
-	Group->EndFrame_ = static_cast<int>(_EffectImage->GetCutCount());
-	Group->EffectImage_ = _EffectImage;
+	QueueEffect* Group = new QueueEffect(_LUPos, _EffectImage, _Random, static_cast<int>(_EffectImage->GetCutCount() - 1), _InterTime);
 	int Index = _Random->RandomInt(_Min, _Max);
 	for (int i = 0; i < Index; i++)
 	{
-		float x = _Random->RandomFloat(_LUPos.x, _LUPos.x + static_cast<float>(DotSizeX));
-		float y = _Random->RandomFloat(_LUPos.y, _LUPos.y + static_cast<float>(DotSizeY));
+		float x = _Random->RandomFloat(_LUPos.x - static_cast<float>(DotSizeX / 2), _LUPos.x + static_cast<float>(DotSizeX/2));
+		float y = _Random->RandomFloat(_LUPos.y - static_cast<float>(DotSizeY / 2), _LUPos.y + static_cast<float>(DotSizeY/2));
 		Group->PosList_.push_back({x, y});
 	}
 	QueueEffect_.push_back(Group);
+}
+
+void EffectManager::ShowWinEffect(const Coordinate& _Coordinate, GameEngineImage* _EffectImage, GameEngineRandom* _Random, int _Min, int _Max, float _InterTime)
+{
+
 }
 
 void EffectManager::Start()
@@ -34,15 +37,18 @@ void EffectManager::Update()
 	{
 		std::list<QueueEffect*>::iterator StartIter = QueueEffect_.begin();
 		std::list<QueueEffect*>::iterator EndIter = QueueEffect_.end();
-		for (; StartIter != EndIter; ++StartIter)
+		while (StartIter != EndIter)
 		{
+
 			if ((*StartIter)->FrameUpdate() == true)
 			{
 				delete (*StartIter);
 				(*StartIter) = nullptr;
 
 				StartIter = QueueEffect_.erase(StartIter);
+				continue;
 			}
+			++StartIter;
 		}
 	}
 }
@@ -65,10 +71,14 @@ void EffectManager::Render()
 	}
 }
 
-QueueEffect::QueueEffect() :
-	CurrentInterTime_(ImageSpeed)
+QueueEffect::QueueEffect(const float4& _Pos, GameEngineImage* _EffectImage, GameEngineRandom* _Random, int _EndFrame, float _InterTime) :
+	CurrentInterTime_(_InterTime)
+	, OrignalInterTime_(_InterTime)
 	, CurrentFrame_(0)
-	, EndFrame_(0)
+	, EndFrame_(_EndFrame)
+	, Pos_(_Pos)
+	, EffectImage_(_EffectImage)
+	, Random_(_Random)
 {
 
 }
@@ -78,12 +88,22 @@ QueueEffect::~QueueEffect()
 
 }
 
+void QueueEffect::RandomPlusPos()
+{
+	for (float4& Iter : PosList_)
+	{
+		Iter += (Iter - Pos_) * 1.1f * GameEngineTime::GetInst()->GetDeltaTime(0);
+	}
+
+}
+
 bool QueueEffect::FrameUpdate()
 {
+	RandomPlusPos();
 	CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime(0);
 	if (0 >= CurrentInterTime_)
 	{
-		CurrentInterTime_ = ImageSpeed;
+		CurrentInterTime_ = OrignalInterTime_;
 		CurrentFrame_ += 1;
 
 		if (EndFrame_ < CurrentFrame_)
@@ -97,3 +117,4 @@ bool QueueEffect::FrameUpdate()
 
 	return false;
 }
+

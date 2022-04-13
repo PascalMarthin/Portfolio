@@ -47,8 +47,8 @@ private:
 	void ScanBridgeUnit();
 	bool CheckFunction(int _X, int _Y, Coordinate* _Verb);
 	void ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb, Coordinate* _Stat);
-	void ChangeUnit(const GamePlayUnitObject* _Left, GamePlayUnitObject* _Right);
-	bool FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat);
+	bool ChangeUnit(const GamePlayUnitObject* _Left, GamePlayUnitObject* _Right);
+	Coordinate* FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat);
 
 	void CheckMapAllStat();
 	bool CheckMapAllStat(Direction _MoveDir);
@@ -65,6 +65,7 @@ private:
 	void PlaySoundSink();
 	void PlaySoundDefeat();
 	void PlaySoundMelt();
+	void PlaySoundChange();
 	GameEngineSoundPlayer BackGroundMusicControl_;
 	//
 
@@ -114,7 +115,7 @@ public:
 	CooridnateHistoryData(Coordinate* _Coordinate)
 		: Pos_(_Coordinate->GetPos())
 		, Direction_(_Coordinate->GetDir())
-		, IsUpdate_(_Coordinate->IsUpdate())
+		, IsUpdate_(_Coordinate->IsUnitUpdate())
 		, ObjectName_(ObjectName::Error)
 	{
 		if (_Coordinate->GetObjectType() == ObjectType::Text)

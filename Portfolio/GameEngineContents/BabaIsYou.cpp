@@ -670,7 +670,7 @@ void BabaIsYou::GameInit()
 			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
 			for (size_t i = 0; i < AllImageFileList.size(); i++)
 			{
-				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->CutCount({ 4 , 1 });
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
 	}
