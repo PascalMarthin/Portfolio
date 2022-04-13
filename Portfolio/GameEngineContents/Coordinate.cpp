@@ -63,11 +63,10 @@ void Coordinate::SetCurrentImage()
 	}
 
 
-	// 지금 wall, water, lava는 이미지 정리중
-	if (CurrentImageIndex_ == nullptr)
-	{
-		return;
-	}
+	//if (CurrentImageIndex_ == nullptr)
+	//{
+	//	return;
+	//}
 
 
 	if (UnitObject_->FindStat(SYou) == true)
@@ -131,8 +130,7 @@ void Coordinate::ActorOrderCheck()
 
 void Coordinate::Update()
 {
-
-	if (IsKeyPush_ == true && IsUnitUpdate() == true)
+	if (IsKeyPush_ == true)
 	{
 		if (UnitObject_->GetName() == ObjectName::Baba_Unit)
 		{
@@ -140,8 +138,15 @@ void Coordinate::Update()
 		}
 		ActorOrderCheck();
 		SetCurrentImage();
+		if (IsUnitUpdate() == false)
+		{
+			IsMove_ = false;
+		}
+
 		IsKeyPush_ = false;
 	}
+
+
 	if (IsUnitUpdate() == true)
 	{
 		if (IsMove_ == true && IsBackTothePast_ == false)
@@ -151,21 +156,21 @@ void Coordinate::Update()
 				switch (UnitDir_)
 				{
 				case Direction::Right:
-					PastLUPos_.x += 4.0f;
+					PastLUPos_.x += 3.0f;
 					break;
 				case Direction::Up:
-					PastLUPos_.y -= 4.0f;
+					PastLUPos_.y -= 3.0f;
 					break;
 				case Direction::Left:
-					PastLUPos_.x -= 4.0f;
+					PastLUPos_.x -= 3.0f;
 					break;
 				case Direction::Down:
-					PastLUPos_.y += 4.0f;
+					PastLUPos_.y += 3.0f;
 					break;
 				default:
 					break;
 				}
-				PastByCurrentRange_ -= 4;
+				PastByCurrentRange_ -= 3;
 			}
 			else
 			{
@@ -180,24 +185,24 @@ void Coordinate::Update()
 				// 우측이동
 				if (PastLUPos_.ix() - CurrentLUPos_.ix() < 0)
 				{
-					PastLUPos_.x += 4.0f;
+					PastLUPos_.x += 3.0f;
 				}
 				// 좌측이동
 				else if (PastLUPos_.ix() - CurrentLUPos_.ix() > 0)
 				{
-					PastLUPos_.x -= 4.0f;
+					PastLUPos_.x -= 3.0f;
 				}
 				//아래
 				if (PastLUPos_.iy() - CurrentLUPos_.iy() < 0)
 				{
-					PastLUPos_.y += 4.0f;
+					PastLUPos_.y += 3.0f;
 				}
 				//위
 				else if(PastLUPos_.iy() - CurrentLUPos_.iy() > 0)
 				{
-					PastLUPos_.y -= 4.0f;
+					PastLUPos_.y -= 3.0f;
 				}
-				PastByCurrentRange_ -= 4;
+				PastByCurrentRange_ -= 3;
 			}
 			else
 			{
@@ -392,8 +397,8 @@ void Coordinate::ChangeBackPos(const float4& _Pos, const float4& _CPos, Directio
 	//SceneFrame_ = 0;
 	IsBackTothePast_ = true;
 	IsKeyPush_ = true;
-	if (UnitUpdate_ == false)
-	{
-		++SceneFrame_;
-	}
+	//if (UnitUpdate_ == false)
+	//{
+	//	++SceneFrame_;
+	//}
 }
