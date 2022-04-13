@@ -24,7 +24,8 @@ PlayLevel::PlayLevel()
 	ClearWait(0.0f),
 	BackGround_(nullptr),
 	Random_(nullptr),
-	Fade_(nullptr)
+	Fade_(nullptr),
+	IsReset_(false)
 {
 }
 
@@ -47,8 +48,30 @@ void PlayLevel::Loading()
 
 }
 
+void PlayLevel::AfterMove()
+{
+	StageFucntionReset();
+	ScanFucntion();
+	CheckMapAllStat();
+	ScanBridgeUnit();
+}
+
 void PlayLevel::Update()
 {
+	if (IsReset_ == true && Fade_->IsChangeScreen() == false)
+	{
+		if (Fade_->IsFadeOut() == true)
+		{
+			{
+				AllReleaseInStage();
+				ReSetStage();
+				SetStage();
+				AfterMove();
+			}
+			Fade_->ShowFadeIn();
+			return;
+		}
+	}
 	if (Fade_->IsFadeOut() == true && Fade_->IsChangeScreen() == false && IsClear_ == true)
 	{
 		GameEngine::GetInst().ChangeLevel("MainLevel");
@@ -60,10 +83,7 @@ void PlayLevel::Update()
 	}
 	if (true == KeyCheck())
 	{
-		StageFucntionReset();
-		ScanFucntion();
-		CheckMapAllStat();
-		ScanBridgeUnit();
+		AfterMove();
 	}
 
 	if (IsClear_ == true)
@@ -127,6 +147,7 @@ void PlayLevel::ScanBridgeUnit()
 
 void PlayLevel::LevelChangeStart()
 {
+	BackGroundMusicControl_ = GameEngineSound::SoundPlayControl("baba.ogg");
 	Fade_->ShowFadeIn();
 	SetStage();
 	StageFucntionReset();
@@ -157,6 +178,7 @@ void PlayLevel::ReSetStage()
 	IsClear_ = (false);
 	ClearWait = (0.0f);
 	IsClear_ = false;
+	IsReset_ = false;
 	AllCoordinate_.clear();
 	AllMoveHistory_.clear();
 	CurrentMap_.clear();
@@ -630,11 +652,8 @@ bool PlayLevel::KeyCheck()
 	}
 	if (GameEngineInput::GetInst()->IsDown("R"))
 	{
-		{
-			AllReleaseInStage();
-			ReSetStage();
-			SetStage();
-		}
+		IsReset_ = true;
+		Fade_->ShowFadeOut();
 		return true;
 	}
 	if (GameEngineInput::GetInst()->IsDown("Z"))
@@ -876,6 +895,8 @@ std::list<Coordinate*>::iterator& PlayLevel::MoveBack(std::list<Coordinate*>::it
 
 void PlayLevel::ClearStage()
 {
+	GameEngineSound::SoundPlayOneShot("Clear.ogg");
+	BackGroundMusicControl_.Stop();
 	IsClear_ = true;
 	ClearWait = 3.0f;
 	ClearScene_->On();

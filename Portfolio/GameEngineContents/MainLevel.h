@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
+#include <GameEngineBase/GameEngineSound.h>
 #include <map>
 #include "GamePlayEnum.h"
 #include "Fade_InAndOut.h"
@@ -32,6 +33,7 @@ protected:
 
 private:
 	static Stage CurrentStage_;
+	void IntotheStage();
 	
 	std::map<int, std::map<int, Coordinate*>> MainMap_;
 
@@ -46,5 +48,6 @@ private:
 
 	void CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage);
 	Fade_InAndOut* Fade_;
+	GameEngineSoundPlayer BackGroundMusicControl_;
 };
 

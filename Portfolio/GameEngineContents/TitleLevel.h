@@ -2,6 +2,7 @@
 #include <GameEngine/GameEngineLevel.h>
 #include "GamePlayEnum.h"
 #include "Fade_InAndOut.h"
+#include <GameEngineBase/GameEngineSound.h>
 #include <vector>
 
 
@@ -27,6 +28,7 @@ protected:
 
 private:
 	Fade_InAndOut* Fade_;
+	GameEngineSoundPlayer BackGroundMusicControl_;
 
 };
 

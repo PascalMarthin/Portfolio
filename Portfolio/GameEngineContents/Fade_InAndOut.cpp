@@ -48,7 +48,7 @@ void Fade_InAndOut::ShowFadeIn()
 	FadeIn_ = true;
 	FadeOut_ = false;
 	CurrentInterTime_ = AnimationSpeed;
-	WattingTime_ = 1.0f;
+	WattingTime_ = 0.3f;
 	ChangeScreen_ = true;
 	CurrentFrame_ = 21;
 	EndFrame_ = 0;

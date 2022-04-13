@@ -10,6 +10,7 @@
 #include <GameEngine/GameEngine.h>
 
 
+
 Stage MainLevel::CurrentStage_ = Stage::MainStage;
 
 MainLevel::MainLevel()
@@ -108,51 +109,59 @@ void MainLevel::Update()
 		if (MainCursorPos_.ix() == 9 && MainCursorPos_.iy() == 15)
 		{
 			CurrentStage_ = Stage::Stage0;
+			IntotheStage();
 		}
 		else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 13)
 		{
 			CurrentStage_ = Stage::Stage1;
+			IntotheStage();
 		}
 		else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 12)
 		{
 			CurrentStage_ = Stage::Stage2;
+			IntotheStage();
 		}
 		else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 13)
 		{
 			CurrentStage_ = Stage::Stage3;
+			IntotheStage();
 		}
 		else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 12)
 		{
 			CurrentStage_ = Stage::Stage4;
+			IntotheStage();
 		}
 		else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 11)
 		{
 			CurrentStage_ = Stage::Stage5;
+			IntotheStage();
 		}
 		else if (MainCursorPos_.ix() == 12 && MainCursorPos_.iy() == 12)
 		{
 			CurrentStage_ = Stage::Stage6;
+			IntotheStage();
 		}
 		else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 11)
 		{
 			CurrentStage_ = Stage::Stage7;
+			IntotheStage();
 		}
-		Fade_->ShowFadeOut();
-	}
-	if (GameEngineInput::GetInst()->IsDown("R"))
-	{
-
-	}
-	if (GameEngineInput::GetInst()->IsDown("Space"))
-	{
 
 	}
 
 }
 
+void MainLevel::IntotheStage()
+{
+	Fade_->ShowFadeOut();
+	GameEngineSound::SoundPlayOneShot("Retrun.ogg");
+	BackGroundMusicControl_.Stop();
+}
+
 void MainLevel::LevelChangeStart()
 {
 	Fade_->ShowFadeIn();
+	BackGroundMusicControl_ = GameEngineSound::SoundPlayControl("map.ogg");
 }
 
 void MainLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)

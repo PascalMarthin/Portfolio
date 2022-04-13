@@ -53,14 +53,20 @@ private:
 	bool CheckMapAllStat(Direction _MoveDir);
 	bool CheckBitMove(const int _x, const int _y, const std::pair<int, int>& _MoveDir);
 	bool PushKey(Direction _Dir);
-	void PlaySoundMove();
 	void CheckBitStat(std::list<Coordinate*>& _Value);
 	std::list<Coordinate*>::iterator& Move(std::list<Coordinate*>::iterator& _ListIter, std::pair<int, int> _MoveDir);
 	std::list<Coordinate*>::iterator& MoveBack(std::list<Coordinate*>::iterator& _ListIter, const float4& _MovePos, Direction _Dir);
 	bool IsMapOut(const std::pair<int, int>& _Pos);
 
-	void BackTothePast();
+	// »ç¿îµå
+	void PlaySoundMove();
 	void PlaySoundBack();
+	GameEngineSoundPlayer BackGroundMusicControl_;
+	//
+
+	void BeforeMove();
+	void AfterMove();
+	void BackTothePast();
 	void StageSavePopBack();
 
 	unsigned int CheckUnitBridge(const Coordinate* _Unit);
@@ -69,6 +75,7 @@ private:
 
 	void ClearStage();
 	bool IsClear_;
+	bool IsReset_;
 	float ClearWait;
 	void EndStage();
 	void AllReleaseInStage();

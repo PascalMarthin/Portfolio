@@ -8,8 +8,10 @@
 #include "TitleBaba.h"
 
 
+
 TitleLevel::TitleLevel() 
 	: Fade_(nullptr)
+
 {
 }
 
@@ -19,7 +21,7 @@ TitleLevel::~TitleLevel()
 
 void TitleLevel::LevelChangeStart()
 {
-
+	BackGroundMusicControl_ = GameEngineSound::SoundPlayControl("menu.ogg");
 }
 
 void TitleLevel::Loading()
@@ -64,10 +66,10 @@ void TitleLevel::Update()
 			{
 				MsgBoxAssert("BabaTitleLocate Error");
 			}
-
+			GameEngineSound::SoundPlayOneShot("select.ogg");
 		}
 		if (GameEngineInput::GetInst()->IsDown("Down"))
-		{
+		{	
 			if (TitleBaba::BabaTitleLocate_ == BabaLocation::Start_The_Game)
 			{
 				TitleBaba::BabaTitleLocate_ = BabaLocation::Settings;
@@ -84,7 +86,7 @@ void TitleLevel::Update()
 			{
 				MsgBoxAssert("BabaTitleLocate Error");
 			}
-
+			GameEngineSound::SoundPlayOneShot("select.ogg");
 		}
 
 		if (GameEngineInput::GetInst()->IsPress("Space") || GameEngineInput::GetInst()->IsPress("Enter"))
@@ -93,6 +95,8 @@ void TitleLevel::Update()
 			{
 			case BabaLocation::Start_The_Game:
 				Fade_->ShowFadeOut();
+				BackGroundMusicControl_.Stop();
+				GameEngineSound::SoundPlayOneShot("input.ogg");
 				break;
 			case BabaLocation::Settings:
 
