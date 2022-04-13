@@ -53,6 +53,10 @@ public:
 	{
 		return CurrentPos_;
 	}
+	inline const float4& GetLUPos() const
+	{
+		return CurrentLUPos_;
+	}
 	inline Direction GetDir() const
 	{
 		return UnitDir_;

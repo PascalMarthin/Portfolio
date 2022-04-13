@@ -204,6 +204,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Fade_InAndOut.h">
       <SubType>
       </SubType>
@@ -388,6 +392,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Dummy_Text.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
       <SubType>
       </SubType>
     </ClCompile>

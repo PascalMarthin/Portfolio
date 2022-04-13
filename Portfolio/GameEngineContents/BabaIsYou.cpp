@@ -659,6 +659,20 @@ void BabaIsYou::GameInit()
 				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->Cut({ DotSizeX , DotSizeY });
 			}
 		}
+		// effect
+		{
+			GameEngineDirectory ResourcesDir;
+			ResourcesDir.MoveParent("Portfolio");
+			ResourcesDir.Move("Resources");
+			ResourcesDir.Move("Sprites");
+			ResourcesDir.Move("Object");
+			ResourcesDir.Move("Effect");
+			AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+			for (size_t i = 0; i < AllImageFileList.size(); i++)
+			{
+				GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath())->CutCount({ 4 , 1 });
+			}
+		}
 	}
 
 	GamePlayGobal::GetInst()->SetName();

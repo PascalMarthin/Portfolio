@@ -25,7 +25,8 @@ PlayLevel::PlayLevel()
 	BackGround_(nullptr),
 	Random_(nullptr),
 	Fade_(nullptr),
-	IsReset_(false)
+	IsReset_(false),
+	PlayLevelEffectManager_(nullptr)
 {
 }
 
@@ -41,7 +42,7 @@ void PlayLevel::Loading()
 		Fade_ = CreateActor<Fade_InAndOut>(10);
 		Fade_->Reset();
 	}
-
+	PlayLevelEffectManager_ = CreateActor<EffectManager>(7);
 	CreateActor<BackGround>(0);
 	ClearScene_ = CreateActor<ClearScene>(5);
 	AllMoveHistory_.reserve(10000);
@@ -525,6 +526,9 @@ void PlayLevel::CheckMapAllStat()
 
 void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 {
+	bool IsDefeat = false;
+	bool IsSink = false;
+	bool IsMelt = false;
 	// Defeat
 	{
 		if (FindUnitByStat(_Value, SDefeat) == true && FindUnitByStat(_Value, SYou) == true)
@@ -534,6 +538,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsUnitUpdate() == true)
 				{
 					iter->UpdateOFF();
+					IsDefeat = true;
 				}
 			}
 		}
@@ -549,6 +554,8 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 					if (iter->IsUnitUpdate() == true)
 					{
 						iter->UpdateOFF();
+						IsSink = true;
+						PlayLevelEffectManager_->ShowEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Sink_Effect_sheet.bmp"), Random_, 4, 7);
 					}
 				}
 			}
@@ -564,6 +571,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsUnitUpdate() == true)
 				{
 					iter->UpdateOFF();
+					IsMelt = true;
 				}
 			}
 		}
@@ -582,6 +590,25 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 			}
 		}
 	}
+
+	if (IsDefeat == true)
+	{
+		PlaySoundDefeat();
+	}
+	if (IsSink == true)
+	{
+		PlaySoundSink();
+	}
+	if (IsMelt == true)
+	{
+		PlaySoundMelt();
+	}
+}
+
+void PlayLevel::ShowCrashEffect(const float4 _LUPos, const unsigned __int64& _Stat)
+{
+
+
 }
 
 bool PlayLevel::FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat)
@@ -728,6 +755,73 @@ void PlayLevel::PlaySoundMove()
 		break;
 	}
 
+}
+void PlayLevel::PlaySoundSink()
+{
+	switch (Random_->RandomInt(0, 3))
+	{
+	case 0:
+		GameEngineSound::SoundPlayOneShot("Sink.ogg");
+		break;
+	case 1:
+		GameEngineSound::SoundPlayOneShot("Sink2.ogg");
+		break;
+	case 2:
+		GameEngineSound::SoundPlayOneShot("Sink3.ogg");
+		break;
+	case 3:
+		GameEngineSound::SoundPlayOneShot("Sink4.ogg");
+		break;
+	default:
+		break;
+	}
+}
+void PlayLevel::PlaySoundDefeat()
+{
+	switch (Random_->RandomInt(0, 3))
+	{
+	case 0:
+		GameEngineSound::SoundPlayOneShot("defeat.ogg");
+		break;
+	case 1:
+		GameEngineSound::SoundPlayOneShot("defeat2.ogg");
+		break;
+	case 2:
+		GameEngineSound::SoundPlayOneShot("defeat3.ogg");
+		break;
+	case 3:
+		GameEngineSound::SoundPlayOneShot("defeat4.ogg");
+		break;
+	default:
+		break;
+	}
+}
+void PlayLevel::PlaySoundMelt()
+{
+	switch (Random_->RandomInt(0, 5))
+	{
+	case 0:
+		GameEngineSound::SoundPlayOneShot("melt1.ogg");
+		break;
+	case 1:
+		GameEngineSound::SoundPlayOneShot("melt2.ogg");
+		break;
+	case 2:
+		GameEngineSound::SoundPlayOneShot("melt3.ogg");
+		break;
+	case 3:
+		GameEngineSound::SoundPlayOneShot("melt4.ogg");
+		break;
+	case 4:
+		GameEngineSound::SoundPlayOneShot("melt5.ogg");
+		break;
+	case 5:
+		GameEngineSound::SoundPlayOneShot("melt6.ogg");
+		break;
+
+	default:
+		break;
+	}
 }
 
 void PlayLevel::StageSavePopBack()

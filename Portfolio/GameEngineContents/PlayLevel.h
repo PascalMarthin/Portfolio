@@ -12,6 +12,7 @@
 #include "GamePlayUnitObject.h"
 #include "GamePlayUnitText.h"
 #include "ClearScene.h"
+#include "EffectManager.h"
 #include "Fade_InAndOut.h"
 
 // 설명 : Stage 정보를 받아 화면에 출력해주는 Level
@@ -61,7 +62,15 @@ private:
 	// 사운드
 	void PlaySoundMove();
 	void PlaySoundBack();
+	void PlaySoundSink();
+	void PlaySoundDefeat();
+	void PlaySoundMelt();
 	GameEngineSoundPlayer BackGroundMusicControl_;
+	//
+
+	// 이펙트
+	void ShowCrashEffect(const float4 _LUPos, const unsigned __int64& _Stat);
+	EffectManager* PlayLevelEffectManager_;
 	//
 
 	void BeforeMove();
@@ -79,7 +88,6 @@ private:
 	float ClearWait;
 	void EndStage();
 	void AllReleaseInStage();
-
 
 	Fade_InAndOut* Fade_;
 	GameEngineRandom* Random_;
