@@ -2,6 +2,7 @@
 #include <GameEngineBase/GameEngineTime.h>
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineSound.h>
+#include <map>
 class SoundVolumeManager : public GameEngineActor
 {
 public:
@@ -13,15 +14,17 @@ public:
 	SoundVolumeManager& operator=(const SoundVolumeManager& _Other) = delete;
 	SoundVolumeManager& operator=(SoundVolumeManager&& _Other) noexcept = delete;
 
-	void VolumeUp(GameEngineSoundPlayer* _Control, const float& _VolumeLevel, const float& _Time = 0.0f);
-	void VolumeDown(GameEngineSoundPlayer* _Control, const float& _VolumeLevel, const float& _Time = 0.0f);
+	void VolumeUp(GameEngineSoundPlayer* _Control);
+	void VolumeDown(GameEngineSoundPlayer* _Control);
 
 protected:
 	void Start() override;
 	void Update() override;
 
 private:
-	float CurrentInterTime_;
+
+	std::list<std::map<GameEngineSoundPlayer*,float>> UpList_;
+	std::list< std::map<GameEngineSoundPlayer*,float>> DownList_;
 
 };
 

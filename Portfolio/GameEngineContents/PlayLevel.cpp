@@ -27,7 +27,8 @@ PlayLevel::PlayLevel()
 	Fade_(nullptr),
 	IsReset_(false),
 	PlayLevelEffectManager_(nullptr),
-	VolumeManager_(nullptr)
+	VolumeManager_(nullptr),
+	IsOver_(false)
 {
 }
 
@@ -104,6 +105,7 @@ void PlayLevel::LevelChangeEnd()
 }
 void PlayLevel::LevelChangeStart()
 {
+	GameEngineSound::Update();
 	BackGroundMusicControl_ = GameEngineSound::SoundPlayControl("baba.ogg");
 	Fade_->ShowFadeIn();
 	SetStage();
@@ -121,7 +123,7 @@ void PlayLevel::AfterMove()
 	ScanFucntion();
 	CheckMapAllStat();
 	ScanBridgeUnit();
-	if (CanMove() == false)
+	if (IsReset_ == false && CanMove() == false)
 	{
 		GameOver();
 	}
@@ -143,9 +145,9 @@ bool PlayLevel::CanMove()
 
 void PlayLevel::GameOver()
 {
-
-	/*BackGroundMusicControl_.v
-	BackGroundNoiseControl_ = GameEngineSound::SoundPlayControl("noise.ogg");*/
+	IsOver_ = true;
+	BackGroundMusicControl_.SetVolume(0.0f);
+	BackGroundNoiseControl_ = GameEngineSound::SoundPlayControl("noise.ogg");
 }
 
 void PlayLevel::ScanBridgeUnit()
@@ -202,6 +204,7 @@ void PlayLevel::SetStage()
 
 void PlayLevel::ReSetStage()
 {
+	GameEngineSound::Update();
 	GameWindowStartPosX_ = 0;
 	GameWindowStartPosY_ = 0;
 	CurrentStage_ = Stage::MainStage;
@@ -209,6 +212,7 @@ void PlayLevel::ReSetStage()
 	ClearWait = (0.0f);
 	IsClear_ = false;
 	IsReset_ = false;
+	IsOver_ = false;
 	AllCoordinate_.clear();
 	AllMoveHistory_.clear();
 	CurrentMap_.clear();
@@ -708,18 +712,32 @@ bool PlayLevel::KeyCheck()
 	}
 	if (GameEngineInput::GetInst()->IsDown("R"))
 	{
+		if (IsOver_ == true)
+		{
+			GameEngineSound::Update();
+			BackGroundNoiseControl_.Stop();
+			BackGroundMusicControl_.SetVolume(1.0f);
+			IsOver_ = false;
+		}
 		IsReset_ = true;
+		GameEngineSound::SoundPlayOneShot("Retrun.ogg");
 		Fade_->ShowFadeOut();
 		return true;
 	}
 	if (GameEngineInput::GetInst()->IsDown("Z"))
 	{
+		if (IsOver_ == true)
+		{
+			GameEngineSound::Update();
+			BackGroundNoiseControl_.Stop();
+			BackGroundMusicControl_.SetVolume(1.0f);
+			IsOver_ = false;
+		}
 		BackTothePast();
 		return true;
 	}
 	return false;
 }
-
 
 bool PlayLevel::PushKey(Direction _Dir)
 {

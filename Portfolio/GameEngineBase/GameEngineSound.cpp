@@ -173,8 +173,8 @@ void GameEngineSoundPlayer::Stop()
 		MsgBoxAssert("사운드 컨트롤 채널에 치명적인 문제가 있습니다.\n");
 		return;
 	}
-
-	ControlHandle_->stop();
+	FMOD_RESULT AA = ControlHandle_->stop();
+	
 }
 
 void GameEngineSoundPlayer::SetVolume(float _VolumeIndex)
@@ -190,7 +190,7 @@ void GameEngineSoundPlayer::SetVolume(float _VolumeIndex)
 		Volume = 1.0f;
 	}
 
-	ControlHandle_->setVolume(Volume);
+	FMOD_RESULT AA = ControlHandle_->setVolume(Volume);
 }
 
 

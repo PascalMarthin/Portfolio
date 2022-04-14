@@ -83,6 +83,7 @@ private:
 	void StageSavePopBack();
 	bool CanMove();
 	void GameOver();
+	void Test();
 
 	unsigned int CheckUnitBridge(const Coordinate* _Unit);
 	Coordinate* FindUnitObject(std::list<Coordinate*>& _UnitList, const ObjectName _Unit);
@@ -91,6 +92,7 @@ private:
 	void ClearStage();
 	bool IsClear_;
 	bool IsReset_;
+	bool IsOver_;
 	float ClearWait;
 	void EndStage();
 	void AllReleaseInStage();

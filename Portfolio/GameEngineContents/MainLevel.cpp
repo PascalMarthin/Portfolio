@@ -190,6 +190,7 @@ void MainLevel::IntotheStage()
 
 void MainLevel::LevelChangeStart()
 {
+	GameEngineSound::Update();
 	Fade_->ShowFadeIn();
 	BackGroundMusicControl_ = GameEngineSound::SoundPlayControl("map.ogg");
 }
