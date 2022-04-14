@@ -56,7 +56,9 @@ class GameEngineSoundPlayer
 
 public:
 	void Stop();
-
+	//
+	void SetVolume(float _VolumeIndex);
+	//
 	GameEngineSoundPlayer(const GameEngineSoundPlayer& _Other);
 
 private:

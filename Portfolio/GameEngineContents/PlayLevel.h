@@ -14,6 +14,7 @@
 #include "ClearScene.h"
 #include "EffectManager.h"
 #include "Fade_InAndOut.h"
+#include "SoundVolumeManager.h"
 
 // 설명 : Stage 정보를 받아 화면에 출력해주는 Level
 class CooridnateHistoryData;
@@ -67,6 +68,8 @@ private:
 	void PlaySoundMelt();
 	void PlaySoundChange();
 	GameEngineSoundPlayer BackGroundMusicControl_;
+	GameEngineSoundPlayer BackGroundNoiseControl_;
+	SoundVolumeManager* VolumeManager_;
 	//
 
 	// 이펙트
@@ -78,6 +81,8 @@ private:
 	void AfterMove();
 	void BackTothePast();
 	void StageSavePopBack();
+	bool CanMove();
+	void GameOver();
 
 	unsigned int CheckUnitBridge(const Coordinate* _Unit);
 	Coordinate* FindUnitObject(std::list<Coordinate*>& _UnitList, const ObjectName _Unit);

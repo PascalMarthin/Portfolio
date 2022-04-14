@@ -19,7 +19,8 @@ MainLevel::MainLevel()
 	MapScale_({0, 0}) ,
 	MainCursorPos_({0, 0}),
 	MainCursor_(nullptr),
-	Fade_(nullptr)
+	Fade_(nullptr),
+	StageName_(nullptr)
 {
 }
 
@@ -30,8 +31,12 @@ MainLevel::~MainLevel()
 
 void MainLevel::Loading()
 {
-	Fade_ = CreateActor<Fade_InAndOut>(10);
-	Fade_->Reset();
+	{
+		Fade_ = CreateActor<Fade_InAndOut>(10);
+		Fade_->Reset();
+
+		StageName_ = CreateActor<StageName>(3);
+	}
 	MapScale_ = StageData::Inst_->Scale_[Stage::MainStage];
 
 	CreateActor<BackGround>(0);
@@ -59,6 +64,57 @@ void MainLevel::Loading()
 	MainCursorPos_ = { 9, 15 };
 }
 
+bool MainLevel::KeyPush()
+{
+	if (GameEngineInput::GetInst()->IsDown("Down"))
+	{
+		if (MainMap_[MainCursorPos_.iy() + 1][MainCursorPos_.ix()] != nullptr)
+		{
+			MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 0, 48 }));
+			MainCursorPos_ += {0, 1};
+		}
+		return true;
+	}
+	if (GameEngineInput::GetInst()->IsDown("Up"))
+	{
+		if (MainMap_[MainCursorPos_.iy() - 1][MainCursorPos_.ix()] != nullptr)
+		{
+			MainCursor_->SetPosition((MainCursor_->GetPosition()) - (float4{ 0, 48 }));
+			MainCursorPos_ -= {0, 1};
+		}
+		return true;
+	}
+	if (GameEngineInput::GetInst()->IsDown("Right"))
+	{
+		if (MainMap_[MainCursorPos_.iy()][MainCursorPos_.ix() + 1] != nullptr)
+		{
+			MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 48, 0 }));
+			MainCursorPos_ += {1, 0};
+		}
+		return true;
+	}
+	if (GameEngineInput::GetInst()->IsDown("Left"))
+	{
+		if (MainMap_[MainCursorPos_.iy()][MainCursorPos_.ix() - 1] != nullptr)
+		{
+			MainCursor_->SetPosition((MainCursor_->GetPosition()) - (float4{ 48, 0 }));
+			MainCursorPos_ -= {1, 0};
+		}
+		return true;
+	}
+
+
+	if (GameEngineInput::GetInst()->IsDown("Space"))
+	{
+		if (CurrentStage_ != Stage::MainStage)
+		{
+			IntotheStage();
+		}
+		return true;
+	}
+	return false;
+}
+
 void MainLevel::Update()
 {
 	if (Fade_->IsFadeOut() == true && Fade_->IsChangeScreen() == false)
@@ -70,85 +126,59 @@ void MainLevel::Update()
 	{
 		return;
 	}
-	if (GameEngineInput::GetInst()->IsDown("Down"))
+	CursorPosCheck();
+	if (KeyPush() == true)
 	{
-		if (MainMap_[MainCursorPos_.iy()+1][MainCursorPos_.ix()] != nullptr)
-		{
-			MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 0, 48}));
-			MainCursorPos_ += {0, 1};
-		}
+		ShowStageTitle();
 	}
-	if (GameEngineInput::GetInst()->IsDown("Up"))
-	{
-		if (MainMap_[MainCursorPos_.iy()-1][MainCursorPos_.ix()] != nullptr)
-		{
-			MainCursor_->SetPosition((MainCursor_->GetPosition()) - (float4{ 0, 48 }));
-			MainCursorPos_ -= {0, 1};
-		}
-	}
-	if (GameEngineInput::GetInst()->IsDown("Right"))
-	{
-		if (MainMap_[MainCursorPos_.iy()][MainCursorPos_.ix()+1] != nullptr)
-		{
-			MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 48, 0 }));
-			MainCursorPos_ += {1, 0};
-		}
-	}
-	if (GameEngineInput::GetInst()->IsDown("Left"))
-	{
-		if (MainMap_[MainCursorPos_.iy()][MainCursorPos_.ix()-1] != nullptr)
-		{
-			MainCursor_->SetPosition((MainCursor_->GetPosition()) - (float4{ 48, 0 }));
-			MainCursorPos_ -= {1, 0};
-		}
-	}
+	
+	
 
-
-	if (GameEngineInput::GetInst()->IsDown("Space"))
+}
+void MainLevel::CursorPosCheck()
+{
+	if (MainCursorPos_.ix() == 9 && MainCursorPos_.iy() == 15)
 	{
-		if (MainCursorPos_.ix() == 9 && MainCursorPos_.iy() == 15)
-		{
-			CurrentStage_ = Stage::Stage0;
-			IntotheStage();
-		}
-		else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 13)
-		{
-			CurrentStage_ = Stage::Stage1;
-			IntotheStage();
-		}
-		else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 12)
-		{
-			CurrentStage_ = Stage::Stage2;
-			IntotheStage();
-		}
-		else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 13)
-		{
-			CurrentStage_ = Stage::Stage3;
-			IntotheStage();
-		}
-		else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 12)
-		{
-			CurrentStage_ = Stage::Stage4;
-			IntotheStage();
-		}
-		else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 11)
-		{
-			CurrentStage_ = Stage::Stage5;
-			IntotheStage();
-		}
-		else if (MainCursorPos_.ix() == 12 && MainCursorPos_.iy() == 12)
-		{
-			CurrentStage_ = Stage::Stage6;
-			IntotheStage();
-		}
-		else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 11)
-		{
-			CurrentStage_ = Stage::Stage7;
-			IntotheStage();
-		}
+		CurrentStage_ = Stage::Stage0;
 
 	}
+	else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 13)
+	{
+		CurrentStage_ = Stage::Stage1;
+	}
+	else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 12)
+	{
+		CurrentStage_ = Stage::Stage2;
+	}
+	else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 13)
+	{
+		CurrentStage_ = Stage::Stage3;
+	}
+	else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 12)
+	{
+		CurrentStage_ = Stage::Stage4;
+	}
+	else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 11)
+	{
+		CurrentStage_ = Stage::Stage5;
+	}
+	else if (MainCursorPos_.ix() == 12 && MainCursorPos_.iy() == 12)
+	{
+		CurrentStage_ = Stage::Stage6;
+	}
+	else if (MainCursorPos_.ix() == 11 && MainCursorPos_.iy() == 11)
+	{
+		CurrentStage_ = Stage::Stage7;
+	}
+	else
+	{
+		CurrentStage_ = Stage::MainStage;
+	}
+}
 
+void MainLevel::ShowStageTitle()
+{
+	
 }
 
 void MainLevel::IntotheStage()

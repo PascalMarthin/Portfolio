@@ -4,6 +4,7 @@
 #include <map>
 #include "GamePlayEnum.h"
 #include "Fade_InAndOut.h"
+#include "StageName.h"
 
 // Ό³Έν :
 class Coordinate;
@@ -34,6 +35,9 @@ protected:
 private:
 	static Stage CurrentStage_;
 	void IntotheStage();
+	bool KeyPush();
+	void CursorPosCheck();
+	void ShowStageTitle();
 	
 	std::map<int, std::map<int, Coordinate*>> MainMap_;
 
@@ -42,11 +46,12 @@ private:
 	float GameWindowStartPosX_;
 	float GameWindowStartPosY_;
 
-	GameEngineActor* MainCursor_;
 	float4 MainCursorPos_;
 
 
 	void CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage);
+	StageName* StageName_;
+	GameEngineActor* MainCursor_;
 	Fade_InAndOut* Fade_;
 	GameEngineSoundPlayer BackGroundMusicControl_;
 };

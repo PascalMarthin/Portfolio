@@ -26,7 +26,8 @@ PlayLevel::PlayLevel()
 	Random_(nullptr),
 	Fade_(nullptr),
 	IsReset_(false),
-	PlayLevelEffectManager_(nullptr)
+	PlayLevelEffectManager_(nullptr),
+	VolumeManager_(nullptr)
 {
 }
 
@@ -42,19 +43,14 @@ void PlayLevel::Loading()
 		Fade_ = CreateActor<Fade_InAndOut>(10);
 		Fade_->Reset();
 	}
+	{
+		VolumeManager_ = CreateActor<SoundVolumeManager>(0);
+	}
 	PlayLevelEffectManager_ = CreateActor<EffectManager>(7);
 	CreateActor<BackGround>(0);
 	ClearScene_ = CreateActor<ClearScene>(5);
 	AllMoveHistory_.reserve(10000);
 
-}
-
-void PlayLevel::AfterMove()
-{
-	StageFucntionReset();
-	ScanFucntion();
-	CheckMapAllStat();
-	ScanBridgeUnit();
 }
 
 void PlayLevel::Update()
@@ -106,6 +102,51 @@ void PlayLevel::LevelChangeEnd()
 	CurrentStage_ = Stage::MainStage;
 	ClearScene_->SetStayOFF();
 }
+void PlayLevel::LevelChangeStart()
+{
+	BackGroundMusicControl_ = GameEngineSound::SoundPlayControl("baba.ogg");
+	Fade_->ShowFadeIn();
+	SetStage();
+	StageFucntionReset();
+
+	ScanFucntion();
+	CheckMapAllStat();
+	ScanBridgeUnit();
+
+}
+
+void PlayLevel::AfterMove()
+{
+	StageFucntionReset();
+	ScanFucntion();
+	CheckMapAllStat();
+	ScanBridgeUnit();
+	if (CanMove() == false)
+	{
+		GameOver();
+	}
+	
+}
+
+
+bool PlayLevel::CanMove()
+{
+	for (auto Iter : AllCoordinate_)
+	{
+		if (Iter->GetUnitObjectInst()->FindStat(SYou) == true && Iter->IsUnitUpdate() == true)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void PlayLevel::GameOver()
+{
+
+	/*BackGroundMusicControl_.v
+	BackGroundNoiseControl_ = GameEngineSound::SoundPlayControl("noise.ogg");*/
+}
 
 void PlayLevel::ScanBridgeUnit()
 {
@@ -146,18 +187,6 @@ void PlayLevel::ScanBridgeUnit()
 	}
 }
 
-void PlayLevel::LevelChangeStart()
-{
-	BackGroundMusicControl_ = GameEngineSound::SoundPlayControl("baba.ogg");
-	Fade_->ShowFadeIn();
-	SetStage();
-	StageFucntionReset();
-
-	ScanFucntion();
-	CheckMapAllStat();
-	ScanBridgeUnit();
-
-}
 
 void PlayLevel::SetStage()
 {
@@ -249,25 +278,6 @@ Coordinate* PlayLevel::FindUnitObject(std::list<Coordinate*>& _UnitList, const O
 	return nullptr;
 }
 
-void PlayLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
-{
-	for (int y = 0; y < MapScale_.iy(); ++y)
-	{
-		for (int x = 0; x < MapScale_.ix(); ++x)
-		{
-			GamePlayObject* Value = (GamePlayGobal::GetInst()->Find(_Stage[y][x]));
-			if (Value == nullptr)
-			{
-			continue;
-			}
-			Coordinate* Coordi = CreateActor<Coordinate>(1);
-			Coordi->SetPos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) });
-			Coordi->SetValue(Value);
-			CurrentMap_[y][x].push_back(Coordi);
-			AllCoordinate_.push_back(Coordi);
-		}
-	}
-}
 
 void PlayLevel::StageFucntionReset()
 {
@@ -333,6 +343,7 @@ void PlayLevel::BackTothePast()
 				}
 					
 			}
+
 			else if ((*StartIterMap).first->GetObjectType() == ObjectType::Unit)
 			{
 				if ((*StartIterMap).first->GetUnitObjectInst()->GetName() != (*StartIterMap).second->ObjectName_)
@@ -1025,6 +1036,25 @@ void PlayLevel::ClearStage()
 	ClearScene_->On();
 }
 
+void PlayLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
+{
+	for (int y = 0; y < MapScale_.iy(); ++y)
+	{
+		for (int x = 0; x < MapScale_.ix(); ++x)
+		{
+			GamePlayObject* Value = (GamePlayGobal::GetInst()->Find(_Stage[y][x]));
+			if (Value == nullptr)
+			{
+				continue;
+			}
+			Coordinate* Coordi = CreateActor<Coordinate>(1);
+			Coordi->SetPos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) });
+			Coordi->SetValue(Value);
+			CurrentMap_[y][x].push_back(Coordi);
+			AllCoordinate_.push_back(Coordi);
+		}
+	}
+}
 
 void PlayLevel::EndStage()
 {

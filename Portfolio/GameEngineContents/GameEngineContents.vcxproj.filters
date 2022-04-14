@@ -140,6 +140,12 @@
     <ClCompile Include="EffectManager.cpp">
       <Filter>Effect</Filter>
     </ClCompile>
+    <ClCompile Include="StageName.cpp">
+      <Filter>LevelClass\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundVolumeManager.cpp">
+      <Filter>Gobal</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -283,6 +289,12 @@
     </ClInclude>
     <ClInclude Include="EffectManager.h">
       <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="StageName.h">
+      <Filter>LevelClass\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundVolumeManager.h">
+      <Filter>Gobal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

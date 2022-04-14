@@ -309,7 +309,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="SoundVolumeManager.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="StageData.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="StageName.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -499,7 +507,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="SoundVolumeManager.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="StageData.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="StageName.cpp">
       <SubType>
       </SubType>
     </ClCompile>
