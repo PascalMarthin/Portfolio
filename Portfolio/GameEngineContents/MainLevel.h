@@ -48,7 +48,6 @@ private:
 
 	float4 MainCursorPos_;
 
-
 	void CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage);
 	StageName* StageName_;
 	GameEngineActor* MainCursor_;

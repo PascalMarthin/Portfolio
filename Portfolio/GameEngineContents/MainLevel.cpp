@@ -72,6 +72,7 @@ bool MainLevel::KeyPush()
 		{
 			MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 0, 48 }));
 			MainCursorPos_ += {0, 1};
+			GameEngineSound::SoundPlayOneShot("move1.ogg");
 		}
 		return true;
 	}
@@ -81,6 +82,7 @@ bool MainLevel::KeyPush()
 		{
 			MainCursor_->SetPosition((MainCursor_->GetPosition()) - (float4{ 0, 48 }));
 			MainCursorPos_ -= {0, 1};
+			GameEngineSound::SoundPlayOneShot("move1.ogg");
 		}
 		return true;
 	}
@@ -90,6 +92,7 @@ bool MainLevel::KeyPush()
 		{
 			MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 48, 0 }));
 			MainCursorPos_ += {1, 0};
+			GameEngineSound::SoundPlayOneShot("move1.ogg");
 		}
 		return true;
 	}
@@ -99,6 +102,7 @@ bool MainLevel::KeyPush()
 		{
 			MainCursor_->SetPosition((MainCursor_->GetPosition()) - (float4{ 48, 0 }));
 			MainCursorPos_ -= {1, 0};
+			GameEngineSound::SoundPlayOneShot("move1.ogg");
 		}
 		return true;
 	}
@@ -175,6 +179,7 @@ void MainLevel::CursorPosCheck()
 		CurrentStage_ = Stage::MainStage;
 	}
 }
+
 
 void MainLevel::ShowStageTitle()
 {

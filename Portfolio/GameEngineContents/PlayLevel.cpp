@@ -387,29 +387,6 @@ void PlayLevel::BackTothePast()
 	PlaySoundBack();
 }
 
-void PlayLevel::PlaySoundBack()
-{
-	switch (Random_->RandomInt(0, 4))
-	{
-	case 0:
-		GameEngineSound::SoundPlayOneShot("Back1.ogg");
-		break;
-	case 1:
-		GameEngineSound::SoundPlayOneShot("Back2.ogg");
-		break;
-	case 2:
-		GameEngineSound::SoundPlayOneShot("Back3.ogg");
-		break;
-	case 3:
-		GameEngineSound::SoundPlayOneShot("Back4.ogg");
-		break;
-	case 4:
-		GameEngineSound::SoundPlayOneShot("Back5.ogg");
-		break;
-	default:
-		break;
-	}
-}
 
 void PlayLevel::ScanFucntion()
 {
@@ -755,6 +732,29 @@ bool PlayLevel::PushKey(Direction _Dir)
 	{
 		PlaySoundMove();
 		return true;
+	}
+}
+void PlayLevel::PlaySoundBack()
+{
+	switch (Random_->RandomInt(0, 4))
+	{
+	case 0:
+		GameEngineSound::SoundPlayOneShot("Back1.ogg");
+		break;
+	case 1:
+		GameEngineSound::SoundPlayOneShot("Back2.ogg");
+		break;
+	case 2:
+		GameEngineSound::SoundPlayOneShot("Back3.ogg");
+		break;
+	case 3:
+		GameEngineSound::SoundPlayOneShot("Back4.ogg");
+		break;
+	case 4:
+		GameEngineSound::SoundPlayOneShot("Back5.ogg");
+		break;
+	default:
+		break;
 	}
 }
 
