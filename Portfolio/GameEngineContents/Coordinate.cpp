@@ -26,6 +26,7 @@ Coordinate::Coordinate()
 	, SceneFrame_(0)
 	, BridgeUnit_(0)
 	, UnitUpdate_(true)
+	, IsDir_(false)
 {
 }
 
@@ -72,20 +73,20 @@ void Coordinate::SetCurrentImage()
 	if (UnitObject_->FindStat(SYou) == true)
 	{
 		{
-			if (IsMove_ == true)
-			{
-				++SceneFrame_;
-				if (static_cast<int>((*CurrentImageIndex_).size()) <= SceneFrame_)
-				{
-					SceneFrame_ = 0;
-				}
-			}
-			else if (IsBackTothePast_ == true)
+			if (IsBackTothePast_ == true)
 			{
 				--SceneFrame_;
 				if (SceneFrame_ < 0)
 				{
 					SceneFrame_ = static_cast<int>((*CurrentImageIndex_).size()) - 1;
+				}
+			}
+			else if (IsMove_ == true || IsDir_ == true)
+			{
+				++SceneFrame_;
+				if (static_cast<int>((*CurrentImageIndex_).size()) <= SceneFrame_)
+				{
+					SceneFrame_ = 0;
 				}
 			}
 		}
@@ -142,7 +143,7 @@ void Coordinate::Update()
 		{
 			IsMove_ = false;
 		}
-
+		IsDir_ = false;
 		IsKeyPush_ = false;
 	}
 
@@ -367,7 +368,7 @@ void Coordinate::SetValue(GamePlayObject* _Object, Direction _Dir, const float4&
 
 void Coordinate::ChangePos(const float4& _Pos, const float4& _CPos, Direction _Dir)
 {
-	if (IsMove_ != true)
+	if (IsMove_ == false)
 	{
 		PastPos_ = CurrentPos_;
 		PastLUPos_ = CurrentLUPos_;
@@ -383,6 +384,25 @@ void Coordinate::ChangePos(const float4& _Pos, const float4& _CPos, Direction _D
 		{
 			IsMove_ = false;
 		}
+	}
+}
+
+void Coordinate::ChangeDir(Direction _Dir)
+{
+	if (IsMove_ == false)
+	{
+		UnitDir_ = _Dir;
+		IsDir_ = true;
+	}
+}
+
+void Coordinate::ChangeBackDir(Direction _Dir)
+{
+	if (IsMove_ == false)
+	{
+		UnitDir_ = _Dir;
+		IsDir_ = true;
+		IsBackTothePast_ = true;
 	}
 }
 

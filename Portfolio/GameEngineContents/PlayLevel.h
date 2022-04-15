@@ -50,7 +50,6 @@ private:
 	void ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb, Coordinate* _Stat);
 	bool ChangeUnit(const GamePlayUnitObject* _Left, GamePlayUnitObject* _Right);
 	Coordinate* FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat);
-
 	void CheckMapAllStat();
 	bool CheckMapAllStat(Direction _MoveDir);
 	bool CheckBitMove(const int _x, const int _y, const std::pair<int, int>& _MoveDir);

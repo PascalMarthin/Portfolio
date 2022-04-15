@@ -373,6 +373,10 @@ void PlayLevel::BackTothePast()
 					++StartIter;
 				}	
 			}
+			else if ((*StartIterMap).first->GetDir() != (*StartIterMap).second->Direction_)
+			{
+				(*StartIterMap).first->ChangeBackDir((*StartIterMap).second->Direction_);
+			}
 			if ((*StartIterMap).first->IsUnitUpdate() != (*StartIterMap).second->IsUpdate_)
 			{
 				(*StartIterMap).first->UpdateON();
@@ -757,7 +761,6 @@ void PlayLevel::PlaySoundBack()
 		break;
 	}
 }
-
 void PlayLevel::PlaySoundMove()
 {
 	switch (Random_->RandomInt(0, 11))
@@ -940,20 +943,29 @@ bool PlayLevel::CheckMapAllStat(Direction _MoveDir)
 				(*StartIterList)->KeyIsPushOn();
 				if ((*StartIterList)->GetUnitObjectInst()->FindStat(SYou) == true && (*StartIterList)->IsUnitUpdate() == true)
 				{
-					if ((*StartIterList)->IsMove() == false && CheckBitMove(X, Y, DirInt) == true)
+					if ((*StartIterList)->IsMove() == false)
 					{
-						IsMove = true;
-						StartIterList = Ref.erase(Move(StartIterList, DirInt));
-						continue;
+						if ((*StartIterList)->GetDir() != _MoveDir)
+						{
+							(*StartIterList)->ChangeDir(_MoveDir);
+							IsMove = true;
+						}
+						if ( CheckBitMove(X, Y, DirInt) == true)
+						{
+							IsMove = true;
+							StartIterList = Ref.erase(Move(StartIterList, DirInt));
+							continue;
+						}
+
 					}
 				}
 				++StartIterList;
 			}
 		}
 	}
-
 	return IsMove;
 }
+
 
 bool PlayLevel::CheckBitMove(const int _x, const int _y, const std::pair<int, int>& _MoveDir)
 {
