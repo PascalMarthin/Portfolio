@@ -953,7 +953,25 @@ bool PlayLevel::CheckMapAllStat(Direction _MoveDir)
 						}
 						if ( CheckBitMove(X, Y, DirInt) == true)
 						{
-							PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Baba_Effect_sheet.bmp"), Random_, _MoveDir, 0.1f);
+
+							
+
+							switch ((*StartIterList)->GetUnitObjectInst()->GetName())
+							{
+							case ObjectName::Baba_Unit:
+								PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Baba_Effect_sheet.bmp"), Random_, _MoveDir, 0.1f);
+								break;
+							case ObjectName::Flag_Unit:
+							case ObjectName::Rock_Unit:
+								PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Rock_Effect_sheet.bmp"), Random_, _MoveDir, 0.1f);
+								break;
+							case ObjectName::Wall_Unit:
+								PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("wall_Effect_sheet.bmp"), Random_, _MoveDir, 0.1f);
+								break;
+							default:
+								break;
+							}
+
 							IsMove = true;
 							StartIterList = Ref.erase(Move(StartIterList, DirInt));
 							continue;
@@ -1008,6 +1026,7 @@ bool PlayLevel::CheckBitMove(const int _x, const int _y, const std::pair<int, in
 				}
 				else
 				{
+					PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Rock_Effect_sheet.bmp"), Random_, Direction::Right /*¼öÁ¤¿ä*/, 0.1f);
 					StartIterList = Ref.erase(Move(StartIterList, _MoveDir));
 					continue;
 				}
