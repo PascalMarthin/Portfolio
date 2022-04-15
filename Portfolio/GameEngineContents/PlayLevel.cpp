@@ -146,6 +146,7 @@ bool PlayLevel::CanMove()
 void PlayLevel::GameOver()
 {
 	IsOver_ = true;
+	GameEngineSound::Update();
 	BackGroundMusicControl_.SetVolume(0.0f);
 	BackGroundNoiseControl_ = GameEngineSound::SoundPlayControl("noise.ogg");
 }
@@ -548,7 +549,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 				{
 					iter->UpdateOFF();
 					IsDefeat = true;
-					PlayLevelEffectManager_->ShowEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Defeat_Effect_sheet.bmp"), Random_, 4, 7);
+					PlayLevelEffectManager_->ShowRandomEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Defeat_Effect_sheet.bmp"), Random_, 4, 7);
 				}
 			}
 		}
@@ -565,7 +566,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 					{
 						iter->UpdateOFF();
 						IsSink = true;
-						PlayLevelEffectManager_->ShowEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Sink_Effect_sheet.bmp"), Random_, 4, 7);
+						PlayLevelEffectManager_->ShowRandomEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Sink_Effect_sheet.bmp"), Random_, 4, 7);
 					}
 				}
 			}
@@ -582,7 +583,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 				{
 					iter->UpdateOFF();
 					IsMelt = true;
-					PlayLevelEffectManager_->ShowEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Hot_Effect_sheet.bmp"), Random_, 3, 5);
+					PlayLevelEffectManager_->ShowRandomEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Hot_Effect_sheet.bmp"), Random_, 3, 5);
 				}
 			}
 		}
@@ -952,6 +953,7 @@ bool PlayLevel::CheckMapAllStat(Direction _MoveDir)
 						}
 						if ( CheckBitMove(X, Y, DirInt) == true)
 						{
+							PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Baba_Effect_sheet.bmp"), Random_, _MoveDir, 0.1f);
 							IsMove = true;
 							StartIterList = Ref.erase(Move(StartIterList, DirInt));
 							continue;

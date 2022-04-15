@@ -3,7 +3,7 @@
 #include <GameEngineBase/GameEngineTime.h>
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngine/GameEngine.h>
-#define AnimationSpeed 0.03f
+#define AnimationSpeed 0.02f
 
 Fade_InAndOut::Fade_InAndOut()
 	: CurrentFrame_(0)

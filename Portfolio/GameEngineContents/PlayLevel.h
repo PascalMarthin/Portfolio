@@ -82,7 +82,7 @@ private:
 	void StageSavePopBack();
 	bool CanMove();
 	void GameOver();
-	void Test();
+
 
 	unsigned int CheckUnitBridge(const Coordinate* _Unit);
 	Coordinate* FindUnitObject(std::list<Coordinate*>& _UnitList, const ObjectName _Unit);
@@ -97,7 +97,13 @@ private:
 	void AllReleaseInStage();
 
 	Fade_InAndOut* Fade_;
+	// Random
 	GameEngineRandom* Random_;
+	inline const GameEngineRandom* GetRandom() const
+	{
+		return Random_;
+	}
+	//
 	GameEngineActor* BackGround_;
 	ClearScene* ClearScene_;
 	Stage CurrentStage_;

@@ -20,8 +20,8 @@ public:
 	EffectManager& operator=(const EffectManager& _Other) = delete;
 	EffectManager& operator=(EffectManager&& _Other) noexcept = delete;
 
-	void ShowEffect(const float4& _LUPos, GameEngineImage* _EffectImage, GameEngineRandom* _Random, int _Min, int _Max , float CurrentInterTime_ = 0.1f);
-	void ShowWinEffect(const Coordinate& _Coordinate, GameEngineImage* _EffectImage, GameEngineRandom* _Random, int _Min, int _Max, float _InterTime);
+	void ShowRandomEffect(const float4& _LUPos, GameEngineImage* _EffectImage, GameEngineRandom* _Random, int _Min, int _Max , float CurrentInterTime_ = 0.1f);
+	void ShowMoveEffect(const float4& _LUPos, GameEngineImage* _EffectImage, GameEngineRandom* _Random, Direction _Dir, float _InterTime);
 
 protected:
 	void Start() override;
@@ -38,7 +38,7 @@ public:
 	QueueEffect(const float4& _Pos, GameEngineImage* _EffectImage, GameEngineRandom* _Random, int _EndFrame, float _InterTime);
 	~QueueEffect();
 
-	void RandomPlusPos();
+	void PlusPos(float _Index);
 	bool FrameUpdate();
 
 
@@ -58,5 +58,7 @@ public:
 	GameEngineImage* EffectImage_;
 	std::vector<float4> PosList_;
 	const float4& Pos_;
+
+	bool MoveEffect_;
 private:
 };

@@ -77,9 +77,6 @@
     <ClCompile Include="MainCursor.cpp">
       <Filter>LevelClass\Main</Filter>
     </ClCompile>
-    <ClCompile Include="ScreenFade.cpp">
-      <Filter>Effect</Filter>
-    </ClCompile>
     <ClCompile Include="GamePlayGobal.cpp">
       <Filter>Gobal</Filter>
     </ClCompile>
@@ -223,9 +220,6 @@
     </ClInclude>
     <ClInclude Include="MainCursor.h">
       <Filter>LevelClass\Main</Filter>
-    </ClInclude>
-    <ClInclude Include="ScreenFade.h">
-      <Filter>Effect</Filter>
     </ClInclude>
     <ClInclude Include="GamePlayEnum.h">
       <Filter>Gobal</Filter>
