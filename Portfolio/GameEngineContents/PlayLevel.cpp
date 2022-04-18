@@ -14,6 +14,7 @@
 
 
 
+
 PlayLevel::PlayLevel() 
 	:GameWindowStartPosX_(0),
 	GameWindowStartPosY_(0),
@@ -28,7 +29,11 @@ PlayLevel::PlayLevel()
 	IsReset_(false),
 	PlayLevelEffectManager_(nullptr),
 	VolumeManager_(nullptr),
-	IsOver_(false)
+	IsOver_(false),
+	MoveUI_(nullptr),
+	OverUI_(nullptr),
+	Menu_(nullptr),
+	IsPause_(false)
 {
 }
 
@@ -47,7 +52,10 @@ void PlayLevel::Loading()
 	{
 		VolumeManager_ = CreateActor<SoundVolumeManager>(0);
 	}
+	Menu_ = CreateActor<PlayAndMainLevelMenu>(0);
 	PlayLevelEffectManager_ = CreateActor<EffectManager>(7);
+	OverUI_ = CreateActor<GameHelpOverUI>(3);
+	OverUI_->Off();
 	CreateActor<BackGround>(0);
 	ClearScene_ = CreateActor<ClearScene>(5);
 	AllMoveHistory_.reserve(10000);
@@ -79,6 +87,14 @@ void PlayLevel::Update()
 	{
 		return;
 	}
+	if (IsPause_ == true)
+	{
+		KeyCheckInMenu();
+		return;
+	}
+
+
+	// Key 체크
 	if (true == KeyCheck())
 	{
 		AfterMove();
@@ -95,6 +111,17 @@ void PlayLevel::Update()
 
 }
 
+void PlayLevel::KeyCheckInMenu()
+{
+	if (GameEngineInput::GetInst()->IsDown("ESC"))
+	{
+		if (IsPause_ == true)
+		{
+			ShowPlayMode();
+		}
+	}
+}
+
 void PlayLevel::LevelChangeEnd()
 {
 	Fade_->Reset();
@@ -102,6 +129,12 @@ void PlayLevel::LevelChangeEnd()
 	ReSetStage();
 	CurrentStage_ = Stage::MainStage;
 	ClearScene_->SetStayOFF();
+	
+	if (MoveUI_ != nullptr)
+	{
+		MoveUI_->Death();
+		MoveUI_ = nullptr;
+	}
 }
 void PlayLevel::LevelChangeStart()
 {
@@ -115,6 +148,10 @@ void PlayLevel::LevelChangeStart()
 	CheckMapAllStat();
 	ScanBridgeUnit();
 
+	if (CurrentStage_ == Stage::Stage0)
+	{
+		MoveUI_ = CreateActor<GameHelpMoveUI>(2);
+	}
 }
 
 void PlayLevel::AfterMove()
@@ -146,6 +183,7 @@ bool PlayLevel::CanMove()
 void PlayLevel::GameOver()
 {
 	IsOver_ = true;
+	OverUI_->SetOver();
 	GameEngineSound::Update();
 	BackGroundMusicControl_.SetVolume(0.0f);
 	BackGroundNoiseControl_ = GameEngineSound::SoundPlayControl("noise.ogg");
@@ -214,6 +252,7 @@ void PlayLevel::ReSetStage()
 	IsClear_ = false;
 	IsReset_ = false;
 	IsOver_ = false;
+	IsPause_ = false;
 	AllCoordinate_.clear();
 	AllMoveHistory_.clear();
 	CurrentMap_.clear();
@@ -579,7 +618,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 		{
 			for (auto iter : _Value)
 			{
-				if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsUnitUpdate() == true)
+				if (iter->GetUnitObjectInst()->FindStat(SMelt) == true && iter->IsUnitUpdate() == true)
 				{
 					iter->UpdateOFF();
 					IsMelt = true;
@@ -699,6 +738,7 @@ bool PlayLevel::KeyCheck()
 			GameEngineSound::Update();
 			BackGroundNoiseControl_.Stop();
 			BackGroundMusicControl_.SetVolume(1.0f);
+			OverUI_->SetBack();
 			IsOver_ = false;
 		}
 		IsReset_ = true;
@@ -713,12 +753,33 @@ bool PlayLevel::KeyCheck()
 			GameEngineSound::Update();
 			BackGroundNoiseControl_.Stop();
 			BackGroundMusicControl_.SetVolume(1.0f);
+			OverUI_->SetBack();
 			IsOver_ = false;
 		}
 		BackTothePast();
 		return true;
 	}
+	if (GameEngineInput::GetInst()->IsDown("ESC"))
+	{
+		if (IsPause_ == false)
+		{
+			ShowMenuMode();
+			return false;
+		}
+	}
 	return false;
+}
+
+void PlayLevel::ShowMenuMode()
+{
+	GameEngineTime::GetInst()->SetTimeScale(0, 0.0f);
+	IsPause_ = true;
+}
+
+void PlayLevel::ShowPlayMode()
+{
+	GameEngineTime::GetInst()->SetTimeScale(0, 1.0f);
+	IsPause_ = false;
 }
 
 bool PlayLevel::PushKey(Direction _Dir)
@@ -904,22 +965,7 @@ void PlayLevel::StageSavePopBack()
 }
 bool PlayLevel::CheckMapAllStat(Direction _MoveDir)
 {
-	std::pair<int, int> DirInt;
-	switch (_MoveDir)
-	{
-	case Direction::Right:
-		DirInt = std::make_pair(1, 0);
-		break;
-	case Direction::Up:
-		DirInt = std::make_pair(0, -1);
-		break;
-	case Direction::Left:
-		DirInt = std::make_pair(-1, 0);
-		break;
-	case Direction::Down:
-		DirInt = std::make_pair(0, 1);
-		break;
-	}
+
 	bool IsMove = false;
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();
 	std::map<int, std::map<int, std::list<Coordinate*>>>::iterator EndIterY = CurrentMap_.end();
@@ -951,11 +997,8 @@ bool PlayLevel::CheckMapAllStat(Direction _MoveDir)
 							(*StartIterList)->ChangeDir(_MoveDir);
 							IsMove = true;
 						}
-						if ( CheckBitMove(X, Y, DirInt) == true)
+						if ( CheckBitMove(X, Y, _MoveDir) == true)
 						{
-
-							
-
 							switch ((*StartIterList)->GetUnitObjectInst()->GetName())
 							{
 							case ObjectName::Baba_Unit:
@@ -971,12 +1014,10 @@ bool PlayLevel::CheckMapAllStat(Direction _MoveDir)
 							default:
 								break;
 							}
-
 							IsMove = true;
-							StartIterList = Ref.erase(Move(StartIterList, DirInt));
+							StartIterList = Ref.erase(Move(StartIterList, _MoveDir));
 							continue;
 						}
-
 					}
 				}
 				++StartIterList;
@@ -987,10 +1028,27 @@ bool PlayLevel::CheckMapAllStat(Direction _MoveDir)
 }
 
 
-bool PlayLevel::CheckBitMove(const int _x, const int _y, const std::pair<int, int>& _MoveDir)
+bool PlayLevel::CheckBitMove(const int _x, const int _y, Direction _MoveDir)
 {
-	int X = _x + _MoveDir.first;
-	int Y = _y + _MoveDir.second;
+	std::pair<int, int> DirInt;
+	switch (_MoveDir)
+	{
+	case Direction::Right:
+		DirInt = std::make_pair(1, 0);
+		break;
+	case Direction::Up:
+		DirInt = std::make_pair(0, -1);
+		break;
+	case Direction::Left:
+		DirInt = std::make_pair(-1, 0);
+		break;
+	case Direction::Down:
+		DirInt = std::make_pair(0, 1);
+		break;
+	}
+
+	int X = _x + DirInt.first;
+	int Y = _y + DirInt.second;
 	if (IsMapOut(std::make_pair(X, Y)) == true)
 	{
 		return false;
@@ -1026,7 +1084,21 @@ bool PlayLevel::CheckBitMove(const int _x, const int _y, const std::pair<int, in
 				}
 				else
 				{
-					PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Rock_Effect_sheet.bmp"), Random_, Direction::Right /*수정요*/, 0.1f);
+					switch ((*StartIterList)->GetUnitObjectInst()->GetName())
+					{
+					case ObjectName::Baba_Unit:
+						PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Baba_Effect_sheet.bmp"), Random_, _MoveDir, 0.1f);
+						break;
+					case ObjectName::Flag_Unit:
+					case ObjectName::Rock_Unit:
+						PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Rock_Effect_sheet.bmp"), Random_, _MoveDir, 0.1f);
+						break;
+					case ObjectName::Wall_Unit:
+						PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("wall_Effect_sheet.bmp"), Random_, _MoveDir, 0.1f);
+						break;
+					default:
+						break;
+					}
 					StartIterList = Ref.erase(Move(StartIterList, _MoveDir));
 					continue;
 				}
@@ -1038,25 +1110,41 @@ bool PlayLevel::CheckBitMove(const int _x, const int _y, const std::pair<int, in
 }
 
 // 일반적인 Move
-std::list<Coordinate*>::iterator& PlayLevel::Move(std::list<Coordinate*>::iterator& _ListIter, std::pair<int, int> _MoveDir)
+std::list<Coordinate*>::iterator& PlayLevel::Move(std::list<Coordinate*>::iterator& _ListIter, Direction _MoveDir)
 {
+	std::pair<int, int> DirInt;
+	switch (_MoveDir)
+	{
+	case Direction::Right:
+		DirInt = std::make_pair(1, 0);
+		break;
+	case Direction::Up:
+		DirInt = std::make_pair(0, -1);
+		break;
+	case Direction::Left:
+		DirInt = std::make_pair(-1, 0);
+		break;
+	case Direction::Down:
+		DirInt = std::make_pair(0, 1);
+		break;
+	}
 	int PastX = (*_ListIter)->GetPos().ix();
 	int PastY = (*_ListIter)->GetPos().iy();
-	int x = PastX + _MoveDir.first;
-	int y = PastY + _MoveDir.second;
-	if (_MoveDir.first == 1)
+	int x = PastX + DirInt.first;
+	int y = PastY + DirInt.second;
+	if (DirInt.first == 1)
 	{
 		(*_ListIter)->ChangePos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) }, Direction::Right);		
 	}
-	else if (_MoveDir.second == 1)
+	else if (DirInt.second == 1)
 	{
 		(*_ListIter)->ChangePos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) }, Direction::Down);
 	}
-	else if (_MoveDir.first == -1)
+	else if (DirInt.first == -1)
 	{
 		(*_ListIter)->ChangePos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) }, Direction::Left);
 	}
-	else if (_MoveDir.second == -1)
+	else if (DirInt.second == -1)
 	{
 		(*_ListIter)->ChangePos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) }, Direction::Up);
 	}

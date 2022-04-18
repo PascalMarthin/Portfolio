@@ -143,6 +143,18 @@
     <ClCompile Include="SoundVolumeManager.cpp">
       <Filter>Gobal</Filter>
     </ClCompile>
+    <ClCompile Include="GameHelpMoveUI.cpp">
+      <Filter>LevelClass\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="GameHelpOverUI.cpp">
+      <Filter>LevelClass\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayAndMainLevelMenu.cpp">
+      <Filter>LevelClass\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugLevel.cpp">
+      <Filter>Level\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -290,6 +302,18 @@
     <ClInclude Include="SoundVolumeManager.h">
       <Filter>Gobal</Filter>
     </ClInclude>
+    <ClInclude Include="GameHelpMoveUI.h">
+      <Filter>LevelClass\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHelpOverUI.h">
+      <Filter>LevelClass\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayAndMainLevelMenu.h">
+      <Filter>LevelClass\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugLevel.h">
+      <Filter>Level\Debug</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -348,6 +372,9 @@
     </Filter>
     <Filter Include="Object%28Game%29\Manager">
       <UniqueIdentifier>{801b94b5-e5d7-49fe-bda1-8bc510848be0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Debug">
+      <UniqueIdentifier>{66674636-132a-4616-8132-220a5ed5f103}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

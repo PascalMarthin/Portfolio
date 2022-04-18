@@ -13,10 +13,16 @@ StageData::StageData()
 	Stage5();
 	Stage6();
 	Stage7();
+	DebugStage();
 }
 
 StageData::~StageData() 
 {
+}
+
+void StageData::DebugStage()
+{
+	
 }
 
 void StageData::MainStage()

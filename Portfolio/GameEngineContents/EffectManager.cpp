@@ -93,9 +93,11 @@ void EffectManager::Render()
 		{
 			for (const float4& Iter : (*StartIter)->PosList_)
 			{
-				if ((*StartIter)->EffectImage_ == GameEngineImageManager::GetInst()->Find("Baba_Effect_sheet.bmp"))
+				if ((*StartIter)->EffectImage_ == GameEngineImageManager::GetInst()->Find("Baba_Effect_sheet.bmp") ||
+					(*StartIter)->EffectImage_ == GameEngineImageManager::GetInst()->Find("Wall_Effect_sheet.bmp") ||
+					(*StartIter)->EffectImage_ == GameEngineImageManager::GetInst()->Find("Rock_Effect_sheet.bmp") )
 				{
-					GameEngine::BackBufferImage()->TransCopy((*StartIter)->EffectImage_, { Iter.x + static_cast<float>(DotSizeX / 2) - 10.0f, Iter.y + static_cast<float>(DotSizeY / 2) - 10.0f }, float4{ 20, 20 }, (*StartIter)->CurrentImgPivot_, (*StartIter)->CurrentImgScale_, RGB(255, 0, 255));
+					GameEngine::BackBufferImage()->TransCopy((*StartIter)->EffectImage_, { Iter.x + static_cast<float>(DotSizeX / 2) - 10.0f, Iter.y + static_cast<float>(DotSizeY / 2) }, float4{ 20, 20 }, (*StartIter)->CurrentImgPivot_, (*StartIter)->CurrentImgScale_, RGB(255, 0, 255));
 				}
 				else
 				{

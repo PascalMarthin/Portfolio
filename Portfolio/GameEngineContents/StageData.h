@@ -42,6 +42,7 @@ private:
 	void Stage5();
 	void Stage6();
 	void Stage7();
+	void DebugStage();
 
 
 	StageData();

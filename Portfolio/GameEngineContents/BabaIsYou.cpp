@@ -23,7 +23,7 @@ BabaIsYou::~BabaIsYou()
 void BabaIsYou::GameInit()
 {
 	//GameEngineTime::GetInst()->SetTimeScale(0, 1.0f);
-	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 0, 0 }, { 1980, 1080 });
+	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 0, 0 }, { 1760, 1000 });
 	CreateKeyBaba();
 
 	// 리소스 파일 위치 적용
@@ -710,6 +710,7 @@ void BabaIsYou::CreateKeyBaba()
 		GameEngineInput::GetInst()->CreateKey("R", 'r');
 		GameEngineInput::GetInst()->CreateKey("Z", 'z');
 		GameEngineInput::GetInst()->CreateKey("Space", VK_SPACE);
+		GameEngineInput::GetInst()->CreateKey("ESC", VK_ESCAPE);
 		// VK_LBUTTON;
 	}
 }

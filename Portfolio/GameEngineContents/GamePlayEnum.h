@@ -37,7 +37,8 @@ enum class Stage
 	Stage4,
 	Stage5,
 	Stage6,
-	Stage7
+	Stage7,
+	DebugStage
 };
 
 enum class StatName

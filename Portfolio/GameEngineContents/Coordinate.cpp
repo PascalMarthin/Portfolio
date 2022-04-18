@@ -118,7 +118,7 @@ void Coordinate::ActorOrderCheck()
 	}
 	else if (UnitObject_->FindStat(SYou) == true)
 	{
-		GameEngineActor::SetOrder(5);
+		GameEngineActor::SetOrder(6);
 		return;
 	}
 	else if (UnitObject_->FindStat(SPush) == true || UnitObject_->FindStat(SStop) == true)

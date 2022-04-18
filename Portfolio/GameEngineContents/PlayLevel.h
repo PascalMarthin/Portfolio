@@ -15,6 +15,9 @@
 #include "EffectManager.h"
 #include "Fade_InAndOut.h"
 #include "SoundVolumeManager.h"
+#include "GameHelpMoveUI.h"
+#include "GameHelpOverUI.h"
+#include "PlayAndMainLevelMenu.h"
 
 // 설명 : Stage 정보를 받아 화면에 출력해주는 Level
 class CooridnateHistoryData;
@@ -52,10 +55,10 @@ private:
 	Coordinate* FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat);
 	void CheckMapAllStat();
 	bool CheckMapAllStat(Direction _MoveDir);
-	bool CheckBitMove(const int _x, const int _y, const std::pair<int, int>& _MoveDir);
+	bool CheckBitMove(const int _x, const int _y, Direction _MoveDir);
 	bool PushKey(Direction _Dir);
 	void CheckBitStat(std::list<Coordinate*>& _Value);
-	std::list<Coordinate*>::iterator& Move(std::list<Coordinate*>::iterator& _ListIter, std::pair<int, int> _MoveDir);
+	std::list<Coordinate*>::iterator& Move(std::list<Coordinate*>::iterator& _ListIter, Direction _MoveDir);
 	std::list<Coordinate*>::iterator& MoveBack(std::list<Coordinate*>::iterator& _ListIter, const float4& _MovePos, Direction _Dir);
 	bool IsMapOut(const std::pair<int, int>& _Pos);
 
@@ -76,6 +79,15 @@ private:
 	EffectManager* PlayLevelEffectManager_;
 	//
 
+	// Ui
+	GameHelpMoveUI* MoveUI_;
+	GameHelpOverUI* OverUI_;
+	PlayAndMainLevelMenu* Menu_;
+	bool IsPause_;
+	void KeyCheckInMenu();
+	void ShowPlayMode();
+	void ShowMenuMode();
+	//
 	void BeforeMove();
 	void AfterMove();
 	void BackTothePast();
@@ -92,6 +104,7 @@ private:
 	bool IsClear_;
 	bool IsReset_;
 	bool IsOver_;
+	
 	float ClearWait;
 	void EndStage();
 	void AllReleaseInStage();

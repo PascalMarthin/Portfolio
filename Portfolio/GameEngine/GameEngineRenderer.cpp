@@ -109,6 +109,19 @@ void GameEngineRenderer::Render()
 			GameEngine::BackBufferImage()->AlphaCopy(Image_, RenderPos, RenderScale_, RenderImagePivot_, RenderImageScale_, Alpha_);
 		}
 		break;
+	case RenderPivot::Up :
+	{
+		float4 Scale = RenderScale_.Half();
+		Scale.y = 0.0f;
+		if (Alpha_ == 255)
+		{
+			GameEngine::BackBufferImage()->TransCopy(Image_, RenderPos - Scale, RenderScale_, RenderImagePivot_, RenderImageScale_, TransColor_);
+		}
+		else {
+			GameEngine::BackBufferImage()->AlphaCopy(Image_, RenderPos - Scale, RenderScale_, RenderImagePivot_, RenderImageScale_, Alpha_);
+		}
+		break;
+	}
 	default:
 		break;
 	}
