@@ -60,11 +60,13 @@
     <ClCompile Include="GameEngineTime.cpp">
       <Filter>Platform</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineUpdateObject.cpp" />
     <ClCompile Include="GameEngineRandom.cpp">
       <Filter>Math</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineSound.cpp" />
+    <ClCompile Include="GameEngineUpdateObject.cpp">
+      <Filter>Object%28Name%29</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineWindow.h">
@@ -97,7 +99,6 @@
     <ClInclude Include="GameEngineTime.h">
       <Filter>Platform</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngineUpdateObject.h" />
     <ClInclude Include="GameEngineRandom.h">
       <Filter>Math</Filter>
     </ClInclude>
@@ -107,6 +108,9 @@
     </ClInclude>
     <ClInclude Include="ThirdParty\inc\fmod.hpp">
       <Filter>ThirdParty\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineUpdateObject.h">
+      <Filter>Object%28Name%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

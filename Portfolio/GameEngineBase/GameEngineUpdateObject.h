@@ -2,7 +2,7 @@
 #include <string>
 #include "GameEngineTime.h"
 
-// Ό³Έν :
+
 class GameEngineUpdateObject
 {
 public:
@@ -15,6 +15,7 @@ public:
 	GameEngineUpdateObject(GameEngineUpdateObject&& _Other) noexcept = delete;
 	GameEngineUpdateObject& operator=(const GameEngineUpdateObject& _Other) = delete;
 	GameEngineUpdateObject& operator=(GameEngineUpdateObject&& _Other) noexcept = delete;
+
 
 	inline void On()
 	{
@@ -36,6 +37,21 @@ public:
 		return IsDeath_;
 	}
 
+	void AddAccTime(float _DeltaTime)
+	{
+		AccTime_ += _DeltaTime;
+	}
+
+	float GetAccTime()
+	{
+		return AccTime_;
+	}
+
+
+	void ReSetAccTime()
+	{
+		AccTime_ = 0.0f;
+	}
 
 
 	inline 	void Death()
@@ -63,6 +79,7 @@ public:
 		IsReleaseUpdate_ = true;
 		DeathTime_ = _Time;
 	}
+
 	inline int GetOrder()
 	{
 		return Order_;
@@ -77,8 +94,10 @@ private:
 	int Order_;
 	bool IsReleaseUpdate_;
 	float DeathTime_;
+	float AccTime_;
 
 	bool IsUpdate_;
 	bool IsDeath_;
 
 };
+

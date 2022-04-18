@@ -66,10 +66,16 @@ protected:
 	// 지속적으로 게임이 실행될 떄 호출
 	virtual void Render() {}
 
+	virtual void LevelChangeStart() {}
+	virtual void LevelChangeEnd() {}
+
+
 	// 디버그 렌더
 	void DebugRectRender();
 
 	void Release();
+
+	void LevelRegist(std::string _RegistName = "");
 
 
 private:
