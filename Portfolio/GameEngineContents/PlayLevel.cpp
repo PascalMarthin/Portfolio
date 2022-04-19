@@ -33,7 +33,9 @@ PlayLevel::PlayLevel()
 	MoveUI_(nullptr),
 	OverUI_(nullptr),
 	Menu_(nullptr),
-	IsPause_(false)
+	IsPause_(false),
+	GoMain_(false),
+	GoTitle_(false)
 {
 }
 
@@ -78,9 +80,16 @@ void PlayLevel::Update()
 			return;
 		}
 	}
-	if (Fade_->IsFadeOut() == true && Fade_->IsChangeScreen() == false && IsClear_ == true)
+	if (Fade_->IsFadeOut() == true && Fade_->IsChangeScreen() == false && (IsClear_ == true || GoTitle_ == true || GoMain_ == true))
 	{
-		GameEngine::GetInst().ChangeLevel("MainLevel");
+		if (IsClear_ == true || GoMain_ == true)
+		{
+			GameEngine::GetInst().ChangeLevel("MainLevel");
+		}
+		else if (GoTitle_ == true)
+		{
+			GameEngine::GetInst().ChangeLevel("TitleLevel");
+		}
 		return;
 	}
 	if (Fade_->IsChangeScreen() == true)
@@ -135,12 +144,14 @@ void PlayLevel::KeyCheckInMenu()
 			return;
 			break;
 		case MainMenu::ReturnToMap:
-			Fade_->ShowFadeOut();
-			IsClear_ = true;
+			GoMain_ = true;
+			SceneChange();
 			break;
 		case MainMenu::Setting:
 			break;
 		case MainMenu::ReturnToMenu:
+			GoTitle_ = true;
+			SceneChange();
 			break;
 		default:
 			break;
@@ -151,6 +162,25 @@ void PlayLevel::KeyCheckInMenu()
 		}
 	}
 	Menu_->KeyPush();
+}
+
+void PlayLevel::SceneChange()
+{
+	GameEngineSound::Update();
+	if (IsClear_ == true)
+	{
+		GameEngineSound::SoundPlayOneShot("Clear.ogg");
+		BackGroundMusicControl_.Stop();
+		ClearWait = 3.0f;
+		ClearScene_->On();
+		return;
+	}
+	if (GoMain_ == true || GoTitle_ == true)
+	{
+		Fade_->ShowFadeOut();
+		BackGroundMusicControl_.Stop();
+		return;
+	}
 }
 
 void PlayLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
@@ -286,6 +316,8 @@ void PlayLevel::ReSetStage()
 	IsReset_ = false;
 	IsOver_ = false;
 	IsPause_ = false;
+	GoMain_ = false;
+	GoTitle_ = false;
 	AllCoordinate_.clear();
 	AllMoveHistory_.clear();
 	CurrentMap_.clear();
@@ -1208,11 +1240,9 @@ std::list<Coordinate*>::iterator& PlayLevel::MoveBack(std::list<Coordinate*>::it
 
 void PlayLevel::ClearStage()
 {
-	GameEngineSound::SoundPlayOneShot("Clear.ogg");
-	BackGroundMusicControl_.Stop();
 	IsClear_ = true;
-	ClearWait = 3.0f;
-	ClearScene_->On();
+	SceneChange();
+
 }
 
 void PlayLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)

@@ -83,11 +83,15 @@ private:
 	GameHelpMoveUI* MoveUI_;
 	GameHelpOverUI* OverUI_;
 	PlayAndMainLevelMenu* Menu_;
+	bool GoMain_;
+	bool GoTitle_;
 	bool IsPause_;
 	void KeyCheckInMenu();
 	void ShowPlayMode();
 	void ShowMenuMode();
 	//
+
+	void SceneChange();
 	void BeforeMove();
 	void AfterMove();
 	void BackTothePast();
