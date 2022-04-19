@@ -19,6 +19,15 @@ enum class ChangeLevel
 	MainLevel,
 	PlayLevel,
 };
+enum class MainMenu
+{
+	Resume,
+	ReStart,
+	ReturnToMap,
+	Setting,
+	ReturnToMenu,
+};
+
 enum class BabaLocation
 {
 	Baba,

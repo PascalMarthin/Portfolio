@@ -56,6 +56,11 @@ public:
 		Scale_ = _Value;
 	}
 
+	inline void NextLevelOn()
+	{
+		NextLevelOn_ = true;
+	}
+
 	void SetOrder(int _Order) override;
 
 protected:
@@ -66,8 +71,8 @@ protected:
 	// 지속적으로 게임이 실행될 떄 호출
 	virtual void Render() {}
 
-	virtual void LevelChangeStart() {}
-	virtual void LevelChangeEnd() {}
+	virtual void LevelChangeStart(GameEngineLevel* _PrevLevel) {}
+	virtual void LevelChangeEnd(GameEngineLevel* _NextLevel) {}
 
 
 	// 디버그 렌더
@@ -82,6 +87,14 @@ private:
 	GameEngineLevel* Level_;
 	float4 Position_;
 	float4 Scale_;
+
+	bool NextLevelOn_;
+
+	inline void NextLevelOff()
+	{
+		NextLevelOn_ = false;
+	}
+
 
 	// 이 객체를 생성 시켜준 레벨
 	inline void SetLevel(GameEngineLevel* _Level)

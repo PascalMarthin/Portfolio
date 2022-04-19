@@ -6,6 +6,7 @@
 #include <GameEngineBase/GameEngineTime.h>
 #include <GameEngineBase/GameEngineSound.h>
 
+
 std::map<std::string, GameEngineLevel*> GameEngine::AllLevel_;
 GameEngineLevel* GameEngine::CurrentLevel_ = nullptr;
 GameEngineLevel* GameEngine::NextLevel_ = nullptr;
@@ -82,17 +83,20 @@ void GameEngine::EngineLoop()
 
         if (nullptr != CurrentLevel_)
         {
-            CurrentLevel_->ActorLevelChangeEnd();
-            CurrentLevel_->LevelChangeEnd();
+            CurrentLevel_->ActorLevelChangeEnd(NextLevel_);
+            CurrentLevel_->LevelChangeEnd(NextLevel_);
+
+            CurrentLevel_->ObjectLevelMoveCheck(NextLevel_);
+
         }
 
-        // NextLevel이 CurrentLevel로 전환
+        GameEngineLevel* PrevLevel = CurrentLevel_;
         CurrentLevel_ = NextLevel_;
 
         if (nullptr != CurrentLevel_)
         {
-            CurrentLevel_->LevelChangeStart();
-            CurrentLevel_->ActorLevelChangeStart();
+            CurrentLevel_->LevelChangeStart(PrevLevel);
+            CurrentLevel_->ActorLevelChangeStart(PrevLevel);
         }
 
         NextLevel_ = nullptr;

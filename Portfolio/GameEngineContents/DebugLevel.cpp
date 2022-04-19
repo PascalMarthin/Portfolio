@@ -17,8 +17,3 @@ void DebugLevel::Update()
 {
 
 }
-
-void DebugLevel::LevelChangeStart()
-{
-
-}

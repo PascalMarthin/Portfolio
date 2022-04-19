@@ -193,7 +193,7 @@ void MainLevel::IntotheStage()
 	BackGroundMusicControl_.Stop();
 }
 
-void MainLevel::LevelChangeStart()
+void MainLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	GameEngineSound::Update();
 	Fade_->ShowFadeIn();
@@ -222,7 +222,7 @@ void MainLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 	}
 }
 
-void MainLevel::LevelChangeEnd()
+void MainLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Fade_->Reset();
 }

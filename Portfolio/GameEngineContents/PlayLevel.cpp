@@ -118,11 +118,42 @@ void PlayLevel::KeyCheckInMenu()
 		if (IsPause_ == true)
 		{
 			ShowPlayMode();
+			return;
 		}
 	}
+	else if (GameEngineInput::GetInst()->IsDown("Space"))
+	{
+		MainMenu GetCurrentMenu = Menu_->GetCurrentMenu();
+		switch (GetCurrentMenu)
+		{
+		case MainMenu::Resume:
+			ShowPlayMode();
+			return;
+			break;
+		case MainMenu::ReStart:
+			ReGame();
+			return;
+			break;
+		case MainMenu::ReturnToMap:
+			Fade_->ShowFadeOut();
+			IsClear_ = true;
+			break;
+		case MainMenu::Setting:
+			break;
+		case MainMenu::ReturnToMenu:
+			break;
+		default:
+			break;
+		}
+		if (IsPause_ == true)
+		{
+
+		}
+	}
+	Menu_->KeyPush();
 }
 
-void PlayLevel::LevelChangeEnd()
+void PlayLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Fade_->Reset();
 	EndStage();
@@ -136,7 +167,7 @@ void PlayLevel::LevelChangeEnd()
 		MoveUI_ = nullptr;
 	}
 }
-void PlayLevel::LevelChangeStart()
+void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	GameEngineSound::Update();
 	BackGroundMusicControl_ = GameEngineSound::SoundPlayControl("baba.ogg");
@@ -238,12 +269,14 @@ void PlayLevel::SetStage()
 	BackGround_->CreateRendererToScale("Stage0.bmp", { MapScale_.x * DotSizeX, MapScale_.y * DotSizeY });
 	GameWindowStartPosX_ = (GameEngineWindow::GetScale().x - MapScale_.x * DotSizeX) / 2;
 	GameWindowStartPosY_ = (GameEngineWindow::GetScale().y - MapScale_.y * DotSizeY) / 2;
+	ShowPlayMode();
 	CreatMap(StageData::Inst_->StageData_[CurrentStage_]);
 }
 
 void PlayLevel::ReSetStage()
 {
 	GameEngineSound::Update();
+	ShowPlayMode();
 	GameWindowStartPosX_ = 0;
 	GameWindowStartPosY_ = 0;
 	CurrentStage_ = Stage::MainStage;
@@ -733,18 +766,8 @@ bool PlayLevel::KeyCheck()
 	}
 	if (GameEngineInput::GetInst()->IsDown("R"))
 	{
-		if (IsOver_ == true)
-		{
-			GameEngineSound::Update();
-			BackGroundNoiseControl_.Stop();
-			BackGroundMusicControl_.SetVolume(1.0f);
-			OverUI_->SetBack();
-			IsOver_ = false;
-		}
-		IsReset_ = true;
-		GameEngineSound::SoundPlayOneShot("Retrun.ogg");
-		Fade_->ShowFadeOut();
-		return true;
+		ReGame();
+		return false;
 	}
 	if (GameEngineInput::GetInst()->IsDown("Z"))
 	{
@@ -770,14 +793,31 @@ bool PlayLevel::KeyCheck()
 	return false;
 }
 
+void PlayLevel::ReGame()
+{
+	if (IsOver_ == true)
+	{
+		GameEngineSound::Update();
+		BackGroundNoiseControl_.Stop();
+		BackGroundMusicControl_.SetVolume(1.0f);
+		OverUI_->SetBack();
+		IsOver_ = false;
+	}
+	IsReset_ = true;
+	GameEngineSound::SoundPlayOneShot("Retrun.ogg");
+	Fade_->ShowFadeOut();
+}
+
 void PlayLevel::ShowMenuMode()
 {
+	Menu_->SetMenuOn();
 	GameEngineTime::GetInst()->SetTimeScale(0, 0.0f);
 	IsPause_ = true;
 }
 
 void PlayLevel::ShowPlayMode()
 {
+	Menu_->SetMenuOff();
 	GameEngineTime::GetInst()->SetTimeScale(0, 1.0f);
 	IsPause_ = false;
 }
