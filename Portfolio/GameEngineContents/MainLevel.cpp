@@ -15,12 +15,17 @@ Stage MainLevel::CurrentStage_ = Stage::MainStage;
 
 MainLevel::MainLevel()
 	:GameWindowStartPosX_(0),
-	GameWindowStartPosY_(0) ,
-	MapScale_({0, 0}) ,
-	MainCursorPos_({0, 0}),
+	GameWindowStartPosY_(0),
+	MapScale_({ 0, 0 }),
+	MainCursorPos_({ 0, 0 }),
 	MainCursor_(nullptr),
 	Fade_(nullptr),
-	StageName_(nullptr)
+	StageName_(nullptr),
+	Menu_(nullptr),
+	IsPause_(false),
+	IntoStage_(false),
+	IntoTitle_(false),
+	IntoMain_(false)
 {
 }
 
@@ -36,6 +41,9 @@ void MainLevel::Loading()
 		Fade_->Reset();
 
 		StageName_ = CreateActor<StageName>(3);
+	}
+	{
+		Menu_ = CreateActor<PlayAndMainLevelMenu>(8);
 	}
 	MapScale_ = StageData::Inst_->Scale_[Stage::MainStage];
 
@@ -108,26 +116,65 @@ bool MainLevel::KeyPush()
 	}
 
 
-	if (GameEngineInput::GetInst()->IsDown("Space"))
+	if (GameEngineInput::GetInst()->IsDown("Space") || GameEngineInput::GetInst()->IsDown("Enter"))
 	{
 		if (CurrentStage_ != Stage::MainStage)
 		{
-			IntotheStage();
+			IntoStage_ = true;
+			IntoLevel();
 		}
 		return true;
+	}
+
+	if (GameEngineInput::GetInst()->IsDown("ESC"))
+	{
+		if (IsPause_ == false)
+		{
+			ShowMenuMode();
+		}
+		return false;
 	}
 	return false;
 }
 
+void MainLevel::ShowMenuMode()
+{
+	Menu_->SetMenuOn();
+	GameEngineTime::GetInst()->SetTimeScale(0, 0.0f);
+	IsPause_ = true;
+}
+void MainLevel::ShowMainMode()
+{
+	Menu_->SetMenuOff();
+	GameEngineTime::GetInst()->SetTimeScale(0, 1.0f);
+	IsPause_ = false;
+}
+
 void MainLevel::Update()
 {
-	if (Fade_->IsFadeOut() == true && Fade_->IsChangeScreen() == false)
+	if (Fade_->IsFadeOut() == true && Fade_->IsChangeScreen() == false && (IntoStage_ == true || IntoTitle_ == true || IntoMain_ == true))
 	{
-		GameEngine::GetInst().ChangeLevel("PlayLevel");
+		if (IntoStage_ == true)
+		{
+			GameEngine::GetInst().ChangeLevel("PlayLevel");
+		}
+		else if (IntoTitle_ == true)
+		{
+			GameEngine::GetInst().ChangeLevel("TitleLevel");
+		}
+		else if (IntoMain_ == true)
+		{
+			GameEngine::GetInst().ChangeLevel("MainLevel");
+		}
 		return;
 	}
 	if (Fade_->IsChangeScreen() == true)
 	{
+		return;
+	}
+	if (IsPause_ == true)
+	{
+		KeyPushInMenu();
 		return;
 	}
 	CursorPosCheck();
@@ -180,14 +227,55 @@ void MainLevel::CursorPosCheck()
 	}
 }
 
-
+void MainLevel::KeyPushInMenu()
+{
+	if (GameEngineInput::GetInst()->IsDown("Esc"))
+	{
+		if (IsPause_ == true)
+		{
+			ShowMainMode();
+			return;
+		}
+	}
+	if (GameEngineInput::GetInst()->IsDown("Space"))
+	{
+		MainMenu GetCurrentMenu = Menu_->GetCurrentMenu();
+		switch (GetCurrentMenu)
+		{
+		case MainMenu::Resume:
+			ShowMainMode();
+			return;
+			break;
+		case MainMenu::ReStart:
+			IntoMain_ = true;
+			IntoLevel();
+			return;
+			break;
+		case MainMenu::ReturnToMap:
+			return;
+			break;
+		case MainMenu::Setting:
+			break;
+		case MainMenu::ReturnToMenu:
+			IntoTitle_ = true;
+			IntoLevel();
+			return;
+			break;
+		default:
+			break;
+		}
+		return;
+	}
+	Menu_->KeyPush();
+}
 void MainLevel::ShowStageTitle()
 {
 	
 }
 
-void MainLevel::IntotheStage()
+void MainLevel::IntoLevel()
 {
+
 	Fade_->ShowFadeOut();
 	GameEngineSound::SoundPlayOneShot("Retrun.ogg");
 	BackGroundMusicControl_.Stop();
@@ -195,6 +283,9 @@ void MainLevel::IntotheStage()
 
 void MainLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
+	IntoTitle_ = false;
+	IntoStage_ = false;
+	IntoMain_ = false;
 	GameEngineSound::Update();
 	Fade_->ShowFadeIn();
 	BackGroundMusicControl_ = GameEngineSound::SoundPlayControl("map.ogg");
@@ -224,5 +315,6 @@ void MainLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 
 void MainLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+	ShowMainMode();
 	Fade_->Reset();
 }

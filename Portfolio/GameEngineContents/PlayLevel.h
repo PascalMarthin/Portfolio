@@ -86,7 +86,7 @@ private:
 	bool GoMain_;
 	bool GoTitle_;
 	bool IsPause_;
-	void KeyCheckInMenu();
+	void KeyPushInMenu();
 	void ShowPlayMode();
 	void ShowMenuMode();
 	//

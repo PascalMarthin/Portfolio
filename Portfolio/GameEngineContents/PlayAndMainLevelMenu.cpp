@@ -50,7 +50,7 @@ void PlayAndMainLevelMenu::Start()
 		ReStartPos_ = { 0 , -220 };
 		ReturnToMapPos_ = { 0 , -160 };
 		SettingPos_ = { 0 , -100 };
-		ReturnToTitlePos_ = { 0 , 120 };
+		ReturnToTitlePos_ = { 0 , 50 };
 	}
 	CurrentMenu_ = MainMenu::Resume;
 	SetOrder(8);

@@ -5,6 +5,7 @@
 #include "GamePlayEnum.h"
 #include "Fade_InAndOut.h"
 #include "StageName.h"
+#include "PlayAndMainLevelMenu.h"
 
 // Ό³Έν :
 class Coordinate;
@@ -34,7 +35,7 @@ protected:
 
 private:
 	static Stage CurrentStage_;
-	void IntotheStage();
+	void IntoLevel();
 	bool KeyPush();
 	void CursorPosCheck();
 	void ShowStageTitle();
@@ -47,6 +48,17 @@ private:
 	float GameWindowStartPosY_;
 
 	float4 MainCursorPos_;
+
+	bool IntoStage_;
+	bool IntoTitle_;
+	bool IntoMain_;
+	//
+	PlayAndMainLevelMenu* Menu_;
+	void ShowMenuMode();
+	void ShowMainMode();
+	bool IsPause_;
+	void KeyPushInMenu();
+	//
 
 	void CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage);
 	StageName* StageName_;

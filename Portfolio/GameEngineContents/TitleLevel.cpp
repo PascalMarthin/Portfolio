@@ -21,6 +21,8 @@ TitleLevel::~TitleLevel()
 
 void TitleLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
+	GameEngineSound::Update();
+	Fade_->ShowFadeIn();
 	BackGroundMusicControl_ = GameEngineSound::SoundPlayControl("menu.ogg");
 }
 
@@ -116,6 +118,7 @@ void TitleLevel::Update()
 
 
 }
+
 void TitleLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	Fade_->Reset();

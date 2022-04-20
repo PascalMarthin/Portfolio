@@ -98,7 +98,7 @@ void PlayLevel::Update()
 	}
 	if (IsPause_ == true)
 	{
-		KeyCheckInMenu();
+		KeyPushInMenu();
 		return;
 	}
 
@@ -120,7 +120,7 @@ void PlayLevel::Update()
 
 }
 
-void PlayLevel::KeyCheckInMenu()
+void PlayLevel::KeyPushInMenu()
 {
 	if (GameEngineInput::GetInst()->IsDown("ESC"))
 	{
@@ -155,10 +155,6 @@ void PlayLevel::KeyCheckInMenu()
 			break;
 		default:
 			break;
-		}
-		if (IsPause_ == true)
-		{
-
 		}
 	}
 	Menu_->KeyPush();
@@ -197,6 +193,7 @@ void PlayLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		MoveUI_ = nullptr;
 	}
 }
+
 void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	GameEngineSound::Update();
