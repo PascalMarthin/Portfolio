@@ -28,7 +28,6 @@ PlayLevel::PlayLevel()
 	Fade_(nullptr),
 	IsReset_(false),
 	PlayLevelEffectManager_(nullptr),
-	VolumeManager_(nullptr),
 	IsOver_(false),
 	MoveUI_(nullptr),
 	OverUI_(nullptr),
@@ -50,9 +49,6 @@ void PlayLevel::Loading()
 	{
 		Fade_ = CreateActor<Fade_InAndOut>(10);
 		Fade_->Reset();
-	}
-	{
-		VolumeManager_ = CreateActor<SoundVolumeManager>(0);
 	}
 	Menu_ = CreateActor<PlayAndMainLevelMenu>(0);
 	PlayLevelEffectManager_ = CreateActor<EffectManager>(7);
@@ -650,7 +646,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 				{
 					iter->UpdateOFF();
 					IsDefeat = true;
-					PlayLevelEffectManager_->ShowRandomEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Defeat_Effect_sheet.bmp"), Random_, 4, 7);
+					PlayLevelEffectManager_->ShowRandomEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Defeat_Effect_sheet.bmp"), 4, 7);
 				}
 			}
 		}
@@ -667,7 +663,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 					{
 						iter->UpdateOFF();
 						IsSink = true;
-						PlayLevelEffectManager_->ShowRandomEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Sink_Effect_sheet.bmp"), Random_, 4, 7);
+						PlayLevelEffectManager_->ShowRandomEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Sink_Effect_sheet.bmp"), 4, 7);
 					}
 				}
 			}
@@ -684,7 +680,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 				{
 					iter->UpdateOFF();
 					IsMelt = true;
-					PlayLevelEffectManager_->ShowRandomEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Hot_Effect_sheet.bmp"), Random_, 3, 5);
+					PlayLevelEffectManager_->ShowRandomEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Hot_Effect_sheet.bmp"),  3, 5);
 				}
 			}
 		}
@@ -701,6 +697,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 					if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsUnitUpdate() == true)
 					{
 						ClearStage();
+						PlayLevelEffectManager_->ShowRandomEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Clear_Effect_sheet.bmp"), 7, 10, 0.27f);
 					}
 				}
 			}
@@ -1071,14 +1068,14 @@ bool PlayLevel::CheckMapAllStat(Direction _MoveDir)
 							switch ((*StartIterList)->GetUnitObjectInst()->GetName())
 							{
 							case ObjectName::Baba_Unit:
-								PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Baba_Effect_sheet.bmp"), Random_, _MoveDir, 0.1f);
+								PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Baba_Effect_sheet.bmp"),  _MoveDir, 0.1f);
 								break;
 							case ObjectName::Flag_Unit:
 							case ObjectName::Rock_Unit:
-								PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Rock_Effect_sheet.bmp"), Random_, _MoveDir, 0.1f);
+								PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Rock_Effect_sheet.bmp"),  _MoveDir, 0.1f);
 								break;
 							case ObjectName::Wall_Unit:
-								PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("wall_Effect_sheet.bmp"), Random_, _MoveDir, 0.1f);
+								PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("wall_Effect_sheet.bmp"),  _MoveDir, 0.1f);
 								break;
 							default:
 								break;
@@ -1156,14 +1153,14 @@ bool PlayLevel::CheckBitMove(const int _x, const int _y, Direction _MoveDir)
 					switch ((*StartIterList)->GetUnitObjectInst()->GetName())
 					{
 					case ObjectName::Baba_Unit:
-						PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Baba_Effect_sheet.bmp"), Random_, _MoveDir, 0.1f);
+						PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Baba_Effect_sheet.bmp"),  _MoveDir, 0.1f);
 						break;
 					case ObjectName::Flag_Unit:
 					case ObjectName::Rock_Unit:
-						PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Rock_Effect_sheet.bmp"), Random_, _MoveDir, 0.1f);
+						PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("Rock_Effect_sheet.bmp"), _MoveDir, 0.1f);
 						break;
 					case ObjectName::Wall_Unit:
-						PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("wall_Effect_sheet.bmp"), Random_, _MoveDir, 0.1f);
+						PlayLevelEffectManager_->ShowMoveEffect((*StartIterList)->GetLUPos(), GameEngineImageManager::GetInst()->Find("wall_Effect_sheet.bmp"),  _MoveDir, 0.1f);
 						break;
 					default:
 						break;
@@ -1256,6 +1253,7 @@ void PlayLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)
 			Coordinate* Coordi = CreateActor<Coordinate>(1);
 			Coordi->SetPos({ static_cast<float>(x), static_cast<float>(y) }, { GameWindowStartPosX_ + static_cast<float>(x * DotSizeX), GameWindowStartPosY_ + static_cast<float>(y * DotSizeY) });
 			Coordi->SetValue(Value);
+			Coordi->EffectManager_ = PlayLevelEffectManager_;
 			CurrentMap_[y][x].push_back(Coordi);
 			AllCoordinate_.push_back(Coordi);
 		}

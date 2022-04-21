@@ -11,6 +11,7 @@
 #define SStop 32
 #define SWin 64
 #define SYou 128
+
 enum class ChangeLevel
 {
 	Error,

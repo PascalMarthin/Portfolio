@@ -317,15 +317,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="SettingValue.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Sink_Text.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="Skull.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="SoundVolumeManager.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -527,15 +527,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="SettingValue.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Sink_Text.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="Skull.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="SoundVolumeManager.cpp">
       <SubType>
       </SubType>
     </ClCompile>

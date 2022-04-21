@@ -7,7 +7,7 @@
 #include "GamePlayUnitText.h"
 #include <vector>
 
-
+class EffectManager;
 class Coordinate : public GameEngineActor
 {
 public:
@@ -113,6 +113,7 @@ public:
 	void ChangeBackDir(Direction _Dir);
 	void ChangeBackPos(const float4& _Pos, const float4& _CPos, Direction _Dir);
 	void SetValue(GamePlayObject* _Object, Direction _Dir = Direction::Right, const float4& _Size = { DotSizeX, DotSizeY });
+	EffectManager* EffectManager_;
 
 protected:
 	void Start() override;
@@ -125,6 +126,7 @@ private:
 	float4 CurrentPos_;
 	float4 CurrentLUPos_;
 	int PastByCurrentRange_;
+	int RandomIdx_;
 
 	
 

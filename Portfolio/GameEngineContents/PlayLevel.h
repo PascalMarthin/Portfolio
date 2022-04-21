@@ -14,7 +14,6 @@
 #include "ClearScene.h"
 #include "EffectManager.h"
 #include "Fade_InAndOut.h"
-#include "SoundVolumeManager.h"
 #include "GameHelpMoveUI.h"
 #include "GameHelpOverUI.h"
 #include "PlayAndMainLevelMenu.h"
@@ -71,7 +70,6 @@ private:
 	void PlaySoundChange();
 	GameEngineSoundPlayer BackGroundMusicControl_;
 	GameEngineSoundPlayer BackGroundNoiseControl_;
-	SoundVolumeManager* VolumeManager_;
 	//
 
 	// ¿Ã∆Â∆Æ

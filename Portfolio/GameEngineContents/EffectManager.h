@@ -20,8 +20,9 @@ public:
 	EffectManager& operator=(const EffectManager& _Other) = delete;
 	EffectManager& operator=(EffectManager&& _Other) noexcept = delete;
 
-	void ShowRandomEffect(const float4& _LUPos, GameEngineImage* _EffectImage, GameEngineRandom* _Random, int _Min, int _Max , float CurrentInterTime_ = 0.1f);
-	void ShowMoveEffect(const float4& _LUPos, GameEngineImage* _EffectImage, GameEngineRandom* _Random, Direction _Dir, float _InterTime);
+	void ShowRandomEffect(const float4& _LUPos, GameEngineImage* _EffectImage,int _Min, int _Max , float CurrentInterTime_ = 0.1f);
+	void ShowMoveEffect(const float4& _LUPos, GameEngineImage* _EffectImage,  Direction _Dir, float _InterTime);
+	bool ShowStatEffect(const float4& _LUPos, GameEngineImage* _EffectImage, int _Min, int _Max);
 
 protected:
 	void Start() override;
@@ -30,12 +31,14 @@ protected:
 
 private:
 	std::list<QueueEffect*> QueueEffect_;
+	GameEngineRandom* Random_;
 };
+
 
 class QueueEffect
 {
 public:
-	QueueEffect(const float4& _Pos, GameEngineImage* _EffectImage, GameEngineRandom* _Random, int _EndFrame, float _InterTime);
+	QueueEffect(const float4& _Pos, GameEngineImage* _EffectImage, int _EndFrame, float _InterTime);
 	~QueueEffect();
 
 	void PlusPos(float _Index);
@@ -54,10 +57,9 @@ public:
 	float4 CurrentImgScale_;
 	float4 CurrentImgPivot_;
 
-	GameEngineRandom* Random_;
 	GameEngineImage* EffectImage_;
 	std::vector<float4> PosList_;
-	const float4& Pos_;
+	float4 Pos_;
 
 	bool MoveEffect_;
 private:

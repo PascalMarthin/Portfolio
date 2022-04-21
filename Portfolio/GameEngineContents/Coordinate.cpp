@@ -1,6 +1,7 @@
 #include "Coordinate.h"
 #include <GameEngine/GameEngine.h>
 #include <GameEngineBase/GameEngineWindow.h>
+#include "EffectManager.h"
 #include "Text.h"
 #include "Dummy_Text.h"
 
@@ -27,6 +28,8 @@ Coordinate::Coordinate()
 	, BridgeUnit_(0)
 	, UnitUpdate_(true)
 	, IsDir_(false)
+	, EffectManager_(nullptr)
+	, RandomIdx_(5000)
 {
 }
 
@@ -213,6 +216,27 @@ void Coordinate::Update()
 		}
 		FrameUpdate();
 
+	}
+
+	//if (UnitObject_->FindStat(SWin) && EffectManager_ != nullptr)
+	//{
+	//	bool Effcet = EffectManager_->ShowStatEffect(PastLUPos_, GameEngineImageManager::GetInst()->Find("Win_Effect_sheet.bmp"), 0, RandomIdx_);
+	//	if (Effcet == true)
+	//	{
+	//		RandomIdx_ = 3000;
+	//	}
+	//	else if (Effcet == false)
+	//	{
+	//		RandomIdx_ -= 5;
+	//	}
+	//	if (RandomIdx_ < 0)
+	//	{
+	//		RandomIdx_ = 0;
+	//	}
+	//}
+	if (UnitObject_->FindStat(SHot) && EffectManager_ != nullptr)
+	{
+		EffectManager_->ShowStatEffect(PastLUPos_, GameEngineImageManager::GetInst()->Find("Hot_Effect_sheet.bmp"), 0, 20000);
 	}
 
 }

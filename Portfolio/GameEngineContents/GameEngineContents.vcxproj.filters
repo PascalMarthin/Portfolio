@@ -140,9 +140,6 @@
     <ClCompile Include="StageName.cpp">
       <Filter>LevelClass\Main</Filter>
     </ClCompile>
-    <ClCompile Include="SoundVolumeManager.cpp">
-      <Filter>Gobal</Filter>
-    </ClCompile>
     <ClCompile Include="GameHelpMoveUI.cpp">
       <Filter>LevelClass\Play</Filter>
     </ClCompile>
@@ -154,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="DebugLevel.cpp">
       <Filter>Level\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingValue.cpp">
+      <Filter>Gobal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -299,9 +299,6 @@
     <ClInclude Include="StageName.h">
       <Filter>LevelClass\Main</Filter>
     </ClInclude>
-    <ClInclude Include="SoundVolumeManager.h">
-      <Filter>Gobal</Filter>
-    </ClInclude>
     <ClInclude Include="GameHelpMoveUI.h">
       <Filter>LevelClass\Play</Filter>
     </ClInclude>
@@ -313,6 +310,9 @@
     </ClInclude>
     <ClInclude Include="DebugLevel.h">
       <Filter>Level\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingValue.h">
+      <Filter>Gobal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
