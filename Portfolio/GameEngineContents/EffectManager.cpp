@@ -86,16 +86,16 @@ void EffectManager::ShowMoveEffect(const float4& _LUPos, GameEngineImage* _Effec
 	switch (_Dir)
 	{
 	case Direction::Right:
-		Group->PosList_.push_back({ Random_->RandomFloat(_LUPos.x + 1.0f, _LUPos.x + 8.0f), _LUPos.y});
+		Group->PosList_.push_back({ Random_->RandomFloat(_LUPos.x - 8.0f, _LUPos.x - 1.0f), _LUPos.y});
 		break;
 	case Direction::Up:
-		Group->PosList_.push_back({ _LUPos.x, Random_->RandomFloat(_LUPos.y - 8.0f, _LUPos.y - 1.0f) });
+		Group->PosList_.push_back({ _LUPos.x, Random_->RandomFloat(_LUPos.y + 1.0f, _LUPos.y + 8.0f) });
 		break;
 	case Direction::Left:
-		Group->PosList_.push_back({ Random_->RandomFloat(_LUPos.x - 8.0f, _LUPos.x - 1.0f), _LUPos.y });
+		Group->PosList_.push_back({ Random_->RandomFloat(_LUPos.x + 1.0f, _LUPos.x + 8.0f), _LUPos.y });
 		break;
 	case Direction::Down:
-		Group->PosList_.push_back({ _LUPos.x, Random_->RandomFloat(_LUPos.y + 1.0f, _LUPos.y + 8.0f) });
+		Group->PosList_.push_back({ _LUPos.x, Random_->RandomFloat(_LUPos.y - 8.0f, _LUPos.y - 1.0f) });
 		break;
 	}
 	Group->MoveEffect_ = true;
@@ -189,9 +189,9 @@ bool QueueEffect::FrameUpdate()
 		{
 			PlusPos(0.01f);
 		}
-		else
+ 		else
 		{
-			PlusPos(2.009f);
+			PlusPos(3.300f);
 		}
 	}
 	else
