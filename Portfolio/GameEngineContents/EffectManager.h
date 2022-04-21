@@ -42,6 +42,7 @@ public:
 	~QueueEffect();
 
 	void PlusPos(float _Index);
+	void SameSpeedPos();
 	bool FrameUpdate();
 
 
@@ -62,5 +63,7 @@ public:
 	float4 Pos_;
 
 	bool MoveEffect_;
+	bool WinEffect_;
+	float Speed_;
 private:
 };

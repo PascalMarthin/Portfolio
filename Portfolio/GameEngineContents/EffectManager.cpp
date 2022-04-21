@@ -36,11 +36,11 @@ bool EffectManager::ShowStatEffect(const float4& _LUPos, GameEngineImage* _Effec
 		_Max = _Min;
 		_Min = idx;
 	}
-	float4 Center(_LUPos.x + 10.0f, _LUPos.y + 10.0f);
 	//int RandomInt = Random_->RandomInt(_Min, _Max);
 	int RandomInt = 0;
 	if (RandomInt == Random_->RandomInt(_Min, _Max))
 	{
+		float4 Center(_LUPos.x + 10.0f, _LUPos.y + 10.0f);
 		QueueEffect* Group = new QueueEffect(Center, _EffectImage, static_cast<int>(_EffectImage->GetCutCount() - 1), 0.1f);
 		float x = Random_->RandomFloat(Center.x - static_cast<float>(DotSizeX / 2), Center.x + static_cast<float>(DotSizeX / 2));
 		float y = Random_->RandomFloat(Center.y - static_cast<float>(DotSizeY / 2), Center.y + static_cast<float>(DotSizeY / 2));
@@ -67,16 +67,38 @@ void EffectManager::ShowRandomEffect(const float4& _LUPos, GameEngineImage* _Eff
 		_Max = _Min;
 		_Min = idx;
 	}
-
-	QueueEffect* Group = new QueueEffect(_LUPos, _EffectImage, static_cast<int>(_EffectImage->GetCutCount() - 1), _InterTime);
-	int Index = Random_->RandomInt(_Min, _Max);
-	for (int i = 0; i < Index; i++)
+	
+	if (_EffectImage->GetNameConstRef() == "CLEAR_EFFECT_SHEET.BMP")
 	{
-		float x = Random_->RandomFloat(_LUPos.x - static_cast<float>(DotSizeX/2), _LUPos.x + static_cast<float>(DotSizeX/2));
-		float y = Random_->RandomFloat(_LUPos.y - static_cast<float>(DotSizeY/2), _LUPos.y + static_cast<float>(DotSizeY/2));
-		Group->PosList_.push_back({x, y});
+
+		int Index = Random_->RandomInt(_Min, _Max);
+		for (int i = 0; i < Index; i++)
+		{
+			float RandomInterTime = Random_->RandomFloat(_InterTime - _InterTime / 4, _InterTime + _InterTime / 2);
+			float Speed = Random_->RandomFloat(4.0f, 6.0f);
+			QueueEffect* Group = new QueueEffect(_LUPos, _EffectImage, static_cast<int>(_EffectImage->GetCutCount() - 1), RandomInterTime);
+			Group->WinEffect_ = true;
+			Group->Speed_ = Speed;
+			float x = Random_->RandomFloat(_LUPos.x - static_cast<float>(DotSizeX / 2), _LUPos.x + static_cast<float>(DotSizeX / 2));
+			float y = Random_->RandomFloat(_LUPos.y - static_cast<float>(DotSizeY / 2), _LUPos.y + static_cast<float>(DotSizeY / 2));
+			Group->PosList_.push_back({ x, y });
+			QueueEffect_.push_back(Group);
+		}
+
 	}
-	QueueEffect_.push_back(Group);
+	else
+	{
+		QueueEffect* Group = new QueueEffect(_LUPos, _EffectImage, static_cast<int>(_EffectImage->GetCutCount() - 1), _InterTime);
+		int Index = Random_->RandomInt(_Min, _Max);
+		for (int i = 0; i < Index; i++)
+		{
+			float x = Random_->RandomFloat(_LUPos.x - static_cast<float>(DotSizeX / 2), _LUPos.x + static_cast<float>(DotSizeX / 2));
+			float y = Random_->RandomFloat(_LUPos.y - static_cast<float>(DotSizeY / 2), _LUPos.y + static_cast<float>(DotSizeY / 2));
+			Group->PosList_.push_back({ x, y });
+		}
+		QueueEffect_.push_back(Group);
+	}
+
 }
 
 void EffectManager::ShowMoveEffect(const float4& _LUPos, GameEngineImage* _EffectImage, Direction _Dir, float _InterTime)
@@ -163,6 +185,8 @@ QueueEffect::QueueEffect(const float4& _Pos, GameEngineImage* _EffectImage, int 
 	, Pos_(_Pos)
 	, EffectImage_(_EffectImage)
 	, MoveEffect_(false)
+	, WinEffect_(false)
+	, Speed_(1.0f)
 {
 
 }
@@ -176,23 +200,59 @@ void QueueEffect::PlusPos(float _Index)
 {
 	for (float4& Iter : PosList_)
 	{
-		Iter += (Iter - Pos_) * _Index * GameEngineTime::GetInst()->GetDeltaTime(0);
+		Iter += (Iter - Pos_) * _Index * Speed_ * GameEngineTime::GetInst()->GetDeltaTime(0);
 	}
 
 }
- 
+
+void QueueEffect::SameSpeedPos()
+{
+	for (float4& Iter : PosList_)
+	{
+		Iter = Iter + ((Iter - Pos_) * Speed_ * GameEngineTime::GetInst()->GetDeltaTime(0));
+	}
+}
+
 bool QueueEffect::FrameUpdate()
 {
 	if (MoveEffect_ == true)
 	{
-		if (CurrentFrame_ >= 5)
-		{
-			PlusPos(0.01f);
-		}
- 		else
-		{
+		{	
 			PlusPos(3.300f);
 		}
+	}
+	else if (WinEffect_ == true)
+	{
+		switch (CurrentFrame_)
+		{
+		case 0:
+			SameSpeedPos();
+			break;
+		case 1:
+			PlusPos(0.18f);
+			break;
+		case 2:
+			PlusPos(0.08f);
+			break;
+		case 3:
+			PlusPos(0.01f);
+			break;
+		default:
+			break;
+		}
+		if (CurrentFrame_ == 0)
+		{
+		
+		}
+		else if (CurrentFrame_ > 2)
+		{
+			
+		}
+		else
+		{
+			
+		}
+		//
 	}
 	else
 	{
