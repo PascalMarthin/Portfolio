@@ -229,28 +229,19 @@ bool QueueEffect::FrameUpdate()
 			SameSpeedPos();
 			break;
 		case 1:
+			CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime(0);
 			PlusPos(0.18f);
 			break;
 		case 2:
+			CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime(0);
 			PlusPos(0.08f);
 			break;
 		case 3:
+			CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime(0);
 			PlusPos(0.01f);
 			break;
 		default:
 			break;
-		}
-		if (CurrentFrame_ == 0)
-		{
-		
-		}
-		else if (CurrentFrame_ > 2)
-		{
-			
-		}
-		else
-		{
-			
 		}
 		//
 	}
@@ -258,6 +249,7 @@ bool QueueEffect::FrameUpdate()
 	{
 		PlusPos(1.15f);
 	}
+
 	CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime(0);
 	if (0 >= CurrentInterTime_)
 	{
