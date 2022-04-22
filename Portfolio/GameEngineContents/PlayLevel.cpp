@@ -697,7 +697,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 					if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsUnitUpdate() == true)
 					{
 						ClearStage();
-						PlayLevelEffectManager_->ShowRandomEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Clear_Effect_sheet.bmp"), 7, 10, 0.35f);
+						PlayLevelEffectManager_->ShowRandomEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Clear_Effect_sheet.bmp"), 8, 11, 0.33f);
 					}
 				}
 			}
