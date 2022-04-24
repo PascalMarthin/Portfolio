@@ -22,7 +22,8 @@ StageData::~StageData()
 
 void StageData::DebugStage()
 {
-	
+	Scale_[Stage::DebugStage] = { 33, 18 };
+	StageData_[Stage::DebugStage][0][0] = ObjectName::Default;
 }
 
 void StageData::MainStage()
