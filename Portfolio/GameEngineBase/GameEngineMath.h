@@ -180,12 +180,12 @@ public:
 		return *this;
 	}
 
-	bool CompareInt2D(const float4& _Value)
+	bool CompareInt2D(const float4& _Value) const
 	{
 		return ix() == _Value.ix() && iy() == _Value.iy();
 	}
 
-	bool CompareInt3D(const float4& _Value)
+	bool CompareInt3D(const float4& _Value) const
 	{
 		return ix() == _Value.ix() &&
 			iy() == _Value.iy() &&
