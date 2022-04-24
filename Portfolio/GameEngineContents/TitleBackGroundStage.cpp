@@ -21,7 +21,7 @@ void TitleBackGroundStage::Start()
 
 	//CreateRendererToScale("TitleStage.bmp", GetScale()); 
 	CreateRenderer("TitleStage1.bmp", 1 , RenderPivot::LeftUp);
-	MoveSpeed_ = float4((GetScale().x - GameEngineWindow::GetScale().x) * 0.05f, (GetScale().y - GameEngineWindow::GetScale().y) * 0.05f);
+	MoveSpeed_ = float4((GetScale().x - GameEngineWindow::GetScale().x) * 0.03f, (GetScale().y - GameEngineWindow::GetScale().y) * 0.03f);
 }
 
 void TitleBackGroundStage::Update()	
