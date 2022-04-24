@@ -23,7 +23,232 @@ StageData::~StageData()
 void StageData::DebugStage()
 {
 	Scale_[Stage::DebugStage] = { 33, 18 };
-	StageData_[Stage::DebugStage][0][0] = ObjectName::Default;
+	StageData_[Stage::DebugStage][0][3] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][0][4] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][0][5] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][0][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][0][7] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][0][8] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][0][9] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][0][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][0][27] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][0][28] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][0][29] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][0][30] = ObjectName::Grass_Unit;
+
+	StageData_[Stage::DebugStage][1][3] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][1][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][1][11] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][1][19] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][1][20] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][1][21] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][1][28] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][1][29] = ObjectName::Grass_Unit;
+
+	StageData_[Stage::DebugStage][2][2] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][2][3] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][2][9] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][2][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][2][11] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][2][12] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][2][18] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][2][19] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][2][20] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][2][21] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][2][22] = ObjectName::Grass_Unit;
+
+	StageData_[Stage::DebugStage][3][2] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][3][3] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][3][4] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][3][8] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][3][9] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][3][10] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][3][11] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][3][12] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][3][19] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][3][20] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][3][21] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][3][27] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][3][28] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][3][29] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][3][30] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][3][31] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][3][32] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::DebugStage][4][0] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][4][1] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][4][2] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][4][3] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][4][4] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][4][5] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][4][7] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][4][8] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][4][9] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][4][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][4][11] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][4][12] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][4][19] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][4][20] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][4][27] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][4][28] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][4][29] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][4][30] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][4][31] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][4][32] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::DebugStage][5][0] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][5][1] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][5][2] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][5][3] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][5][4] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][5][5] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][5][5] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][5][7] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][5][27] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][5][28] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][5][29] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][5][30] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][5][31] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][5][32] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::DebugStage][6][0] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][6][1] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][6][2] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][6][3] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][4] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][5] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][6] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][7] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][13] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][14] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][15] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][16] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][17] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][18] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][19] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][20] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][21] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][22] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][23] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][24] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][6][31] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][6][32] = ObjectName::Grass_Unit;
+
+	StageData_[Stage::DebugStage][7][0] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][7][1] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][7][2] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][7][3] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][7][4] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][7][12] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][7][13] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][7][14] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][7][15] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][7][21] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][7][22] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][7][23] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][7][24] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::DebugStage][8][13] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][8][14] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][8][24] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::DebugStage][9][13] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][9][24] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::DebugStage][10][13] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][10][24] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::DebugStage][11][0] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][11][1] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][11][2] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][11][3] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][11][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][11][11] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][11][12] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][11][13] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][11][24] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::DebugStage][12][1] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][12][2] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][12][3] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][12][4] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][12][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][12][22] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][12][23] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][12][24] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][12][25] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][12][26] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][12][27] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][12][28] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::DebugStage][13][1] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][13][2] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][13][3] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][13][4] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][13][5] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][13][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][13][11] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][13][12] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][13][15] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][13][16] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][13][17] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][13][18] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][13][19] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][13][20] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][13][21] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][13][22] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][13][23] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][13][24] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][13][28] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::DebugStage][14][3] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][14][4] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][14][10] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][14][11] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][14][12] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][14][13] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][14][15] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][14][18] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][14][19] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][14][20] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][14][27] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][14][28] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::DebugStage][15][11] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][15][12] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][15][13] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][15][14] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][15][15] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][15][18] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][15][19] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][15][26] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][15][27] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][15][28] = ObjectName::Wall_Unit;
+
+	StageData_[Stage::DebugStage][16][18] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][16][19] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][16][20] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][16][21] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][16][24] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][16][25] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][16][26] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][16][27] = ObjectName::Brick_Unit;
+	StageData_[Stage::DebugStage][16][28] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][16][29] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][16][30] = ObjectName::Grass_Unit;
+
+	StageData_[Stage::DebugStage][17][21] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][17][22] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][17][23] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][17][24] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][17][25] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][17][26] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][17][27] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][17][28] = ObjectName::Wall_Unit;
+	StageData_[Stage::DebugStage][17][29] = ObjectName::Grass_Unit;
+	StageData_[Stage::DebugStage][17][30] = ObjectName::Grass_Unit;
+
+
 }
 
 void StageData::MainStage()

@@ -37,7 +37,7 @@ void StageName::Update()
 	{
 		iter.second->Off();
 	}
-	if (MainLevel::GetCurrentStage() != Stage::MainStage)
+	if (MainLevel::GetCurrentStage() != Stage::MainStage && MainLevel::GetCurrentStage() != Stage::DebugStage)
 	{
 		StageRenderer_[MainLevel::GetCurrentStage()]->On();
 	}

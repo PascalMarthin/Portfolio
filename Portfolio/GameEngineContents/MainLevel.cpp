@@ -190,7 +190,7 @@ void MainLevel::CursorPosCheck()
 {
 	if (MainCursorPos_.ix() == 9 && MainCursorPos_.iy() == 15)
 	{
-		CurrentStage_ = Stage::Stage0;
+		CurrentStage_ = Stage::DebugStage;
 
 	}
 	else if (MainCursorPos_.ix() == 10 && MainCursorPos_.iy() == 13)
