@@ -136,17 +136,20 @@ void PlayLevel::KeyPushInMenu()
 			return;
 			break;
 		case MainMenu::ReStart:
+			GameEngineSound::SoundPlayOneShot("Retrun.ogg");
 			ReGame();
 			return;
 			break;
 		case MainMenu::ReturnToMap:
 			GoMain_ = true;
+			GameEngineSound::SoundPlayOneShot("Retrun.ogg");
 			SceneChange();
 			break;
 		case MainMenu::Setting:
 			break;
 		case MainMenu::ReturnToMenu:
 			GoTitle_ = true;
+			GameEngineSound::SoundPlayOneShot("Retrun.ogg");
 			SceneChange();
 			break;
 		default:
@@ -159,20 +162,27 @@ void PlayLevel::KeyPushInMenu()
 void PlayLevel::SceneChange()
 {
 	GameEngineSound::Update();
+	if (IsOver_ == true)
+	{
+		BackGroundNoiseControl_.Stop();
+	}
 	if (IsClear_ == true)
 	{
 		GameEngineSound::SoundPlayOneShot("Clear.ogg");
 		BackGroundMusicControl_.Stop();
 		ClearWait = 3.0f;
 		ClearScene_->On();
+		GameEngineSound::Update();
 		return;
 	}
 	if (GoMain_ == true || GoTitle_ == true)
 	{
 		Fade_->ShowFadeOut();
 		BackGroundMusicControl_.Stop();
+		GameEngineSound::Update();
 		return;
 	}
+
 }
 
 void PlayLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
@@ -830,7 +840,6 @@ void PlayLevel::ReGame()
 		IsOver_ = false;
 	}
 	IsReset_ = true;
-	GameEngineSound::SoundPlayOneShot("Retrun.ogg");
 	Fade_->ShowFadeOut();
 }
 

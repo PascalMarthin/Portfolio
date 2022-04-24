@@ -45,6 +45,7 @@ private:
 	GameEngineImage* Setting_OFF_;
 	GameEngineImage* ReturnToTitle_ON_;
 	GameEngineImage* ReturnToTitle_OFF_;
+	GameEngineImage* Baba_;
 
 	float4 ResumePos_;
 	float4 ReStartPos_;
@@ -53,6 +54,13 @@ private:
 	float4 ReturnToTitlePos_;
 
 	MainMenu CurrentMenu_;
+	//
 
+	void BabaAnimation();
+	float CurrentInterTime_;
+	int CurrentFrame_;
+	float4 CurrentImgScale_;
+	float4 CurrentImgPivot_;
+	float4 BabaLocate_;
 };
 
