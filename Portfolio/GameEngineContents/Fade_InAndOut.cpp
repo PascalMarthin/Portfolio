@@ -79,7 +79,7 @@ void Fade_InAndOut::Update()
 				CurrentFrame_ = EndFrame_;
 			}
 		}
-		else if (EndFrame_ == CurrentFrame_)
+		if (EndFrame_ == CurrentFrame_)
 		{
 			WattingTime_ -= GameEngineTime::GetDeltaTime();
 			if (WattingTime_ < 0)
