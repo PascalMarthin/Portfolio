@@ -21,7 +21,7 @@ void TitleBackGroundStage::Start()
 
 	//CreateRendererToScale("TitleStage.bmp", GetScale()); 
 	CreateRenderer("TitleStage1.bmp", 1 , RenderPivot::LeftUp);
-	MoveSpeed_ = float4((GetScale().x - GameEngineWindow::GetScale().x) * 0.1, (GetScale().y - GameEngineWindow::GetScale().y) * 0.1);
+	MoveSpeed_ = float4((GetScale().x - GameEngineWindow::GetScale().x) * 0.05f, (GetScale().y - GameEngineWindow::GetScale().y) * 0.05f);
 }
 
 void TitleBackGroundStage::Update()	
@@ -31,9 +31,9 @@ void TitleBackGroundStage::Update()
 	float y = GetLevel()->GetCameraPos().y;
 	float4 AA = GameEngineWindow::GetScale();
 	float4 BB = GetScale();
-	if (GetScale().x - GameEngineWindow::GetScale().x < GetLevel()->GetCameraPos().x || GetScale().y - GameEngineWindow::GetScale().y < GetLevel()->GetCameraPos().y)
+	if (1584.0f < GetLevel()->GetCameraPos().x && 864.0f < GetLevel()->GetCameraPos().y)
 	{
-		GetLevel()->SetCameraPos(float4::ZERO);
+		GetLevel()->SetCameraPos(float4(GetLevel()->GetCameraPos().x - 1584, GetLevel()->GetCameraPos().y - 864));
 	}
 }
 
