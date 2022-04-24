@@ -24,6 +24,7 @@ void TitleBaba::Start()
 	Render_ = CreateRenderer(3 ,RenderPivot::CENTER, BabaPos_);
 	Render_->CreateAnimation("unit_baba_Sheet.bmp", "Baba", 0, 2, ImageSpeed, true);
 	Render_->ChangeAnimation("Baba");
+	Render_->CameraEffectOff();
 }
 
 void TitleBaba::Update()

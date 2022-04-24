@@ -6,7 +6,7 @@
 #include "TitleMenu.h"
 #include "GamePlayEnum.h"
 #include "TitleBaba.h"
-
+#include "TitleBackGroundStage.h"
 
 
 TitleLevel::TitleLevel() 
@@ -28,6 +28,8 @@ void TitleLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 void TitleLevel::Loading()
 {
+	
+	CreateActor<TitleBackGroundStage>(1);
 	CreateActor<BackGround>(0);
 	{
 		Fade_ = CreateActor<Fade_InAndOut>(10);

@@ -155,6 +155,9 @@
     <ClCompile Include="SettingValue.cpp">
       <Filter>Gobal</Filter>
     </ClCompile>
+    <ClCompile Include="TitleBackGroundStage.cpp">
+      <Filter>LevelClass\Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -313,6 +316,9 @@
     </ClInclude>
     <ClInclude Include="SettingValue.h">
       <Filter>Gobal</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleBackGroundStage.h">
+      <Filter>LevelClass\Title</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

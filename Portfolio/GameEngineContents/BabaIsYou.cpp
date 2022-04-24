@@ -23,7 +23,7 @@ BabaIsYou::~BabaIsYou()
 void BabaIsYou::GameInit()
 {
 	//GameEngineTime::GetInst()->SetTimeScale(0, 1.0f);
-	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 0, 0 }, { 1760, 1000 });
+	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 0, 0 }, { 1768, 992 });
 	CreateKeyBaba();
 
 	// 리소스 파일 위치 적용
