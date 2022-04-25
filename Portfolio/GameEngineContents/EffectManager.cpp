@@ -6,7 +6,8 @@
 
 GameEngineRandom* EffectManager::Random_ = new GameEngineRandom();
 
-EffectManager::EffectManager() 
+EffectManager::EffectManager()
+	: Pause_(false)
 {
 }
 
@@ -39,25 +40,29 @@ bool EffectManager::ShowStatEffect(const float4& _LUPos, GameEngineImage* _Effec
 		_Max = _Min;
 		_Min = idx;
 	}
-	int RandomInt = 0;
+	int RandomInt = Random_->RandomInt(_Min, _Max);
 	if (RandomInt == Random_->RandomInt(_Min, _Max))
 	{
-		float4 Center(_LUPos.x + 20.0f, _LUPos.y + 20.0f);
+		float4 Center(_LUPos.x + 10.0f, _LUPos.y + 10.0f);
 		QueueEffect* Group = new QueueEffect(Center, _EffectImage, static_cast<int>(_EffectImage->GetCutCount() - 1), 0.1f);
-		float x = Random_->RandomFloat(-24.0f, 24.0f);
-		float y = Random_->RandomFloat(-24.0f, 24.0f);
-		while (x > -10.0f && x < 10.0f)
-		{
-			x = Random_->RandomFloat(-24.0f, 24.0f);
-		}
-		while (y > -10.0f && y < 10.0f)
-		{
-			y = Random_->RandomFloat(-24.0f, 24.0f);
-		}
-		Group->MoveVector_.push_back(float4{ x, y });
 		Group->CurrentPos_.push_back(Center);
-		Group->Speed_ = Random_->RandomFloat(2.0f, 5.0f);
+		{
+			float x = 0.0f;
+			float y = 0.0f;
+			do
+			{
+				x = Random_->RandomFloat(-0.6f, 0.6f);
+			} while (x > -0.3f && x < 0.3f);
+			do
+			{
+				y = Random_->RandomFloat(-0.6f, 0.6f);
+			} while (y > -0.3f && y < 0.3f);
+			Group->MoveVector_.push_back(float4{x, y});
+		}
+		//Group->Speed_ = Random_->RandomFloat(2.0f, 5.0f);
+		Group->EffectType_ = EffectType::StatEffect;
 		QueueEffect_.push_back(Group);
+
 		return true;
 	}
 	return false;
@@ -139,6 +144,10 @@ void EffectManager::Start()
 }
 void EffectManager::Update()
 {
+	if (Pause_ == true)
+	{
+		return;
+	}
 	if (QueueEffect_.empty() == false)
 	{
 		std::list<QueueEffect*>::iterator StartIter = QueueEffect_.begin();
@@ -266,7 +275,6 @@ bool QueueEffect::FrameUpdate()
 		CurrentFrame_ += 1;
 		SetSpeedbyFrame();
 		
-
 		if (EndFrame_ < CurrentFrame_)
 		{
 			return false;
@@ -293,8 +301,14 @@ void QueueEffect::SetSpeedbyFrame()
 	case EffectType::SprayEffect:
 		break;
 	case EffectType::StatEffect:
+		Speed_ -= Random_->RandomFloat(0.003f,0.008f);
+		if (Speed_ < 0)
+		{
+			Speed_ = 0;
+		}
 		break;
 	default:
+		return;
 		break;
 	}
 }

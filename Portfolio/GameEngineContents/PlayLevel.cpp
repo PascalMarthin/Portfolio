@@ -728,11 +728,6 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 	}
 }
 
-void PlayLevel::ShowCrashEffect(const float4 _LUPos, const unsigned __int64& _Stat)
-{
-
-
-}
 
 Coordinate* PlayLevel::FindUnitByStat(std::list<Coordinate*>& _Value, unsigned __int64 _Stat)
 {
@@ -846,6 +841,7 @@ void PlayLevel::ReGame()
 
 void PlayLevel::ShowMenuMode()
 {
+	PlayLevelEffectManager_->PauseOn();
 	Menu_->SetMenuOn();
 	GameEngineTime::GetInst()->SetTimeScale(0, 0.0f);
 	IsPause_ = true;
@@ -853,6 +849,7 @@ void PlayLevel::ShowMenuMode()
 
 void PlayLevel::ShowPlayMode()
 {
+	PlayLevelEffectManager_->PauseOff();
 	Menu_->SetMenuOff();
 	GameEngineTime::GetInst()->SetTimeScale(0, 1.0f);
 	IsPause_ = false;

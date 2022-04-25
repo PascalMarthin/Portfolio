@@ -73,7 +73,6 @@ private:
 	//
 
 	// ¿Ã∆Â∆Æ
-	void ShowCrashEffect(const float4 _LUPos, const unsigned __int64& _Stat);
 	EffectManager* PlayLevelEffectManager_;
 	//
 
@@ -90,7 +89,7 @@ private:
 	//
 
 	void SceneChange();
-	void BeforeMove();
+	//void BeforeMove();
 	void AfterMove();
 	void BackTothePast();
 	void StageSavePopBack();

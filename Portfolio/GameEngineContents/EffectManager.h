@@ -21,6 +21,15 @@ public:
 	EffectManager& operator=(const EffectManager& _Other) = delete;
 	EffectManager& operator=(EffectManager&& _Other) noexcept = delete;
 
+	void PauseOff()
+	{
+		Pause_ = false;
+	}
+	void PauseOn()
+	{
+		Pause_ = true;
+	}
+
 	void ShowRandomEffect(const float4& _LUPos, GameEngineImage* _EffectImage,int _Min, int _Max , float CurrentInterTime_ = 0.1f);
 	void ShowMoveEffect(const float4& _LUPos, GameEngineImage* _EffectImage,  Direction _Dir, float _InterTime);
 	bool ShowStatEffect(const float4& _LUPos, GameEngineImage* _EffectImage, int _Min, int _Max);
@@ -34,6 +43,7 @@ protected:
 
 private:
 	std::list<QueueEffect*> QueueEffect_;
+	bool Pause_;
 };
 
 
