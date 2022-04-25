@@ -29,7 +29,7 @@ void GameHelpOverUI::Start()
 		Reset_->ChangeAnimation("button_restart_sheet");
 	}
 	{
-		KeyR_ = CreateRenderer("Key_R.bmp", 1, RenderPivot::Up, {-240, 20});
+		KeyR_ = CreateRenderer("Key_R.bmp", 1, RenderPivot::Up, {-280, 20});
 	}
 	{
 		Undo_ = CreateRenderer(1, RenderPivot::Up, { 200, 20 });
@@ -61,6 +61,11 @@ void GameHelpOverUI::Update()
 
 void GameHelpOverUI::Render()
 {
+	if (KeyZ_->IsUpdate() == true)
+	{
+		GameEngine::BackBufferImage()->TransCopy(KeyZ_->GetImage(), float4{ -280, 20 }, float4{DotSizeX, DotSizeY}, float4::ZERO, float4{ DotSizeX, DotSizeY }, RGB(255, 0, 255));
+		GameEngine::BackBufferImage()->TransCopy(KeyZ_->GetImage(), float4{ -120, 20 }, float4{ DotSizeX, DotSizeY }, float4::ZERO, float4{ DotSizeX, DotSizeY }, RGB(255, 0, 255));
+	}
 }
 
 void GameHelpOverUI::SetOver()
