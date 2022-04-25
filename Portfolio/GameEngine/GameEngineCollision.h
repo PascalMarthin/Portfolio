@@ -5,9 +5,10 @@
 #include <vector>
 
 
+
+
 // 설명 : 그리는걸 도와주는 클래스
 class GameEngineImage;
-
 class GameEngineCollision : public GameEngineActorSubObject
 {
 	friend GameEngineActor;
@@ -41,11 +42,34 @@ public:
 
 	inline GameEngineRect GetRect()
 	{
-		return GameEngineRect(GetActor()->GetPosition() + Pivot_, Scale_);
+		return GameEngineRect(GetActor()->GetPosition() + Pivot_ + NextPos_, Scale_);
 	}
 
+	void CameraEffectOff()
+	{
+		IsCameraEffect_ = false;
+	}
+
+	void CameraEffectOn()
+	{
+		IsCameraEffect_ = true;
+	}
+
+
+	// Player   Bullet
+	// 방패     적의 총알을 막는다.
+	// 방패     적의 총알
+
+	// 충돌한 대상이 있는지 없는지만 체크하는 함수
 	bool CollisionCheck(
 		const std::string& _TargetGroup,
+		CollisionType _This = CollisionType::Circle,
+		CollisionType _Target = CollisionType::Circle
+	);
+
+	bool NextPostCollisionCheck(
+		const std::string& _TargetGroup,
+		float4 NextPos,
 		CollisionType _This = CollisionType::Circle,
 		CollisionType _Target = CollisionType::Circle
 	);
@@ -63,7 +87,13 @@ private:
 	friend class FrameAnimation;
 	float4 Pivot_;
 	float4 Scale_;
+	float4 NextPos_;
+	bool IsCameraEffect_;
 
 	std::string CollisionName_;
 
+	void NextPosReset()
+	{
+		NextPos_ = float4::ZERO;
+	}
 };
