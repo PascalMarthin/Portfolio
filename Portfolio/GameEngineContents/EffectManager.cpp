@@ -73,18 +73,25 @@ void EffectManager::ShowRandomSprayEffect(const float4& _LUPos, GameEngineImage*
 	int Index = Random_->RandomInt(_Min, _Max);
 	for (int i = 0; i < Index; i++)
 	{
-		float RandomInterTime = Random_->RandomFloat(_InterTime - _InterTime / 4, _InterTime + _InterTime / 2);
-		float Speed = Random_->RandomFloat(4.0f, 6.0f);
+		float RandomInterTime = Random_->RandomFloat(_InterTime - _InterTime / 2 , _InterTime * 3 );
 		
 		QueueEffect* Group = new QueueEffect(_LUPos, _EffectImage, static_cast<int>(_EffectImage->GetCutCount() - 1), RandomInterTime);
-		Group->EffectType_ = EffectType::SprayEffect;
-		Group->SprayFrameRandomIndex_ = Random_->RandomInt(500, 1500);
-		Group->Speed_ = Speed;
 
-		float x = Random_->RandomFloat(0.0f, 48.0f);
-		float y = Random_->RandomFloat(0.0f, 48.0f);
-		Group->MoveVector_.push_back(float4{ x, y });
+		{
+			float x = 0.0f;
+			float y = 0.0f;
+			do
+			{
+				x = Random_->RandomFloat(-1.8f, 1.8f);
+			} while (x > -0.5f && x < 0.5f);
+			do
+			{
+				y = Random_->RandomFloat(-1.8f, 1.8f);
+			} while (y > -0.5f && y < 0.5f);
+			Group->MoveVector_.push_back(float4{ x, y });
+		}
 		Group->CurrentPos_.push_back(_LUPos);
+		Group->EffectType_ = EffectType::SprayEffect;
 		QueueEffect_.push_back(Group);
 	}
 }
@@ -104,9 +111,12 @@ void EffectManager::ShowRandomEffect(const float4& _LUPos, GameEngineImage* _Eff
 		{
 			
 			Group->MoveVector_.push_back(float4::ZERO);
-			float x = Random_->RandomFloat(-24.0f, 24.0f);
-			float y = Random_->RandomFloat(-24.0f, 24.0f);
-			Group->CurrentPos_.push_back(float4{ _LUPos.x + x, _LUPos.y + y });
+			{
+				float x = Random_->RandomFloat(-24.0f, 24.0f);
+				float y = Random_->RandomFloat(-24.0f, 24.0f);
+				Group->CurrentPos_.push_back(float4{ _LUPos.x + x, _LUPos.y + y });
+
+			}
 		}
 		QueueEffect_.push_back(Group);
 	}
@@ -208,7 +218,6 @@ QueueEffect::QueueEffect(const float4& _Pos, GameEngineImage* _EffectImage, int 
 	, Pos_(_Pos)
 	, EffectImage_(_EffectImage)
 	, Speed_(1.0f)
-	, SprayFrameRandomIndex_(0)
 	, AddSpeedIndex_(0.0f)
 	, EffectType_(EffectType::DefaltEffect)
 {
@@ -299,9 +308,14 @@ void QueueEffect::SetSpeedbyFrame()
 		}
 		break;
 	case EffectType::SprayEffect:
+		Speed_ -= Random_->RandomFloat(0.003f, 0.008f);
+		if (Speed_ < 0)
+		{
+			Speed_ = 0;
+		}
 		break;
 	case EffectType::StatEffect:
-		Speed_ -= Random_->RandomFloat(0.003f,0.008f);
+		Speed_ -= Random_->RandomFloat(0.002f,0.008f);
 		if (Speed_ < 0)
 		{
 			Speed_ = 0;

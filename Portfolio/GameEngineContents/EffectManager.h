@@ -70,7 +70,6 @@ public:
 	std::vector<float4> MoveVector_;
 	std::vector<float4> CurrentPos_;
 
-	int SprayFrameRandomIndex_;
 	float Speed_;
 	float AddSpeedIndex_;
 	GameEngineRandom* Random_;
