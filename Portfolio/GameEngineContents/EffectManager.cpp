@@ -39,25 +39,24 @@ bool EffectManager::ShowStatEffect(const float4& _LUPos, GameEngineImage* _Effec
 		_Max = _Min;
 		_Min = idx;
 	}
-	//int RandomInt = Random_->RandomInt(_Min, _Max);
 	int RandomInt = 0;
 	if (RandomInt == Random_->RandomInt(_Min, _Max))
 	{
-		float4 Center(_LUPos.x + 10.0f, _LUPos.y + 10.0f);
+		float4 Center(_LUPos.x + 20.0f, _LUPos.y + 20.0f);
 		QueueEffect* Group = new QueueEffect(Center, _EffectImage, static_cast<int>(_EffectImage->GetCutCount() - 1), 0.1f);
-		float x = Random_->RandomFloat(Center.x - static_cast<float>(DotSizeX / 2), Center.x + static_cast<float>(DotSizeX / 2));
-		float y = Random_->RandomFloat(Center.y - static_cast<float>(DotSizeY / 2), Center.y + static_cast<float>(DotSizeY / 2));
-		while ((Center.x - static_cast<float>(DotSizeX / 4) < x && x < Center.x + static_cast<float>(DotSizeX / 4)))
+		float x = Random_->RandomFloat(-24.0f, 24.0f);
+		float y = Random_->RandomFloat(-24.0f, 24.0f);
+		while (x > -10.0f && x < 10.0f)
 		{
-			x = Random_->RandomFloat(Center.x - static_cast<float>(DotSizeX / 2), Center.x + static_cast<float>(DotSizeX / 2));
+			x = Random_->RandomFloat(-24.0f, 24.0f);
 		}
-		while ((Center.y - static_cast<float>(DotSizeY / 4) < y && y < Center.y + static_cast<float>(DotSizeY / 4)))
+		while (y > -10.0f && y < 10.0f)
 		{
-			y = Random_->RandomFloat(Center.y - static_cast<float>(DotSizeY / 2), Center.y + static_cast<float>(DotSizeY / 2));
+			y = Random_->RandomFloat(-24.0f, 24.0f);
 		}
-		Group->MoveVector_.push_back(float4{ x, y } - Center);
+		Group->MoveVector_.push_back(float4{ x, y });
 		Group->CurrentPos_.push_back(Center);
-		Group->Speed_ = 120.0f;
+		Group->Speed_ = Random_->RandomFloat(2.0f, 5.0f);
 		QueueEffect_.push_back(Group);
 		return true;
 	}
@@ -114,19 +113,20 @@ void EffectManager::ShowMoveEffect(const float4& _LUPos, GameEngineImage* _Effec
 	switch (_Dir)
 	{
 	case Direction::Right:
-		Group->MoveVector_.push_back(float4{ Random_->RandomFloat(- 8.0f , - 5.0f), 0});
+		Group->MoveVector_.push_back(float4{ Random_->RandomFloat(- 0.5f , - 0.3f), 0});
 		break;
 	case Direction::Up:
-		Group->MoveVector_.push_back(float4{ 0, Random_->RandomFloat(5.0f, 8.0f) });
+		Group->MoveVector_.push_back(float4{ 0, Random_->RandomFloat(0.3f, 0.5f) });
 		break;
 	case Direction::Left:
-		Group->MoveVector_.push_back(float4{ Random_->RandomFloat(5.0f, 8.0f), 0 });
+		Group->MoveVector_.push_back(float4{ Random_->RandomFloat(0.3f, 0.5f), 0 });
 		break;
 	case Direction::Down:
-		Group->MoveVector_.push_back(float4{ 0 , Random_->RandomFloat(- 8.0f,  - 5.0f) });
+		Group->MoveVector_.push_back(float4{ 0 , Random_->RandomFloat(- 0.5f,  - 0.3f) });
 		break;
 	}
-	Group->Speed_ = 8.0f;
+	Group->Speed_ = 1.0f;
+	Group->AddSpeedIndex_ = 0.8f;
 	Group->CurrentPos_.push_back(_LUPos);
 	Group->EffectType_ = EffectType::MoveEffect;
 	QueueEffect_.push_back(Group);
@@ -200,6 +200,7 @@ QueueEffect::QueueEffect(const float4& _Pos, GameEngineImage* _EffectImage, int 
 	, EffectImage_(_EffectImage)
 	, Speed_(1.0f)
 	, SprayFrameRandomIndex_(0)
+	, AddSpeedIndex_(0.0f)
 	, EffectType_(EffectType::DefaltEffect)
 {
 	Random_ = EffectManager::Random_;
@@ -212,7 +213,7 @@ QueueEffect::~QueueEffect()
 
 void QueueEffect::IncreaseVector(float4& _MoveVector, float _Index)
 {
-	_MoveVector *= _Index * Speed_ * GameEngineTime::GetInst()->GetDeltaTime(0);
+	_MoveVector *= _Index;
 }
 
 void QueueEffect::PlusToAllPos()
@@ -230,19 +231,19 @@ void QueueEffect::SetMoveVector()
 	case EffectType::MoveEffect:
 		for (float4& Iter : MoveVector_)
 		{
-			IncreaseVector(Iter, 100.0f);
+			IncreaseVector(Iter, Speed_);
 		}
 		break;
 	case EffectType::SprayEffect:
 		for (float4& Iter : MoveVector_)
 		{
-			IncreaseVector(Iter, 10.5f);
+			IncreaseVector(Iter, Speed_);
 		}
 		break;
 	case EffectType::DefaltEffect:
 		for (float4& Iter : MoveVector_)
 		{
-			IncreaseVector(Iter, 1.0f);
+			IncreaseVector(Iter, Speed_);
 		}
 		break;
 	default:
@@ -260,6 +261,8 @@ bool QueueEffect::FrameUpdate()
 	{
 		CurrentInterTime_ = OrignalInterTime_;
 		CurrentFrame_ += 1;
+		SetSpeedbyFrame();
+		
 
 		if (EndFrame_ < CurrentFrame_)
 		{
@@ -273,3 +276,24 @@ bool QueueEffect::FrameUpdate()
 	return true;
 }
 
+void QueueEffect::SetSpeedbyFrame()
+{
+	switch (EffectType_)
+	{
+	case EffectType::MoveEffect:
+		Speed_ -= 0.01f;
+		//if (Speed_ < 0)
+		//{
+		//	Speed_ = 0;
+		//}
+		break;
+	case EffectType::SprayEffect:
+		break;
+	case EffectType::DefaltEffect:
+		break;
+	case EffectType::StatEffect:
+		break;
+	default:
+		break;
+	}
+}

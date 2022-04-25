@@ -62,8 +62,10 @@ public:
 
 	int SprayFrameRandomIndex_;
 	float Speed_;
+	float AddSpeedIndex_;
 	GameEngineRandom* Random_;
 	EffectType EffectType_;
+
 private:
 	float CurrentInterTime_;
 	float OrignalInterTime_;
@@ -72,11 +74,13 @@ private:
 
 	float4 Pos_;
 	void PlusToAllPos();
+	void SetSpeedbyFrame();
 };
 
 enum class EffectType
 {
 	MoveEffect,
 	SprayEffect,
-	DefaltEffect
+	DefaltEffect,
+	StatEffect
 };

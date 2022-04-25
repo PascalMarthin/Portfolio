@@ -218,26 +218,26 @@ void Coordinate::Update()
 
 	}
 
-	if (UnitObject_->FindStat(SWin) && EffectManager_ != nullptr)
-	{
-		bool Effcet = EffectManager_->ShowStatEffect(PastLUPos_, GameEngineImageManager::GetInst()->Find("Win_Effect_sheet.bmp"), 0, RandomIdx_);
-		if (Effcet == true)
-		{
-			RandomIdx_ = 300;
-		}
-		else if (Effcet == false)
-		{
-			RandomIdx_ -= 1;
-		}
-		if (RandomIdx_ < 0)
-		{
-			RandomIdx_ = 0;
-		}
-	}
-	if (UnitObject_->FindStat(SHot) && EffectManager_ != nullptr)
-	{
-		EffectManager_->ShowStatEffect(PastLUPos_, GameEngineImageManager::GetInst()->Find("Hot_Effect_sheet.bmp"), 0, 20000);
-	}
+	//if (UnitObject_->FindStat(SWin) && EffectManager_ != nullptr)
+	//{
+	//	bool Effcet = EffectManager_->ShowStatEffect(PastLUPos_, GameEngineImageManager::GetInst()->Find("Win_Effect_sheet.bmp"), 0, RandomIdx_);
+	//	if (Effcet == true)
+	//	{
+	//		RandomIdx_ = 300;
+	//	}
+	//	else if (Effcet == false)
+	//	{
+	//		RandomIdx_ -= 1;
+	//	}
+	//	if (RandomIdx_ < 0)
+	//	{
+	//		RandomIdx_ = 0;
+	//	}
+	//}
+	//if (UnitObject_->FindStat(SHot) && EffectManager_ != nullptr)
+	//{
+	//	EffectManager_->ShowStatEffect(PastLUPos_, GameEngineImageManager::GetInst()->Find("Hot_Effect_sheet.bmp"), 0, 20000);
+	//}
 
 }
 
