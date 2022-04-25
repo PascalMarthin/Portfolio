@@ -97,10 +97,11 @@ void EffectManager::ShowRandomEffect(const float4& _LUPos, GameEngineImage* _Eff
 		int Index = Random_->RandomInt(_Min, _Max);
 		for (int i = 0; i < Index; i++)
 		{
-			float x = Random_->RandomFloat(0.0f , 48.0f);
-			float y = Random_->RandomFloat(0.0f , 48.0f);
-			Group->MoveVector_.push_back(float4{ x, y });
-			Group->CurrentPos_.push_back(_LUPos);
+			
+			Group->MoveVector_.push_back(float4::ZERO);
+			float x = Random_->RandomFloat(-24.0f, 24.0f);
+			float y = Random_->RandomFloat(-24.0f, 24.0f);
+			Group->CurrentPos_.push_back(float4{ _LUPos.x + x, _LUPos.y + y });
 		}
 		QueueEffect_.push_back(Group);
 	}
@@ -125,7 +126,6 @@ void EffectManager::ShowMoveEffect(const float4& _LUPos, GameEngineImage* _Effec
 		Group->MoveVector_.push_back(float4{ 0 , Random_->RandomFloat(- 0.5f,  - 0.3f) });
 		break;
 	}
-	Group->Speed_ = 1.0f;
 	Group->AddSpeedIndex_ = 0.8f;
 	Group->CurrentPos_.push_back(_LUPos);
 	Group->EffectType_ = EffectType::MoveEffect;
@@ -240,11 +240,14 @@ void QueueEffect::SetMoveVector()
 			IncreaseVector(Iter, Speed_);
 		}
 		break;
-	case EffectType::DefaltEffect:
+	case EffectType::StatEffect:
 		for (float4& Iter : MoveVector_)
 		{
 			IncreaseVector(Iter, Speed_);
 		}
+		break;
+	case EffectType::DefaltEffect:
+		return;
 		break;
 	default:
 		break;
@@ -282,14 +285,12 @@ void QueueEffect::SetSpeedbyFrame()
 	{
 	case EffectType::MoveEffect:
 		Speed_ -= 0.01f;
-		//if (Speed_ < 0)
-		//{
-		//	Speed_ = 0;
-		//}
+		if (Speed_ < 0)
+		{
+			Speed_ = 0;
+		}
 		break;
 	case EffectType::SprayEffect:
-		break;
-	case EffectType::DefaltEffect:
 		break;
 	case EffectType::StatEffect:
 		break;
