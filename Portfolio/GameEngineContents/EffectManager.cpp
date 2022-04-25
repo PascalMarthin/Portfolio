@@ -68,7 +68,7 @@ bool EffectManager::ShowStatEffect(const float4& _LUPos, GameEngineImage* _Effec
 	return false;
 }
 
-void EffectManager::ShowRandomSprayEffect(const float4& _LUPos, GameEngineImage* _EffectImage, int _Min, int _Max, float _InterTime)
+void EffectManager::ShowRandomSprayEffect(const float4& _LUPos, GameEngineImage* _EffectImage, int _Min, int _Max, float _MinVector, float _MaxVector, float _InterTime)
 {
 	int Index = Random_->RandomInt(_Min, _Max);
 	for (int i = 0; i < Index; i++)
@@ -82,11 +82,11 @@ void EffectManager::ShowRandomSprayEffect(const float4& _LUPos, GameEngineImage*
 			float y = 0.0f;
 			do
 			{
-				x = Random_->RandomFloat(-1.8f, 1.8f);
+				x = Random_->RandomFloat(_MinVector, _MaxVector);
 			} while (x > -0.5f && x < 0.5f);
 			do
 			{
-				y = Random_->RandomFloat(-1.8f, 1.8f);
+				y = Random_->RandomFloat(_MinVector, _MaxVector);
 			} while (y > -0.5f && y < 0.5f);
 			Group->MoveVector_.push_back(float4{ x, y });
 		}
@@ -308,14 +308,14 @@ void QueueEffect::SetSpeedbyFrame()
 		}
 		break;
 	case EffectType::SprayEffect:
-		Speed_ -= Random_->RandomFloat(0.003f, 0.008f);
+		Speed_ -= Random_->RandomFloat(0.005f, 0.01f) * CurrentFrame_;
 		if (Speed_ < 0)
 		{
 			Speed_ = 0;
 		}
 		break;
 	case EffectType::StatEffect:
-		Speed_ -= Random_->RandomFloat(0.002f,0.008f);
+		Speed_ -= Random_->RandomFloat(0.003f, 0.008f);
 		if (Speed_ < 0)
 		{
 			Speed_ = 0;
