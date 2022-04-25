@@ -8,6 +8,8 @@ GameHelpOverUI::GameHelpOverUI()
 	, IsOver_(false)
 	, Undo_(nullptr)
 	, Reset_(nullptr)
+	, KeyZ_(nullptr)
+	, KeyR_(nullptr)
 {
 }
 
@@ -26,14 +28,20 @@ void GameHelpOverUI::Start()
 		Reset_->CreateAnimation("button_restart_sheet.bmp", "button_restart_sheet", 0, 2, ImageSpeed, true);
 		Reset_->ChangeAnimation("button_restart_sheet");
 	}
-
+	{
+		KeyR_ = CreateRenderer("Key_R.bmp", 1, RenderPivot::Up, {-240, 20});
+	}
 	{
 		Undo_ = CreateRenderer(1, RenderPivot::Up, { 200, 20 });
 		Undo_->CreateAnimation("button_undo_sheet.bmp", "button_undo_sheet", 0, 2, ImageSpeed, true);
 		Undo_->ChangeAnimation("button_undo_sheet");
 	}
-	Reset_->Off();
-	Undo_->Off();
+	{
+		KeyZ_ = CreateRenderer("Key_Z.bmp", 1, RenderPivot::Up, {160, 20});
+	}
+
+	SetBack();
+
 }
 void GameHelpOverUI::Update()
 {
@@ -44,6 +52,8 @@ void GameHelpOverUI::Update()
 		{
 			Reset_->On();
 			Undo_->On();
+			KeyZ_->On();
+			KeyR_->On();
 		}
 
 	}
@@ -63,6 +73,8 @@ void GameHelpOverUI::SetOver()
 void GameHelpOverUI::SetBack()
 {
 	IsOver_ = false;
+	KeyZ_->Off();
+	KeyR_->Off();
 	Reset_->Off();
 	Undo_->Off();
 	Off();

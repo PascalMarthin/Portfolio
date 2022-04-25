@@ -30,6 +30,9 @@ protected:
 private:
 	GameEngineRenderer* Reset_;
 	GameEngineRenderer* Undo_;
+	GameEngineRenderer* KeyR_;
+	GameEngineRenderer* KeyZ_;
+
 	float CurrentInterTime_;
 	bool IsOver_;
 };
