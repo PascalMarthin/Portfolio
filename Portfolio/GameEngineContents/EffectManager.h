@@ -9,6 +9,7 @@
 
 // Ό³Έν :
 class QueueEffect;
+enum class EffectType;
 class EffectManager : public GameEngineActor
 {
 public:
@@ -42,8 +43,8 @@ public:
 	QueueEffect(const float4& _Pos, GameEngineImage* _EffectImage, int _EndFrame, float _InterTime);
 	~QueueEffect();
 
-	void PlusPos(float _Index);
-	void SameSpeedPos();
+	void IncreaseVector(float4& _MoveVector, float _Index);
+	void SetMoveVector();
 	bool FrameUpdate();
 
 
@@ -52,21 +53,30 @@ public:
 	QueueEffect& operator=(const QueueEffect& _Other) = delete;
 	QueueEffect& operator=(QueueEffect&& _Other) noexcept = delete;
 
+	float4 CurrentImgScale_;
+	float4 CurrentImgPivot_;
+	GameEngineImage* EffectImage_;
+
+	std::vector<float4> MoveVector_;
+	std::vector<float4> CurrentPos_;
+
+	int SprayFrameRandomIndex_;
+	float Speed_;
+	GameEngineRandom* Random_;
+	EffectType EffectType_;
+private:
 	float CurrentInterTime_;
 	float OrignalInterTime_;
 	int CurrentFrame_;
 	int EndFrame_;
-	float4 CurrentImgScale_;
-	float4 CurrentImgPivot_;
 
-	GameEngineImage* EffectImage_;
-	std::vector<float4> MoveVector_;
 	float4 Pos_;
+	void PlusToAllPos();
+};
 
-	bool MoveEffect_;
-	bool SprayEffect_;
-	int SprayFrameRandomIndex_;
-	float Speed_;
-	GameEngineRandom* Random_;
-private:
+enum class EffectType
+{
+	MoveEffect,
+	SprayEffect,
+	DefaltEffect
 };
