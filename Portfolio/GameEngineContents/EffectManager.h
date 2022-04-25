@@ -23,6 +23,8 @@ public:
 	void ShowRandomEffect(const float4& _LUPos, GameEngineImage* _EffectImage,int _Min, int _Max , float CurrentInterTime_ = 0.1f);
 	void ShowMoveEffect(const float4& _LUPos, GameEngineImage* _EffectImage,  Direction _Dir, float _InterTime);
 	bool ShowStatEffect(const float4& _LUPos, GameEngineImage* _EffectImage, int _Min, int _Max);
+	void ShowRandomSprayEffect(const float4& _LUPos, GameEngineImage* _EffectImage, int _Min, int _Max, float _InterTime);
+	static GameEngineRandom* Random_;
 
 protected:
 	void Start() override;
@@ -31,7 +33,6 @@ protected:
 
 private:
 	std::list<QueueEffect*> QueueEffect_;
-	GameEngineRandom* Random_;
 };
 
 
@@ -59,11 +60,13 @@ public:
 	float4 CurrentImgPivot_;
 
 	GameEngineImage* EffectImage_;
-	std::vector<float4> PosList_;
+	std::vector<float4> MoveVector_;
 	float4 Pos_;
 
 	bool MoveEffect_;
-	bool WinEffect_;
+	bool SprayEffect_;
+	int SprayFrameRandomIndex_;
 	float Speed_;
+	GameEngineRandom* Random_;
 private:
 };

@@ -1,10 +1,10 @@
 #include "EffectManager.h"
 #include <math.h>
 
+GameEngineRandom* EffectManager::Random_ = new GameEngineRandom();
+
 EffectManager::EffectManager() 
-	: Random_(nullptr)
 {
-	Random_ = new GameEngineRandom();
 }
 
 
@@ -52,11 +52,29 @@ bool EffectManager::ShowStatEffect(const float4& _LUPos, GameEngineImage* _Effec
 		{
 			y = Random_->RandomFloat(Center.y - static_cast<float>(DotSizeY / 2), Center.y + static_cast<float>(DotSizeY / 2));
 		}
-		Group->PosList_.push_back({ x, y });
+		Group->MoveVector_.push_back({ x, y });
 		QueueEffect_.push_back(Group);
 		return true;
 	}
 	return false;
+}
+
+void EffectManager::ShowRandomSprayEffect(const float4& _LUPos, GameEngineImage* _EffectImage, int _Min, int _Max, float _InterTime)
+{
+	int Index = Random_->RandomInt(_Min, _Max);
+	for (int i = 0; i < Index; i++)
+	{
+		float RandomInterTime = Random_->RandomFloat(_InterTime - _InterTime / 4, _InterTime + _InterTime / 2);
+		float Speed = Random_->RandomFloat(4.0f, 6.0f);
+		QueueEffect* Group = new QueueEffect(_LUPos, _EffectImage, static_cast<int>(_EffectImage->GetCutCount() - 1), RandomInterTime);
+		Group->SprayEffect_ = true;
+		Group->SprayFrameRandomIndex_ = Random_->RandomInt(500, 1500);
+		Group->Speed_ = Speed;
+		float x = Random_->RandomFloat(_LUPos.x - static_cast<float>(DotSizeX / 2), _LUPos.x + static_cast<float>(DotSizeX / 2));
+		float y = Random_->RandomFloat(_LUPos.y - static_cast<float>(DotSizeY / 2), _LUPos.y + static_cast<float>(DotSizeY / 2));
+		Group->MoveVector_.push_back({ x, y });
+		QueueEffect_.push_back(Group);
+	}
 }
 
 void EffectManager::ShowRandomEffect(const float4& _LUPos, GameEngineImage* _EffectImage, int _Min, int _Max, float _InterTime)
@@ -68,25 +86,6 @@ void EffectManager::ShowRandomEffect(const float4& _LUPos, GameEngineImage* _Eff
 		_Min = idx;
 	}
 	
-	if (_EffectImage->GetNameConstRef() == "CLEAR_EFFECT_SHEET.BMP")
-	{
-
-		int Index = Random_->RandomInt(_Min, _Max);
-		for (int i = 0; i < Index; i++)
-		{
-			float RandomInterTime = Random_->RandomFloat(_InterTime - _InterTime / 4, _InterTime + _InterTime / 2);
-			float Speed = Random_->RandomFloat(4.0f, 6.0f);
-			QueueEffect* Group = new QueueEffect(_LUPos, _EffectImage, static_cast<int>(_EffectImage->GetCutCount() - 1), RandomInterTime);
-			Group->WinEffect_ = true;
-			Group->Speed_ = Speed;
-			float x = Random_->RandomFloat(_LUPos.x - static_cast<float>(DotSizeX / 2), _LUPos.x + static_cast<float>(DotSizeX / 2));
-			float y = Random_->RandomFloat(_LUPos.y - static_cast<float>(DotSizeY / 2), _LUPos.y + static_cast<float>(DotSizeY / 2));
-			Group->PosList_.push_back({ x, y });
-			QueueEffect_.push_back(Group);
-		}
-
-	}
-	else
 	{
 		QueueEffect* Group = new QueueEffect(_LUPos, _EffectImage, static_cast<int>(_EffectImage->GetCutCount() - 1), _InterTime);
 		int Index = Random_->RandomInt(_Min, _Max);
@@ -94,7 +93,7 @@ void EffectManager::ShowRandomEffect(const float4& _LUPos, GameEngineImage* _Eff
 		{
 			float x = Random_->RandomFloat(_LUPos.x - static_cast<float>(DotSizeX / 2), _LUPos.x + static_cast<float>(DotSizeX / 2));
 			float y = Random_->RandomFloat(_LUPos.y - static_cast<float>(DotSizeY / 2), _LUPos.y + static_cast<float>(DotSizeY / 2));
-			Group->PosList_.push_back({ x, y });
+			Group->MoveVector_.push_back({ x, y });
 		}
 		QueueEffect_.push_back(Group);
 	}
@@ -108,16 +107,16 @@ void EffectManager::ShowMoveEffect(const float4& _LUPos, GameEngineImage* _Effec
 	switch (_Dir)
 	{
 	case Direction::Right:
-		Group->PosList_.push_back({ Random_->RandomFloat(_LUPos.x - 8.0f, _LUPos.x - 1.0f), _LUPos.y});
+		Group->MoveVector_.push_back({ Random_->RandomFloat(_LUPos.x - 8.0f, _LUPos.x - 1.0f), _LUPos.y});
 		break;
 	case Direction::Up:
-		Group->PosList_.push_back({ _LUPos.x, Random_->RandomFloat(_LUPos.y + 1.0f, _LUPos.y + 8.0f) });
+		Group->MoveVector_.push_back({ _LUPos.x, Random_->RandomFloat(_LUPos.y + 1.0f, _LUPos.y + 8.0f) });
 		break;
 	case Direction::Left:
-		Group->PosList_.push_back({ Random_->RandomFloat(_LUPos.x + 1.0f, _LUPos.x + 8.0f), _LUPos.y });
+		Group->MoveVector_.push_back({ Random_->RandomFloat(_LUPos.x + 1.0f, _LUPos.x + 8.0f), _LUPos.y });
 		break;
 	case Direction::Down:
-		Group->PosList_.push_back({ _LUPos.x, Random_->RandomFloat(_LUPos.y - 8.0f, _LUPos.y - 1.0f) });
+		Group->MoveVector_.push_back({ _LUPos.x, Random_->RandomFloat(_LUPos.y - 8.0f, _LUPos.y - 1.0f) });
 		break;
 	}
 	Group->MoveEffect_ = true;
@@ -159,7 +158,7 @@ void EffectManager::Render()
 		std::list<QueueEffect*>::iterator EndIter = QueueEffect_.end();
 		for (; StartIter != EndIter; ++StartIter)
 		{
-			for (const float4& Iter : (*StartIter)->PosList_)
+			for (const float4& Iter : (*StartIter)->MoveVector_)
 			{
 				if ((*StartIter)->EffectImage_ == GameEngineImageManager::GetInst()->Find("Baba_Effect_sheet.bmp") ||
 					(*StartIter)->EffectImage_ == GameEngineImageManager::GetInst()->Find("Wall_Effect_sheet.bmp") ||
@@ -185,10 +184,11 @@ QueueEffect::QueueEffect(const float4& _Pos, GameEngineImage* _EffectImage, int 
 	, Pos_(_Pos)
 	, EffectImage_(_EffectImage)
 	, MoveEffect_(false)
-	, WinEffect_(false)
+	, SprayEffect_(false)
 	, Speed_(1.0f)
+	, SprayFrameRandomIndex_(0)
 {
-
+	Random_ = EffectManager::Random_;
 }
 
 QueueEffect::~QueueEffect()
@@ -198,7 +198,7 @@ QueueEffect::~QueueEffect()
 
 void QueueEffect::PlusPos(float _Index)
 {
-	for (float4& Iter : PosList_)
+	for (float4& Iter : MoveVector_)
 	{
 		Iter += (Iter - Pos_) * _Index * Speed_ * GameEngineTime::GetInst()->GetDeltaTime(0);
 	}
@@ -207,11 +207,12 @@ void QueueEffect::PlusPos(float _Index)
 
 void QueueEffect::SameSpeedPos()
 {
-	for (float4& Iter : PosList_)
+	for (float4& Iter : MoveVector_)
 	{
 		Iter = Iter + ((Iter - Pos_) * Speed_ * GameEngineTime::GetInst()->GetDeltaTime(0));
 	}
 }
+
 
 bool QueueEffect::FrameUpdate()
 {
@@ -221,23 +222,33 @@ bool QueueEffect::FrameUpdate()
 			PlusPos(3.300f);
 		}
 	}
-	else if (WinEffect_ == true)
+	else if (SprayEffect_ == true)
 	{
 		switch (CurrentFrame_)
 		{
 		case 0:
-			SameSpeedPos();
+			PlusPos(0.7f);
+			if (0 != Random_->RandomInt(0, SprayFrameRandomIndex_))
+			{
+				SprayFrameRandomIndex_ -= 10;
+				if (SprayFrameRandomIndex_ < 0)
+				{
+					SprayFrameRandomIndex_ = 0;
+				}
+				CurrentInterTime_ = 1.0f;
+			}
+			else
+			{
+				CurrentInterTime_ = 0;
+			}
 			break;
 		case 1:
-			CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime(0);
-			PlusPos(0.18f);
+			PlusPos(0.08f);
 			break;
 		case 2:
-			CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime(0);
 			PlusPos(0.08f);
 			break;
 		case 3:
-			CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime(0);
 			PlusPos(0.01f);
 			break;
 		default:

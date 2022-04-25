@@ -707,7 +707,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 					if (iter->GetUnitObjectInst()->FindStat(SYou) == true && iter->IsUnitUpdate() == true)
 					{
 						ClearStage();
-						PlayLevelEffectManager_->ShowRandomEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Clear_Effect_sheet.bmp"), 8, 11, 0.33f);
+						PlayLevelEffectManager_->ShowRandomSprayEffect(iter->GetLUPos(), GameEngineImageManager::GetInst()->Find("Clear_Effect_sheet.bmp"), 9, 13, 0.15f);
 					}
 				}
 			}
@@ -803,6 +803,7 @@ bool PlayLevel::KeyCheck()
 	if (GameEngineInput::GetInst()->IsDown("R"))
 	{
 		ReGame();
+		GameEngineSound::SoundPlayOneShot("Retrun.ogg");
 		return false;
 	}
 	if (GameEngineInput::GetInst()->IsDown("Z"))

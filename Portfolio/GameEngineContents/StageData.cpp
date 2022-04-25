@@ -1114,7 +1114,7 @@ void StageData::Stage6()
 	StageData_[Stage::Stage6][5][17] = ObjectName::Wall_Unit;
 	StageData_[Stage::Stage6][5][18] = ObjectName::Wall_Unit;
 	StageData_[Stage::Stage6][5][19] = ObjectName::Wall_Unit;
-	StageData_[Stage::Stage6][5][19] = ObjectName::Flower_Unit;
+	StageData_[Stage::Stage6][5][22] = ObjectName::Flower_Unit;
 
 	StageData_[Stage::Stage6][6][0] = ObjectName::Rock_Unit;
 	StageData_[Stage::Stage6][6][1] = ObjectName::Rock_Unit;
@@ -1192,11 +1192,11 @@ void StageData::Stage6()
 	StageData_[Stage::Stage6][12][21] = ObjectName::Grass_Unit;
 	StageData_[Stage::Stage6][12][22] = ObjectName::Grass_Unit;
 
-	StageData_[Stage::Stage6][12][18] = ObjectName::Grass_Unit;
-	StageData_[Stage::Stage6][12][19] = ObjectName::Grass_Unit;
-	StageData_[Stage::Stage6][12][20] = ObjectName::Grass_Unit;
-	StageData_[Stage::Stage6][12][21] = ObjectName::Grass_Unit;
-	StageData_[Stage::Stage6][12][22] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][13][18] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][13][19] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][13][20] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][13][21] = ObjectName::Grass_Unit;
+	StageData_[Stage::Stage6][13][22] = ObjectName::Grass_Unit;
 }
 void StageData::Stage7()
 {
