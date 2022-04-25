@@ -308,13 +308,14 @@ void PlayLevel::SetStage()
 
 void PlayLevel::ReSetStage()
 {
+	OverUI_->SetBack();
 	GameEngineSound::Update();
 	ShowPlayMode();
 	GameWindowStartPosX_ = 0;
 	GameWindowStartPosY_ = 0;
 	CurrentStage_ = Stage::MainStage;
-	IsClear_ = (false);
-	ClearWait = (0.0f);
+	IsClear_ = false;
+	ClearWait = 0.0f;
 	IsClear_ = false;
 	IsReset_ = false;
 	IsOver_ = false;
