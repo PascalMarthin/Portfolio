@@ -121,7 +121,7 @@ void AlphabetManager::SetText(const float4& _Pos /*LU*/, const std::string& _Tex
 				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x , Pos.y - _CharSize.Half().y }, float4{ Pos.x, Pos.y + _CharSize.Half().y }));
 				break;
 			case 1:
-				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x  + _CharSize.Half().x, Pos.y - _CharSize.Half().y }, float4{ Pos.x - _CharSize.Half().x, Pos.y + _CharSize.Half().y }));
+				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x + _CharSize.Half().x, Pos.y - _CharSize.Half().y }, float4{ Pos.x - _CharSize.Half().x, Pos.y + _CharSize.Half().y }));
 				break;
 			case 2:
 				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x + _CharSize.Half().x, Pos.y }, float4{ Pos.x - _CharSize.Half().x, Pos.y }));
@@ -133,11 +133,13 @@ void AlphabetManager::SetText(const float4& _Pos /*LU*/, const std::string& _Tex
 				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x , Pos.y + _CharSize.Half().y }, float4{ Pos.x , Pos.y - _CharSize.Half().y }));
 				break;
 			case 5:
-				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x + _CharSize.Half().x, Pos.y - _CharSize.Half().y }, float4{ Pos.x - _CharSize.Half().x, Pos.y + _CharSize.Half().y }));
+				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x - _CharSize.Half().x, Pos.y + _CharSize.Half().y }, float4{ Pos.x + _CharSize.Half().x, Pos.y - _CharSize.Half().y }));
 				break;
 			case 6:
+				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x - _CharSize.Half().x, Pos.y}, float4{ Pos.x + _CharSize.Half().x, Pos.y}));
 				break;
 			case 7:
+				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x - _CharSize.Half().x, Pos.y - _CharSize.Half().y }, float4{ Pos.x + _CharSize.Half().x, Pos.y + _CharSize.Half().y }));
 				break;
 			default:
 				break;
@@ -172,7 +174,7 @@ TextQueue::~TextQueue()
 }
 void TextQueue::DancingAlphabet()
 {
-	for (std::pair<float4, float4>& iter : MinMaxPos_)
+	for (size_t i = 0; i < MovePos_.size(); i++)
 	{
 
 	}
