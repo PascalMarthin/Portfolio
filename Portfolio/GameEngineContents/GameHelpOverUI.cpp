@@ -4,12 +4,19 @@
 #include "EffectManager.h"
 
 GameHelpOverUI::GameHelpOverUI() 
-	: CurrentInterTime_(0.0f)
+	: CurrentWaitTime_(0.0f)
 	, IsOver_(false)
 	, Undo_(nullptr)
-	, Reset_(nullptr)
+	, Restart_(nullptr)
 	, KeyZ_(nullptr)
 	, KeyR_(nullptr)
+	, CurrentInterTime_(ImageSpeed)
+	, CurrentFrame_(0)
+	, EndFrame_(2)
+	, CurrentUndoImgPivot_(float4::ZERO)
+	, CurrentResetImgPivot_(float4::ZERO)
+	, CurrentResetImgScale_(float4::ZERO)
+	, CurrentUndoImgScale_(float4::ZERO)
 {
 }
 
@@ -20,24 +27,17 @@ GameHelpOverUI::~GameHelpOverUI()
 void GameHelpOverUI::Start()
 {
 	float4 Scale = GameEngineWindow::GetScale().Half();
-	Scale.y = 0.0f;
+	Scale.y = 100.0f;
 	SetPosition(Scale);
+	SetScale({100, 100});
+	GameEngineActor::SetOrder(7);
 
 	{
-		Reset_ = CreateRenderer(1, RenderPivot::Up, { -200, 20 });
-		Reset_->CreateAnimation("button_restart_sheet.bmp", "button_restart_sheet", 0, 2, ImageSpeed, true);
-		Reset_->ChangeAnimation("button_restart_sheet");
-	}
-	{
-		KeyR_ = CreateRenderer("Key_R.bmp", 1, RenderPivot::Up, {-280, 20});
-	}
-	{
-		Undo_ = CreateRenderer(1, RenderPivot::Up, { 200, 20 });
-		Undo_->CreateAnimation("button_undo_sheet.bmp", "button_undo_sheet", 0, 2, ImageSpeed, true);
-		Undo_->ChangeAnimation("button_undo_sheet");
-	}
-	{
-		KeyZ_ = CreateRenderer("Key_Z.bmp", 1, RenderPivot::Up, {160, 20});
+		Restart_ = GameEngineImageManager::GetInst()->Find("button_restart_sheet.bmp");
+		KeyR_ = GameEngineImageManager::GetInst()->Find("Key_R.bmp"); // CreateRenderer(".bmp", 1, RenderPivot::Up, {-280, 20});
+		Undo_ = GameEngineImageManager::GetInst()->Find("button_undo_sheet.bmp");
+		//Undo_ = CreateRenderer(1, RenderPivot::Up, { 200, 20 });
+		KeyZ_ = GameEngineImageManager::GetInst()->Find("Key_Z.bmp");  //KeyZ_ = CreateRenderer("Key_Z.bmp", 1, RenderPivot::Up, {160, 20});
 	}
 
 	SetBack();
@@ -47,24 +47,43 @@ void GameHelpOverUI::Update()
 {
 	if (IsOver_ == true)
 	{
-		CurrentInterTime_ -= GameEngineTime::GetDeltaTime(0);
-		if (CurrentInterTime_ < 0)
+		if (CurrentWaitTime_ < 0)
 		{
-			Reset_->On();
-			Undo_->On();
-			KeyZ_->On();
-			KeyR_->On();
-		}
+			CurrentInterTime_-= GameEngineTime::GetDeltaTime(0);
+			if (CurrentInterTime_ < 0)
+			{
+				CurrentInterTime_ = ImageSpeed;
+				++CurrentFrame_;
+				if (CurrentFrame_ > EndFrame_)
+				{
+					CurrentFrame_ = 0;
+				}
+			}
+			CurrentUndoImgScale_ = Undo_->GetCutScale(CurrentFrame_);
+			CurrentUndoImgPivot_ = Undo_->GetCutPivot(CurrentFrame_);
 
+			CurrentResetImgScale_ = Restart_->GetCutScale(CurrentFrame_);
+			CurrentResetImgPivot_ = Restart_->GetCutPivot(CurrentFrame_);
+		}
+		else
+		{
+			CurrentWaitTime_ -= GameEngineTime::GetDeltaTime(0);
+		}
 	}
 }
 
 void GameHelpOverUI::Render()
 {
-	if (KeyZ_->IsUpdate() == true)
+	if (IsOver_ == true && CurrentWaitTime_ < 0)
 	{
-		GameEngine::BackBufferImage()->TransCopy(KeyZ_->GetImage(), float4{ -280, 20 }, float4{DotSizeX, DotSizeY}, float4::ZERO, float4{ DotSizeX, DotSizeY }, RGB(255, 0, 255));
-		GameEngine::BackBufferImage()->TransCopy(KeyZ_->GetImage(), float4{ -120, 20 }, float4{ DotSizeX, DotSizeY }, float4::ZERO, float4{ DotSizeX, DotSizeY }, RGB(255, 0, 255));
+		{
+			//DebugRectRender();
+			//GameEngine::BackBufferImage()->TransCopy(Restart_, { GameEngineWindow::GetScale().Half().x - 280, 20 }, {84, 48}, CurrentUndoImgPivot_, CurrentResetImgScale_, RGB(255, 0, 255));
+			//GameEngine::BackBufferImage()->TransCopy(Undo_, { GameEngineWindow::GetScale().Half().x - 120, 20 }, {96, 48}, CurrentResetImgPivot_, CurrentUndoImgScale_, RGB(255, 0, 255));
+		}
+		{
+			GameEngine::BackBufferImage()->PlgCopy(KeyR_, { GameEngineWindow::GetScale().Half().x - 280, 20 }, { 48, 48 }, CurrentUndoImgPivot_, CurrentResetImgScale_, 230.0f, KeyR_);
+		}
 	}
 }
 
@@ -72,15 +91,14 @@ void GameHelpOverUI::SetOver()
 {
 	On();
 	IsOver_ = true;
-	CurrentInterTime_ = 3.0f;
+	CurrentWaitTime_ = 3.0f;
+	CurrentInterTime_ = ImageSpeed;
+	CurrentFrame_ = 0;
+	EndFrame_ = 2;
 }
 
 void GameHelpOverUI::SetBack()
 {
 	IsOver_ = false;
-	KeyZ_->Off();
-	KeyR_->Off();
-	Reset_->Off();
-	Undo_->Off();
 	Off();
 }

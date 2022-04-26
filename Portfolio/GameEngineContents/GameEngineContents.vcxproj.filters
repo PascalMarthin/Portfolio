@@ -158,6 +158,9 @@
     <ClCompile Include="TitleBackGroundStage.cpp">
       <Filter>LevelClass\Title</Filter>
     </ClCompile>
+    <ClCompile Include="AlphabetManager.cpp">
+      <Filter>Gobal\Alphabet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -320,6 +323,9 @@
     <ClInclude Include="TitleBackGroundStage.h">
       <Filter>LevelClass\Title</Filter>
     </ClInclude>
+    <ClInclude Include="AlphabetManager.h">
+      <Filter>Gobal\Alphabet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -381,6 +387,9 @@
     </Filter>
     <Filter Include="Level\Debug">
       <UniqueIdentifier>{66674636-132a-4616-8132-220a5ed5f103}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gobal\Alphabet">
+      <UniqueIdentifier>{7f7c473e-4a07-40a6-b032-1864af4c9f86}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

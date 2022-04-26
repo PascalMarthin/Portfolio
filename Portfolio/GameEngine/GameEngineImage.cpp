@@ -216,7 +216,7 @@ void GameEngineImage::AlphaCopy(GameEngineImage* _Other, const float4& _CopyPos,
 		_CopyPos.iy(), // 윈도우 이미지의 위치 x에서부터 y
 		_CopyScale.ix(), // 내 이미지의 이 크기만큼 x
 		_CopyScale.iy(), // 내 이미지의 이 크기만큼 y
-		_Other->ImageDC_, // 복사하려는 대상은(거기에 그려지는 이미지가 뭔데?커비)
+		_Other->ImageDC_, // 복사하려는 대상은()
 		_OtherPivot.ix(), // 복사하려는 대상의 시작점X 위치
 		_OtherPivot.iy(),// 복사하려는 대상의 시작점Y
 		_OtherScale.ix(), // 복사하려는 대상의 시작점X 크기
@@ -259,7 +259,7 @@ void GameEngineImage::PlgCopy(GameEngineImage* _Other, const float4& _CopyPos,
 		_OtherPivot.iy(), // 윈도우 이미지의 위치 x에서부터 y
 		_OtherScale.ix(), // 내 이미지의 이 크기만큼 x
 		_OtherScale.iy(), // 내 이미지의 이 크기만큼 y
-		_Filter->BitMap_, // 복사하려는 대상은(거기에 그려지는 이미지가 뭔데?커비)
+		_Filter->BitMap_, // 복사하려는 대상(Mask)
 		_OtherPivot.ix(), // 복사하려는 대상의 시작점X 위치
 		_OtherPivot.iy()// 복사하려는 대상의 시작점Y
 	);

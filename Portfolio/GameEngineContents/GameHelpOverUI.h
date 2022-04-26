@@ -28,12 +28,23 @@ protected:
 	void Render() override;
 
 private:
-	GameEngineRenderer* Reset_;
-	GameEngineRenderer* Undo_;
-	GameEngineRenderer* KeyR_;
-	GameEngineRenderer* KeyZ_;
+	GameEngineImage* Restart_;
+	GameEngineImage* Undo_;
+	GameEngineImage* KeyR_;
+	GameEngineImage* KeyZ_;
 
+	//
+	float CurrentWaitTime_;
 	float CurrentInterTime_;
+	int CurrentFrame_;
+	int EndFrame_;
+
+	float4 CurrentUndoImgScale_;
+	float4 CurrentUndoImgPivot_;
+
+	float4 CurrentResetImgScale_;
+	float4 CurrentResetImgPivot_;
+	//
 	bool IsOver_;
 };
 
