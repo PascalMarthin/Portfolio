@@ -34,7 +34,9 @@ PlayLevel::PlayLevel()
 	Menu_(nullptr),
 	IsPause_(false),
 	GoMain_(false),
-	GoTitle_(false)
+	GoTitle_(false),
+	StageAlphabet_(nullptr),
+	TimeForFadeIn_(0.0f)
 {
 }
 
@@ -50,6 +52,7 @@ void PlayLevel::Loading()
 		Fade_ = CreateActor<Fade_InAndOut>(10);
 		Fade_->Reset();
 	}
+	StageAlphabet_ = CreateActor<AlphabetManager>(10);
 	Menu_ = CreateActor<PlayAndMainLevelMenu>(0);
 	PlayLevelEffectManager_ = CreateActor<EffectManager>(7);
 	OverUI_ = CreateActor<GameHelpOverUI>(3);
@@ -199,9 +202,14 @@ void PlayLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		MoveUI_ = nullptr;
 	}
 }
+void PlayLevel::ShowStageAlphabet()
+{
 
+}
 void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
+
+	StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), "Test", { 48, 48 });
 	GameEngineSound::Update();
 	BackGroundMusicControl_ = GameEngineSound::SoundPlayControl("baba.ogg");
 	Fade_->ShowFadeIn();
@@ -308,6 +316,7 @@ void PlayLevel::SetStage()
 
 void PlayLevel::ReSetStage()
 {
+	TimeForFadeIn_ = 5.0f;
 	OverUI_->SetBack();
 	GameEngineSound::Update();
 	ShowPlayMode();

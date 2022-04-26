@@ -17,6 +17,7 @@
 #include "GameHelpMoveUI.h"
 #include "GameHelpOverUI.h"
 #include "PlayAndMainLevelMenu.h"
+#include "AlphabetManager.h"
 
 // 설명 : Stage 정보를 받아 화면에 출력해주는 Level
 class CooridnateHistoryData;
@@ -77,6 +78,7 @@ private:
 	//
 
 	// Ui
+	AlphabetManager* StageAlphabet_;
 	GameHelpMoveUI* MoveUI_;
 	GameHelpOverUI* OverUI_;
 	PlayAndMainLevelMenu* Menu_;
@@ -86,6 +88,7 @@ private:
 	void KeyPushInMenu();
 	void ShowPlayMode();
 	void ShowMenuMode();
+	float TimeForFadeIn_;
 	//
 
 	void SceneChange();

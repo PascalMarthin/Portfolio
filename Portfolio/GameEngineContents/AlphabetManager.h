@@ -14,8 +14,10 @@
 #include <iostream>
 
 // 설명 :
+enum class TextQueueState;
+enum class AlphabetColor;
 class TextQueue;
-class AlphabetManager : GameEngineActor
+class AlphabetManager : public GameEngineActor
 {
 public:
 	// constrcuter destructer
@@ -27,7 +29,7 @@ public:
 	AlphabetManager(AlphabetManager&& _Other) noexcept = delete;
 	AlphabetManager& operator=(const AlphabetManager& _Other) = delete;
 	AlphabetManager& operator=(AlphabetManager&& _Other) noexcept = delete;
-	void SetText(const float4& _Pos /*LU*/, const std::string& _Text, const float4& _CharSize, const AlphabetColor _Color);
+	void SetText(const float4& _Pos /*LU*/, const std::string& _Text, const float4& _CharSize /*const AlphabetColor _Color*/);
 
 protected:
 	void Start() override;
@@ -36,19 +38,26 @@ protected:
 
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) {}
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) {}
+
 private:
+
+
 	void ViewText(TextQueue* _TextQueue);
 	std::map<char, float4> Alphabet_;
 	GameEngineImage* AlphabetSheet_;
 	std::list<TextQueue*> TextQueue_;
 	GameEngineRandom* Random_;
-
+	float Speed_;
+	float AddSpeed_;
 
 };
 
 class TextQueue
 {
 public:
+
+	TextQueue();
+	~TextQueue();
 	//생성될 (변환완료된) 위치
 	float4 Pos_;
 	//텍스트 크기
@@ -57,7 +66,7 @@ public:
 	std::string UpperText_;
 	AlphabetColor Color_;
 	TextQueueState State_;
-	void DancingAlphabet();
+	void DancingAlphabet(float _Speed);
 	bool End_;
 
 	float4 CurrentCharSize_;
@@ -65,7 +74,7 @@ public:
 	bool SizeUp();
 	bool SizeDown();
 
-	std::vector<std::pair<float4, float4>> MinMaxPos_;
+	std::vector<float4> MinMaxPos_;
 	std::vector<float4> MovePos_;
 private:
 	//bool IsPush()

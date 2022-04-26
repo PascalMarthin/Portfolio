@@ -3,6 +3,8 @@
 AlphabetManager::AlphabetManager() 
 	: AlphabetSheet_(nullptr)
 	, Random_(nullptr)
+	, Speed_(0)
+	, AddSpeed_(1.0f)
 {
 
 }
@@ -62,10 +64,6 @@ void AlphabetManager::Start()
 //}
 void AlphabetManager::Update()
 {
-
-}
-void AlphabetManager::Render()
-{
 	if (TextQueue_.empty() == false)
 	{
 		std::list<TextQueue*>::iterator StartIter = TextQueue_.begin();
@@ -82,7 +80,7 @@ void AlphabetManager::Render()
 				}
 				break;
 			case TextQueueState::Nomal:
-				(*StartIter)->DancingAlphabet();
+				(*StartIter)->DancingAlphabet(Speed_);
 				break;
 			case TextQueueState::SmallbyBig:
 				if ((*StartIter)->SizeDown() == true)
@@ -91,20 +89,47 @@ void AlphabetManager::Render()
 				}
 				break;
 			}
-			ViewText(*StartIter);
 			if ((*StartIter)->End_ == true)
 			{
 				delete* StartIter;
 				StartIter = TextQueue_.erase(StartIter);
+				continue;
 			}
 			StartIter++;
-
+		}
+		Speed_ -= 0.001f * AddSpeed_;
+		if (Speed_ < -3.0f)
+		{
+			Speed_ = -3.0f;
+			AddSpeed_ = -1.0f;
+		}
+		else if (Speed_ > 3.0f)
+		{
+			Speed_ = 3.0f;
+			AddSpeed_ = 1.0f;
 		}
 	}
 }
-
-void AlphabetManager::SetText(const float4& _Pos /*LU*/, const std::string& _Text, const float4& _CharSize, const AlphabetColor _Color)
+void AlphabetManager::Render()
 {
+	if (TextQueue_.empty() == false)
+	{
+		std::list<TextQueue*>::iterator StartIter = TextQueue_.begin();
+		std::list<TextQueue*>::iterator EndIter = TextQueue_.end();
+
+		for (; StartIter != EndIter;)
+		{
+			ViewText(*StartIter);
+			StartIter++;
+		}
+
+	}
+}
+
+void AlphabetManager::SetText(const float4& _Pos /*LU*/, const std::string& _Text, const float4& _CharSize /*const AlphabetColor _Color*/)
+{
+	Speed_ = 3.0f;
+	AddSpeed_ = 1.0f;
 	TextQueue* NewText = new TextQueue();
 	{
 		// 중앙으로 위치 변경(중앙에 출력되도록 변경)
@@ -118,28 +143,28 @@ void AlphabetManager::SetText(const float4& _Pos /*LU*/, const std::string& _Tex
 			switch (Random_->RandomInt(0, 7))
 			{
 			case 0:
-				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x , Pos.y - _CharSize.Half().y }, float4{ Pos.x, Pos.y + _CharSize.Half().y }));
+				NewText->MinMaxPos_.push_back(float4{ 0 , -1.0f });
 				break;
 			case 1:
-				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x + _CharSize.Half().x, Pos.y - _CharSize.Half().y }, float4{ Pos.x - _CharSize.Half().x, Pos.y + _CharSize.Half().y }));
+				NewText->MinMaxPos_.push_back(float4{ 1.0f , -1.0f });
 				break;
 			case 2:
-				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x + _CharSize.Half().x, Pos.y }, float4{ Pos.x - _CharSize.Half().x, Pos.y }));
+				NewText->MinMaxPos_.push_back(float4{ 1.0f, 0 });
 				break;
 			case 3:
-				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x + _CharSize.Half().x, Pos.y + _CharSize.Half().y }, float4{ Pos.x - _CharSize.Half().x, Pos.y - _CharSize.Half().y }));
+				NewText->MinMaxPos_.push_back(float4{ 1.0f, 1.0f});
 				break;
 			case 4:
-				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x , Pos.y + _CharSize.Half().y }, float4{ Pos.x , Pos.y - _CharSize.Half().y }));
+				NewText->MinMaxPos_.push_back(float4{ 0 , 1.0f });
 				break;
 			case 5:
-				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x - _CharSize.Half().x, Pos.y + _CharSize.Half().y }, float4{ Pos.x + _CharSize.Half().x, Pos.y - _CharSize.Half().y }));
+				NewText->MinMaxPos_.push_back(float4{ -1.0f, 1.0f });
 				break;
 			case 6:
-				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x - _CharSize.Half().x, Pos.y}, float4{ Pos.x + _CharSize.Half().x, Pos.y}));
+				NewText->MinMaxPos_.push_back(float4{ -1.0f, 0 });
 				break;
 			case 7:
-				NewText->MinMaxPos_.push_back(std::make_pair(float4{ Pos.x - _CharSize.Half().x, Pos.y - _CharSize.Half().y }, float4{ Pos.x + _CharSize.Half().x, Pos.y + _CharSize.Half().y }));
+				NewText->MinMaxPos_.push_back(float4{ -1.0f, -1.0f });
 				break;
 			default:
 				break;
@@ -147,16 +172,17 @@ void AlphabetManager::SetText(const float4& _Pos /*LU*/, const std::string& _Tex
 			NewText->MovePos_.push_back(Pos);
 		}
 		NewText->CharSize_ = _CharSize;
-		NewText->Color_ = _Color;
+		//NewText->Color_ = _Color;
 	}
 	TextQueue_.push_back(NewText);
 }
 
 void AlphabetManager::ViewText(TextQueue* _TextQueue)
 {
+
 	for (size_t i = 0; i < _TextQueue->UpperText_.size(); i++)
 	{
-		GameEngine::BackBufferImage()->TransCopy(AlphabetSheet_, _TextQueue->MovePos_[i], _TextQueue->CurrentCharSize_, {_TextQueue->CharSize_.x * i, 0}, {DotSizeX, DotSizeY}, RGB(255, 0, 255));
+		GameEngine::BackBufferImage()->TransCopy(AlphabetSheet_, _TextQueue->MovePos_[i], _TextQueue->CurrentCharSize_, Alphabet_[_TextQueue->UpperText_[i]], {DotSizeX, DotSizeY}, RGB(255, 0, 255));
 	}
 
 }
@@ -164,7 +190,7 @@ TextQueue::TextQueue()
 	: CurrentInterTime_(0.0f)
 	, End_(false)
 	, CurrentCharSize_(float4::ZERO)
-	, State_(TextQueueState::SmallbyBig)
+	, State_(TextQueueState::BigbySmall)
 {
 
 }
@@ -172,11 +198,12 @@ TextQueue::~TextQueue()
 {
 
 }
-void TextQueue::DancingAlphabet()
+
+void TextQueue::DancingAlphabet(float _Speed)
 {
 	for (size_t i = 0; i < MovePos_.size(); i++)
 	{
-
+		MovePos_[i] += (MinMaxPos_[i] * GameEngineTime::GetDeltaTime(0) * _Speed);
 	}
 }
 
