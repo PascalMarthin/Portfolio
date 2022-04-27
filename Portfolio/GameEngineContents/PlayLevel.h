@@ -18,7 +18,7 @@
 #include "GameHelpOverUI.h"
 #include "PlayAndMainLevelMenu.h"
 #include "AlphabetManager.h"
-
+#include "BackGround.h"
 // 설명 : Stage 정보를 받아 화면에 출력해주는 Level
 class CooridnateHistoryData;
 class GamePlayObject;
@@ -82,6 +82,7 @@ private:
 	GameHelpMoveUI* MoveUI_;
 	GameHelpOverUI* OverUI_;
 	PlayAndMainLevelMenu* Menu_;
+	BackGround* GameBackGround_;
 	bool GoMain_;
 	bool GoTitle_;
 	bool IsPause_;
@@ -100,6 +101,9 @@ private:
 	void GameOver();
 	void ReGame();
 
+	// StageTitle(Alphabet)
+	bool StageTitle_;
+	//
 
 	unsigned int CheckUnitBridge(const Coordinate* _Unit);
 	Coordinate* FindUnitObject(std::list<Coordinate*>& _UnitList, const ObjectName _Unit);

@@ -15,7 +15,7 @@
 
 
 
-PlayLevel::PlayLevel() 
+PlayLevel::PlayLevel()
 	:GameWindowStartPosX_(0),
 	GameWindowStartPosY_(0),
 	MapScale_({ 0, 0 }),
@@ -36,7 +36,9 @@ PlayLevel::PlayLevel()
 	GoMain_(false),
 	GoTitle_(false),
 	StageAlphabet_(nullptr),
-	TimeForFadeIn_(0.0f)
+	TimeForFadeIn_(0.0f),
+	StageTitle_(false),
+	GameBackGround_(nullptr)
 {
 }
 
@@ -57,7 +59,7 @@ void PlayLevel::Loading()
 	PlayLevelEffectManager_ = CreateActor<EffectManager>(7);
 	OverUI_ = CreateActor<GameHelpOverUI>(3);
 	OverUI_->Off();
-	CreateActor<BackGround>(0);
+	GameBackGround_ = CreateActor<BackGround>(0);
 	ClearScene_ = CreateActor<ClearScene>(5);
 	AllMoveHistory_.reserve(10000);
 
@@ -65,6 +67,29 @@ void PlayLevel::Loading()
 
 void PlayLevel::Update()
 {
+	if (StageTitle_ == true)
+	{
+		TimeForFadeIn_ -= GameEngineTime::GetDeltaTime(0);
+		if (TimeForFadeIn_ < 0.0f)
+		{
+			StageAlphabet_->EndText();
+			{
+				GameEngineSound::Update();
+				BackGroundMusicControl_ = GameEngineSound::SoundPlayControl("baba.ogg");
+			}
+			{
+				GameBackGround_->SetOrder(0);
+				GameBackGround_->ActorRender_ = false;
+			}
+			for (Coordinate* Iter : AllCoordinate_)
+			{
+				Iter->On();
+			}
+			Fade_->ShowFadeIn();
+			StageTitle_ = false;
+		}
+		return;
+	}
 	if (IsReset_ == true && Fade_->IsChangeScreen() == false)
 	{
 		if (Fade_->IsFadeOut() == true)
@@ -202,17 +227,17 @@ void PlayLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		MoveUI_ = nullptr;
 	}
 }
-void PlayLevel::ShowStageAlphabet()
-{
 
-}
 void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-
+	{
+		GameBackGround_->SetOrder(8);
+		GameBackGround_->ActorRender_ = true;
+	}
+	TimeForFadeIn_ = 5.0f;
+	StageTitle_ = true;
 	StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), "Test", { 48, 48 });
-	GameEngineSound::Update();
-	BackGroundMusicControl_ = GameEngineSound::SoundPlayControl("baba.ogg");
-	Fade_->ShowFadeIn();
+
 	SetStage();
 	StageFucntionReset();
 
@@ -220,6 +245,12 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	CheckMapAllStat();
 	ScanBridgeUnit();
 
+	{
+		for (Coordinate* Iter : AllCoordinate_)
+		{
+			Iter->Off();
+		}
+	}
 	if (CurrentStage_ == Stage::Stage0)
 	{
 		MoveUI_ = CreateActor<GameHelpMoveUI>(2);
@@ -236,7 +267,6 @@ void PlayLevel::AfterMove()
 	{
 		GameOver();
 	}
-	
 }
 
 
@@ -316,7 +346,6 @@ void PlayLevel::SetStage()
 
 void PlayLevel::ReSetStage()
 {
-	TimeForFadeIn_ = 5.0f;
 	OverUI_->SetBack();
 	GameEngineSound::Update();
 	ShowPlayMode();

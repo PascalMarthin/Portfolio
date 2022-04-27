@@ -30,6 +30,7 @@ public:
 	AlphabetManager& operator=(const AlphabetManager& _Other) = delete;
 	AlphabetManager& operator=(AlphabetManager&& _Other) noexcept = delete;
 	void SetText(const float4& _Pos /*LU*/, const std::string& _Text, const float4& _CharSize /*const AlphabetColor _Color*/);
+	void EndText();
 
 protected:
 	void Start() override;
@@ -49,7 +50,11 @@ private:
 	GameEngineRandom* Random_;
 	float Speed_;
 	float AddSpeed_;
-
+	//
+	float MoveRange_;
+	float MaxRange_;
+	//bool FirstMove_;
+	//
 };
 
 class TextQueue
@@ -66,7 +71,9 @@ public:
 	std::string UpperText_;
 	AlphabetColor Color_;
 	TextQueueState State_;
+	//
 	void DancingAlphabet(float _Speed);
+	//
 	bool End_;
 
 	float4 CurrentCharSize_;
@@ -89,5 +96,6 @@ enum class TextQueueState
 
 enum class AlphabetColor
 {
-
+	White,
+	Pink
 };

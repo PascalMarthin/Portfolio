@@ -1,10 +1,13 @@
 #include "AlphabetManager.h"
+#define VectorSpeed 1.0f
 
 AlphabetManager::AlphabetManager() 
 	: AlphabetSheet_(nullptr)
 	, Random_(nullptr)
 	, Speed_(0)
 	, AddSpeed_(1.0f)
+	, MoveRange_(0.0f)
+	, MaxRange_(0.0f)
 {
 
 }
@@ -62,6 +65,14 @@ void AlphabetManager::Start()
 //	}
 //	return Alphabet_[_char];
 //}
+
+void AlphabetManager::EndText()
+{
+	for (TextQueue* Iter : TextQueue_)
+	{
+		Iter->State_ = TextQueueState::SmallbyBig;
+	}
+}
 void AlphabetManager::Update()
 {
 	if (TextQueue_.empty() == false)
@@ -97,16 +108,25 @@ void AlphabetManager::Update()
 			}
 			StartIter++;
 		}
-		Speed_ -= 0.001f * AddSpeed_;
-		if (Speed_ < -3.0f)
+		Speed_ -= AddSpeed_;
+		MoveRange_ = (Speed_ > 0 ? Speed_ : Speed_ * -1.0f);
+		if (MoveRange_ > MaxRange_)
 		{
-			Speed_ = -3.0f;
-			AddSpeed_ = -1.0f;
-		}
-		else if (Speed_ > 3.0f)
-		{
-			Speed_ = 3.0f;
-			AddSpeed_ = 1.0f;
+			if (Speed_ < -12.0f)
+			{
+				Speed_ = -8.0f;
+				AddSpeed_ = -0.2f;
+				MaxRange_ = 20.0f;
+				MoveRange_ = 0.0f;
+			}
+			else if (Speed_ > 12.0f)
+			{
+				Speed_ = 8.0f;
+				AddSpeed_ = 0.2f;
+				MaxRange_ = 20.0f;
+				MoveRange_ = 0.0f;
+			}
+
 		}
 	}
 }
@@ -128,47 +148,58 @@ void AlphabetManager::Render()
 
 void AlphabetManager::SetText(const float4& _Pos /*LU*/, const std::string& _Text, const float4& _CharSize /*const AlphabetColor _Color*/)
 {
-	Speed_ = 3.0f;
-	AddSpeed_ = 1.0f;
+	MaxRange_ = 15.0f;
+	MoveRange_ = 0.0f;
+	Speed_ = 12.0f;
+	AddSpeed_ = 0.5f;
 	TextQueue* NewText = new TextQueue();
 	{
-		// 중앙으로 위치 변경(중앙에 출력되도록 변경)
-		NewText->Pos_ = _Pos - (_CharSize * _Text.size());
+
+		int PastSelect = 10;
+		NewText->Pos_ = { _Pos.x - (_Text.size() / 2) * _CharSize.x - (_Text.size() % 2 == 0 ? 0.0f : _CharSize.Half().x) , _Pos.y - _CharSize.Half().y};
 		// 대문자로 변환
 		NewText->CurrentInterTime_ = 0.01f;
 		NewText->UpperText_ = GameEngineString::ToUpperReturn(_Text);
 		for (size_t i = 0; i < _Text.size(); i++)
 		{
+			// 중앙으로 위치 변경(중앙에 출력되도록 변경)
 			float4 Pos = { NewText->Pos_.x + (_CharSize.x * i) , NewText->Pos_.y};
-			switch (Random_->RandomInt(0, 7))
+			int CurrentSelect = 0; 
+			do
+			{
+				CurrentSelect = Random_->RandomInt(0, 7);
+
+			} while (CurrentSelect == PastSelect);
+			switch (CurrentSelect)
 			{
 			case 0:
-				NewText->MinMaxPos_.push_back(float4{ 0 , -1.0f });
+				NewText->MinMaxPos_.push_back(float4{ 0 , -VectorSpeed });
 				break;
 			case 1:
-				NewText->MinMaxPos_.push_back(float4{ 1.0f , -1.0f });
+				NewText->MinMaxPos_.push_back(float4{ VectorSpeed , -VectorSpeed });
 				break;
 			case 2:
-				NewText->MinMaxPos_.push_back(float4{ 1.0f, 0 });
+				NewText->MinMaxPos_.push_back(float4{ VectorSpeed, 0 });
 				break;
 			case 3:
-				NewText->MinMaxPos_.push_back(float4{ 1.0f, 1.0f});
+				NewText->MinMaxPos_.push_back(float4{ VectorSpeed, VectorSpeed });
 				break;
 			case 4:
-				NewText->MinMaxPos_.push_back(float4{ 0 , 1.0f });
+				NewText->MinMaxPos_.push_back(float4{ 0 , VectorSpeed });
 				break;
 			case 5:
-				NewText->MinMaxPos_.push_back(float4{ -1.0f, 1.0f });
+				NewText->MinMaxPos_.push_back(float4{ -VectorSpeed, VectorSpeed });
 				break;
 			case 6:
-				NewText->MinMaxPos_.push_back(float4{ -1.0f, 0 });
+				NewText->MinMaxPos_.push_back(float4{ -VectorSpeed, 0 });
 				break;
 			case 7:
-				NewText->MinMaxPos_.push_back(float4{ -1.0f, -1.0f });
+				NewText->MinMaxPos_.push_back(float4{ -VectorSpeed, -VectorSpeed });
 				break;
 			default:
 				break;
 			}
+			PastSelect = CurrentSelect;
 			NewText->MovePos_.push_back(Pos);
 		}
 		NewText->CharSize_ = _CharSize;
@@ -191,6 +222,7 @@ TextQueue::TextQueue()
 	, End_(false)
 	, CurrentCharSize_(float4::ZERO)
 	, State_(TextQueueState::BigbySmall)
+	, Color_(AlphabetColor::White)
 {
 
 }
@@ -209,8 +241,15 @@ void TextQueue::DancingAlphabet(float _Speed)
 
 bool TextQueue::SizeUp()
 {
-	float XIndex = CharSize_.x / 100;
-	float YIndex = CharSize_.y / 100;
+	float XIndex = CharSize_.x / 25;
+	float YIndex = CharSize_.y / 25;
+	CurrentCharSize_.x += XIndex;
+	CurrentCharSize_.y += YIndex;
+	for (float4& Iter : MovePos_)
+	{
+		Iter.x = Iter.x - XIndex / 2;
+		Iter.y = Iter.y - YIndex / 2;
+	}
 	if (CharSize_.x < CurrentCharSize_.x)
 	{
 		CurrentCharSize_.x = CharSize_.x;
@@ -223,16 +262,21 @@ bool TextQueue::SizeUp()
 		CurrentCharSize_.y = CharSize_.y;
 		return true;
 	}
-	CurrentCharSize_.x += XIndex;
-	CurrentCharSize_.y += YIndex;
 	return false;
 
 }
 
 bool TextQueue::SizeDown()
 {
-	float XIndex = CharSize_.x / 100;
-	float YIndex = CharSize_.y / 100;
+	float XIndex = CharSize_.x / 25;
+	float YIndex = CharSize_.y / 25;
+	CurrentCharSize_.x -= XIndex;
+	CurrentCharSize_.y -= YIndex;
+	for (float4& Iter : MovePos_)
+	{
+		Iter.x = Iter.x + XIndex / 2;
+		Iter.y = Iter.y + YIndex / 2;
+	}
 	if (0 > CurrentCharSize_.x)
 	{
 		CurrentCharSize_.x = 0;
@@ -245,7 +289,6 @@ bool TextQueue::SizeDown()
 		CurrentCharSize_.y = 0;
 		return true;
 	}
-	CurrentCharSize_.x -= XIndex;
-	CurrentCharSize_.y -= YIndex;
+
 	return false;
 }
