@@ -29,7 +29,8 @@ public:
 	AlphabetManager(AlphabetManager&& _Other) noexcept = delete;
 	AlphabetManager& operator=(const AlphabetManager& _Other) = delete;
 	AlphabetManager& operator=(AlphabetManager&& _Other) noexcept = delete;
-	void SetText(const float4& _Pos /*LU*/, const std::string& _Text, const float4& _CharSize /*const AlphabetColor _Color*/);
+	void SetText(const float4& _Pos /*LU*/, const std::string& _Text, const float4& _CharSize, const float
+		_interval /*const AlphabetColor _Color*/);
 	void EndText();
 
 protected:

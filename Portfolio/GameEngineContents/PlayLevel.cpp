@@ -236,10 +236,10 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	}
 	TimeForFadeIn_ = 5.0f;
 	StageTitle_ = true;
-	StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), "Test", { 48, 48 });
 
 	SetStage();
 	StageFucntionReset();
+	StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], {60, 80}, 20.0f);
 
 	ScanFucntion();
 	CheckMapAllStat();
@@ -441,9 +441,6 @@ void PlayLevel::StageFucntionReset()
 
 void PlayLevel::StageSave()
 {
-	//AllCoordinate를 사용안하는 이유는 실수로 놓친 메모리까지 Coordinate를 해제할수있게 모아두기 때문
-	// 나중에 테스트에 걸쳐서 변경 예정
-
 	std::map<Coordinate*, const CooridnateHistoryData*>* History = new std::map<Coordinate*, const CooridnateHistoryData*>;
 	{
 		std::map<int, std::map<int, std::list<Coordinate*>>>::iterator StartIterY = CurrentMap_.begin();

@@ -18,6 +18,7 @@ void BackGround::Start()
 	SetOrder(0);
 	SetPosition(GameEngineWindow::GetScale().Half());
 	SetScale(GameEngineWindow::GetScale());
+	CreateRenderer("BackGround1.bmp");
 	Image_ = GameEngineImageManager::GetInst()->Find("BackGround1.bmp");
 }
 

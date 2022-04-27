@@ -2,6 +2,7 @@
 #include <map>
 #include <vector>
 #include <GameEngineBase/GameEngineMath.h>
+#include <string>
 #include "GamePlayEnum.h"
 
 // Ό³Έν :
@@ -32,6 +33,7 @@ public:
 private:
 	std::map<Stage, std::map<int, std::map<int, ObjectName>>> StageData_;
 	std::map<Stage, float4> Scale_;
+	std::map<Stage, std::string> TitleString_;
 
 	void MainStage();
 	void Stage0();

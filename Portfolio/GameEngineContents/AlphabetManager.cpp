@@ -31,28 +31,47 @@ AlphabetManager::~AlphabetManager()
 void AlphabetManager::Start()
 {
 	{
-		Alphabet_['A'] = { 0, 0 };
-		Alphabet_['B'] = { DotSizeX * 1,  0};
-		Alphabet_['C'] = { DotSizeX * 2,  0};
-		Alphabet_['D'] = { DotSizeX * 3,  0};
-		Alphabet_['E'] = { DotSizeX * 4,  0};
-		Alphabet_['F'] = { DotSizeX * 5,  0};
-		Alphabet_['G'] = { DotSizeX * 6,  0};
-		Alphabet_['H'] = { DotSizeX * 7,  0};
-		Alphabet_['I'] = { DotSizeX * 8,  0};
-		Alphabet_['L'] = { DotSizeX * 9,  0};
-		Alphabet_['M'] = { DotSizeX * 10, 0};
-		Alphabet_['N'] = { DotSizeX * 11, 0 };
-		Alphabet_['O'] = { DotSizeX * 12, 0 };
-		Alphabet_['R'] = { DotSizeX * 13, 0 };
-		Alphabet_['S'] = { DotSizeX * 14, 0 };
-		Alphabet_['T'] = { DotSizeX * 15, 0 };
-		Alphabet_['U'] = { DotSizeX * 16, 0 };
-		Alphabet_['V'] = { DotSizeX * 17, 0 };
-		Alphabet_['W'] = { DotSizeX * 18, 0 };
-		Alphabet_['X'] = { DotSizeX * 19, 0 };
+		Alphabet_['A'] = {0 , DotSizeY * 0 };
+		Alphabet_['B'] = {0 , DotSizeY * 1 };
+		Alphabet_['C'] = {0 , DotSizeY * 2 };
+		Alphabet_['D'] = {0 , DotSizeY * 3 };
+		Alphabet_['E'] = {0 , DotSizeY * 4 };
+		Alphabet_['F'] = {0 , DotSizeY * 5 };
+		Alphabet_['G'] = {0 , DotSizeY * 6 };
+		Alphabet_['H'] = {0 , DotSizeY * 7 };
+		Alphabet_['I'] = {0 , DotSizeY * 8 };
+		Alphabet_['J'] = {0 , DotSizeY * 9 };
+		Alphabet_['K'] = {0 , DotSizeY * 10};
+		Alphabet_['L'] = {0 , DotSizeY * 11 };
+		Alphabet_['M'] = {0 , DotSizeY * 12 };
+		Alphabet_['N'] = {0 , DotSizeY * 13 };
+		Alphabet_['O'] = {0 , DotSizeY * 14 };
+		Alphabet_['P'] = {0 , DotSizeY * 15 };
+		Alphabet_['Q'] = {0 , DotSizeY * 16 };
+		Alphabet_['R'] = {0 , DotSizeY * 17 };
+		Alphabet_['S'] = {0 , DotSizeY * 18 };
+		Alphabet_['T'] = {0 , DotSizeY * 19 };
+		Alphabet_['U'] = {0 , DotSizeY * 20 };
+		Alphabet_['V'] = { 0 , DotSizeY * 21 };
+		Alphabet_['W'] = { 0 , DotSizeY * 22 };
+		Alphabet_['X'] = { 0 , DotSizeY * 23 };
+		Alphabet_['Y'] = { 0 , DotSizeY * 24 };
+		Alphabet_['Z'] = { 0 , DotSizeY * 25 };
+		Alphabet_['?'] = { 0 , DotSizeY * 26 };
+		Alphabet_['0'] = { 0 , DotSizeY * 27 };
+		Alphabet_['1'] = { 0 , DotSizeY * 28 };
+		Alphabet_['2'] = { 0 , DotSizeY * 29 };
+		Alphabet_['3'] = { 0 , DotSizeY * 30 };
+		Alphabet_['4'] = { 0 , DotSizeY * 31 };
+		Alphabet_['5'] = { 0 , DotSizeY * 32 };
+		Alphabet_['6'] = { 0 , DotSizeY * 33 };
+		Alphabet_['7'] = { 0 , DotSizeY * 34 };
+		Alphabet_['8'] = { 0 , DotSizeY * 35 };
+		Alphabet_['9'] = { 0 , DotSizeY * 36 };
+		Alphabet_[' '] = { 0 , DotSizeY * 37 };
+
 	}
-	AlphabetSheet_ = GameEngineImageManager::GetInst()->Find("Alphabet_sheet.bmp");
+	AlphabetSheet_ = GameEngineImageManager::GetInst()->Find("BabaChar_Sheet.bmp");
 	
 	Random_ = new GameEngineRandom();
 }
@@ -126,7 +145,6 @@ void AlphabetManager::Update()
 				MaxRange_ = 20.0f;
 				MoveRange_ = 0.0f;
 			}
-
 		}
 	}
 }
@@ -146,7 +164,8 @@ void AlphabetManager::Render()
 	}
 }
 
-void AlphabetManager::SetText(const float4& _Pos /*LU*/, const std::string& _Text, const float4& _CharSize /*const AlphabetColor _Color*/)
+void AlphabetManager::SetText(const float4& _Pos /*LU*/, const std::string& _Text, const float4& _CharSize, const float
+	_interval/*const AlphabetColor _Color*/)
 {
 	MaxRange_ = 15.0f;
 	MoveRange_ = 0.0f;
@@ -156,14 +175,14 @@ void AlphabetManager::SetText(const float4& _Pos /*LU*/, const std::string& _Tex
 	{
 
 		int PastSelect = 10;
-		NewText->Pos_ = { _Pos.x - (_Text.size() / 2) * _CharSize.x - (_Text.size() % 2 == 0 ? 0.0f : _CharSize.Half().x) , _Pos.y - _CharSize.Half().y};
+		NewText->Pos_ = { _Pos.x - ((_Text.size() / 2) * (_CharSize.x - _interval/2)) - (_Text.size() % 2 == 0 ? 0.0f : _CharSize.Half().x) , _Pos.y - _CharSize.Half().y};
 		// 대문자로 변환
 		NewText->CurrentInterTime_ = 0.01f;
 		NewText->UpperText_ = GameEngineString::ToUpperReturn(_Text);
 		for (size_t i = 0; i < _Text.size(); i++)
 		{
 			// 중앙으로 위치 변경(중앙에 출력되도록 변경)
-			float4 Pos = { NewText->Pos_.x + (_CharSize.x * i) , NewText->Pos_.y};
+			float4 Pos = { NewText->Pos_.x + ((_CharSize.x - _interval / 2) * i) , NewText->Pos_.y};
 			int CurrentSelect = 0; 
 			do
 			{
