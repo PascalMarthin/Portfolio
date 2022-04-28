@@ -105,7 +105,7 @@ bool MainLevel::KeyPush()
 		return true;
 	}
 	if (GameEngineInput::GetInst()->IsDown("Left"))
-	{¤¸
+	{
 		if (MainMap_[MainCursorPos_.iy()][MainCursorPos_.ix() - 1] != nullptr)
 		{
 			MainCursor_->SetPosition((MainCursor_->GetPosition()) - (float4{ 48, 0 }));
