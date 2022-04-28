@@ -23,6 +23,7 @@ PlayAndMainLevelMenu::PlayAndMainLevelMenu()
 	, CurrentImgScale_(float4(DotSizeX, DotSizeY))
 	, CurrentImgPivot_(float4::ZERO)
 	, BabaLocate_(float4::ZERO)
+	, AlphaBackGround_(nullptr)
 
 {
 }
@@ -50,6 +51,7 @@ void PlayAndMainLevelMenu::Start()
 		ReturnToTitle_ON_ = GameEngineImageManager::GetInst()->Find("Main_Return_To_Menu2.bmp");
 		ReturnToTitle_OFF_ = GameEngineImageManager::GetInst()->Find("Main_Return_To_Menu1.bmp");
 		Baba_ = GameEngineImageManager::GetInst()->Find("unit_baba_Sheet.bmp");
+		AlphaBackGround_ = GameEngineImageManager::GetInst()->Find("BackGround.bmp");
 	}
 
 	{
@@ -158,6 +160,7 @@ void PlayAndMainLevelMenu::KeyPush()
 
 void PlayAndMainLevelMenu::Render()
 {
+	GameEngine::BackBufferImage()->AlphaCopy(AlphaBackGround_, float4::ZERO, GameEngineWindow::GetScale(), float4::ZERO, AlphaBackGround_->GetScale(), 120);
 	if (GetLevel()->GetNameConstRef() == "MainLevel")
 	{
 		switch (CurrentMenu_)

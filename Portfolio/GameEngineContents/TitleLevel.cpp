@@ -7,6 +7,7 @@
 #include "GamePlayEnum.h"
 #include "TitleBaba.h"
 #include "TitleBackGroundStage.h"
+#include "AlphaBackGround.h"
 
 
 TitleLevel::TitleLevel() 
@@ -28,16 +29,16 @@ void TitleLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 void TitleLevel::Loading()
 {
-	
+	CreateActor<AlphaBackGround>(2);
 	CreateActor<TitleBackGroundStage>(1);
 	CreateActor<BackGround>(0);
 	{
 		Fade_ = CreateActor<Fade_InAndOut>(10);
 		Fade_->Reset();
 	}
-	CreateActor<TitleLogo>(1, "TitleLogo");
-	CreateActor<TitleMenu>(1, "TitleMenu");
-	CreateActor<TitleBaba>(2, "TitleBaba");
+	CreateActor<TitleLogo>(5, "TitleLogo");
+	CreateActor<TitleMenu>(5, "TitleMenu");
+	CreateActor<TitleBaba>(4, "TitleBaba");
 	TitleBaba::BabaTitleLocate_ = BabaLocation::Start_The_Game;
 }
 

@@ -127,25 +127,27 @@ void AlphabetManager::Update()
 			}
 			StartIter++;
 		}
+		//
 		Speed_ -= AddSpeed_;
 		MoveRange_ = (Speed_ > 0 ? Speed_ : Speed_ * -1.0f);
 		if (MoveRange_ > MaxRange_)
 		{
-			if (Speed_ < -12.0f)
+			if (Speed_ < -5.0f)
 			{
-				Speed_ = -8.0f;
-				AddSpeed_ = -0.2f;
-				MaxRange_ = 20.0f;
+				Speed_ = 0.0f;
+				AddSpeed_ = -0.1f;
+				MaxRange_ = 10.0f;
 				MoveRange_ = 0.0f;
 			}
-			else if (Speed_ > 12.0f)
+			else if (Speed_ > 5.0f)
 			{
-				Speed_ = 8.0f;
-				AddSpeed_ = 0.2f;
-				MaxRange_ = 20.0f;
+				Speed_ = 0.0f;
+				AddSpeed_ = 0.1f;
+				MaxRange_ = 10.0f;
 				MoveRange_ = 0.0f;
 			}
 		}
+		//
 	}
 }
 void AlphabetManager::Render()
@@ -175,14 +177,14 @@ void AlphabetManager::SetText(const float4& _Pos /*LU*/, const std::string& _Tex
 	{
 
 		int PastSelect = 10;
-		NewText->Pos_ = { _Pos.x - ((_Text.size() / 2) * (_CharSize.x - _interval/2)) - (_Text.size() % 2 == 0 ? 0.0f : _CharSize.Half().x) , _Pos.y - _CharSize.Half().y};
+		NewText->Pos_ = { _Pos.x - ((_Text.size() / 2) * (_CharSize.x - _interval)) - (_Text.size() % 2 == 0 ? 0.0f : _CharSize.Half().x) , _Pos.y - _CharSize.Half().y};
 		// 대문자로 변환
 		NewText->CurrentInterTime_ = 0.01f;
 		NewText->UpperText_ = GameEngineString::ToUpperReturn(_Text);
 		for (size_t i = 0; i < _Text.size(); i++)
 		{
 			// 중앙으로 위치 변경(중앙에 출력되도록 변경)
-			float4 Pos = { NewText->Pos_.x + ((_CharSize.x - _interval / 2) * i) , NewText->Pos_.y};
+			float4 Pos = { NewText->Pos_.x + ((_CharSize.x - _interval) * i) , NewText->Pos_.y};
 			int CurrentSelect = 0; 
 			do
 			{

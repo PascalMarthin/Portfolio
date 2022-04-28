@@ -46,6 +46,7 @@ private:
 	GameEngineImage* ReturnToTitle_ON_;
 	GameEngineImage* ReturnToTitle_OFF_;
 	GameEngineImage* Baba_;
+	GameEngineImage* AlphaBackGround_;
 
 	float4 ResumePos_;
 	float4 ReStartPos_;

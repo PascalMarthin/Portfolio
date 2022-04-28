@@ -239,7 +239,14 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 	SetStage();
 	StageFucntionReset();
-	StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], {60, 80}, 20.0f);
+	{
+		StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], { 60, 72 }, 16.0f);
+		//StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], {60, 72}, 16.0f);
+		if (CurrentStage_ == Stage::Stage0)
+		{
+			//StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], { 60, 72 }, 16.0f);
+		}
+	}
 
 	ScanFucntion();
 	CheckMapAllStat();

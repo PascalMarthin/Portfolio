@@ -172,6 +172,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AlphaBackGround.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="AlphabetManager.h">
       <SubType>
       </SubType>
@@ -391,6 +395,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AlphaBackGround.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="AlphabetManager.cpp">
       <SubType>
       </SubType>

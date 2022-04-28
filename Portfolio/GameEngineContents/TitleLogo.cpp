@@ -26,6 +26,7 @@ void TitleLogo::Start()
 	RenderImg->CreateAnimation("TitleLogo_sheet.bmp", "Title_Logo", 0, 2, ImageSpeed, true);
 	RenderImg->ChangeAnimation("Title_Logo");
 	RenderImg->CameraEffectOff();
+	RenderImg->SetOrder(3);
 }
 
 void TitleLogo::Update()

@@ -161,6 +161,9 @@
     <ClCompile Include="AlphabetManager.cpp">
       <Filter>Gobal\Alphabet</Filter>
     </ClCompile>
+    <ClCompile Include="AlphaBackGround.cpp">
+      <Filter>LevelClass\Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -325,6 +328,9 @@
     </ClInclude>
     <ClInclude Include="AlphabetManager.h">
       <Filter>Gobal\Alphabet</Filter>
+    </ClInclude>
+    <ClInclude Include="AlphaBackGround.h">
+      <Filter>LevelClass\Title</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
