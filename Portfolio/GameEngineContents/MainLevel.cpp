@@ -90,7 +90,7 @@ bool MainLevel::KeyPush()
 		{
 			MainCursor_->SetPosition((MainCursor_->GetPosition()) - (float4{ 0, 48 }));
 			MainCursorPos_ -= {0, 1};
-			GameEngineSound::SoundPlayOneShot("move1.ogg");
+			GameEngineSound::SoundPlayOneShot("move3.ogg");
 		}
 		return true;
 	}
@@ -100,17 +100,17 @@ bool MainLevel::KeyPush()
 		{
 			MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 48, 0 }));
 			MainCursorPos_ += {1, 0};
-			GameEngineSound::SoundPlayOneShot("move1.ogg");
+			GameEngineSound::SoundPlayOneShot("move2.ogg");
 		}
 		return true;
 	}
 	if (GameEngineInput::GetInst()->IsDown("Left"))
-	{
+	{¤¸
 		if (MainMap_[MainCursorPos_.iy()][MainCursorPos_.ix() - 1] != nullptr)
 		{
 			MainCursor_->SetPosition((MainCursor_->GetPosition()) - (float4{ 48, 0 }));
 			MainCursorPos_ -= {1, 0};
-			GameEngineSound::SoundPlayOneShot("move1.ogg");
+			GameEngineSound::SoundPlayOneShot("move4.ogg");
 		}
 		return true;
 	}
@@ -277,7 +277,7 @@ void MainLevel::IntoLevel()
 {
 
 	Fade_->ShowFadeOut();
-	GameEngineSound::SoundPlayOneShot("Retrun.ogg");
+	GameEngineSound::SoundPlayOneShot("IntotheMap.ogg");
 	BackGroundMusicControl_.Stop();
 }
 

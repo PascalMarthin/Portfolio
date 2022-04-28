@@ -2,6 +2,7 @@
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngine/GameEngineImage.h>
+#include <GameEngineBase/GameEngineSound.h>
 #include "GamePlayEnum.h"
 
 // Ό³Έν :

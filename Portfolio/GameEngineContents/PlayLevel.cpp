@@ -164,20 +164,20 @@ void PlayLevel::KeyPushInMenu()
 			return;
 			break;
 		case MainMenu::ReStart:
-			GameEngineSound::SoundPlayOneShot("Retrun.ogg");
+			GameEngineSound::SoundPlayOneShot("input.ogg");
 			ReGame();
 			return;
 			break;
 		case MainMenu::ReturnToMap:
 			GoMain_ = true;
-			GameEngineSound::SoundPlayOneShot("Retrun.ogg");
+			GameEngineSound::SoundPlayOneShot("input.ogg");
 			SceneChange();
 			break;
 		case MainMenu::Setting:
 			break;
 		case MainMenu::ReturnToMenu:
 			GoTitle_ = true;
-			GameEngineSound::SoundPlayOneShot("Retrun.ogg");
+			GameEngineSound::SoundPlayOneShot("input.ogg");
 			SceneChange();
 			break;
 		default:
@@ -240,11 +240,18 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	SetStage();
 	StageFucntionReset();
 	{
-		StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], { 60, 72 }, 16.0f);
-		//StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], {60, 72}, 16.0f);
-		if (CurrentStage_ == Stage::Stage0)
+
+		if (CurrentStage_ != Stage::Stage0)
 		{
-			//StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], { 60, 72 }, 16.0f);
+			StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], { 60, 72 }, 16.0f);
+			StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], {60, 72}, 16.0f);
+
+		}
+		else
+		{
+			StageAlphabet_->SetText({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y - 80.0f }, "Stage  0", { 60, 72 }, 20.0f);
+			StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], {60, 72}, 16.0f);
+			StageAlphabet_->SetText({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y + 180.0f }, "Welcome  To  Baba  Is  You", { 48, 58 }, 16.0f);
 		}
 	}
 

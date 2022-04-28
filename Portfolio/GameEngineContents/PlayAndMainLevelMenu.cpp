@@ -121,6 +121,7 @@ void PlayAndMainLevelMenu::KeyPush()
 		default:
 			break;
 		}
+		GameEngineSound::SoundPlayOneShot("select5.ogg");
 	}
 	if (GameEngineInput::GetInst()->IsDown("Down"))
 	{
@@ -152,11 +153,14 @@ void PlayAndMainLevelMenu::KeyPush()
 		default:
 			break;
 		}
+		GameEngineSound::SoundPlayOneShot("select2.ogg");
 	}
 
 
 
 }
+
+
 
 void PlayAndMainLevelMenu::Render()
 {
