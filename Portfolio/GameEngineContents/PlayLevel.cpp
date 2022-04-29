@@ -243,15 +243,15 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 		if (CurrentStage_ != Stage::Stage0)
 		{
-			StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], { 60, 72 }, 16.0f);
-			StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], {60, 72}, 16.0f);
+			StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], { 72, 90 }, 16.0f);
+			//StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], {60, 72}, 16.0f);
 
 		}
 		else
 		{
-			StageAlphabet_->SetText({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y - 80.0f }, "Stage  0", { 60, 72 }, 20.0f);
-			StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], {60, 72}, 16.0f);
-			StageAlphabet_->SetText({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y + 180.0f }, "Welcome  To  Baba  Is  You", { 48, 58 }, 16.0f);
+			StageAlphabet_->SetText({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y - 100.0f }, "Stage  0", { 60, 72 }, -5.0f);
+			StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], { 72, 90 }, 16.0f);
+			StageAlphabet_->SetText({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y + 150.0f }, "Welcome  To  Baba  Is  You", { 48, 58 }, 16.0f);
 		}
 	}
 
