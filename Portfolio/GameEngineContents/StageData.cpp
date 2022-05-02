@@ -270,7 +270,8 @@ void StageData::MainStage()
 }
 void StageData::Stage0()
 {
-	TitleString_[Stage::Stage0] = "Baba Is You";
+	StageLevelString_[Stage::Stage0] = "Stage 0";
+	StageNameString_[Stage::Stage0] = "Baba Is You";
 	Scale_[Stage::Stage0] = { 33, 18 };
 	StageData_[Stage::Stage0][6][11] = ObjectName::Baba_Text;
 	StageData_[Stage::Stage0][6][12] = ObjectName::Is_Text;
@@ -343,7 +344,8 @@ void StageData::Stage0()
 
 void StageData::Stage1()
 {
-	TitleString_[Stage::Stage1] = "Where Do I Go?";
+	StageLevelString_[Stage::Stage1] = "Stage 1";
+	StageNameString_[Stage::Stage1] = "Where Do I Go?";
 	Scale_[Stage::Stage1] = { 24, 18 };
 	StageData_[Stage::Stage1][1][7] = ObjectName::Grass_Unit;
 	StageData_[Stage::Stage1][2][9] = ObjectName::Wall_Unit;
@@ -452,7 +454,8 @@ void StageData::Stage1()
 
 void StageData::Stage2()
 {
-	TitleString_[Stage::Stage2] = "Now What Is This?";
+	StageLevelString_[Stage::Stage2] = "Stage 2";
+	StageNameString_[Stage::Stage2] = "Now What Is This?";
 	Scale_[Stage::Stage2] = { 24, 18 };
 	StageData_[Stage::Stage2][1][7] = ObjectName::Tile_Unit;
 
@@ -569,7 +572,8 @@ void StageData::Stage2()
 }
 void StageData::Stage3()
 {
-	TitleString_[Stage::Stage3] = "Out Of Reach";
+	StageLevelString_[Stage::Stage3] = "Stage 3";
+	StageNameString_[Stage::Stage3] = "Out Of Reach";
 	Scale_[Stage::Stage3] = { 22, 16 };
 
 	StageData_[Stage::Stage3][0][0] = ObjectName::Baba_Text;
@@ -687,7 +691,7 @@ void StageData::Stage3()
 	StageData_[Stage::Stage3][11][5] = ObjectName::Water_Unit;
 	StageData_[Stage::Stage3][11][6] = ObjectName::Water_Unit;
 	StageData_[Stage::Stage3][11][7] = ObjectName::Water_Unit;
-	StageData_[Stage::Stage3][11][9] = ObjectName::Wall_Unit;
+	//StageData_[Stage::Stage3][11][9] = ObjectName::Wall_Unit;
 	StageData_[Stage::Stage3][11][17] = ObjectName::Wall_Unit;
 
 	StageData_[Stage::Stage3][12][1] = ObjectName::Grass_Unit;
@@ -733,7 +737,8 @@ void StageData::Stage3()
 }
 void StageData::Stage4()
 {
-	TitleString_[Stage::Stage4] = "Still Out Of Reach";
+	StageLevelString_[Stage::Stage4] = "Stage 4";
+	StageNameString_[Stage::Stage4] = "Still Out Of Reach";
 	Scale_[Stage::Stage4] = { 24, 14 };
 
 	StageData_[Stage::Stage4][0][0] = ObjectName::Flag_Text;
@@ -819,7 +824,8 @@ void StageData::Stage4()
 }
 void StageData::Stage5()
 {
-	TitleString_[Stage::Stage5] = "VOLCANO";
+	StageLevelString_[Stage::Stage5] = "Stage 5";
+	StageNameString_[Stage::Stage5] = "VOLCANO";
 	Scale_[Stage::Stage5] = { 33, 18 };
 
 	StageData_[Stage::Stage5][0][0] = ObjectName::Wall_Text;
@@ -1035,7 +1041,8 @@ void StageData::Stage5()
 }
 void StageData::Stage6()
 {
-	TitleString_[Stage::Stage6] = "VOLCANO";
+	StageLevelString_[Stage::Stage6] = "Stage 6";
+	StageNameString_[Stage::Stage6] = "OFF LIMITS";
 	Scale_[Stage::Stage6] = { 24, 14 };
 
 	StageData_[Stage::Stage6][0][0] = ObjectName::Rock_Text;
@@ -1207,7 +1214,8 @@ void StageData::Stage6()
 }
 void StageData::Stage7()
 {
-	TitleString_[Stage::Stage6] = "Grass Yard";
+	StageLevelString_[Stage::Stage7] = "Stage 7";
+	StageNameString_[Stage::Stage7] = "Grass Yard";
 	Scale_[Stage::Stage7] = { 24, 14 };
 
 	StageData_[Stage::Stage7][2][5] = ObjectName::Wall_Unit;

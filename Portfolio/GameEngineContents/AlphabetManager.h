@@ -30,7 +30,7 @@ public:
 	AlphabetManager& operator=(const AlphabetManager& _Other) = delete;
 	AlphabetManager& operator=(AlphabetManager&& _Other) noexcept = delete;
 	void SetText(const float4& _Pos /*LU*/, const std::string& _Text, const float4& _CharSize, const float
-		_interval /*const AlphabetColor _Color*/);
+		_interval, const AlphabetColor _Color);
 	void EndText();
 
 protected:
@@ -42,11 +42,14 @@ protected:
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) {}
 
 private:
+	GameEngineImage* BabaCharSheet_White_;
+	GameEngineImage* BabaCharSheet_Pink_;
+	GameEngineImage* BabaCharSheet_Blue_;
+
 
 
 	void ViewText(TextQueue* _TextQueue);
 	std::map<char, float4> Alphabet_;
-	GameEngineImage* AlphabetSheet_;
 	std::list<TextQueue*> TextQueue_;
 	GameEngineRandom* Random_;
 	float Speed_;
@@ -98,5 +101,6 @@ enum class TextQueueState
 enum class AlphabetColor
 {
 	White,
-	Pink
+	Pink,
+	Blue
 };

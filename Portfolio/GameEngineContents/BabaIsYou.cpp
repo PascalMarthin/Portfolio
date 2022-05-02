@@ -153,7 +153,11 @@ void BabaIsYou::GameInit()
 		Image->Cut({ 64 , 64 });
 		Image = GameEngineImageManager::GetInst()->Find("default_sheet.bmp");
 		Image->Cut({ 48 , 48 });
-		Image = GameEngineImageManager::GetInst()->Find("Alphabet_sheet.bmp");
+		Image = GameEngineImageManager::GetInst()->Find("BabaChar_Sheet_White.bmp");
+		Image->Cut({ 48 , 48 });
+		Image = GameEngineImageManager::GetInst()->Find("BabaChar_Sheet_Pink.bmp");
+		Image->Cut({ 48 , 48 });
+		Image = GameEngineImageManager::GetInst()->Find("BabaChar_Sheet_Blue.bmp");
 		Image->Cut({ 48 , 48 });
 	}
 	// Fade

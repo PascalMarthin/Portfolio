@@ -234,7 +234,7 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		GameBackGround_->SetOrder(8);
 		GameBackGround_->ActorRender_ = true;
 	}
-	TimeForFadeIn_ = 5.0f;
+	TimeForFadeIn_ = 3.5f;
 	StageTitle_ = true;
 
 	SetStage();
@@ -243,15 +243,15 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 		if (CurrentStage_ != Stage::Stage0)
 		{
-			StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], { 72, 90 }, 16.0f);
-			//StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], {60, 72}, 16.0f);
+			StageAlphabet_->SetText({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y - 80.0f }, StageData::Inst_->StageLevelString_[CurrentStage_], { 38, 38 * 1.4f}, 5.0f, AlphabetColor::Pink);
+			StageAlphabet_->SetText({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y + 50.0f }, StageData::Inst_->StageNameString_[CurrentStage_], { 64, 64 * 1.4f}, -5.0f, AlphabetColor::White);
 
 		}
 		else
 		{
-			StageAlphabet_->SetText({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y - 100.0f }, "Stage  0", { 60, 72 }, -5.0f);
-			StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->TitleString_[CurrentStage_], { 72, 90 }, 16.0f);
-			StageAlphabet_->SetText({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y + 150.0f }, "Welcome  To  Baba  Is  You", { 48, 58 }, 16.0f);
+			StageAlphabet_->SetText({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y - 120.0f }, StageData::Inst_->StageLevelString_[CurrentStage_], { 38, 38 * 1.4f }, 5.0f, AlphabetColor::Pink);
+			StageAlphabet_->SetText(GameEngineWindow::GetScale().Half(), StageData::Inst_->StageNameString_[CurrentStage_], { 64, 64 * 1.4f }, -5.0f, AlphabetColor::White);
+			StageAlphabet_->SetText({ GameEngineWindow::GetScale().Half().x, GameEngineWindow::GetScale().Half().y + 150.0f }, "Welcome To Baba Is You", { 48, 58 }, 5.0f, AlphabetColor::Blue);
 		}
 	}
 
@@ -277,6 +277,12 @@ void PlayLevel::AfterMove()
 	ScanFucntion();
 	CheckMapAllStat();
 	ScanBridgeUnit();
+	{
+		StageFucntionReset();
+		ScanFucntion();
+		CheckMapAllStat();
+		ScanBridgeUnit();
+	}
 	if (IsReset_ == false && CanMove() == false)
 	{
 		GameOver();
@@ -571,16 +577,11 @@ void PlayLevel::ScanFucntion()
 			
 			for (auto iter : Block)
 			{
-				if (iter->IsUnitUpdate() == true)
+				if (iter->IsUnitUpdate() == true && iter->GetTextObjectInst()->GetTextType() == TextType::Verb_Text)
 				{
-
-					if (iter->GetTextObjectInst()->GetTextType() == TextType::Verb_Text)
-					{
-						CheckFunction(X, Y, iter);
-						continue;
-					}	
-				}
-
+					CheckFunction(X, Y, iter);
+					continue;
+				}	
 			}
 		}
 	}
@@ -594,11 +595,11 @@ bool PlayLevel::CheckFunction(int _X, int _Y, Coordinate* _Verb)
 	{
 		for (auto iterMinus : CurrentMap_[_Y][_X - 1])
 		{
-			if (iterMinus->GetTextObjectInst()->GetTextType() == TextType::Unit_Text)
+			if (iterMinus->IsUnitUpdate() == true && iterMinus->GetTextObjectInst()->GetTextType() == TextType::Unit_Text)
 			{
 				for (auto iterPlus : CurrentMap_[_Y][_X + 1])
 				{
-					if (iterPlus->GetTextObjectInst()->GetTextType() == TextType::Unit_Text || iterPlus->GetTextObjectInst()->GetTextType() == TextType::Stat_Text)
+					if (iterPlus->IsUnitUpdate() == true && (iterPlus->GetTextObjectInst()->GetTextType() == TextType::Unit_Text || iterPlus->GetTextObjectInst()->GetTextType() == TextType::Stat_Text))
 					{
 						ApplyObjectFuction(iterMinus, _Verb, iterPlus);
 						CheckFucn = true;
@@ -611,11 +612,11 @@ bool PlayLevel::CheckFunction(int _X, int _Y, Coordinate* _Verb)
 	{
 		for (auto iterMinus : CurrentMap_[_Y - 1][_X])
 		{
-			if (iterMinus->GetTextObjectInst()->GetTextType() == TextType::Unit_Text)
+			if (iterMinus->IsUnitUpdate() == true && iterMinus->GetTextObjectInst()->GetTextType() == TextType::Unit_Text)
 			{
 				for (auto iterPlus : CurrentMap_[_Y + 1][_X])
 				{
-					if (iterPlus->GetTextObjectInst()->GetTextType() == TextType::Unit_Text || iterPlus->GetTextObjectInst()->GetTextType() == TextType::Stat_Text)
+					if (iterPlus->IsUnitUpdate() == true && (iterPlus->GetTextObjectInst()->GetTextType() == TextType::Unit_Text || iterPlus->GetTextObjectInst()->GetTextType() == TextType::Stat_Text))
 					{
 						ApplyObjectFuction(iterMinus, _Verb, iterPlus);
 						CheckFucn = true;
@@ -764,6 +765,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 		}
 	}
 
+	// 소리 중첩 안되게
 	if (IsDefeat == true)
 	{
 		PlaySoundDefeat();

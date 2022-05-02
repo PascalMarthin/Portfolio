@@ -2,7 +2,9 @@
 #define VectorSpeed 1.0f
 
 AlphabetManager::AlphabetManager() 
-	: AlphabetSheet_(nullptr)
+	: BabaCharSheet_White_(nullptr)
+	, BabaCharSheet_Pink_(nullptr)
+	, BabaCharSheet_Blue_(nullptr)
 	, Random_(nullptr)
 	, Speed_(0)
 	, AddSpeed_(1.0f)
@@ -71,8 +73,10 @@ void AlphabetManager::Start()
 		Alphabet_[' '] = { 0 , DotSizeY * 37 };
 
 	}
-	AlphabetSheet_ = GameEngineImageManager::GetInst()->Find("BabaChar_Sheet.bmp");
-	
+	BabaCharSheet_White_ = GameEngineImageManager::GetInst()->Find("BabaChar_Sheet_White.bmp");
+	BabaCharSheet_Pink_ = GameEngineImageManager::GetInst()->Find("BabaChar_Sheet_Pink.bmp");
+	BabaCharSheet_Blue_ = GameEngineImageManager::GetInst()->Find("BabaChar_Sheet_Blue.bmp");
+
 	Random_ = new GameEngineRandom();
 }
 
@@ -132,18 +136,18 @@ void AlphabetManager::Update()
 		MoveRange_ = (Speed_ > 0 ? Speed_ : Speed_ * -1.0f);
 		if (MoveRange_ > MaxRange_)
 		{
-			if (Speed_ < -5.0f)
+			if (Speed_ < -6.0f)
 			{
 				Speed_ = 0.0f;
 				AddSpeed_ = -0.1f;
-				MaxRange_ = 10.0f;
+				MaxRange_ = 12.0f;
 				MoveRange_ = 0.0f;
 			}
-			else if (Speed_ > 5.0f)
+			else if (Speed_ > 6.0f)
 			{
 				Speed_ = 0.0f;
 				AddSpeed_ = 0.1f;
-				MaxRange_ = 10.0f;
+				MaxRange_ = 12.0f;
 				MoveRange_ = 0.0f;
 			}
 		}
@@ -167,7 +171,7 @@ void AlphabetManager::Render()
 }
 
 void AlphabetManager::SetText(const float4& _Pos /*LU*/, const std::string& _Text, const float4& _CharSize, const float
-	_interval/*const AlphabetColor _Color*/)
+	_interval, const AlphabetColor _Color)
 {
 	MaxRange_ = 15.0f;
 	MoveRange_ = 0.0f;
@@ -176,21 +180,21 @@ void AlphabetManager::SetText(const float4& _Pos /*LU*/, const std::string& _Tex
 	TextQueue* NewText = new TextQueue();
 	{
 
-		int PastSelect = 10;
-		NewText->Pos_ = { _Pos.x - ((_Text.size() / 2) * (_CharSize.x - _interval)) - (_Text.size() % 2 == 0 ? 0.0f : _CharSize.Half().x) , _Pos.y - _CharSize.Half().y};
+		int PastSelect0 = 10;
+		int PastSelect1 = 10;
+		NewText->Pos_ = { _Pos.x - ((_Text.size() / 2) * (_CharSize.x + _interval)) - (_Text.size() % 2 == 0 ? 0.0f : _CharSize.Half().x) , _Pos.y - _CharSize.Half().y};
 		// 대문자로 변환
 		NewText->CurrentInterTime_ = 0.01f;
 		NewText->UpperText_ = GameEngineString::ToUpperReturn(_Text);
 		for (size_t i = 0; i < _Text.size(); i++)
 		{
 			// 중앙으로 위치 변경(중앙에 출력되도록 변경)
-			float4 Pos = { NewText->Pos_.x + ((_CharSize.x - _interval) * i) , NewText->Pos_.y};
+			float4 Pos = { NewText->Pos_.x + ((_CharSize.x + _interval) * i) , NewText->Pos_.y};
 			int CurrentSelect = 0; 
 			do
 			{
 				CurrentSelect = Random_->RandomInt(0, 7);
-
-			} while (CurrentSelect == PastSelect);
+			} while (CurrentSelect == PastSelect0 || CurrentSelect == PastSelect1);
 			switch (CurrentSelect)
 			{
 			case 0:
@@ -220,11 +224,12 @@ void AlphabetManager::SetText(const float4& _Pos /*LU*/, const std::string& _Tex
 			default:
 				break;
 			}
-			PastSelect = CurrentSelect;
+			PastSelect1 = PastSelect0;
+			PastSelect0 = CurrentSelect;
 			NewText->MovePos_.push_back(Pos);
 		}
 		NewText->CharSize_ = _CharSize;
-		//NewText->Color_ = _Color;
+		NewText->Color_ = _Color;
 	}
 	TextQueue_.push_back(NewText);
 }
@@ -234,7 +239,20 @@ void AlphabetManager::ViewText(TextQueue* _TextQueue)
 
 	for (size_t i = 0; i < _TextQueue->UpperText_.size(); i++)
 	{
-		GameEngine::BackBufferImage()->TransCopy(AlphabetSheet_, _TextQueue->MovePos_[i], _TextQueue->CurrentCharSize_, Alphabet_[_TextQueue->UpperText_[i]], {DotSizeX, DotSizeY}, RGB(255, 0, 255));
+		switch (_TextQueue->Color_)
+		{
+		case AlphabetColor::White:
+			GameEngine::BackBufferImage()->TransCopy(BabaCharSheet_White_, _TextQueue->MovePos_[i], _TextQueue->CurrentCharSize_, Alphabet_[_TextQueue->UpperText_[i]], { DotSizeX, DotSizeY }, RGB(255, 0, 255));
+			break;
+		case AlphabetColor::Pink:
+			GameEngine::BackBufferImage()->TransCopy(BabaCharSheet_Pink_, _TextQueue->MovePos_[i], _TextQueue->CurrentCharSize_, Alphabet_[_TextQueue->UpperText_[i]], { DotSizeX, DotSizeY }, RGB(255, 0, 255));
+			break;
+		case AlphabetColor::Blue:
+			GameEngine::BackBufferImage()->TransCopy(BabaCharSheet_Blue_, _TextQueue->MovePos_[i], _TextQueue->CurrentCharSize_, Alphabet_[_TextQueue->UpperText_[i]], {DotSizeX, DotSizeY}, RGB(255, 0, 255));
+			break;
+		default:
+			break;
+		}
 	}
 
 }

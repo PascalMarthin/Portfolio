@@ -218,7 +218,7 @@ void Coordinate::Update()
 
 	}
 
-	if (UnitObject_->FindStat(SWin) && EffectManager_ != nullptr && GameEngineTime::GetDeltaTime(0) != 0.0f)
+	if (UnitObject_->FindStat(SWin) && EffectManager_ != nullptr && GameEngineTime::GetDeltaTime(0) != 0.0f && IsUnitUpdate() == true)
 	{
 		bool Effcet = EffectManager_->ShowStatEffect(PastLUPos_, GameEngineImageManager::GetInst()->Find("Win_Effect_sheet.bmp"), 0, RandomIdx_);
 		if (Effcet == true)
@@ -234,7 +234,7 @@ void Coordinate::Update()
 			RandomIdx_ = 0;
 		}
 	}
-	if (UnitObject_->FindStat(SHot) && EffectManager_ != nullptr && GameEngineTime::GetDeltaTime(0) != 0.0f)
+	if (UnitObject_->FindStat(SHot) && EffectManager_ != nullptr && GameEngineTime::GetDeltaTime(0) != 0.0f && IsUnitUpdate() == true)
 	{
 		EffectManager_->ShowStatEffect(PastLUPos_, GameEngineImageManager::GetInst()->Find("Hot_Effect_sheet.bmp"), 0, 20000);
 	}

@@ -187,13 +187,6 @@ void EffectManager::Render()
 		{
 			for (float4& Iter : (*StartIter)->CurrentPos_)
 			{
-				char AA[100];
-				char BB[100];
-				sprintf_s(AA, "%f", Iter.x);
-				sprintf_s(BB, "%f", Iter.y);
-				RECT Rect = { 0, 0, 500, 300};
-				DrawText(GameEngine::BackBufferDC(), AA, -1, &Rect, DT_CENTER);
-				
 				if ((*StartIter)->EffectImage_ == GameEngineImageManager::GetInst()->Find("Baba_Effect_sheet.bmp") ||
 					(*StartIter)->EffectImage_ == GameEngineImageManager::GetInst()->Find("Wall_Effect_sheet.bmp") ||
 					(*StartIter)->EffectImage_ == GameEngineImageManager::GetInst()->Find("Rock_Effect_sheet.bmp") )

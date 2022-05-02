@@ -34,6 +34,11 @@ public:
 	PlayLevel& operator=(const PlayLevel& _Other) = delete;
 	PlayLevel& operator=(PlayLevel&& _Other) noexcept = delete;
 
+	inline EffectManager* GetEffectManager()
+	{
+		return PlayLevelEffectManager_;
+	}
+
 protected:
 	void Loading() override;
 	void Update() override;

@@ -32,6 +32,8 @@ private:
 	GameEngineImage* Undo_;
 	GameEngineImage* KeyR_;
 	GameEngineImage* KeyZ_;
+	GameEngineImage* KeyR_Alpha_;
+	GameEngineImage* KeyZ_Alpha_;
 
 	//
 	float CurrentWaitTime_;
@@ -44,7 +46,12 @@ private:
 
 	float4 CurrentResetImgScale_;
 	float4 CurrentResetImgPivot_;
+
+	float Angle_;
+	float AngleIndex_;
+	float AngleValue_;
 	//
 	bool IsOver_;
+	bool Effect_;
 };
 

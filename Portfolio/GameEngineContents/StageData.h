@@ -33,7 +33,8 @@ public:
 private:
 	std::map<Stage, std::map<int, std::map<int, ObjectName>>> StageData_;
 	std::map<Stage, float4> Scale_;
-	std::map<Stage, std::string> TitleString_;
+	std::map<Stage, std::string> StageNameString_;
+	std::map<Stage, std::string> StageLevelString_;
 
 	void MainStage();
 	void Stage0();
