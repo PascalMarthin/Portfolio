@@ -15,8 +15,8 @@ void GameHelpMoveUI::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
 
-	CreateRendererToScale("Arrow.bmp", { 144, 96 }, 1, RenderPivot::CENTER, { 0,-350 });
-	CreateRenderer("move.bmp", 1, RenderPivot::CENTER, { 0,-270 });
+	CreateRendererToScale("Arrow.bmp", { 144, 96 }, 1, RenderPivot::CENTER, { 0,-330 });
+	CreateRenderer("move.bmp", 1, RenderPivot::CENTER, { 0,-250 });
 
 }
 void GameHelpMoveUI::Update()

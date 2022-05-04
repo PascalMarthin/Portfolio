@@ -1201,7 +1201,7 @@ bool PlayLevel::CheckBitMove(const int _x, const int _y, Direction _MoveDir)
 		std::list<Coordinate*>::iterator EndIterList = Ref.end();
 		while (StartIterList != EndIterList)
 		{
-			if ((*StartIterList)->GetUnitObjectInst()->FindStat(SPush) == true && (*StartIterList)->IsUnitUpdate() == true)
+			if ((*StartIterList)->GetUnitObjectInst()->FindStat(SPush) == true && (*StartIterList)->IsUnitUpdate() == true && (*StartIterList)->IsMove() == false)
 			{
 				if (CheckBitMove(X, Y, _MoveDir) == false)
 				{

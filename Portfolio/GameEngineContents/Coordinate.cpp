@@ -126,7 +126,7 @@ void Coordinate::ActorOrderCheck()
 	}
 	else if (UnitObject_->FindStat(SPush) == true || UnitObject_->FindStat(SStop) == true)
 	{
-		GameEngineActor::SetOrder(2);
+		GameEngineActor::SetOrder(3);
 		return;
 	}
 
