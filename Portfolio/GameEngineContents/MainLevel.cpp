@@ -182,8 +182,6 @@ void MainLevel::Update()
 	{
 		ShowStageTitle();
 	}
-	
-	
 
 }
 void MainLevel::CursorPosCheck()

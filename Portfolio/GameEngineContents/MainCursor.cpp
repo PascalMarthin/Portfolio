@@ -44,3 +44,7 @@ void MainCursor::Render()
 	GameEngine::BackBufferImage()->TransCopy(Image_, GetPosition() - CurrentImgScale_.Half(), CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
 }
 
+void MainCursor::MoveCursor(const float4& _Pos)
+{
+	QueueList_.push(_Pos);
+}
