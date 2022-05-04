@@ -170,7 +170,6 @@ void GameEngineSoundPlayer::Stop()
 {
 	if (nullptr == ControlHandle_)
 	{
-		MsgBoxAssert("사운드 컨트롤 채널에 치명적인 문제가 있습니다.\n");
 		return;
 	}
 	FMOD_RESULT AA = ControlHandle_->stop();
