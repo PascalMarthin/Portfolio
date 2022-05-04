@@ -103,31 +103,47 @@ void Coordinate::SetCurrentImage()
 
 void Coordinate::ActorOrderCheck()
 {
-
-	if (UnitObject_->GetName() == ObjectName::Text_Unit)
+	switch (UnitObject_->GetName())
 	{
-		GameEngineActor::SetOrder(4);
+	case ObjectName::Error:
+	case ObjectName::Empty_Unit:
+	case ObjectName::Default:
+	case ObjectName::Line:
+	case ObjectName::Dummy_Text:
+	default:
 		return;
-	}
-	if (UnitObject_->GetAllStat() == 0)
-	{
-		GameEngineActor::SetOrder(0);
-		return;
-	}
-	else if (UnitObject_->FindStat(SWin) == true)
-	{
-		GameEngineActor::SetOrder(3);
-		return;
-	}
-	else if (UnitObject_->FindStat(SYou) == true)
-	{
+		break;
+	case ObjectName::Baba_Unit:
 		GameEngineActor::SetOrder(6);
 		return;
-	}
-	else if (UnitObject_->FindStat(SPush) == true || UnitObject_->FindStat(SStop) == true)
-	{
+		break;
+	case ObjectName::Brick_Unit:
+	case ObjectName::Grass_Unit:
+	case ObjectName::Tile_Unit:
+		GameEngineActor::SetOrder(1);
+		return;
+		break;
+	case ObjectName::Flag_Unit:
+	case ObjectName::Skull_Unit:
+		GameEngineActor::SetOrder(5);
+		return;
+		break;
+	case ObjectName::Flower_Unit:
+	case ObjectName::Lava_Unit:
+	case ObjectName::Water_Unit:
+		GameEngineActor::SetOrder(2);
+		return;
+		break;
+	case ObjectName::Wall_Unit:
 		GameEngineActor::SetOrder(3);
 		return;
+		break;
+
+	case ObjectName::Rock_Unit:
+	case ObjectName::Text_Unit:
+		GameEngineActor::SetOrder(4);
+		return;
+		break;
 	}
 
 }
@@ -140,7 +156,7 @@ void Coordinate::Update()
 		{
 			int a = 0;
 		}
-		ActorOrderCheck();
+		//ActorOrderCheck();
 		SetCurrentImage();
 		if (IsUnitUpdate() == false)
 		{
@@ -387,7 +403,7 @@ void Coordinate::SetValue(GamePlayObject* _Object, Direction _Dir, const float4&
 			UnitDir_ = _Dir;
 		}
 	}
-
+	ActorOrderCheck();
 }
 
 void Coordinate::ChangePos(const float4& _Pos, const float4& _CPos, Direction _Dir)
