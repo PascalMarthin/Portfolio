@@ -3,6 +3,7 @@
 #include "GamePlayEnum.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngine.h>
+#include "PlayLevel.h"
 
 PlayAndMainLevelMenu::PlayAndMainLevelMenu() 
 	: Resume_ON_(nullptr)
@@ -24,6 +25,7 @@ PlayAndMainLevelMenu::PlayAndMainLevelMenu()
 	, CurrentImgPivot_(float4::ZERO)
 	, BabaLocate_(float4::ZERO)
 	, AlphaBackGround_(nullptr)
+	, StageNameImage_(nullptr)
 
 {
 }
@@ -53,6 +55,42 @@ void PlayAndMainLevelMenu::Start()
 		Baba_ = GameEngineImageManager::GetInst()->Find("unit_baba_Sheet.bmp");
 		AlphaBackGround_ = GameEngineImageManager::GetInst()->Find("BackGround.bmp");
 	}
+	{
+		CurrentStage_ = static_cast<PlayLevel*>(GetLevel())->GetCurrentStage();
+
+		switch (CurrentStage_)
+		{
+		case Stage::MainStage:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("MainMap_Map.bmp");
+			break;
+		case Stage::Stage0:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("Baba_Is_You.bmp");
+			break;
+		case Stage::Stage1:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("Where_Do_I_Go.bmp");
+			break;
+		case Stage::Stage2:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("Now_What_Is_This.bmp");
+			break;
+		case Stage::Stage3:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("Out_Of_Reach.bmp");
+			break;
+		case Stage::Stage4:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("Still_Out_Of_Reach.bmp");
+			break;
+		case Stage::Stage5:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("VOLCANO.bmp");
+			break;
+		case Stage::Stage6:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("OFF_LIMITS.bmp");
+			break;
+		case Stage::Stage7:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("Grass_Yard.bmp");
+			break;
+		default:
+			break;
+		}
+	}
 
 	{
 		ResumePos_ = {0 , -280};
@@ -63,6 +101,7 @@ void PlayAndMainLevelMenu::Start()
 		BabaLocate_ = { -60, 0 };
 	}
 	CurrentMenu_ = MainMenu::Resume;
+	CurrentStage_ = static_cast<PlayLevel*>(GetLevel())->GetCurrentStage();
 	SetOrder(8);
 	Off();
 
@@ -86,6 +125,42 @@ void PlayAndMainLevelMenu::BabaAnimation()
 
 void PlayAndMainLevelMenu::Update()
 {
+	{
+		CurrentStage_ = static_cast<PlayLevel*>(GetLevel())->GetCurrentStage();
+
+		switch (CurrentStage_)
+		{
+		case Stage::MainStage:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("MainMap_Map.bmp");
+			break;
+		case Stage::Stage0:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("Baba_Is_You.bmp");
+			break;
+		case Stage::Stage1:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("Where_Do_I_Go.bmp");
+			break;
+		case Stage::Stage2:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("Now_What_Is_This.bmp");
+			break;
+		case Stage::Stage3:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("Out_Of_Reach.bmp");
+			break;
+		case Stage::Stage4:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("Still_Out_Of_Reach.bmp");
+			break;
+		case Stage::Stage5:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("VOLCANO.bmp");
+			break;
+		case Stage::Stage6:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("OFF_LIMITS.bmp");
+			break;
+		case Stage::Stage7:
+			StageNameImage_ = GameEngineImageManager::GetInst()->Find("Grass_Yard.bmp");
+			break;
+		default:
+			break;
+		}
+	}
 	BabaAnimation();
 }
 
@@ -165,6 +240,7 @@ void PlayAndMainLevelMenu::KeyPush()
 void PlayAndMainLevelMenu::Render()
 {
 	GameEngine::BackBufferImage()->AlphaCopy(AlphaBackGround_, float4::ZERO, GameEngineWindow::GetScale(), float4::ZERO, AlphaBackGround_->GetScale(), 120);
+	GameEngine::BackBufferImage()->TransCopy(StageNameImage_, { GameEngineWindow::GetScale().Half().x - StageNameImage_->GetScale().Half().x, 30}, StageNameImage_->GetScale(), float4::ZERO, StageNameImage_->GetScale(), RGB(255, 0, 255));
 	if (GetLevel()->GetNameConstRef() == "MainLevel")
 	{
 		switch (CurrentMenu_)
@@ -222,7 +298,6 @@ void PlayAndMainLevelMenu::Render()
 			GameEngine::BackBufferImage()->TransCopy(Setting_OFF_, GetPosition() - Setting_OFF_->GetScale().Half() + SettingPos_, Setting_OFF_->GetScale(), float4::ZERO, Setting_OFF_->GetScale(), RGB(255, 0, 255));
 			GameEngine::BackBufferImage()->TransCopy(ReturnToTitle_OFF_, GetPosition() - ReturnToTitle_OFF_->GetScale().Half() + ReturnToTitlePos_, ReturnToTitle_OFF_->GetScale(), float4::ZERO, ReturnToTitle_OFF_->GetScale(), RGB(255, 0, 255));
 			GameEngine::BackBufferImage()->TransCopy(Baba_, GetPosition() - Resume_ON_->GetScale().Half() + ResumePos_ + BabaLocate_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
-
 			break;
 		case MainMenu::ReStart:
 			GameEngine::BackBufferImage()->TransCopy(Resume_OFF_, GetPosition() - Resume_OFF_->GetScale().Half() + ResumePos_, Resume_OFF_->GetScale(), float4::ZERO, Resume_OFF_->GetScale(), RGB(255, 0, 255));
@@ -258,8 +333,6 @@ void PlayAndMainLevelMenu::Render()
 			GameEngine::BackBufferImage()->TransCopy(Setting_OFF_, GetPosition() - Setting_OFF_->GetScale().Half() + SettingPos_, Setting_OFF_->GetScale(), float4::ZERO, Setting_OFF_->GetScale(), RGB(255, 0, 255));
 			GameEngine::BackBufferImage()->TransCopy(ReturnToTitle_ON_, GetPosition() - ReturnToTitle_ON_->GetScale().Half() + ReturnToTitlePos_, ReturnToTitle_ON_->GetScale(), float4::ZERO, ReturnToTitle_ON_->GetScale(), RGB(255, 0, 255));
 			GameEngine::BackBufferImage()->TransCopy(Baba_, GetPosition() - ReturnToTitle_ON_->GetScale().Half() + ReturnToTitlePos_ + BabaLocate_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
-
-
 			break;
 		default:
 			break;

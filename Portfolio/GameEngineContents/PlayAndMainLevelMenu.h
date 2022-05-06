@@ -56,6 +56,8 @@ private:
 	float4 ReturnToTitlePos_;
 
 	MainMenu CurrentMenu_;
+	Stage CurrentStage_;
+	GameEngineImage* StageNameImage_;
 	//
 
 	void BabaAnimation();

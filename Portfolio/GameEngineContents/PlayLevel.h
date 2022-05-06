@@ -39,6 +39,12 @@ public:
 		return PlayLevelEffectManager_;
 	}
 
+	inline Stage GetCurrentStage()
+	{
+		return CurrentStage_;
+	}
+	
+
 protected:
 	void Loading() override;
 	void Update() override;
