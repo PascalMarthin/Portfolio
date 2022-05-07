@@ -18,6 +18,7 @@ MainLevel::MainLevel()
 	GameWindowStartPosY_(0),
 	MapScale_({ 0, 0 }),
 	MainCursorPos_({ 0, 0 }),
+	CurrentMovePos_(0),
 	MainCursor_(nullptr),
 	Fade_(nullptr),
 	StageName_(nullptr),
@@ -78,7 +79,8 @@ bool MainLevel::KeyPush()
 	{
 		if (MainMap_[MainCursorPos_.iy() + 1][MainCursorPos_.ix()] != nullptr)
 		{
-			MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 0, 48 }));
+			MoveQueue_.push(Direction::Down);
+			//MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 0, 48 }));
 			MainCursorPos_ += {0, 1};
 			GameEngineSound::SoundPlayOneShot("move1.ogg");
 		}
@@ -88,7 +90,8 @@ bool MainLevel::KeyPush()
 	{
 		if (MainMap_[MainCursorPos_.iy() - 1][MainCursorPos_.ix()] != nullptr)
 		{
-			MainCursor_->SetPosition((MainCursor_->GetPosition()) - (float4{ 0, 48 }));
+			MoveQueue_.push(Direction::Up);
+			//MainCursor_->SetPosition((MainCursor_->GetPosition()) - (float4{ 0, 48 }));
 			MainCursorPos_ -= {0, 1};
 			GameEngineSound::SoundPlayOneShot("move3.ogg");
 		}
@@ -98,7 +101,8 @@ bool MainLevel::KeyPush()
 	{
 		if (MainMap_[MainCursorPos_.iy()][MainCursorPos_.ix() + 1] != nullptr)
 		{
-			MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 48, 0 }));
+			MoveQueue_.push(Direction::Right);
+			//MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 48, 0 }));
 			MainCursorPos_ += {1, 0};
 			GameEngineSound::SoundPlayOneShot("move2.ogg");
 		}
@@ -108,7 +112,8 @@ bool MainLevel::KeyPush()
 	{
 		if (MainMap_[MainCursorPos_.iy()][MainCursorPos_.ix() - 1] != nullptr)
 		{
-			MainCursor_->SetPosition((MainCursor_->GetPosition()) - (float4{ 48, 0 }));
+			MoveQueue_.push(Direction::Left);
+			//MainCursor_->SetPosition((MainCursor_->GetPosition()) - (float4{ 48, 0 }));
 			MainCursorPos_ -= {1, 0};
 			GameEngineSound::SoundPlayOneShot("move4.ogg");
 		}
@@ -178,9 +183,36 @@ void MainLevel::Update()
 		return;
 	}
 	CursorPosCheck();
-	if (KeyPush() == true)
+	KeyPush();
+	if (MoveQueue_.empty() == false)
 	{
-		ShowStageTitle();
+		CurrentMovePos_ += 4.0f;
+		if (CurrentMovePos_ > static_cast<float>(DotSizeX))
+		{
+			CurrentMovePos_ = 0;
+			MoveQueue_.pop();
+		}
+		else
+		{
+			switch (MoveQueue_.front())
+			{
+			case Direction::Right:
+				MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 4, 0 }));
+				break;
+			case Direction::Up:
+				MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 0, -4 }));
+				break;
+			case Direction::Left:
+				MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ -4, 0 }));
+				break;
+			case Direction::Down:
+				MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 0, 4 }));
+				break;
+			default:
+				break;
+			}
+		}
+
 	}
 
 }
@@ -266,10 +298,6 @@ void MainLevel::KeyPushInMenu()
 	}
 	Menu_->KeyPush();
 }
-void MainLevel::ShowStageTitle()
-{
-	
-}
 
 void MainLevel::IntoLevel()
 {
@@ -287,6 +315,7 @@ void MainLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	GameEngineSound::Update();
 	Fade_->ShowFadeIn();
 	BackGroundMusicControl_ = GameEngineSound::SoundPlayControl("map.ogg");
+	CurrentMovePos_ = 0;
 }
 
 void MainLevel::CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage)

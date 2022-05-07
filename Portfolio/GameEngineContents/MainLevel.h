@@ -2,6 +2,7 @@
 #include <GameEngine/GameEngineLevel.h>
 #include <GameEngineBase/GameEngineSound.h>
 #include <map>
+#include <queue>
 #include "GamePlayEnum.h"
 #include "Fade_InAndOut.h"
 #include "StageName.h"
@@ -38,7 +39,6 @@ private:
 	void IntoLevel();
 	bool KeyPush();
 	void CursorPosCheck();
-	void ShowStageTitle();
 	
 	std::map<int, std::map<int, Coordinate*>> MainMap_;
 
@@ -63,6 +63,8 @@ private:
 	void CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage);
 	StageName* StageName_;
 	GameEngineActor* MainCursor_;
+	std::queue<Direction> MoveQueue_;
+	float CurrentMovePos_;
 	Fade_InAndOut* Fade_;
 	GameEngineSoundPlayer BackGroundMusicControl_;
 };
