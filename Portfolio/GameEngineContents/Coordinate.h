@@ -115,6 +115,12 @@ public:
 	void SetValue(GamePlayObject* _Object, Direction _Dir = Direction::Right, const float4& _Size = { DotSizeX, DotSizeY });
 	EffectManager* EffectManager_;
 
+	// vibration
+	static float4 VibrationVector_;
+	static float VibrationVectorIndex_;
+	static float CurrentVibrationTime_;
+	static int VibrationCounter_;
+
 protected:
 	void Start() override;
 	void Update() override;
@@ -145,7 +151,8 @@ private:
 	unsigned int BridgeUnit_;
 	void BridgeUnitCheck();
 	void ActorOrderCheck();
-	
+
+
 	// img
 	const std::vector<std::pair<int, int>>* CurrentImageIndex_;
 	int CurrentFrame_;

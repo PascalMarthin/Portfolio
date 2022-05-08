@@ -5,11 +5,16 @@
 #include "Text.h"
 #include "Dummy_Text.h"
 
-Coordinate::Coordinate() 
-	: CurrentPos_({0, 0})
+float Coordinate::CurrentVibrationTime_ = 0.1f;
+float4 Coordinate::VibrationVector_ = float4::ZERO;
+float Coordinate::VibrationVectorIndex_ = 0;
+int Coordinate::VibrationCounter_ = 0;
+
+Coordinate::Coordinate()
+	: CurrentPos_({ 0, 0 })
 	, CurrentLUPos_({ 0, 0 })
-	, CurrentImgScale_({0, 0})
-	, CurrentImgPivot_({0, 0})
+	, CurrentImgScale_({ 0, 0 })
+	, CurrentImgPivot_({ 0, 0 })
 	, UnitObject_(nullptr)
 	, UnitDir_(Direction::Error)
 	, CurrentFrame_(0)
@@ -43,7 +48,7 @@ void Coordinate::Start()
 	{
 		IsKeyPush_ = true;
 	}
-
+	DoVibration_ = false;
 }
 void Coordinate::SetCurrentImage()
 {
@@ -254,8 +259,8 @@ void Coordinate::Update()
 	{
 		EffectManager_->ShowStatEffect(PastLUPos_, GameEngineImageManager::GetInst()->Find("Hot_Effect_sheet.bmp"), 0, 20000);
 	}
-
 }
+
 
 void Coordinate::BridgeUnitCheck()
 {
@@ -331,7 +336,7 @@ void Coordinate::Render()
 	{
 		if (Type_ == ObjectType::Unit)
 		{
-			GameEngine::BackBufferImage()->TransCopy(UnitObject_->GetImage(), PastLUPos_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
+			GameEngine::BackBufferImage()->TransCopy(UnitObject_->GetImage(), PastLUPos_ + (VibrationVector_ * VibrationVectorIndex_), CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
 		}
 		else if (Type_ == ObjectType::Text)
 		{

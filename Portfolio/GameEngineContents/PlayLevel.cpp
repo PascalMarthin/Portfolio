@@ -215,6 +215,7 @@ void PlayLevel::SceneChange()
 
 void PlayLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+	ResetCoordinateVibration();
 	Fade_->Reset();
 	EndStage();
 	ReSetStage();
@@ -230,6 +231,7 @@ void PlayLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
+	ResetCoordinateVibration();
 	{
 		GameBackGround_->SetOrder(8);
 		GameBackGround_->ActorRender_ = true;
@@ -364,8 +366,17 @@ void PlayLevel::SetStage()
 	CreatMap(StageData::Inst_->StageData_[CurrentStage_]);
 }
 
+void PlayLevel::ResetCoordinateVibration()
+{
+	Coordinate::CurrentVibrationTime_ = 0.1f;
+	Coordinate::VibrationVector_ = float4::ZERO;
+	Coordinate::VibrationVectorIndex_ = 0;
+	Coordinate::VibrationCounter_ = 0;
+}
+
 void PlayLevel::ReSetStage()
 {
+	ResetCoordinateVibration();
 	OverUI_->SetBack();
 	GameEngineSound::Update();
 	ShowPlayMode();
