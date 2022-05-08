@@ -21,7 +21,7 @@ GameHelpOverUI::GameHelpOverUI()
 	, CurrentResetImgPivot_(float4::ZERO)
 	, CurrentResetImgScale_(float4::ZERO)
 	, CurrentUndoImgScale_(float4::ZERO)
-	, Angle_(180.1f)
+	, Angle_(0.02f)
 	, AngleIndex_(0.0f)
 	, AngleValue_(1.0f)
 	, Effect_(false)
@@ -75,22 +75,25 @@ void GameHelpOverUI::Update()
 			{
 				AngleValue_ = 0.0f;
 			}
-			CurrentInterTime_-= GameEngineTime::GetDeltaTime(0);
-			if (CurrentInterTime_ < 0)
 			{
-				CurrentInterTime_ = ImageSpeed;
-				++CurrentFrame_;
-				if (CurrentFrame_ > EndFrame_)
+				CurrentInterTime_ -= GameEngineTime::GetDeltaTime(0);
+				if (CurrentInterTime_ < 0)
 				{
-					CurrentFrame_ = 0;
+					CurrentInterTime_ = ImageSpeed;
+					++CurrentFrame_;
+					if (CurrentFrame_ > EndFrame_)
+					{
+						CurrentFrame_ = 0;
+					}
 				}
-			}
-			CurrentUndoImgScale_ = Undo_->GetCutScale(CurrentFrame_);
-			CurrentUndoImgPivot_ = Undo_->GetCutPivot(CurrentFrame_);
 
-			CurrentResetImgScale_ = Restart_->GetCutScale(CurrentFrame_);
-			CurrentResetImgPivot_ = Restart_->GetCutPivot(CurrentFrame_);
-			Angle_ += sinf(AngleIndex_) * 50.0f * GameEngineTime::GetDeltaTime(0);
+				CurrentUndoImgScale_ = Undo_->GetCutScale(CurrentFrame_);
+				CurrentUndoImgPivot_ = Undo_->GetCutPivot(CurrentFrame_);
+
+				CurrentResetImgScale_ = Restart_->GetCutScale(CurrentFrame_);
+				CurrentResetImgPivot_ = Restart_->GetCutPivot(CurrentFrame_);
+			}
+			Angle_ += sinf(AngleIndex_) * 30.0f * GameEngineTime::GetDeltaTime(0);
 		}
 		else
 		{
@@ -109,8 +112,8 @@ void GameHelpOverUI::Render()
 			GameEngine::BackBufferImage()->TransCopy(Undo_, { GameEngineWindow::GetScale().Half().x + 280, 30 }, {96, 48}, CurrentResetImgPivot_, CurrentUndoImgScale_, RGB(255, 0, 255));
 		}
 		{
-			GameEngine::BackBufferImage()->PlgCopy(KeyR_, { GameEngineWindow::GetScale().Half().x - 280 - 60, 30 }, { 48, 48 }, { 0, 0 }, { 48, 48 }, Angle_, KeyR_Alpha_);
-			GameEngine::BackBufferImage()->PlgCopy(KeyZ_, { GameEngineWindow::GetScale().Half().x + 280 - 52, 30 }, { 48, 48 }, { 0, 0 }, { 48, 48 }, Angle_, KeyZ_Alpha_);
+			GameEngine::BackBufferImage()->PlgCopy(KeyR_, { GameEngineWindow::GetScale().Half().x - 280 - 60, 30 }, { 48, 48 }, { 0, 0 }, { 48, 48 }, (342 + Angle_) > 360.0f ? (342 + Angle_) - 360.0f : (342 + Angle_), KeyR_Alpha_);
+			GameEngine::BackBufferImage()->PlgCopy(KeyZ_, { GameEngineWindow::GetScale().Half().x + 280 - 52, 30 }, { 48, 48 }, { 0, 0 }, { 48, 48 }, (342 + Angle_) > 360.0f ? (342 + Angle_) - 360.0f : (342 + Angle_), KeyZ_Alpha_);
 
 		}
 	}
@@ -126,7 +129,7 @@ void GameHelpOverUI::SetOver()
 	CurrentFrame_ = 0;
 	EndFrame_ = 2;
 	{
-		Angle_ = 310.0f;
+		Angle_ = 0.0f;
 		AngleIndex_ = 0.0f;
 		//AngleValue_ = 0.001f;
 	}
