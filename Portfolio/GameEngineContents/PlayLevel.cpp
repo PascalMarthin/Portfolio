@@ -155,6 +155,7 @@ void PlayLevel::Update()
 			if (Coordinate::VibrationCounter_ > 1)
 			{
 				DoVibration_ = false;
+				BackGround_->SetPosition(GameEngineWindow::GetScale().Half());
 				ResetCoordinateVibration();
 			}
 		}
@@ -386,7 +387,7 @@ void PlayLevel::SetStage()
 
 void PlayLevel::ResetCoordinateVibration()
 {
-	Coordinate::CurrentVibrationTime_ = 0.05f;
+	Coordinate::CurrentVibrationTime_ = 0.08f;
 	Coordinate::VibrationVector_ = float4::ZERO;
 	Coordinate::VibrationVectorIndex_ = 0;
 	Coordinate::VibrationCounter_ = 0;
