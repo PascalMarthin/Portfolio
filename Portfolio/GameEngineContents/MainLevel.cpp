@@ -186,7 +186,7 @@ void MainLevel::Update()
 	KeyPush();
 	if (MoveQueue_.empty() == false)
 	{
-		CurrentMovePos_ += 4.0f;
+		CurrentMovePos_ += 2.0f;
 		if (CurrentMovePos_ > static_cast<float>(DotSizeX))
 		{
 			CurrentMovePos_ = 0;
@@ -197,16 +197,16 @@ void MainLevel::Update()
 			switch (MoveQueue_.front())
 			{
 			case Direction::Right:
-				MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 4, 0 }));
+				MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 2, 0 }));
 				break;
 			case Direction::Up:
-				MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 0, -4 }));
+				MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 0, -2 }));
 				break;
 			case Direction::Left:
-				MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ -4, 0 }));
+				MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ -2, 0 }));
 				break;
 			case Direction::Down:
-				MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 0, 4 }));
+				MainCursor_->SetPosition((MainCursor_->GetPosition()) + (float4{ 0, 2 }));
 				break;
 			default:
 				break;
