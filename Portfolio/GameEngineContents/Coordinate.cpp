@@ -48,7 +48,6 @@ void Coordinate::Start()
 	{
 		IsKeyPush_ = true;
 	}
-	DoVibration_ = false;
 }
 void Coordinate::SetCurrentImage()
 {
@@ -340,7 +339,7 @@ void Coordinate::Render()
 		}
 		else if (Type_ == ObjectType::Text)
 		{
-			GameEngine::BackBufferImage()->TransCopy(TextObject_->GetImage(), PastLUPos_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
+			GameEngine::BackBufferImage()->TransCopy(TextObject_->GetImage(), PastLUPos_ + (VibrationVector_ * VibrationVectorIndex_), CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
 		}
 	}
 

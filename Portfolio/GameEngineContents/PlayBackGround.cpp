@@ -14,7 +14,6 @@ PlayBackGround::~PlayBackGround()
 void PlayBackGround::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
-
 }
 
 void PlayBackGround::Update()

@@ -87,6 +87,8 @@ private:
 	// ¿Ã∆Â∆Æ
 	EffectManager* PlayLevelEffectManager_;
 	void ResetCoordinateVibration();
+	bool DoVibration_;
+	void VibrationOn();
 	//
 
 	// Ui

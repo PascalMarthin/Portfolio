@@ -38,7 +38,8 @@ PlayLevel::PlayLevel()
 	StageAlphabet_(nullptr),
 	TimeForFadeIn_(0.0f),
 	StageTitle_(false),
-	GameBackGround_(nullptr)
+	GameBackGround_(nullptr),
+	DoVibration_(false)
 {
 }
 
@@ -142,6 +143,22 @@ void PlayLevel::Update()
 		}
 	}
 
+	if (DoVibration_ == true)
+	{
+		BackGround_->SetPosition(GameEngineWindow::GetScale().Half() + (Coordinate::VibrationVector_ * Coordinate::VibrationVectorIndex_));
+		Coordinate::CurrentVibrationTime_ -= GameEngineTime::GetDeltaTime(0);
+		if (Coordinate::CurrentVibrationTime_ < 0)
+		{
+			Coordinate::CurrentVibrationTime_ = 0.08f;
+			Coordinate::VibrationVectorIndex_ *= -1;
+			Coordinate::VibrationCounter_ += 1;
+			if (Coordinate::VibrationCounter_ > 1)
+			{
+				DoVibration_ = false;
+				ResetCoordinateVibration();
+			}
+		}
+	}
 }
 
 void PlayLevel::KeyPushInMenu()
@@ -221,6 +238,7 @@ void PlayLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	ReSetStage();
 	CurrentStage_ = Stage::MainStage;
 	ClearScene_->SetStayOFF();
+
 	
 	if (MoveUI_ != nullptr)
 	{
@@ -368,10 +386,11 @@ void PlayLevel::SetStage()
 
 void PlayLevel::ResetCoordinateVibration()
 {
-	Coordinate::CurrentVibrationTime_ = 0.1f;
+	Coordinate::CurrentVibrationTime_ = 0.05f;
 	Coordinate::VibrationVector_ = float4::ZERO;
 	Coordinate::VibrationVectorIndex_ = 0;
 	Coordinate::VibrationCounter_ = 0;
+	DoVibration_ = false;
 }
 
 void PlayLevel::ReSetStage()
@@ -779,16 +798,28 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 	// 소리 중첩 안되게
 	if (IsDefeat == true)
 	{
+		VibrationOn();
 		PlaySoundDefeat();
 	}
 	if (IsSink == true)
 	{
+		VibrationOn();
 		PlaySoundSink();
 	}
 	if (IsMelt == true)
 	{
+		VibrationOn();
 		PlaySoundMelt();
 	}
+}
+
+void PlayLevel::VibrationOn()
+{
+	Coordinate::CurrentVibrationTime_ = 0.08f;
+	Coordinate::VibrationVector_ = { Random_->RandomFloat(2.0f, 3.0f), Random_->RandomFloat(2.0f, 3.0f)};
+	Coordinate::VibrationVectorIndex_ = 1;
+	Coordinate::VibrationCounter_ = 0;
+	DoVibration_ = true;
 }
 
 
@@ -1377,6 +1408,10 @@ void PlayLevel::AllReleaseInStage()
 	}
 	AllMoveHistory_.clear();
 	CurrentMap_.clear();
+	if (BackGround_ != nullptr)
+	{
+		BackGround_->Death();
+	}
 	// 재선언으로 비우기
 	QueueMove_ = std::queue<Direction>();
 }
