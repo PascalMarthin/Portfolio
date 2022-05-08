@@ -142,10 +142,12 @@ void Coordinate::ActorOrderCheck()
 		GameEngineActor::SetOrder(3);
 		return;
 		break;
-
 	case ObjectName::Rock_Unit:
-	case ObjectName::Text_Unit:
 		GameEngineActor::SetOrder(4);
+		return;
+		break;
+	case ObjectName::Text_Unit:
+		GameEngineActor::SetOrder(7);
 		return;
 		break;
 	}

@@ -26,6 +26,7 @@ PlayAndMainLevelMenu::PlayAndMainLevelMenu()
 	, BabaLocate_(float4::ZERO)
 	, AlphaBackGround_(nullptr)
 	, StageNameImage_(nullptr)
+	, CurrentStage_(Stage::MainStage)
 
 {
 }

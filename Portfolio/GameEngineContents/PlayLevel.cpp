@@ -70,6 +70,10 @@ void PlayLevel::Update()
 {
 	if (StageTitle_ == true)
 	{
+		if (GameEngineInput::GetInst()->IsDown("Space"))
+		{
+			TimeForFadeIn_ = 0;
+		}
 		TimeForFadeIn_ -= GameEngineTime::GetDeltaTime(0);
 		if (TimeForFadeIn_ < 0.0f)
 		{
