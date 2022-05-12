@@ -152,9 +152,6 @@
     <ClCompile Include="DebugLevel.cpp">
       <Filter>Level\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="SettingValue.cpp">
-      <Filter>Gobal</Filter>
-    </ClCompile>
     <ClCompile Include="TitleBackGroundStage.cpp">
       <Filter>LevelClass\Title</Filter>
     </ClCompile>
@@ -319,9 +316,6 @@
     </ClInclude>
     <ClInclude Include="DebugLevel.h">
       <Filter>Level\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="SettingValue.h">
-      <Filter>Gobal</Filter>
     </ClInclude>
     <ClInclude Include="TitleBackGroundStage.h">
       <Filter>LevelClass\Title</Filter>

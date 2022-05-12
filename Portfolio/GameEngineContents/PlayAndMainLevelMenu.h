@@ -22,12 +22,31 @@ public:
 	void SetMenuOn();
 	void SetMenuOff();
 
+	inline bool IsInOption()
+	{
+		return InOption_;
+	}
+
+	inline void IntotheOption()
+	{
+		InOption_ = true;
+	}
+
+	inline void OuttotheOption()
+	{
+		InOption_ = false;
+	}
 
 	void KeyPush();
 
 	inline MainMenu GetCurrentMenu() const
 	{
 		return CurrentMenu_;
+	}
+
+	inline MainOption GetCurrentMenuOption() const
+	{
+		return CurrentOption_;
 	}
 protected:
 	void Start() override;
@@ -55,7 +74,33 @@ private:
 	float4 SettingPos_;
 	float4 ReturnToTitlePos_;
 
+
+
+	GameEngineImage* Setting_Word_;
+	GameEngineImage* Disable_Particle_Effects_ON_;
+	GameEngineImage* Disable_Particle_Effects_OFF_;
+	GameEngineImage* Disable_Particle_Effects_Able_ON_;
+	GameEngineImage* Disable_Particle_Effects_Able_OFF_;
+	GameEngineImage* Disable_Screenshake_ON_;
+	GameEngineImage* Disable_Screenshake_OFF_;
+	GameEngineImage* Disable_Screenshake_Able_ON_;
+	GameEngineImage* Disable_Screenshake_Able_OFF_;
+	GameEngineImage* Enable_Grid_ON_;
+	GameEngineImage* Enable_Grid_OFF_;
+	GameEngineImage* Enable_Grid_Able_ON_;
+	GameEngineImage* Enable_Grid_Able_OFF_;
+	GameEngineImage* Return_Option_ON_;
+	GameEngineImage* Return_Option_OFF_;
+
+	float4 SettingWordPos_;
+	float4 DisableParticleEffectsPos_;
+	float4 DisableScreenshakePos_;
+	float4 EnableGridPos_;
+	float4 ReturnOptionPos_;
+
+
 	MainMenu CurrentMenu_;
+	MainOption CurrentOption_;
 	Stage CurrentStage_;
 	GameEngineImage* StageNameImage_;
 	//
@@ -66,5 +111,6 @@ private:
 	float4 CurrentImgScale_;
 	float4 CurrentImgPivot_;
 	float4 BabaLocate_;
-};
+	bool InOption_;
 
+};

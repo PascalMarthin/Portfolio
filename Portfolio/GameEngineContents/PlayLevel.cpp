@@ -170,40 +170,69 @@ void PlayLevel::KeyPushInMenu()
 {
 	if (GameEngineInput::GetInst()->IsDown("ESC"))
 	{
-		if (IsPause_ == true)
+		if (IsPause_ == true )
 		{
-			ShowPlayMode();
-			return;
+			if (Menu_->IsInOption() == false)
+			{
+				ShowPlayMode();
+				return;
+			}
+			else
+			{
+				Menu_->OuttotheOption();
+				return;
+			}
 		}
 	}
 	else if (GameEngineInput::GetInst()->IsDown("Space"))
 	{
-		MainMenu GetCurrentMenu = Menu_->GetCurrentMenu();
-		switch (GetCurrentMenu)
+		if (Menu_->IsInOption() == true)
 		{
-		case MainMenu::Resume:
-			ShowPlayMode();
-			return;
-			break;
-		case MainMenu::ReStart:
-			GameEngineSound::SoundPlayOneShot("input.ogg");
-			ReGame();
-			return;
-			break;
-		case MainMenu::ReturnToMap:
-			GoMain_ = true;
-			GameEngineSound::SoundPlayOneShot("input.ogg");
-			SceneChange();
-			break;
-		case MainMenu::Setting:
-			break;
-		case MainMenu::ReturnToMenu:
-			GoTitle_ = true;
-			GameEngineSound::SoundPlayOneShot("input.ogg");
-			SceneChange();
-			break;
-		default:
-			break;
+			MainOption GetCurrentOption = Menu_->GetCurrentMenuOption();
+			switch (GetCurrentOption)
+			{
+			case MainOption::EnableGrid:
+				break;
+			case MainOption::DisableScreenshake:
+				break;
+			case MainOption::DisableParticleEffects:
+				break;
+			case MainOption::ReturnOption:
+				break;
+			default:
+				break;
+			}
+		}
+		else
+		{
+			MainMenu GetCurrentMenu = Menu_->GetCurrentMenu();
+			switch (GetCurrentMenu)
+			{
+			case MainMenu::Resume:
+				ShowPlayMode();
+				return;
+				break;
+			case MainMenu::ReStart:
+				GameEngineSound::SoundPlayOneShot("input.ogg");
+				ReGame();
+				return;
+				break;
+			case MainMenu::ReturnToMap:
+				GoMain_ = true;
+				GameEngineSound::SoundPlayOneShot("input.ogg");
+				SceneChange();
+				break;
+			case MainMenu::Setting:
+				Menu_->IntotheOption();
+				break;
+			case MainMenu::ReturnToMenu:
+				GoTitle_ = true;
+				GameEngineSound::SoundPlayOneShot("input.ogg");
+				SceneChange();
+				break;
+			default:
+				break;
+			}
 		}
 	}
 	Menu_->KeyPush();

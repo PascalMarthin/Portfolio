@@ -29,6 +29,14 @@ enum class MainMenu
 	ReturnToMenu,
 };
 
+enum class MainOption
+{
+	EnableGrid,
+	DisableScreenshake,
+	DisableParticleEffects,
+	ReturnOption
+};
+
 enum class BabaLocation
 {
 	Baba,

@@ -34,6 +34,12 @@ public:
 	void SettingAbility();
 	void ReSetStat();
 	void DestroyName();
+
+
+	// Option
+	static bool Screenshake_;
+	static bool EnableGrid_;
+	static bool ParticleEffects_;
 protected:
 
 private:

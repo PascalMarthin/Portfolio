@@ -325,10 +325,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="SettingValue.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Sink_Text.h">
       <SubType>
       </SubType>
@@ -544,10 +540,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Rock.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="SettingValue.cpp">
       <SubType>
       </SubType>
     </ClCompile>
