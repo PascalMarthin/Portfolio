@@ -269,32 +269,64 @@ void MainLevel::KeyPushInMenu()
 	}
 	if (GameEngineInput::GetInst()->IsDown("Space"))
 	{
-		MainMenu GetCurrentMenu = Menu_->GetCurrentMenu();
-		switch (GetCurrentMenu)
+		if (Menu_->IsInOption() == true)
 		{
-		case MainMenu::Resume:
-			ShowMainMode();
-			return;
-			break;
-		case MainMenu::ReStart:
-			IntoMain_ = true;
-			IntoLevel();
-			return;
-			break;
-		case MainMenu::ReturnToMap:
-			return;
-			break;
-		case MainMenu::Setting:
-			break;
-		case MainMenu::ReturnToMenu:
-			IntoTitle_ = true;
-			IntoLevel();
-			return;
-			break;
-		default:
-			break;
+			MainOption GetCurrentOption = Menu_->GetCurrentMenuOption();
+			switch (GetCurrentOption)
+			{
+			case MainOption::EnableGrid:
+
+				break;
+			case MainOption::DisableScreenshake:
+
+				break;
+			case MainOption::DisableParticleEffects:
+
+				break;
+			case MainOption::ReturnOption:
+				Menu_->OuttotheOption();
+				GameEngineSound::Update();
+				GameEngineSound::SoundPlayOneShot("select.ogg");
+				return;
+				break;
+			}
+			GameEngineSound::Update();
+			GameEngineSound::SoundPlayOneShot("select.ogg");
 		}
-		return;
+		else
+		{
+			MainMenu GetCurrentMenu = Menu_->GetCurrentMenu();
+			switch (GetCurrentMenu)
+			{
+			case MainMenu::Resume:
+				ShowMainMode();
+				GameEngineSound::Update();
+				GameEngineSound::SoundPlayOneShot("select.ogg");
+				return;
+				break;
+			case MainMenu::ReStart:
+				IntoMain_ = true;
+				IntoLevel();
+				return;
+				break;
+			case MainMenu::ReturnToMap:
+				return;
+				break;
+			case MainMenu::Setting:
+				Menu_->IntotheOption();
+				GameEngineSound::Update();
+				GameEngineSound::SoundPlayOneShot("select.ogg");
+				break;
+			case MainMenu::ReturnToMenu:
+				IntoTitle_ = true;
+				IntoLevel();
+				return;
+				break;
+			default:
+				break;
+			}
+			return;
+		}
 	}
 	Menu_->KeyPush();
 }
@@ -303,7 +335,19 @@ void MainLevel::IntoLevel()
 {
 
 	Fade_->ShowFadeOut();
-	GameEngineSound::SoundPlayOneShot("IntotheMap.ogg");
+	if (IntoMain_ == true)
+	{
+		GameEngineSound::SoundPlayOneShot("Retrun.ogg");
+	}
+	else if(IntoTitle_ == true)
+	{
+		GameEngineSound::SoundPlayOneShot("input.ogg");
+	}
+	else if (IntoStage_ == true)
+	{
+		GameEngineSound::SoundPlayOneShot("IntotheMap.ogg");
+	}
+	GameEngineSound::Update();
 	BackGroundMusicControl_.Stop();
 }
 

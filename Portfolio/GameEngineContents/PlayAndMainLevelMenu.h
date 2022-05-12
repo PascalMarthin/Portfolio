@@ -77,6 +77,10 @@ private:
 
 
 	GameEngineImage* Setting_Word_;
+	GameEngineImage* Enable_Grid_ON_;
+	GameEngineImage* Enable_Grid_OFF_;
+	GameEngineImage* Enable_Grid_Able_ON_;
+	GameEngineImage* Enable_Grid_Able_OFF_;
 	GameEngineImage* Disable_Particle_Effects_ON_;
 	GameEngineImage* Disable_Particle_Effects_OFF_;
 	GameEngineImage* Disable_Particle_Effects_Able_ON_;
@@ -85,17 +89,12 @@ private:
 	GameEngineImage* Disable_Screenshake_OFF_;
 	GameEngineImage* Disable_Screenshake_Able_ON_;
 	GameEngineImage* Disable_Screenshake_Able_OFF_;
-	GameEngineImage* Enable_Grid_ON_;
-	GameEngineImage* Enable_Grid_OFF_;
-	GameEngineImage* Enable_Grid_Able_ON_;
-	GameEngineImage* Enable_Grid_Able_OFF_;
 	GameEngineImage* Return_Option_ON_;
 	GameEngineImage* Return_Option_OFF_;
 
-	float4 SettingWordPos_;
+	float4 EnableGridPos_;
 	float4 DisableParticleEffectsPos_;
 	float4 DisableScreenshakePos_;
-	float4 EnableGridPos_;
 	float4 ReturnOptionPos_;
 
 

@@ -71,7 +71,7 @@ void TitleLevel::Update()
 			{
 				MsgBoxAssert("BabaTitleLocate Error");
 			}
-			GameEngineSound::SoundPlayOneShot("select.ogg");
+			GameEngineSound::SoundPlayOneShot("select2.ogg");
 		}
 		if (GameEngineInput::GetInst()->IsDown("Down"))
 		{	
@@ -91,7 +91,7 @@ void TitleLevel::Update()
 			{
 				MsgBoxAssert("BabaTitleLocate Error");
 			}
-			GameEngineSound::SoundPlayOneShot("select.ogg");
+			GameEngineSound::SoundPlayOneShot("select4.ogg");
 		}
 
 		if (GameEngineInput::GetInst()->IsPress("Space") || GameEngineInput::GetInst()->IsPress("Enter"))

@@ -198,10 +198,11 @@ void PlayLevel::KeyPushInMenu()
 			case MainOption::DisableParticleEffects:
 				break;
 			case MainOption::ReturnOption:
-				break;
-			default:
+				Menu_->OuttotheOption();
 				break;
 			}
+			GameEngineSound::Update();
+			GameEngineSound::SoundPlayOneShot("select.ogg");
 		}
 		else
 		{
@@ -210,10 +211,12 @@ void PlayLevel::KeyPushInMenu()
 			{
 			case MainMenu::Resume:
 				ShowPlayMode();
+				GameEngineSound::Update();
+				GameEngineSound::SoundPlayOneShot("select.ogg");
 				return;
 				break;
 			case MainMenu::ReStart:
-				GameEngineSound::SoundPlayOneShot("input.ogg");
+				GameEngineSound::SoundPlayOneShot("Retrun.ogg");
 				ReGame();
 				return;
 				break;
@@ -224,6 +227,8 @@ void PlayLevel::KeyPushInMenu()
 				break;
 			case MainMenu::Setting:
 				Menu_->IntotheOption();
+				GameEngineSound::Update();
+				GameEngineSound::SoundPlayOneShot("select.ogg");
 				break;
 			case MainMenu::ReturnToMenu:
 				GoTitle_ = true;
@@ -234,6 +239,7 @@ void PlayLevel::KeyPushInMenu()
 				break;
 			}
 		}
+
 	}
 	Menu_->KeyPush();
 }

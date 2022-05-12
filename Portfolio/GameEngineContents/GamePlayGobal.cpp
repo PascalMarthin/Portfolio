@@ -28,9 +28,9 @@
 
 GamePlayGobal* GamePlayGobal::Inst_ = new GamePlayGobal();
 
-bool GamePlayGobal::Screenshake_ = false;
+bool GamePlayGobal::DisableScreenshake_ = false;
 bool GamePlayGobal::EnableGrid_ = false;
-bool GamePlayGobal::ParticleEffects_ = false;
+bool GamePlayGobal::DisableParticleEffects_ = false;
 
 GamePlayGobal::GamePlayGobal() 
 {

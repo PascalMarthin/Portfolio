@@ -32,8 +32,8 @@ enum class MainMenu
 enum class MainOption
 {
 	EnableGrid,
-	DisableScreenshake,
 	DisableParticleEffects,
+	DisableScreenshake,
 	ReturnOption
 };
 

@@ -28,7 +28,6 @@ PlayAndMainLevelMenu::PlayAndMainLevelMenu()
 	, StageNameImage_(nullptr)
 	, CurrentStage_(Stage::MainStage)
 	, InOption_(false)
-	, SettingWordPos_(float4::ZERO)
 	, DisableParticleEffectsPos_(float4::ZERO)
 	, DisableScreenshakePos_(float4::ZERO)
 	, EnableGridPos_(float4::ZERO)
@@ -141,11 +140,10 @@ void PlayAndMainLevelMenu::Start()
 		BabaLocate_ = { -60, 0 };
 	}
 	{
-		SettingWordPos_;
-		DisableParticleEffectsPos_;
-		DisableScreenshakePos_;
-		EnableGridPos_;
-		ReturnOptionPos_;
+		EnableGridPos_ = { 0 , -260 };
+		DisableParticleEffectsPos_ = {0 , -200};
+		DisableScreenshakePos_ = { 0 , -140 };
+		ReturnOptionPos_ = { 0 , 10 };
 	}
 
 	CurrentMenu_ = MainMenu::Resume;
@@ -173,6 +171,7 @@ void PlayAndMainLevelMenu::BabaAnimation()
 
 void PlayAndMainLevelMenu::Update()
 {
+	if (GetLevel()->GetNameConstRef() == "PlayLevel")
 	{
 		CurrentStage_ = static_cast<PlayLevel*>(GetLevel())->GetCurrentStage();
 		switch (CurrentStage_)
@@ -275,16 +274,16 @@ void PlayAndMainLevelMenu::KeyPush()
 			switch (CurrentOption_)
 			{
 			case MainOption::EnableGrid:
-				CurrentOption_ = MainOption::ReturnOption;
-				break;
-			case MainOption::DisableParticleEffects:
-				CurrentOption_ = MainOption::EnableGrid;
-				break;
-			case MainOption::DisableScreenshake:
 				CurrentOption_ = MainOption::DisableParticleEffects;
 				break;
-			case MainOption::ReturnOption:
+			case MainOption::DisableParticleEffects:
 				CurrentOption_ = MainOption::DisableScreenshake;
+				break;
+			case MainOption::DisableScreenshake:
+				CurrentOption_ = MainOption::ReturnOption;
+				break;
+			case MainOption::ReturnOption:
+				CurrentOption_ = MainOption::EnableGrid;
 				break;
 			default:
 				break;
@@ -326,14 +325,67 @@ void PlayAndMainLevelMenu::KeyPush()
 
 }
 
-
-
 void PlayAndMainLevelMenu::Render()
 {
 	GameEngine::BackBufferImage()->AlphaCopy(AlphaBackGround_, float4::ZERO, GameEngineWindow::GetScale(), float4::ZERO, AlphaBackGround_->GetScale(), 120);
-	
 	if (InOption_ == true)
 	{
+		GameEngine::BackBufferImage()->TransCopy(Setting_Word_, { GameEngineWindow::GetScale().Half().x - Setting_Word_->GetScale().Half().x, 60 }, Setting_Word_->GetScale(), float4::ZERO, Setting_Word_->GetScale(), RGB(255, 0, 255));
+		{
+			GameEngineImage* EnalbeGrid = Enable_Grid_OFF_;
+			if (GamePlayGobal::EnableGrid_ == true)
+			{
+				EnalbeGrid = Enable_Grid_Able_OFF_;
+			}
+			GameEngineImage* DisableParticleEffect = Disable_Particle_Effects_OFF_;
+			if (GamePlayGobal::DisableParticleEffects_ == true)
+			{
+				DisableParticleEffect = Disable_Particle_Effects_Able_OFF_;
+			}
+			GameEngineImage* DisableScreenShake = Disable_Screenshake_OFF_;
+			if (GamePlayGobal::DisableScreenshake_ == true)
+			{
+				DisableScreenShake = Disable_Screenshake_Able_OFF_;
+			}
+			GameEngineImage* ReturnOption = Return_Option_OFF_;
+
+			switch (CurrentOption_)
+			{
+			case MainOption::EnableGrid:
+				EnalbeGrid = Enable_Grid_ON_;
+				if (GamePlayGobal::EnableGrid_ == true)
+				{
+					EnalbeGrid = Enable_Grid_Able_ON_;
+				}
+				GameEngine::BackBufferImage()->TransCopy(Baba_, GetPosition() - Resume_ON_->GetScale().Half() + EnableGridPos_ + BabaLocate_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
+				break;
+			case MainOption::DisableParticleEffects:
+				DisableParticleEffect = Disable_Particle_Effects_ON_;
+				if (GamePlayGobal::DisableParticleEffects_ == true)
+				{
+					DisableParticleEffect = Disable_Particle_Effects_Able_ON_;
+				}
+				GameEngine::BackBufferImage()->TransCopy(Baba_, GetPosition() - Resume_ON_->GetScale().Half() + DisableParticleEffectsPos_ + BabaLocate_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
+				break;
+			case MainOption::DisableScreenshake:
+				DisableScreenShake = Disable_Screenshake_ON_;
+				if (GamePlayGobal::DisableScreenshake_ == true)
+				{
+					DisableScreenShake = Disable_Screenshake_Able_ON_;
+				}
+				GameEngine::BackBufferImage()->TransCopy(Baba_, GetPosition() - Resume_ON_->GetScale().Half() + DisableScreenshakePos_ + BabaLocate_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
+				break;
+			case MainOption::ReturnOption:
+				ReturnOption = Return_Option_ON_;
+				GameEngine::BackBufferImage()->TransCopy(Baba_, GetPosition() - Resume_ON_->GetScale().Half() + ReturnOptionPos_ + BabaLocate_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
+				break;
+			}
+			GameEngine::BackBufferImage()->TransCopy(EnalbeGrid, GetPosition() - EnalbeGrid->GetScale().Half() + EnableGridPos_, EnalbeGrid->GetScale(), float4::ZERO, EnalbeGrid->GetScale(), RGB(255, 0, 255));
+			GameEngine::BackBufferImage()->TransCopy(DisableParticleEffect, GetPosition() - DisableParticleEffect->GetScale().Half() + DisableParticleEffectsPos_, DisableParticleEffect->GetScale(), float4::ZERO, DisableParticleEffect->GetScale(), RGB(255, 0, 255));
+			GameEngine::BackBufferImage()->TransCopy(DisableScreenShake, GetPosition() - DisableScreenShake->GetScale().Half() + DisableScreenshakePos_, DisableScreenShake->GetScale(), float4::ZERO, DisableScreenShake->GetScale(), RGB(255, 0, 255));
+			GameEngine::BackBufferImage()->TransCopy(ReturnOption, GetPosition() - ReturnOption->GetScale().Half() + ReturnOptionPos_, ReturnOption->GetScale(), float4::ZERO, ReturnOption->GetScale(), RGB(255, 0, 255));
+
+		}
 
 	}
 	else

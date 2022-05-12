@@ -37,9 +37,9 @@ public:
 
 
 	// Option
-	static bool Screenshake_;
+	static bool DisableScreenshake_;
 	static bool EnableGrid_;
-	static bool ParticleEffects_;
+	static bool DisableParticleEffects_;
 protected:
 
 private:
