@@ -4,6 +4,10 @@
 #include "Fade_InAndOut.h"
 #include <GameEngineBase/GameEngineSound.h>
 #include <vector>
+#include "TitleLogo.h"
+#include "TitleMenu.h"
+#include "PlayAndMainLevelMenu.h"
+#include "TitleBaba.h"
 
 
 
@@ -27,7 +31,15 @@ protected:
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
+	void OptionOFF();
+	void OptionON();
+	void KeyPushInOption();
+	bool InOption_;
 	Fade_InAndOut* Fade_;
+	TitleLogo* Logo_;
+	TitleMenu* TitleMenu_;
+	TitleBaba* TitleBaba_;
+	PlayAndMainLevelMenu* SettingMenu_;
 	GameEngineSoundPlayer BackGroundMusicControl_;
 
 };

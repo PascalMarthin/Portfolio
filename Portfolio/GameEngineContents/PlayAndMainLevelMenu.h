@@ -22,7 +22,7 @@ public:
 	void SetMenuOn();
 	void SetMenuOff();
 
-	inline bool IsInOption()
+	inline bool IsInOption() const
 	{
 		return InOption_;
 	}

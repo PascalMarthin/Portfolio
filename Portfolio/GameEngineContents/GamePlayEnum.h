@@ -1,7 +1,9 @@
 #pragma once
 //#include "GamePlayEnum.h"
-#define DotSizeX 48
-#define DotSizeY 48
+#define DotSizeX 48.0f
+#define DotSizeY 48.0f
+#define iDotSizeY 48
+#define iDotSizeX 48
 #define ImageSpeed 0.15f
 #define SDefeat 1
 #define SHot 2

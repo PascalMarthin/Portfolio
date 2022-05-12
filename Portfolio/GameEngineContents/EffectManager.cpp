@@ -3,6 +3,7 @@
 #include <math.h>
 #include <Windows.h>
 #include <stdio.h>  
+#include "GamePlayGobal.h"
 
 GameEngineRandom* EffectManager::Random_ = new GameEngineRandom();
 
@@ -34,6 +35,10 @@ EffectManager::~EffectManager()
 
 bool EffectManager::ShowStatEffect(const float4& _LUPos, GameEngineImage* _EffectImage, int _Min, int _Max)
 {
+	if (GamePlayGobal::DisableParticleEffects_ == true)
+	{
+		return false;
+	}
 	if (_Min > _Max)
 	{
 		int idx = _Max;
@@ -70,13 +75,16 @@ bool EffectManager::ShowStatEffect(const float4& _LUPos, GameEngineImage* _Effec
 
 void EffectManager::ShowRandomSprayEffect(const float4& _LUPos, GameEngineImage* _EffectImage, int _Min, int _Max, float _MinVector, float _MaxVector, float _InterTime)
 {
+	if (GamePlayGobal::DisableParticleEffects_ == true)
+	{
+		return;
+	}
 	int Index = Random_->RandomInt(_Min, _Max);
 	for (int i = 0; i < Index; i++)
 	{
 		float RandomInterTime = Random_->RandomFloat(_InterTime - _InterTime / 2 , _InterTime * 3 );
 		
 		QueueEffect* Group = new QueueEffect(_LUPos, _EffectImage, static_cast<int>(_EffectImage->GetCutCount() - 1), RandomInterTime);
-
 		{
 			float x = 0.0f;
 			float y = 0.0f;
@@ -98,6 +106,10 @@ void EffectManager::ShowRandomSprayEffect(const float4& _LUPos, GameEngineImage*
 
 void EffectManager::ShowRandomEffect(const float4& _LUPos, GameEngineImage* _EffectImage, int _Min, int _Max, float _InterTime)
 {	
+	if (GamePlayGobal::DisableParticleEffects_ == true)
+	{
+		return;
+	}
 	if (_Min > _Max)
 	{
 		int idx = _Max;
@@ -109,13 +121,13 @@ void EffectManager::ShowRandomEffect(const float4& _LUPos, GameEngineImage* _Eff
 		int Index = Random_->RandomInt(_Min, _Max);
 		for (int i = 0; i < Index; i++)
 		{
-			
-			Group->MoveVector_.push_back(float4::ZERO);
 			{
-				float x = Random_->RandomFloat(-24.0f, 24.0f);
-				float y = Random_->RandomFloat(-24.0f, 24.0f);
-				Group->CurrentPos_.push_back(float4{ _LUPos.x + x, _LUPos.y + y });
+				float x = _LUPos.x + Random_->RandomFloat(-24.0f, 24.0f);
+				float y = _LUPos.y + Random_->RandomFloat(-24.0f, 24.0f);
 
+				Group->CurrentPos_.push_back(float4{ x,  y });
+
+				Group->MoveVector_.push_back(float4{ (x - _LUPos.x) / 2, (y - _LUPos.y) / 2 });
 			}
 		}
 		QueueEffect_.push_back(Group);
@@ -124,7 +136,10 @@ void EffectManager::ShowRandomEffect(const float4& _LUPos, GameEngineImage* _Eff
 
 void EffectManager::ShowMoveEffect(const float4& _LUPos, GameEngineImage* _EffectImage, Direction _Dir, float _InterTime)
 {
-
+	if (GamePlayGobal::DisableParticleEffects_ == true)
+	{
+		return;
+	}
 	QueueEffect* Group = new QueueEffect(_LUPos, _EffectImage, static_cast<int>(_EffectImage->GetCutCount() - 1), _InterTime);
 	switch (_Dir)
 	{
@@ -258,7 +273,10 @@ void QueueEffect::SetMoveVector()
 		}
 		break;
 	case EffectType::DefaltEffect:
-		return;
+		for (float4& Iter : MoveVector_)
+		{
+			IncreaseVector(Iter, Speed_ * 0.58f);
+		}
 		break;
 	default:
 		break;
@@ -309,6 +327,13 @@ void QueueEffect::SetSpeedbyFrame()
 		break;
 	case EffectType::StatEffect:
 		Speed_ -= Random_->RandomFloat(0.003f, 0.008f);
+		if (Speed_ < 0)
+		{
+			Speed_ = 0;
+		}
+		break;
+	case EffectType::DefaltEffect:
+		Speed_ -= 0.01f;
 		if (Speed_ < 0)
 		{
 			Speed_ = 0;

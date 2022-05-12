@@ -39,7 +39,8 @@ PlayLevel::PlayLevel()
 	TimeForFadeIn_(0.0f),
 	StageTitle_(false),
 	GameBackGround_(nullptr),
-	DoVibration_(false)
+	DoVibration_(false),
+	PlayGrid_(nullptr)
 {
 }
 
@@ -62,6 +63,7 @@ void PlayLevel::Loading()
 	OverUI_->Off();
 	GameBackGround_ = CreateActor<BackGround>(0);
 	ClearScene_ = CreateActor<ClearScene>(5);
+	PlayGrid_ = CreateActor<PlayAndMainGrid>(8);
 	AllMoveHistory_.reserve(10000);
 
 }
@@ -192,10 +194,34 @@ void PlayLevel::KeyPushInMenu()
 			switch (GetCurrentOption)
 			{
 			case MainOption::EnableGrid:
-				break;
-			case MainOption::DisableScreenshake:
+				if (GamePlayGobal::EnableGrid_ == true)
+				{
+					GamePlayGobal::EnableGrid_ = false;
+				}
+				else
+				{
+					GamePlayGobal::EnableGrid_ = true;
+				}
 				break;
 			case MainOption::DisableParticleEffects:
+				if (GamePlayGobal::DisableParticleEffects_ == true)
+				{
+					GamePlayGobal::DisableParticleEffects_ = false;
+				}
+				else
+				{
+					GamePlayGobal::DisableParticleEffects_ = true;
+				}
+				break;
+			case MainOption::DisableScreenshake:
+				if (GamePlayGobal::DisableScreenshake_ == true)
+				{
+					GamePlayGobal::DisableScreenshake_ = false;
+				}
+				else
+				{
+					GamePlayGobal::DisableScreenshake_ = true;
+				}
 				break;
 			case MainOption::ReturnOption:
 				Menu_->OuttotheOption();
@@ -420,6 +446,7 @@ void PlayLevel::SetStage()
 	BackGround_->CreateRendererToScale("Stage0.bmp", { MapScale_.x * DotSizeX, MapScale_.y * DotSizeY });
 	GameWindowStartPosX_ = (GameEngineWindow::GetScale().x - MapScale_.x * DotSizeX) / 2;
 	GameWindowStartPosY_ = (GameEngineWindow::GetScale().y - MapScale_.y * DotSizeY) / 2;
+	PlayGrid_->Reset();
 	ShowPlayMode();
 	CreatMap(StageData::Inst_->StageData_[CurrentStage_]);
 }
@@ -456,9 +483,11 @@ void PlayLevel::ReSetStage()
 	// 재선언으로 비우기
 	QueueMove_ = std::queue<Direction>();
 
+	PlayGrid_->Reset();
 	ClearScene_->Off();
 	BackGround_->Death();
 	BackGround_ = nullptr;
+
 }
 
 unsigned int PlayLevel::CheckUnitBridge(const Coordinate* _Unit)
@@ -855,6 +884,10 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 
 void PlayLevel::VibrationOn()
 {
+	if (GamePlayGobal::DisableScreenshake_ == true)
+	{
+		return;
+	}
 	Coordinate::CurrentVibrationTime_ = 0.08f;
 	Coordinate::VibrationVector_ = { Random_->RandomFloat(2.0f, 3.0f), Random_->RandomFloat(2.0f, 3.0f)};
 	Coordinate::VibrationVectorIndex_ = 1;

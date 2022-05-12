@@ -19,6 +19,7 @@
 #include "PlayAndMainLevelMenu.h"
 #include "AlphabetManager.h"
 #include "BackGround.h"
+#include "PlayAndMainGrid.h"
 // 설명 : Stage 정보를 받아 화면에 출력해주는 Level
 class CooridnateHistoryData;
 class GamePlayObject;
@@ -42,6 +43,11 @@ public:
 	inline Stage GetCurrentStage()
 	{
 		return CurrentStage_;
+	}
+
+	inline float4 GetMapScale()
+	{
+		return MapScale_;
 	}
 	
 
@@ -104,6 +110,7 @@ private:
 	void ShowPlayMode();
 	void ShowMenuMode();
 	float TimeForFadeIn_;
+	PlayAndMainGrid* PlayGrid_;
 	//
 
 	void SceneChange();

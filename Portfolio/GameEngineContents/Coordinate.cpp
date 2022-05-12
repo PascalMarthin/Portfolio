@@ -232,6 +232,7 @@ void Coordinate::Update()
 			}
 			else
 			{
+				PastLUPos_ = CurrentLUPos_;
 				IsBackTothePast_ = false;
 				IsMove_ = false;
 			}
@@ -258,7 +259,7 @@ void Coordinate::Update()
 	}
 	if (UnitObject_->FindStat(SHot) && EffectManager_ != nullptr && GameEngineTime::GetDeltaTime(0) != 0.0f && IsUnitUpdate() == true)
 	{
-		EffectManager_->ShowStatEffect(PastLUPos_, GameEngineImageManager::GetInst()->Find("Hot_Effect_sheet.bmp"), 0, 20000);
+		EffectManager_->ShowStatEffect(PastLUPos_, GameEngineImageManager::GetInst()->Find("Hot_Effect_sheet.bmp"), 0, 6000);
 	}
 }
 

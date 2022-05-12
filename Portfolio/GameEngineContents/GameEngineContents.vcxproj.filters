@@ -161,6 +161,9 @@
     <ClCompile Include="AlphaBackGround.cpp">
       <Filter>LevelClass\Title</Filter>
     </ClCompile>
+    <ClCompile Include="PlayAndMainGrid.cpp">
+      <Filter>LevelClass\Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabaIsYou.h" />
@@ -325,6 +328,9 @@
     </ClInclude>
     <ClInclude Include="AlphaBackGround.h">
       <Filter>LevelClass\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayAndMainGrid.h">
+      <Filter>LevelClass\Play</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

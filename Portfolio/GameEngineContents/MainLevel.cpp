@@ -275,13 +275,34 @@ void MainLevel::KeyPushInMenu()
 			switch (GetCurrentOption)
 			{
 			case MainOption::EnableGrid:
-
-				break;
-			case MainOption::DisableScreenshake:
-
+				if (GamePlayGobal::EnableGrid_ == true)
+				{
+					GamePlayGobal::EnableGrid_ = false;
+				}
+				else
+				{
+					GamePlayGobal::EnableGrid_ = true;
+				}
 				break;
 			case MainOption::DisableParticleEffects:
-
+				if (GamePlayGobal::DisableParticleEffects_ == true)
+				{
+					GamePlayGobal::DisableParticleEffects_ = false;
+				}
+				else
+				{
+					GamePlayGobal::DisableParticleEffects_ = true;
+				}
+				break;
+			case MainOption::DisableScreenshake:
+				if (GamePlayGobal::DisableScreenshake_ == true)
+				{
+					GamePlayGobal::DisableScreenshake_ = false;
+				}
+				else
+				{
+					GamePlayGobal::DisableScreenshake_ = true;
+				}
 				break;
 			case MainOption::ReturnOption:
 				Menu_->OuttotheOption();

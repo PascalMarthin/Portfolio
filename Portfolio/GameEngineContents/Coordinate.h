@@ -131,7 +131,7 @@ private:
 	float4 PastLUPos_;
 	float4 CurrentPos_;
 	float4 CurrentLUPos_;
-	int PastByCurrentRange_;
+	float PastByCurrentRange_;
 	int RandomIdx_;
 
 	

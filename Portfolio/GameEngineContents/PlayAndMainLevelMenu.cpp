@@ -357,7 +357,7 @@ void PlayAndMainLevelMenu::Render()
 				{
 					EnalbeGrid = Enable_Grid_Able_ON_;
 				}
-				GameEngine::BackBufferImage()->TransCopy(Baba_, GetPosition() - Resume_ON_->GetScale().Half() + EnableGridPos_ + BabaLocate_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
+				GameEngine::BackBufferImage()->TransCopy(Baba_, GetPosition() - EnalbeGrid->GetScale().Half() + EnableGridPos_ + BabaLocate_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
 				break;
 			case MainOption::DisableParticleEffects:
 				DisableParticleEffect = Disable_Particle_Effects_ON_;
@@ -365,7 +365,7 @@ void PlayAndMainLevelMenu::Render()
 				{
 					DisableParticleEffect = Disable_Particle_Effects_Able_ON_;
 				}
-				GameEngine::BackBufferImage()->TransCopy(Baba_, GetPosition() - Resume_ON_->GetScale().Half() + DisableParticleEffectsPos_ + BabaLocate_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
+				GameEngine::BackBufferImage()->TransCopy(Baba_, GetPosition() - DisableParticleEffect->GetScale().Half() + DisableParticleEffectsPos_ + BabaLocate_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
 				break;
 			case MainOption::DisableScreenshake:
 				DisableScreenShake = Disable_Screenshake_ON_;
@@ -373,11 +373,11 @@ void PlayAndMainLevelMenu::Render()
 				{
 					DisableScreenShake = Disable_Screenshake_Able_ON_;
 				}
-				GameEngine::BackBufferImage()->TransCopy(Baba_, GetPosition() - Resume_ON_->GetScale().Half() + DisableScreenshakePos_ + BabaLocate_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
+				GameEngine::BackBufferImage()->TransCopy(Baba_, GetPosition() - DisableScreenShake->GetScale().Half() + DisableScreenshakePos_ + BabaLocate_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
 				break;
 			case MainOption::ReturnOption:
 				ReturnOption = Return_Option_ON_;
-				GameEngine::BackBufferImage()->TransCopy(Baba_, GetPosition() - Resume_ON_->GetScale().Half() + ReturnOptionPos_ + BabaLocate_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
+				GameEngine::BackBufferImage()->TransCopy(Baba_, GetPosition() - ReturnOption->GetScale().Half() + ReturnOptionPos_ + BabaLocate_, CurrentImgScale_, CurrentImgPivot_, CurrentImgScale_, RGB(255, 0, 255));
 				break;
 			}
 			GameEngine::BackBufferImage()->TransCopy(EnalbeGrid, GetPosition() - EnalbeGrid->GetScale().Half() + EnableGridPos_, EnalbeGrid->GetScale(), float4::ZERO, EnalbeGrid->GetScale(), RGB(255, 0, 255));
