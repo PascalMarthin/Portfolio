@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include <GameEngine/GameEngineImage.h>
 
 // Ό³Έν :
 class PlayAndMainGrid : public GameEngineActor
@@ -26,7 +27,9 @@ private:
 
 	int MapSizeX_;
 	int MapSizeY_;
-	float MapMaxSizeX_;
-	float MapMaxSizeY_;
+	float4 MapMaxSize_;
+
+
+	GameEngineImage* GridMap_;
 };
 

@@ -26,7 +26,8 @@ MainLevel::MainLevel()
 	IsPause_(false),
 	IntoStage_(false),
 	IntoTitle_(false),
-	IntoMain_(false)
+	IntoMain_(false),
+	Grid_(nullptr)
 {
 }
 
@@ -71,6 +72,8 @@ void MainLevel::Loading()
 	MainCursor_ = CreateActor<MainCursor>(3, "MainCursor");
 	MainCursor_->SetPosition(MainMap_[15][9]->GetPosition());
 	MainCursorPos_ = { 9, 15 };
+	Grid_ = CreateActor<PlayAndMainGrid>(3);
+	Grid_->Reset();
 }
 
 bool MainLevel::KeyPush()

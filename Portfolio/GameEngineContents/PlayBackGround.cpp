@@ -18,9 +18,9 @@ void PlayBackGround::Start()
 
 void PlayBackGround::Update()
 {
-
 }
 
 void PlayBackGround::Render()
 {
+
 }

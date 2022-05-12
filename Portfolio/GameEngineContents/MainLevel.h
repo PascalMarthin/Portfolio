@@ -7,6 +7,7 @@
 #include "Fade_InAndOut.h"
 #include "StageName.h"
 #include "PlayAndMainLevelMenu.h"
+#include "PlayAndMainGrid.h"
 
 // Ό³Έν :
 class Coordinate;
@@ -58,6 +59,7 @@ private:
 	void ShowMainMode();
 	bool IsPause_;
 	void KeyPushInMenu();
+	PlayAndMainGrid* Grid_;
 	//
 
 	void CreatMap(std::map<int, std::map<int, ObjectName>>& _Stage);
