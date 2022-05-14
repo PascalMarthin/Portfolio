@@ -742,6 +742,7 @@ void PlayLevel::ApplyObjectFuction(Coordinate* _Unit, Coordinate* _Verb,  Coordi
 	{
 		if (ChangeUnit(static_cast<GamePlayUnitText*>(_Unit->GetTextObjectInst())->GetTextUnit(), static_cast<GamePlayUnitText*>(_Stat->GetTextObjectInst())->GetTextUnit()) == true)
 		{
+			GameEngineSound::Update();
 			PlaySoundChange();
 		}
 	
@@ -795,6 +796,7 @@ void PlayLevel::CheckBitStat(std::list<Coordinate*>& _Value)
 	bool IsDefeat = false;
 	bool IsSink = false;
 	bool IsMelt = false;
+	GameEngineSound::Update();
 	// Defeat
 	{
 

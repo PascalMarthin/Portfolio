@@ -19,6 +19,7 @@ void AlphaBackGround::Start()
 	Render->SetAlpha(100);
 	Render->SetScale(float4(4752, 2592));
 	Render->SetOrder(2);
+	Render->CameraEffectOff();
 }
 
 void AlphaBackGround::Update()

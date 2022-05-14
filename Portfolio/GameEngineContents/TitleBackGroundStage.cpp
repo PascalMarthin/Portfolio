@@ -27,7 +27,7 @@ void TitleBackGroundStage::Update()
 	GetLevel()->MoveCameraPos(MoveSpeed_ * GameEngineTime::GetDeltaTime(0));
 	if (1584.0f < GetLevel()->GetCameraPos().x && 864.0f < GetLevel()->GetCameraPos().y)
 	{
-		GetLevel()->SetCameraPos(float4(GetLevel()->GetCameraPos().x - 1584, GetLevel()->GetCameraPos().y - 864));
+		GetLevel()->SetCameraPos(float4(GetLevel()->GetCameraPos().x - 1584.0f, GetLevel()->GetCameraPos().y - 864.0f));
 	}
 }
 
