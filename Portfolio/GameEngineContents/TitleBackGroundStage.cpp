@@ -2,6 +2,7 @@
 #include "TitleBackGroundStage.h"
 #include "GamePlayEnum.h"
 #include <GameEngineBase/GameEngineTime.h>
+#include <GameEngine/GameEngineLevel.h>
 
 TitleBackGroundStage::TitleBackGroundStage()
 	: MoveSpeed_({ 2.0f,  2.0f })

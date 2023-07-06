@@ -4,6 +4,7 @@
 #include <list>
 #include <vector>
 #include <map>
+#include "GameEngineActor.h"
 
 class GameEngineActor;
 struct ChangeOrderItem
